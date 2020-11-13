@@ -22,21 +22,8 @@ type IHandlers interface {
 	Login(ctx context.Context, req *pb.LoginRequest) (*pb.LoginResponse, error)
 	Logout(ctx context.Context, req *empty.Empty) (*empty.Empty, error)
 	Refresh(ctx context.Context, req *empty.Empty) (*pb.RefreshResponse, error)
-	GetUsersByZone(ctx context.Context, req *pb.GetUsersRequest) (*pb.GetUsersResponse, error)
-	GetRecentUsersByZone(ctx context.Context, req *pb.GetUsersRequest) (*pb.GetUsersResponse, error)
-	GetRecentUsersByUser(ctx context.Context, req *pb.GetUsersRequest) (*pb.GetUsersResponse, error)
+	GetNearbyUsers(ctx context.Context, req *pb.GetNearbyUsersRequest) (*pb.GetNearbyUsersResponse, error)
 	// -------------- User ----------------
-
-	// -------------- Zone ----------------
-	GetRecentZonesByUser(ctx context.Context, req *pb.GetZonesRequest) (*pb.GetZonesResponse, error)
-	CreateZone(ctx context.Context, req *pb.CreateZoneRequest) (*pb.CreateZoneResponse, error)
-	GetZones(ctx context.Context, req *pb.GetZonesRequest) (*pb.GetZonesResponse, error)
-	GetZone(ctx context.Context, req *pb.GetZoneRequest) (*pb.GetZoneResponse, error)
-	DeleteZone(ctx context.Context, req *pb.DeleteZoneRequest) (*pb.DeleteZoneResponse, error)
-	UpdateZone(ctx context.Context, req *pb.UpdateZoneRequest) (*pb.UpdateZoneResponse, error)
-	DeleteZones(ctx context.Context, req *pb.DeleteZonesRequest) (*pb.DeleteZonesResponse, error)
-	UpdateZones(ctx context.Context, req *pb.UpdateZonesRequest) (*pb.UpdateZonesResponse, error)
-	// -------------- Zone ----------------
 
 	// -------------- Faq ----------------
 	CreateFaq(ctx context.Context, req *pb.CreateFaqRequest) (*pb.CreateFaqResponse, error)
@@ -47,18 +34,4 @@ type IHandlers interface {
 	DeleteFaqs(ctx context.Context, req *pb.DeleteFaqsRequest) (*pb.DeleteFaqsResponse, error)
 	UpdateFaqs(ctx context.Context, req *pb.UpdateFaqsRequest) (*pb.UpdateFaqsResponse, error)
 	// -------------- Zone ----------------
-
-	// -------------- Client ----------------
-	ClientGetNearbyUsers(ctx context.Context, req *pb.ClientGetNearbyUsersRequest) (*pb.ClientGetNearbyUsersResponse, error)
-	ClientGetCurrentZones(ctx context.Context, req *pb.ClientGetCurrentZonesRequest) (*pb.ClientGetCurrentZonesResponse, error)
-	ClientGetRecentZones(ctx context.Context, req *pb.ClientGetRecentZonesRequest) (*pb.GetZonesResponse, error)
-	ClientCreateUser(ctx context.Context, req *pb.CreateUserRequest) (*pb.CreateUserResponse, error)
-	ClientGetZones(ctx context.Context, req *pb.GetZonesRequest) (*pb.GetZonesResponse, error)
-	ClientGetUsers(ctx context.Context, req *pb.GetUsersRequest) (*pb.GetUsersResponse, error)
-	ClientUpdateUser(ctx context.Context, req *pb.UpdateUserRequest) (*pb.UpdateUserResponse, error)
-	// -------------- Client ----------------
-
-	// -------------- Activity ----------------
-	GetActivities(ctx context.Context, req *pb.GetActivitiesRequest) (*pb.GetActivitiesResponse, error)
-	// -------------- Activity ----------------
 }

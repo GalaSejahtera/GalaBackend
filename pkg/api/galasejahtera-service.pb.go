@@ -27,45 +27,6 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
-type ClientGetRecentZonesRequest struct {
-	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ClientGetRecentZonesRequest) Reset()         { *m = ClientGetRecentZonesRequest{} }
-func (m *ClientGetRecentZonesRequest) String() string { return proto.CompactTextString(m) }
-func (*ClientGetRecentZonesRequest) ProtoMessage()    {}
-func (*ClientGetRecentZonesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{0}
-}
-
-func (m *ClientGetRecentZonesRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ClientGetRecentZonesRequest.Unmarshal(m, b)
-}
-func (m *ClientGetRecentZonesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ClientGetRecentZonesRequest.Marshal(b, m, deterministic)
-}
-func (m *ClientGetRecentZonesRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ClientGetRecentZonesRequest.Merge(m, src)
-}
-func (m *ClientGetRecentZonesRequest) XXX_Size() int {
-	return xxx_messageInfo_ClientGetRecentZonesRequest.Size(m)
-}
-func (m *ClientGetRecentZonesRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ClientGetRecentZonesRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ClientGetRecentZonesRequest proto.InternalMessageInfo
-
-func (m *ClientGetRecentZonesRequest) GetId() string {
-	if m != nil {
-		return m.Id
-	}
-	return ""
-}
-
 type LoginRequest struct {
 	Email                string   `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
 	Password             string   `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
@@ -78,7 +39,7 @@ func (m *LoginRequest) Reset()         { *m = LoginRequest{} }
 func (m *LoginRequest) String() string { return proto.CompactTextString(m) }
 func (*LoginRequest) ProtoMessage()    {}
 func (*LoginRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{1}
+	return fileDescriptor_fe7d991659ed015b, []int{0}
 }
 
 func (m *LoginRequest) XXX_Unmarshal(b []byte) error {
@@ -128,7 +89,7 @@ func (m *LoginResponse) Reset()         { *m = LoginResponse{} }
 func (m *LoginResponse) String() string { return proto.CompactTextString(m) }
 func (*LoginResponse) ProtoMessage()    {}
 func (*LoginResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{2}
+	return fileDescriptor_fe7d991659ed015b, []int{1}
 }
 
 func (m *LoginResponse) XXX_Unmarshal(b []byte) error {
@@ -196,7 +157,7 @@ func (m *RefreshResponse) Reset()         { *m = RefreshResponse{} }
 func (m *RefreshResponse) String() string { return proto.CompactTextString(m) }
 func (*RefreshResponse) ProtoMessage()    {}
 func (*RefreshResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{3}
+	return fileDescriptor_fe7d991659ed015b, []int{2}
 }
 
 func (m *RefreshResponse) XXX_Unmarshal(b []byte) error {
@@ -231,83 +192,6 @@ func (m *RefreshResponse) GetRefreshToken() string {
 	return ""
 }
 
-// activity payload
-type Activity struct {
-	// activity id
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// zone id
-	ZoneId string `protobuf:"bytes,2,opt,name=zoneId,proto3" json:"zoneId,omitempty"`
-	// user id
-	UserId string `protobuf:"bytes,3,opt,name=userId,proto3" json:"userId,omitempty"`
-	// time
-	Time int64 `protobuf:"varint,4,opt,name=time,proto3" json:"time,omitempty"`
-	// ttl
-	Ttl                  int64    `protobuf:"varint,5,opt,name=ttl,proto3" json:"ttl,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *Activity) Reset()         { *m = Activity{} }
-func (m *Activity) String() string { return proto.CompactTextString(m) }
-func (*Activity) ProtoMessage()    {}
-func (*Activity) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{4}
-}
-
-func (m *Activity) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Activity.Unmarshal(m, b)
-}
-func (m *Activity) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Activity.Marshal(b, m, deterministic)
-}
-func (m *Activity) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Activity.Merge(m, src)
-}
-func (m *Activity) XXX_Size() int {
-	return xxx_messageInfo_Activity.Size(m)
-}
-func (m *Activity) XXX_DiscardUnknown() {
-	xxx_messageInfo_Activity.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Activity proto.InternalMessageInfo
-
-func (m *Activity) GetId() string {
-	if m != nil {
-		return m.Id
-	}
-	return ""
-}
-
-func (m *Activity) GetZoneId() string {
-	if m != nil {
-		return m.ZoneId
-	}
-	return ""
-}
-
-func (m *Activity) GetUserId() string {
-	if m != nil {
-		return m.UserId
-	}
-	return ""
-}
-
-func (m *Activity) GetTime() int64 {
-	if m != nil {
-		return m.Time
-	}
-	return 0
-}
-
-func (m *Activity) GetTtl() int64 {
-	if m != nil {
-		return m.Ttl
-	}
-	return 0
-}
-
 // faq payload
 type Faq struct {
 	// faq id
@@ -325,7 +209,7 @@ func (m *Faq) Reset()         { *m = Faq{} }
 func (m *Faq) String() string { return proto.CompactTextString(m) }
 func (*Faq) ProtoMessage()    {}
 func (*Faq) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{5}
+	return fileDescriptor_fe7d991659ed015b, []int{3}
 }
 
 func (m *Faq) XXX_Unmarshal(b []byte) error {
@@ -371,14 +255,10 @@ func (m *Faq) GetDesc() string {
 type User struct {
 	// user id
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// user role: superuser, user
+	// user role: user
 	Role string `protobuf:"bytes,2,opt,name=role,proto3" json:"role,omitempty"`
-	// user name
-	Name string `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
 	// user email
 	Email string `protobuf:"bytes,5,opt,name=email,proto3" json:"email,omitempty"`
-	// user account status (true - active, false - inactive)
-	IsActive bool `protobuf:"varint,6,opt,name=isActive,proto3" json:"isActive,omitempty"`
 	// user hashed password
 	Password string `protobuf:"bytes,7,opt,name=password,proto3" json:"password,omitempty"`
 	// lastUpdated time
@@ -387,18 +267,9 @@ type User struct {
 	Lat float64 `protobuf:"fixed64,9,opt,name=lat,proto3" json:"lat,omitempty"`
 	// longitude
 	Long float64 `protobuf:"fixed64,10,opt,name=long,proto3" json:"long,omitempty"`
-	// consent time
-	Consent int64 `protobuf:"varint,11,opt,name=consent,proto3" json:"consent,omitempty"`
 	// time
-	Time int64 `protobuf:"varint,12,opt,name=time,proto3" json:"time,omitempty"`
-	// ic
-	Ic string `protobuf:"bytes,13,opt,name=ic,proto3" json:"ic,omitempty"`
-	// phone number
-	PhoneNumber string `protobuf:"bytes,14,opt,name=phoneNumber,proto3" json:"phoneNumber,omitempty"`
-	// alert
-	Alert bool `protobuf:"varint,15,opt,name=alert,proto3" json:"alert,omitempty"`
-	// infected
-	Infected             bool     `protobuf:"varint,16,opt,name=infected,proto3" json:"infected,omitempty"`
+	Time                 int64    `protobuf:"varint,12,opt,name=time,proto3" json:"time,omitempty"`
+	IsActive             bool     `protobuf:"varint,13,opt,name=isActive,proto3" json:"isActive,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
@@ -408,7 +279,7 @@ func (m *User) Reset()         { *m = User{} }
 func (m *User) String() string { return proto.CompactTextString(m) }
 func (*User) ProtoMessage()    {}
 func (*User) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{6}
+	return fileDescriptor_fe7d991659ed015b, []int{4}
 }
 
 func (m *User) XXX_Unmarshal(b []byte) error {
@@ -443,25 +314,11 @@ func (m *User) GetRole() string {
 	return ""
 }
 
-func (m *User) GetName() string {
-	if m != nil {
-		return m.Name
-	}
-	return ""
-}
-
 func (m *User) GetEmail() string {
 	if m != nil {
 		return m.Email
 	}
 	return ""
-}
-
-func (m *User) GetIsActive() bool {
-	if m != nil {
-		return m.IsActive
-	}
-	return false
 }
 
 func (m *User) GetPassword() string {
@@ -492,13 +349,6 @@ func (m *User) GetLong() float64 {
 	return 0
 }
 
-func (m *User) GetConsent() int64 {
-	if m != nil {
-		return m.Consent
-	}
-	return 0
-}
-
 func (m *User) GetTime() int64 {
 	if m != nil {
 		return m.Time
@@ -506,163 +356,11 @@ func (m *User) GetTime() int64 {
 	return 0
 }
 
-func (m *User) GetIc() string {
+func (m *User) GetIsActive() bool {
 	if m != nil {
-		return m.Ic
-	}
-	return ""
-}
-
-func (m *User) GetPhoneNumber() string {
-	if m != nil {
-		return m.PhoneNumber
-	}
-	return ""
-}
-
-func (m *User) GetAlert() bool {
-	if m != nil {
-		return m.Alert
+		return m.IsActive
 	}
 	return false
-}
-
-func (m *User) GetInfected() bool {
-	if m != nil {
-		return m.Infected
-	}
-	return false
-}
-
-// zone payload
-type Zone struct {
-	// zone id
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// zone name
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	// latitude
-	Lat float64 `protobuf:"fixed64,3,opt,name=lat,proto3" json:"lat,omitempty"`
-	// longitude
-	Long float64 `protobuf:"fixed64,4,opt,name=long,proto3" json:"long,omitempty"`
-	// type
-	Type int64 `protobuf:"varint,5,opt,name=type,proto3" json:"type,omitempty"`
-	// double
-	Radius float64 `protobuf:"fixed64,6,opt,name=radius,proto3" json:"radius,omitempty"`
-	// capacity
-	Capacity int64 `protobuf:"varint,7,opt,name=capacity,proto3" json:"capacity,omitempty"`
-	// users within
-	UsersWithin int64 `protobuf:"varint,8,opt,name=usersWithin,proto3" json:"usersWithin,omitempty"`
-	// is capacity exceeded
-	IsCapacityExceeded bool `protobuf:"varint,9,opt,name=isCapacityExceeded,proto3" json:"isCapacityExceeded,omitempty"`
-	// time
-	Time int64 `protobuf:"varint,10,opt,name=time,proto3" json:"time,omitempty"`
-	// risk
-	Risk                 int64    `protobuf:"varint,11,opt,name=risk,proto3" json:"risk,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *Zone) Reset()         { *m = Zone{} }
-func (m *Zone) String() string { return proto.CompactTextString(m) }
-func (*Zone) ProtoMessage()    {}
-func (*Zone) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{7}
-}
-
-func (m *Zone) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Zone.Unmarshal(m, b)
-}
-func (m *Zone) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Zone.Marshal(b, m, deterministic)
-}
-func (m *Zone) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Zone.Merge(m, src)
-}
-func (m *Zone) XXX_Size() int {
-	return xxx_messageInfo_Zone.Size(m)
-}
-func (m *Zone) XXX_DiscardUnknown() {
-	xxx_messageInfo_Zone.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Zone proto.InternalMessageInfo
-
-func (m *Zone) GetId() string {
-	if m != nil {
-		return m.Id
-	}
-	return ""
-}
-
-func (m *Zone) GetName() string {
-	if m != nil {
-		return m.Name
-	}
-	return ""
-}
-
-func (m *Zone) GetLat() float64 {
-	if m != nil {
-		return m.Lat
-	}
-	return 0
-}
-
-func (m *Zone) GetLong() float64 {
-	if m != nil {
-		return m.Long
-	}
-	return 0
-}
-
-func (m *Zone) GetType() int64 {
-	if m != nil {
-		return m.Type
-	}
-	return 0
-}
-
-func (m *Zone) GetRadius() float64 {
-	if m != nil {
-		return m.Radius
-	}
-	return 0
-}
-
-func (m *Zone) GetCapacity() int64 {
-	if m != nil {
-		return m.Capacity
-	}
-	return 0
-}
-
-func (m *Zone) GetUsersWithin() int64 {
-	if m != nil {
-		return m.UsersWithin
-	}
-	return 0
-}
-
-func (m *Zone) GetIsCapacityExceeded() bool {
-	if m != nil {
-		return m.IsCapacityExceeded
-	}
-	return false
-}
-
-func (m *Zone) GetTime() int64 {
-	if m != nil {
-		return m.Time
-	}
-	return 0
-}
-
-func (m *Zone) GetRisk() int64 {
-	if m != nil {
-		return m.Risk
-	}
-	return 0
 }
 
 // get password reset request payload
@@ -680,7 +378,7 @@ func (m *GetPasswordResetRequest) Reset()         { *m = GetPasswordResetRequest
 func (m *GetPasswordResetRequest) String() string { return proto.CompactTextString(m) }
 func (*GetPasswordResetRequest) ProtoMessage()    {}
 func (*GetPasswordResetRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{8}
+	return fileDescriptor_fe7d991659ed015b, []int{5}
 }
 
 func (m *GetPasswordResetRequest) XXX_Unmarshal(b []byte) error {
@@ -730,7 +428,7 @@ func (m *UpdatePasswordRequest) Reset()         { *m = UpdatePasswordRequest{} }
 func (m *UpdatePasswordRequest) String() string { return proto.CompactTextString(m) }
 func (*UpdatePasswordRequest) ProtoMessage()    {}
 func (*UpdatePasswordRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{9}
+	return fileDescriptor_fe7d991659ed015b, []int{6}
 }
 
 func (m *UpdatePasswordRequest) XXX_Unmarshal(b []byte) error {
@@ -778,7 +476,7 @@ func (m *GetPasswordResetResponse) Reset()         { *m = GetPasswordResetRespon
 func (m *GetPasswordResetResponse) String() string { return proto.CompactTextString(m) }
 func (*GetPasswordResetResponse) ProtoMessage()    {}
 func (*GetPasswordResetResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{10}
+	return fileDescriptor_fe7d991659ed015b, []int{7}
 }
 
 func (m *GetPasswordResetResponse) XXX_Unmarshal(b []byte) error {
@@ -806,101 +504,6 @@ func (m *GetPasswordResetResponse) GetMessage() string {
 	return ""
 }
 
-// get activities request payload
-type GetActivitiesRequest struct {
-	// item to sort
-	Item string `protobuf:"bytes,1,opt,name=item,proto3" json:"item,omitempty"`
-	// order of item
-	Order string `protobuf:"bytes,2,opt,name=order,proto3" json:"order,omitempty"`
-	// pagination from
-	From int64 `protobuf:"varint,3,opt,name=from,proto3" json:"from,omitempty"`
-	// pagination to
-	To int64 `protobuf:"varint,4,opt,name=to,proto3" json:"to,omitempty"`
-	// item to filter
-	FilterItem string `protobuf:"bytes,5,opt,name=filterItem,proto3" json:"filterItem,omitempty"`
-	// value to filter
-	FilterValue string `protobuf:"bytes,6,opt,name=filterValue,proto3" json:"filterValue,omitempty"`
-	// user ids
-	Ids                  []string `protobuf:"bytes,7,rep,name=ids,proto3" json:"ids,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *GetActivitiesRequest) Reset()         { *m = GetActivitiesRequest{} }
-func (m *GetActivitiesRequest) String() string { return proto.CompactTextString(m) }
-func (*GetActivitiesRequest) ProtoMessage()    {}
-func (*GetActivitiesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{11}
-}
-
-func (m *GetActivitiesRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetActivitiesRequest.Unmarshal(m, b)
-}
-func (m *GetActivitiesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetActivitiesRequest.Marshal(b, m, deterministic)
-}
-func (m *GetActivitiesRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetActivitiesRequest.Merge(m, src)
-}
-func (m *GetActivitiesRequest) XXX_Size() int {
-	return xxx_messageInfo_GetActivitiesRequest.Size(m)
-}
-func (m *GetActivitiesRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetActivitiesRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetActivitiesRequest proto.InternalMessageInfo
-
-func (m *GetActivitiesRequest) GetItem() string {
-	if m != nil {
-		return m.Item
-	}
-	return ""
-}
-
-func (m *GetActivitiesRequest) GetOrder() string {
-	if m != nil {
-		return m.Order
-	}
-	return ""
-}
-
-func (m *GetActivitiesRequest) GetFrom() int64 {
-	if m != nil {
-		return m.From
-	}
-	return 0
-}
-
-func (m *GetActivitiesRequest) GetTo() int64 {
-	if m != nil {
-		return m.To
-	}
-	return 0
-}
-
-func (m *GetActivitiesRequest) GetFilterItem() string {
-	if m != nil {
-		return m.FilterItem
-	}
-	return ""
-}
-
-func (m *GetActivitiesRequest) GetFilterValue() string {
-	if m != nil {
-		return m.FilterValue
-	}
-	return ""
-}
-
-func (m *GetActivitiesRequest) GetIds() []string {
-	if m != nil {
-		return m.Ids
-	}
-	return nil
-}
-
 // get users request payload
 type GetUsersRequest struct {
 	// item to sort
@@ -926,7 +529,7 @@ func (m *GetUsersRequest) Reset()         { *m = GetUsersRequest{} }
 func (m *GetUsersRequest) String() string { return proto.CompactTextString(m) }
 func (*GetUsersRequest) ProtoMessage()    {}
 func (*GetUsersRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{12}
+	return fileDescriptor_fe7d991659ed015b, []int{8}
 }
 
 func (m *GetUsersRequest) XXX_Unmarshal(b []byte) error {
@@ -1009,7 +612,7 @@ func (m *GetUserRequest) Reset()         { *m = GetUserRequest{} }
 func (m *GetUserRequest) String() string { return proto.CompactTextString(m) }
 func (*GetUserRequest) ProtoMessage()    {}
 func (*GetUserRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{13}
+	return fileDescriptor_fe7d991659ed015b, []int{9}
 }
 
 func (m *GetUserRequest) XXX_Unmarshal(b []byte) error {
@@ -1052,7 +655,7 @@ func (m *CreateUserRequest) Reset()         { *m = CreateUserRequest{} }
 func (m *CreateUserRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateUserRequest) ProtoMessage()    {}
 func (*CreateUserRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{14}
+	return fileDescriptor_fe7d991659ed015b, []int{10}
 }
 
 func (m *CreateUserRequest) XXX_Unmarshal(b []byte) error {
@@ -1102,7 +705,7 @@ func (m *UpdateUserRequest) Reset()         { *m = UpdateUserRequest{} }
 func (m *UpdateUserRequest) String() string { return proto.CompactTextString(m) }
 func (*UpdateUserRequest) ProtoMessage()    {}
 func (*UpdateUserRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{15}
+	return fileDescriptor_fe7d991659ed015b, []int{11}
 }
 
 func (m *UpdateUserRequest) XXX_Unmarshal(b []byte) error {
@@ -1152,7 +755,7 @@ func (m *UpdateUsersRequest) Reset()         { *m = UpdateUsersRequest{} }
 func (m *UpdateUsersRequest) String() string { return proto.CompactTextString(m) }
 func (*UpdateUsersRequest) ProtoMessage()    {}
 func (*UpdateUsersRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{16}
+	return fileDescriptor_fe7d991659ed015b, []int{12}
 }
 
 func (m *UpdateUsersRequest) XXX_Unmarshal(b []byte) error {
@@ -1200,7 +803,7 @@ func (m *DeleteUserRequest) Reset()         { *m = DeleteUserRequest{} }
 func (m *DeleteUserRequest) String() string { return proto.CompactTextString(m) }
 func (*DeleteUserRequest) ProtoMessage()    {}
 func (*DeleteUserRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{17}
+	return fileDescriptor_fe7d991659ed015b, []int{13}
 }
 
 func (m *DeleteUserRequest) XXX_Unmarshal(b []byte) error {
@@ -1241,7 +844,7 @@ func (m *DeleteUsersRequest) Reset()         { *m = DeleteUsersRequest{} }
 func (m *DeleteUsersRequest) String() string { return proto.CompactTextString(m) }
 func (*DeleteUsersRequest) ProtoMessage()    {}
 func (*DeleteUsersRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{18}
+	return fileDescriptor_fe7d991659ed015b, []int{14}
 }
 
 func (m *DeleteUsersRequest) XXX_Unmarshal(b []byte) error {
@@ -1282,7 +885,7 @@ func (m *DeleteUserResponse) Reset()         { *m = DeleteUserResponse{} }
 func (m *DeleteUserResponse) String() string { return proto.CompactTextString(m) }
 func (*DeleteUserResponse) ProtoMessage()    {}
 func (*DeleteUserResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{19}
+	return fileDescriptor_fe7d991659ed015b, []int{15}
 }
 
 func (m *DeleteUserResponse) XXX_Unmarshal(b []byte) error {
@@ -1310,56 +913,6 @@ func (m *DeleteUserResponse) GetData() *User {
 	return nil
 }
 
-// get activities response payload
-type GetActivitiesResponse struct {
-	// activities payload
-	Data []*Activity `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
-	// total activities
-	Total                int64    `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *GetActivitiesResponse) Reset()         { *m = GetActivitiesResponse{} }
-func (m *GetActivitiesResponse) String() string { return proto.CompactTextString(m) }
-func (*GetActivitiesResponse) ProtoMessage()    {}
-func (*GetActivitiesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{20}
-}
-
-func (m *GetActivitiesResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetActivitiesResponse.Unmarshal(m, b)
-}
-func (m *GetActivitiesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetActivitiesResponse.Marshal(b, m, deterministic)
-}
-func (m *GetActivitiesResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetActivitiesResponse.Merge(m, src)
-}
-func (m *GetActivitiesResponse) XXX_Size() int {
-	return xxx_messageInfo_GetActivitiesResponse.Size(m)
-}
-func (m *GetActivitiesResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetActivitiesResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetActivitiesResponse proto.InternalMessageInfo
-
-func (m *GetActivitiesResponse) GetData() []*Activity {
-	if m != nil {
-		return m.Data
-	}
-	return nil
-}
-
-func (m *GetActivitiesResponse) GetTotal() int64 {
-	if m != nil {
-		return m.Total
-	}
-	return 0
-}
-
 // get users response payload
 type GetUsersResponse struct {
 	// users payload
@@ -1375,7 +928,7 @@ func (m *GetUsersResponse) Reset()         { *m = GetUsersResponse{} }
 func (m *GetUsersResponse) String() string { return proto.CompactTextString(m) }
 func (*GetUsersResponse) ProtoMessage()    {}
 func (*GetUsersResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{21}
+	return fileDescriptor_fe7d991659ed015b, []int{16}
 }
 
 func (m *GetUsersResponse) XXX_Unmarshal(b []byte) error {
@@ -1423,7 +976,7 @@ func (m *GetUserResponse) Reset()         { *m = GetUserResponse{} }
 func (m *GetUserResponse) String() string { return proto.CompactTextString(m) }
 func (*GetUserResponse) ProtoMessage()    {}
 func (*GetUserResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{22}
+	return fileDescriptor_fe7d991659ed015b, []int{17}
 }
 
 func (m *GetUserResponse) XXX_Unmarshal(b []byte) error {
@@ -1464,7 +1017,7 @@ func (m *CreateUserResponse) Reset()         { *m = CreateUserResponse{} }
 func (m *CreateUserResponse) String() string { return proto.CompactTextString(m) }
 func (*CreateUserResponse) ProtoMessage()    {}
 func (*CreateUserResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{23}
+	return fileDescriptor_fe7d991659ed015b, []int{18}
 }
 
 func (m *CreateUserResponse) XXX_Unmarshal(b []byte) error {
@@ -1505,7 +1058,7 @@ func (m *UpdateUserResponse) Reset()         { *m = UpdateUserResponse{} }
 func (m *UpdateUserResponse) String() string { return proto.CompactTextString(m) }
 func (*UpdateUserResponse) ProtoMessage()    {}
 func (*UpdateUserResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{24}
+	return fileDescriptor_fe7d991659ed015b, []int{19}
 }
 
 func (m *UpdateUserResponse) XXX_Unmarshal(b []byte) error {
@@ -1546,7 +1099,7 @@ func (m *UpdateUsersResponse) Reset()         { *m = UpdateUsersResponse{} }
 func (m *UpdateUsersResponse) String() string { return proto.CompactTextString(m) }
 func (*UpdateUsersResponse) ProtoMessage()    {}
 func (*UpdateUsersResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{25}
+	return fileDescriptor_fe7d991659ed015b, []int{20}
 }
 
 func (m *UpdateUsersResponse) XXX_Unmarshal(b []byte) error {
@@ -1587,7 +1140,7 @@ func (m *DeleteUsersResponse) Reset()         { *m = DeleteUsersResponse{} }
 func (m *DeleteUsersResponse) String() string { return proto.CompactTextString(m) }
 func (*DeleteUsersResponse) ProtoMessage()    {}
 func (*DeleteUsersResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{26}
+	return fileDescriptor_fe7d991659ed015b, []int{21}
 }
 
 func (m *DeleteUsersResponse) XXX_Unmarshal(b []byte) error {
@@ -1616,7 +1169,7 @@ func (m *DeleteUsersResponse) GetData() []string {
 }
 
 // get nearby users request payload
-type ClientGetNearbyUsersRequest struct {
+type GetNearbyUsersRequest struct {
 	// user
 	User                 *User    `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -1624,499 +1177,40 @@ type ClientGetNearbyUsersRequest struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ClientGetNearbyUsersRequest) Reset()         { *m = ClientGetNearbyUsersRequest{} }
-func (m *ClientGetNearbyUsersRequest) String() string { return proto.CompactTextString(m) }
-func (*ClientGetNearbyUsersRequest) ProtoMessage()    {}
-func (*ClientGetNearbyUsersRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{27}
+func (m *GetNearbyUsersRequest) Reset()         { *m = GetNearbyUsersRequest{} }
+func (m *GetNearbyUsersRequest) String() string { return proto.CompactTextString(m) }
+func (*GetNearbyUsersRequest) ProtoMessage()    {}
+func (*GetNearbyUsersRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fe7d991659ed015b, []int{22}
 }
 
-func (m *ClientGetNearbyUsersRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ClientGetNearbyUsersRequest.Unmarshal(m, b)
+func (m *GetNearbyUsersRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetNearbyUsersRequest.Unmarshal(m, b)
 }
-func (m *ClientGetNearbyUsersRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ClientGetNearbyUsersRequest.Marshal(b, m, deterministic)
+func (m *GetNearbyUsersRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetNearbyUsersRequest.Marshal(b, m, deterministic)
 }
-func (m *ClientGetNearbyUsersRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ClientGetNearbyUsersRequest.Merge(m, src)
+func (m *GetNearbyUsersRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetNearbyUsersRequest.Merge(m, src)
 }
-func (m *ClientGetNearbyUsersRequest) XXX_Size() int {
-	return xxx_messageInfo_ClientGetNearbyUsersRequest.Size(m)
+func (m *GetNearbyUsersRequest) XXX_Size() int {
+	return xxx_messageInfo_GetNearbyUsersRequest.Size(m)
 }
-func (m *ClientGetNearbyUsersRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ClientGetNearbyUsersRequest.DiscardUnknown(m)
+func (m *GetNearbyUsersRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetNearbyUsersRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ClientGetNearbyUsersRequest proto.InternalMessageInfo
+var xxx_messageInfo_GetNearbyUsersRequest proto.InternalMessageInfo
 
-func (m *ClientGetNearbyUsersRequest) GetUser() *User {
+func (m *GetNearbyUsersRequest) GetUser() *User {
 	if m != nil {
 		return m.User
-	}
-	return nil
-}
-
-// get current zones request payload
-type ClientGetCurrentZonesRequest struct {
-	// user
-	User                 *User    `protobuf:"bytes,1,opt,name=user,proto3" json:"user,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ClientGetCurrentZonesRequest) Reset()         { *m = ClientGetCurrentZonesRequest{} }
-func (m *ClientGetCurrentZonesRequest) String() string { return proto.CompactTextString(m) }
-func (*ClientGetCurrentZonesRequest) ProtoMessage()    {}
-func (*ClientGetCurrentZonesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{28}
-}
-
-func (m *ClientGetCurrentZonesRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ClientGetCurrentZonesRequest.Unmarshal(m, b)
-}
-func (m *ClientGetCurrentZonesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ClientGetCurrentZonesRequest.Marshal(b, m, deterministic)
-}
-func (m *ClientGetCurrentZonesRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ClientGetCurrentZonesRequest.Merge(m, src)
-}
-func (m *ClientGetCurrentZonesRequest) XXX_Size() int {
-	return xxx_messageInfo_ClientGetCurrentZonesRequest.Size(m)
-}
-func (m *ClientGetCurrentZonesRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ClientGetCurrentZonesRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ClientGetCurrentZonesRequest proto.InternalMessageInfo
-
-func (m *ClientGetCurrentZonesRequest) GetUser() *User {
-	if m != nil {
-		return m.User
-	}
-	return nil
-}
-
-// get zones request payload
-type GetZonesRequest struct {
-	// item to sort
-	Item string `protobuf:"bytes,1,opt,name=item,proto3" json:"item,omitempty"`
-	// order of item
-	Order string `protobuf:"bytes,2,opt,name=order,proto3" json:"order,omitempty"`
-	// pagination from
-	From int64 `protobuf:"varint,3,opt,name=from,proto3" json:"from,omitempty"`
-	// pagination to
-	To int64 `protobuf:"varint,4,opt,name=to,proto3" json:"to,omitempty"`
-	// item to filter
-	FilterItem string `protobuf:"bytes,5,opt,name=filterItem,proto3" json:"filterItem,omitempty"`
-	// value to filter
-	FilterValue string `protobuf:"bytes,6,opt,name=filterValue,proto3" json:"filterValue,omitempty"`
-	// zone ids
-	Ids                  []string `protobuf:"bytes,7,rep,name=ids,proto3" json:"ids,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *GetZonesRequest) Reset()         { *m = GetZonesRequest{} }
-func (m *GetZonesRequest) String() string { return proto.CompactTextString(m) }
-func (*GetZonesRequest) ProtoMessage()    {}
-func (*GetZonesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{29}
-}
-
-func (m *GetZonesRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetZonesRequest.Unmarshal(m, b)
-}
-func (m *GetZonesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetZonesRequest.Marshal(b, m, deterministic)
-}
-func (m *GetZonesRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetZonesRequest.Merge(m, src)
-}
-func (m *GetZonesRequest) XXX_Size() int {
-	return xxx_messageInfo_GetZonesRequest.Size(m)
-}
-func (m *GetZonesRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetZonesRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetZonesRequest proto.InternalMessageInfo
-
-func (m *GetZonesRequest) GetItem() string {
-	if m != nil {
-		return m.Item
-	}
-	return ""
-}
-
-func (m *GetZonesRequest) GetOrder() string {
-	if m != nil {
-		return m.Order
-	}
-	return ""
-}
-
-func (m *GetZonesRequest) GetFrom() int64 {
-	if m != nil {
-		return m.From
-	}
-	return 0
-}
-
-func (m *GetZonesRequest) GetTo() int64 {
-	if m != nil {
-		return m.To
-	}
-	return 0
-}
-
-func (m *GetZonesRequest) GetFilterItem() string {
-	if m != nil {
-		return m.FilterItem
-	}
-	return ""
-}
-
-func (m *GetZonesRequest) GetFilterValue() string {
-	if m != nil {
-		return m.FilterValue
-	}
-	return ""
-}
-
-func (m *GetZonesRequest) GetIds() []string {
-	if m != nil {
-		return m.Ids
-	}
-	return nil
-}
-
-// get zone request payload
-type GetZoneRequest struct {
-	// zone id
-	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *GetZoneRequest) Reset()         { *m = GetZoneRequest{} }
-func (m *GetZoneRequest) String() string { return proto.CompactTextString(m) }
-func (*GetZoneRequest) ProtoMessage()    {}
-func (*GetZoneRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{30}
-}
-
-func (m *GetZoneRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetZoneRequest.Unmarshal(m, b)
-}
-func (m *GetZoneRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetZoneRequest.Marshal(b, m, deterministic)
-}
-func (m *GetZoneRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetZoneRequest.Merge(m, src)
-}
-func (m *GetZoneRequest) XXX_Size() int {
-	return xxx_messageInfo_GetZoneRequest.Size(m)
-}
-func (m *GetZoneRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetZoneRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetZoneRequest proto.InternalMessageInfo
-
-func (m *GetZoneRequest) GetId() string {
-	if m != nil {
-		return m.Id
-	}
-	return ""
-}
-
-// create zone request payload
-type CreateZoneRequest struct {
-	// zone id
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// zone payload
-	Data                 *Zone    `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *CreateZoneRequest) Reset()         { *m = CreateZoneRequest{} }
-func (m *CreateZoneRequest) String() string { return proto.CompactTextString(m) }
-func (*CreateZoneRequest) ProtoMessage()    {}
-func (*CreateZoneRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{31}
-}
-
-func (m *CreateZoneRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateZoneRequest.Unmarshal(m, b)
-}
-func (m *CreateZoneRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateZoneRequest.Marshal(b, m, deterministic)
-}
-func (m *CreateZoneRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateZoneRequest.Merge(m, src)
-}
-func (m *CreateZoneRequest) XXX_Size() int {
-	return xxx_messageInfo_CreateZoneRequest.Size(m)
-}
-func (m *CreateZoneRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateZoneRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CreateZoneRequest proto.InternalMessageInfo
-
-func (m *CreateZoneRequest) GetId() string {
-	if m != nil {
-		return m.Id
-	}
-	return ""
-}
-
-func (m *CreateZoneRequest) GetData() *Zone {
-	if m != nil {
-		return m.Data
-	}
-	return nil
-}
-
-// update zone request payload
-type UpdateZoneRequest struct {
-	// zone id
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// zone payload
-	Data                 *Zone    `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *UpdateZoneRequest) Reset()         { *m = UpdateZoneRequest{} }
-func (m *UpdateZoneRequest) String() string { return proto.CompactTextString(m) }
-func (*UpdateZoneRequest) ProtoMessage()    {}
-func (*UpdateZoneRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{32}
-}
-
-func (m *UpdateZoneRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateZoneRequest.Unmarshal(m, b)
-}
-func (m *UpdateZoneRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateZoneRequest.Marshal(b, m, deterministic)
-}
-func (m *UpdateZoneRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateZoneRequest.Merge(m, src)
-}
-func (m *UpdateZoneRequest) XXX_Size() int {
-	return xxx_messageInfo_UpdateZoneRequest.Size(m)
-}
-func (m *UpdateZoneRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateZoneRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UpdateZoneRequest proto.InternalMessageInfo
-
-func (m *UpdateZoneRequest) GetId() string {
-	if m != nil {
-		return m.Id
-	}
-	return ""
-}
-
-func (m *UpdateZoneRequest) GetData() *Zone {
-	if m != nil {
-		return m.Data
-	}
-	return nil
-}
-
-// update zones request payload
-type UpdateZonesRequest struct {
-	// zone ids
-	Ids []string `protobuf:"bytes,1,rep,name=ids,proto3" json:"ids,omitempty"`
-	// zone payload
-	Data                 *Zone    `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *UpdateZonesRequest) Reset()         { *m = UpdateZonesRequest{} }
-func (m *UpdateZonesRequest) String() string { return proto.CompactTextString(m) }
-func (*UpdateZonesRequest) ProtoMessage()    {}
-func (*UpdateZonesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{33}
-}
-
-func (m *UpdateZonesRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateZonesRequest.Unmarshal(m, b)
-}
-func (m *UpdateZonesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateZonesRequest.Marshal(b, m, deterministic)
-}
-func (m *UpdateZonesRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateZonesRequest.Merge(m, src)
-}
-func (m *UpdateZonesRequest) XXX_Size() int {
-	return xxx_messageInfo_UpdateZonesRequest.Size(m)
-}
-func (m *UpdateZonesRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateZonesRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UpdateZonesRequest proto.InternalMessageInfo
-
-func (m *UpdateZonesRequest) GetIds() []string {
-	if m != nil {
-		return m.Ids
-	}
-	return nil
-}
-
-func (m *UpdateZonesRequest) GetData() *Zone {
-	if m != nil {
-		return m.Data
-	}
-	return nil
-}
-
-// delete zone request payload
-type DeleteZoneRequest struct {
-	// zone id
-	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *DeleteZoneRequest) Reset()         { *m = DeleteZoneRequest{} }
-func (m *DeleteZoneRequest) String() string { return proto.CompactTextString(m) }
-func (*DeleteZoneRequest) ProtoMessage()    {}
-func (*DeleteZoneRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{34}
-}
-
-func (m *DeleteZoneRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteZoneRequest.Unmarshal(m, b)
-}
-func (m *DeleteZoneRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteZoneRequest.Marshal(b, m, deterministic)
-}
-func (m *DeleteZoneRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteZoneRequest.Merge(m, src)
-}
-func (m *DeleteZoneRequest) XXX_Size() int {
-	return xxx_messageInfo_DeleteZoneRequest.Size(m)
-}
-func (m *DeleteZoneRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteZoneRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeleteZoneRequest proto.InternalMessageInfo
-
-func (m *DeleteZoneRequest) GetId() string {
-	if m != nil {
-		return m.Id
-	}
-	return ""
-}
-
-// delete zones request payload
-type DeleteZonesRequest struct {
-	// zone ids
-	Ids                  []string `protobuf:"bytes,1,rep,name=ids,proto3" json:"ids,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *DeleteZonesRequest) Reset()         { *m = DeleteZonesRequest{} }
-func (m *DeleteZonesRequest) String() string { return proto.CompactTextString(m) }
-func (*DeleteZonesRequest) ProtoMessage()    {}
-func (*DeleteZonesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{35}
-}
-
-func (m *DeleteZonesRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteZonesRequest.Unmarshal(m, b)
-}
-func (m *DeleteZonesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteZonesRequest.Marshal(b, m, deterministic)
-}
-func (m *DeleteZonesRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteZonesRequest.Merge(m, src)
-}
-func (m *DeleteZonesRequest) XXX_Size() int {
-	return xxx_messageInfo_DeleteZonesRequest.Size(m)
-}
-func (m *DeleteZonesRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteZonesRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeleteZonesRequest proto.InternalMessageInfo
-
-func (m *DeleteZonesRequest) GetIds() []string {
-	if m != nil {
-		return m.Ids
-	}
-	return nil
-}
-
-// get current zones response payload
-type ClientGetCurrentZonesResponse struct {
-	// zone payload
-	Zone *Zone `protobuf:"bytes,1,opt,name=zone,proto3" json:"zone,omitempty"`
-	// sub zones payload
-	SubZones             []*Zone  `protobuf:"bytes,2,rep,name=subZones,proto3" json:"subZones,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ClientGetCurrentZonesResponse) Reset()         { *m = ClientGetCurrentZonesResponse{} }
-func (m *ClientGetCurrentZonesResponse) String() string { return proto.CompactTextString(m) }
-func (*ClientGetCurrentZonesResponse) ProtoMessage()    {}
-func (*ClientGetCurrentZonesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{36}
-}
-
-func (m *ClientGetCurrentZonesResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ClientGetCurrentZonesResponse.Unmarshal(m, b)
-}
-func (m *ClientGetCurrentZonesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ClientGetCurrentZonesResponse.Marshal(b, m, deterministic)
-}
-func (m *ClientGetCurrentZonesResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ClientGetCurrentZonesResponse.Merge(m, src)
-}
-func (m *ClientGetCurrentZonesResponse) XXX_Size() int {
-	return xxx_messageInfo_ClientGetCurrentZonesResponse.Size(m)
-}
-func (m *ClientGetCurrentZonesResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ClientGetCurrentZonesResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ClientGetCurrentZonesResponse proto.InternalMessageInfo
-
-func (m *ClientGetCurrentZonesResponse) GetZone() *Zone {
-	if m != nil {
-		return m.Zone
-	}
-	return nil
-}
-
-func (m *ClientGetCurrentZonesResponse) GetSubZones() []*Zone {
-	if m != nil {
-		return m.SubZones
 	}
 	return nil
 }
 
 // get nearby users response payload
-type ClientGetNearbyUsersResponse struct {
+type GetNearbyUsersResponse struct {
 	// list of users
 	Users []*User `protobuf:"bytes,1,rep,name=users,proto3" json:"users,omitempty"`
 	// number of nearby users
@@ -2126,339 +1220,43 @@ type ClientGetNearbyUsersResponse struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *ClientGetNearbyUsersResponse) Reset()         { *m = ClientGetNearbyUsersResponse{} }
-func (m *ClientGetNearbyUsersResponse) String() string { return proto.CompactTextString(m) }
-func (*ClientGetNearbyUsersResponse) ProtoMessage()    {}
-func (*ClientGetNearbyUsersResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{37}
+func (m *GetNearbyUsersResponse) Reset()         { *m = GetNearbyUsersResponse{} }
+func (m *GetNearbyUsersResponse) String() string { return proto.CompactTextString(m) }
+func (*GetNearbyUsersResponse) ProtoMessage()    {}
+func (*GetNearbyUsersResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_fe7d991659ed015b, []int{23}
 }
 
-func (m *ClientGetNearbyUsersResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ClientGetNearbyUsersResponse.Unmarshal(m, b)
+func (m *GetNearbyUsersResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetNearbyUsersResponse.Unmarshal(m, b)
 }
-func (m *ClientGetNearbyUsersResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ClientGetNearbyUsersResponse.Marshal(b, m, deterministic)
+func (m *GetNearbyUsersResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetNearbyUsersResponse.Marshal(b, m, deterministic)
 }
-func (m *ClientGetNearbyUsersResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ClientGetNearbyUsersResponse.Merge(m, src)
+func (m *GetNearbyUsersResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetNearbyUsersResponse.Merge(m, src)
 }
-func (m *ClientGetNearbyUsersResponse) XXX_Size() int {
-	return xxx_messageInfo_ClientGetNearbyUsersResponse.Size(m)
+func (m *GetNearbyUsersResponse) XXX_Size() int {
+	return xxx_messageInfo_GetNearbyUsersResponse.Size(m)
 }
-func (m *ClientGetNearbyUsersResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ClientGetNearbyUsersResponse.DiscardUnknown(m)
+func (m *GetNearbyUsersResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetNearbyUsersResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ClientGetNearbyUsersResponse proto.InternalMessageInfo
+var xxx_messageInfo_GetNearbyUsersResponse proto.InternalMessageInfo
 
-func (m *ClientGetNearbyUsersResponse) GetUsers() []*User {
+func (m *GetNearbyUsersResponse) GetUsers() []*User {
 	if m != nil {
 		return m.Users
 	}
 	return nil
 }
 
-func (m *ClientGetNearbyUsersResponse) GetUserNum() int64 {
+func (m *GetNearbyUsersResponse) GetUserNum() int64 {
 	if m != nil {
 		return m.UserNum
 	}
 	return 0
-}
-
-// delete zone response payload
-type DeleteZoneResponse struct {
-	// zone payload
-	Data                 *Zone    `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *DeleteZoneResponse) Reset()         { *m = DeleteZoneResponse{} }
-func (m *DeleteZoneResponse) String() string { return proto.CompactTextString(m) }
-func (*DeleteZoneResponse) ProtoMessage()    {}
-func (*DeleteZoneResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{38}
-}
-
-func (m *DeleteZoneResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteZoneResponse.Unmarshal(m, b)
-}
-func (m *DeleteZoneResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteZoneResponse.Marshal(b, m, deterministic)
-}
-func (m *DeleteZoneResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteZoneResponse.Merge(m, src)
-}
-func (m *DeleteZoneResponse) XXX_Size() int {
-	return xxx_messageInfo_DeleteZoneResponse.Size(m)
-}
-func (m *DeleteZoneResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteZoneResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeleteZoneResponse proto.InternalMessageInfo
-
-func (m *DeleteZoneResponse) GetData() *Zone {
-	if m != nil {
-		return m.Data
-	}
-	return nil
-}
-
-// get zones response payload
-type GetZonesResponse struct {
-	// zones payload
-	Data []*Zone `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
-	// total zones
-	Total                int64    `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *GetZonesResponse) Reset()         { *m = GetZonesResponse{} }
-func (m *GetZonesResponse) String() string { return proto.CompactTextString(m) }
-func (*GetZonesResponse) ProtoMessage()    {}
-func (*GetZonesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{39}
-}
-
-func (m *GetZonesResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetZonesResponse.Unmarshal(m, b)
-}
-func (m *GetZonesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetZonesResponse.Marshal(b, m, deterministic)
-}
-func (m *GetZonesResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetZonesResponse.Merge(m, src)
-}
-func (m *GetZonesResponse) XXX_Size() int {
-	return xxx_messageInfo_GetZonesResponse.Size(m)
-}
-func (m *GetZonesResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetZonesResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetZonesResponse proto.InternalMessageInfo
-
-func (m *GetZonesResponse) GetData() []*Zone {
-	if m != nil {
-		return m.Data
-	}
-	return nil
-}
-
-func (m *GetZonesResponse) GetTotal() int64 {
-	if m != nil {
-		return m.Total
-	}
-	return 0
-}
-
-// get zone response payload
-type GetZoneResponse struct {
-	// zone payload
-	Data                 *Zone    `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *GetZoneResponse) Reset()         { *m = GetZoneResponse{} }
-func (m *GetZoneResponse) String() string { return proto.CompactTextString(m) }
-func (*GetZoneResponse) ProtoMessage()    {}
-func (*GetZoneResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{40}
-}
-
-func (m *GetZoneResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetZoneResponse.Unmarshal(m, b)
-}
-func (m *GetZoneResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetZoneResponse.Marshal(b, m, deterministic)
-}
-func (m *GetZoneResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetZoneResponse.Merge(m, src)
-}
-func (m *GetZoneResponse) XXX_Size() int {
-	return xxx_messageInfo_GetZoneResponse.Size(m)
-}
-func (m *GetZoneResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetZoneResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetZoneResponse proto.InternalMessageInfo
-
-func (m *GetZoneResponse) GetData() *Zone {
-	if m != nil {
-		return m.Data
-	}
-	return nil
-}
-
-// create zone response payload
-type CreateZoneResponse struct {
-	// zone payload
-	Data                 *Zone    `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *CreateZoneResponse) Reset()         { *m = CreateZoneResponse{} }
-func (m *CreateZoneResponse) String() string { return proto.CompactTextString(m) }
-func (*CreateZoneResponse) ProtoMessage()    {}
-func (*CreateZoneResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{41}
-}
-
-func (m *CreateZoneResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateZoneResponse.Unmarshal(m, b)
-}
-func (m *CreateZoneResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateZoneResponse.Marshal(b, m, deterministic)
-}
-func (m *CreateZoneResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateZoneResponse.Merge(m, src)
-}
-func (m *CreateZoneResponse) XXX_Size() int {
-	return xxx_messageInfo_CreateZoneResponse.Size(m)
-}
-func (m *CreateZoneResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateZoneResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CreateZoneResponse proto.InternalMessageInfo
-
-func (m *CreateZoneResponse) GetData() *Zone {
-	if m != nil {
-		return m.Data
-	}
-	return nil
-}
-
-// update zone response payload
-type UpdateZoneResponse struct {
-	// zone payload
-	Data                 *Zone    `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *UpdateZoneResponse) Reset()         { *m = UpdateZoneResponse{} }
-func (m *UpdateZoneResponse) String() string { return proto.CompactTextString(m) }
-func (*UpdateZoneResponse) ProtoMessage()    {}
-func (*UpdateZoneResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{42}
-}
-
-func (m *UpdateZoneResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateZoneResponse.Unmarshal(m, b)
-}
-func (m *UpdateZoneResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateZoneResponse.Marshal(b, m, deterministic)
-}
-func (m *UpdateZoneResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateZoneResponse.Merge(m, src)
-}
-func (m *UpdateZoneResponse) XXX_Size() int {
-	return xxx_messageInfo_UpdateZoneResponse.Size(m)
-}
-func (m *UpdateZoneResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateZoneResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UpdateZoneResponse proto.InternalMessageInfo
-
-func (m *UpdateZoneResponse) GetData() *Zone {
-	if m != nil {
-		return m.Data
-	}
-	return nil
-}
-
-// update zones response payload
-type UpdateZonesResponse struct {
-	// zone ids
-	Data                 []string `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *UpdateZonesResponse) Reset()         { *m = UpdateZonesResponse{} }
-func (m *UpdateZonesResponse) String() string { return proto.CompactTextString(m) }
-func (*UpdateZonesResponse) ProtoMessage()    {}
-func (*UpdateZonesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{43}
-}
-
-func (m *UpdateZonesResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateZonesResponse.Unmarshal(m, b)
-}
-func (m *UpdateZonesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateZonesResponse.Marshal(b, m, deterministic)
-}
-func (m *UpdateZonesResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateZonesResponse.Merge(m, src)
-}
-func (m *UpdateZonesResponse) XXX_Size() int {
-	return xxx_messageInfo_UpdateZonesResponse.Size(m)
-}
-func (m *UpdateZonesResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateZonesResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_UpdateZonesResponse proto.InternalMessageInfo
-
-func (m *UpdateZonesResponse) GetData() []string {
-	if m != nil {
-		return m.Data
-	}
-	return nil
-}
-
-// delete zones response payload
-type DeleteZonesResponse struct {
-	// zone ids
-	Data                 []string `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *DeleteZonesResponse) Reset()         { *m = DeleteZonesResponse{} }
-func (m *DeleteZonesResponse) String() string { return proto.CompactTextString(m) }
-func (*DeleteZonesResponse) ProtoMessage()    {}
-func (*DeleteZonesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{44}
-}
-
-func (m *DeleteZonesResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteZonesResponse.Unmarshal(m, b)
-}
-func (m *DeleteZonesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteZonesResponse.Marshal(b, m, deterministic)
-}
-func (m *DeleteZonesResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteZonesResponse.Merge(m, src)
-}
-func (m *DeleteZonesResponse) XXX_Size() int {
-	return xxx_messageInfo_DeleteZonesResponse.Size(m)
-}
-func (m *DeleteZonesResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteZonesResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeleteZonesResponse proto.InternalMessageInfo
-
-func (m *DeleteZonesResponse) GetData() []string {
-	if m != nil {
-		return m.Data
-	}
-	return nil
 }
 
 // get faqs request payload
@@ -2486,7 +1284,7 @@ func (m *GetFaqsRequest) Reset()         { *m = GetFaqsRequest{} }
 func (m *GetFaqsRequest) String() string { return proto.CompactTextString(m) }
 func (*GetFaqsRequest) ProtoMessage()    {}
 func (*GetFaqsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{45}
+	return fileDescriptor_fe7d991659ed015b, []int{24}
 }
 
 func (m *GetFaqsRequest) XXX_Unmarshal(b []byte) error {
@@ -2569,7 +1367,7 @@ func (m *GetFaqRequest) Reset()         { *m = GetFaqRequest{} }
 func (m *GetFaqRequest) String() string { return proto.CompactTextString(m) }
 func (*GetFaqRequest) ProtoMessage()    {}
 func (*GetFaqRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{46}
+	return fileDescriptor_fe7d991659ed015b, []int{25}
 }
 
 func (m *GetFaqRequest) XXX_Unmarshal(b []byte) error {
@@ -2612,7 +1410,7 @@ func (m *CreateFaqRequest) Reset()         { *m = CreateFaqRequest{} }
 func (m *CreateFaqRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateFaqRequest) ProtoMessage()    {}
 func (*CreateFaqRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{47}
+	return fileDescriptor_fe7d991659ed015b, []int{26}
 }
 
 func (m *CreateFaqRequest) XXX_Unmarshal(b []byte) error {
@@ -2662,7 +1460,7 @@ func (m *UpdateFaqRequest) Reset()         { *m = UpdateFaqRequest{} }
 func (m *UpdateFaqRequest) String() string { return proto.CompactTextString(m) }
 func (*UpdateFaqRequest) ProtoMessage()    {}
 func (*UpdateFaqRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{48}
+	return fileDescriptor_fe7d991659ed015b, []int{27}
 }
 
 func (m *UpdateFaqRequest) XXX_Unmarshal(b []byte) error {
@@ -2712,7 +1510,7 @@ func (m *UpdateFaqsRequest) Reset()         { *m = UpdateFaqsRequest{} }
 func (m *UpdateFaqsRequest) String() string { return proto.CompactTextString(m) }
 func (*UpdateFaqsRequest) ProtoMessage()    {}
 func (*UpdateFaqsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{49}
+	return fileDescriptor_fe7d991659ed015b, []int{28}
 }
 
 func (m *UpdateFaqsRequest) XXX_Unmarshal(b []byte) error {
@@ -2760,7 +1558,7 @@ func (m *DeleteFaqRequest) Reset()         { *m = DeleteFaqRequest{} }
 func (m *DeleteFaqRequest) String() string { return proto.CompactTextString(m) }
 func (*DeleteFaqRequest) ProtoMessage()    {}
 func (*DeleteFaqRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{50}
+	return fileDescriptor_fe7d991659ed015b, []int{29}
 }
 
 func (m *DeleteFaqRequest) XXX_Unmarshal(b []byte) error {
@@ -2801,7 +1599,7 @@ func (m *DeleteFaqsRequest) Reset()         { *m = DeleteFaqsRequest{} }
 func (m *DeleteFaqsRequest) String() string { return proto.CompactTextString(m) }
 func (*DeleteFaqsRequest) ProtoMessage()    {}
 func (*DeleteFaqsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{51}
+	return fileDescriptor_fe7d991659ed015b, []int{30}
 }
 
 func (m *DeleteFaqsRequest) XXX_Unmarshal(b []byte) error {
@@ -2842,7 +1640,7 @@ func (m *DeleteFaqResponse) Reset()         { *m = DeleteFaqResponse{} }
 func (m *DeleteFaqResponse) String() string { return proto.CompactTextString(m) }
 func (*DeleteFaqResponse) ProtoMessage()    {}
 func (*DeleteFaqResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{52}
+	return fileDescriptor_fe7d991659ed015b, []int{31}
 }
 
 func (m *DeleteFaqResponse) XXX_Unmarshal(b []byte) error {
@@ -2885,7 +1683,7 @@ func (m *GetFaqsResponse) Reset()         { *m = GetFaqsResponse{} }
 func (m *GetFaqsResponse) String() string { return proto.CompactTextString(m) }
 func (*GetFaqsResponse) ProtoMessage()    {}
 func (*GetFaqsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{53}
+	return fileDescriptor_fe7d991659ed015b, []int{32}
 }
 
 func (m *GetFaqsResponse) XXX_Unmarshal(b []byte) error {
@@ -2933,7 +1731,7 @@ func (m *GetFaqResponse) Reset()         { *m = GetFaqResponse{} }
 func (m *GetFaqResponse) String() string { return proto.CompactTextString(m) }
 func (*GetFaqResponse) ProtoMessage()    {}
 func (*GetFaqResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{54}
+	return fileDescriptor_fe7d991659ed015b, []int{33}
 }
 
 func (m *GetFaqResponse) XXX_Unmarshal(b []byte) error {
@@ -2974,7 +1772,7 @@ func (m *CreateFaqResponse) Reset()         { *m = CreateFaqResponse{} }
 func (m *CreateFaqResponse) String() string { return proto.CompactTextString(m) }
 func (*CreateFaqResponse) ProtoMessage()    {}
 func (*CreateFaqResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{55}
+	return fileDescriptor_fe7d991659ed015b, []int{34}
 }
 
 func (m *CreateFaqResponse) XXX_Unmarshal(b []byte) error {
@@ -3015,7 +1813,7 @@ func (m *UpdateFaqResponse) Reset()         { *m = UpdateFaqResponse{} }
 func (m *UpdateFaqResponse) String() string { return proto.CompactTextString(m) }
 func (*UpdateFaqResponse) ProtoMessage()    {}
 func (*UpdateFaqResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{56}
+	return fileDescriptor_fe7d991659ed015b, []int{35}
 }
 
 func (m *UpdateFaqResponse) XXX_Unmarshal(b []byte) error {
@@ -3056,7 +1854,7 @@ func (m *UpdateFaqsResponse) Reset()         { *m = UpdateFaqsResponse{} }
 func (m *UpdateFaqsResponse) String() string { return proto.CompactTextString(m) }
 func (*UpdateFaqsResponse) ProtoMessage()    {}
 func (*UpdateFaqsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{57}
+	return fileDescriptor_fe7d991659ed015b, []int{36}
 }
 
 func (m *UpdateFaqsResponse) XXX_Unmarshal(b []byte) error {
@@ -3097,7 +1895,7 @@ func (m *DeleteFaqsResponse) Reset()         { *m = DeleteFaqsResponse{} }
 func (m *DeleteFaqsResponse) String() string { return proto.CompactTextString(m) }
 func (*DeleteFaqsResponse) ProtoMessage()    {}
 func (*DeleteFaqsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_fe7d991659ed015b, []int{58}
+	return fileDescriptor_fe7d991659ed015b, []int{37}
 }
 
 func (m *DeleteFaqsResponse) XXX_Unmarshal(b []byte) error {
@@ -3126,18 +1924,14 @@ func (m *DeleteFaqsResponse) GetData() []string {
 }
 
 func init() {
-	proto.RegisterType((*ClientGetRecentZonesRequest)(nil), "pb.ClientGetRecentZonesRequest")
 	proto.RegisterType((*LoginRequest)(nil), "pb.LoginRequest")
 	proto.RegisterType((*LoginResponse)(nil), "pb.LoginResponse")
 	proto.RegisterType((*RefreshResponse)(nil), "pb.RefreshResponse")
-	proto.RegisterType((*Activity)(nil), "pb.Activity")
 	proto.RegisterType((*Faq)(nil), "pb.Faq")
 	proto.RegisterType((*User)(nil), "pb.User")
-	proto.RegisterType((*Zone)(nil), "pb.Zone")
 	proto.RegisterType((*GetPasswordResetRequest)(nil), "pb.GetPasswordResetRequest")
 	proto.RegisterType((*UpdatePasswordRequest)(nil), "pb.UpdatePasswordRequest")
 	proto.RegisterType((*GetPasswordResetResponse)(nil), "pb.GetPasswordResetResponse")
-	proto.RegisterType((*GetActivitiesRequest)(nil), "pb.GetActivitiesRequest")
 	proto.RegisterType((*GetUsersRequest)(nil), "pb.GetUsersRequest")
 	proto.RegisterType((*GetUserRequest)(nil), "pb.GetUserRequest")
 	proto.RegisterType((*CreateUserRequest)(nil), "pb.CreateUserRequest")
@@ -3146,31 +1940,14 @@ func init() {
 	proto.RegisterType((*DeleteUserRequest)(nil), "pb.DeleteUserRequest")
 	proto.RegisterType((*DeleteUsersRequest)(nil), "pb.DeleteUsersRequest")
 	proto.RegisterType((*DeleteUserResponse)(nil), "pb.DeleteUserResponse")
-	proto.RegisterType((*GetActivitiesResponse)(nil), "pb.GetActivitiesResponse")
 	proto.RegisterType((*GetUsersResponse)(nil), "pb.GetUsersResponse")
 	proto.RegisterType((*GetUserResponse)(nil), "pb.GetUserResponse")
 	proto.RegisterType((*CreateUserResponse)(nil), "pb.CreateUserResponse")
 	proto.RegisterType((*UpdateUserResponse)(nil), "pb.UpdateUserResponse")
 	proto.RegisterType((*UpdateUsersResponse)(nil), "pb.UpdateUsersResponse")
 	proto.RegisterType((*DeleteUsersResponse)(nil), "pb.DeleteUsersResponse")
-	proto.RegisterType((*ClientGetNearbyUsersRequest)(nil), "pb.ClientGetNearbyUsersRequest")
-	proto.RegisterType((*ClientGetCurrentZonesRequest)(nil), "pb.ClientGetCurrentZonesRequest")
-	proto.RegisterType((*GetZonesRequest)(nil), "pb.GetZonesRequest")
-	proto.RegisterType((*GetZoneRequest)(nil), "pb.GetZoneRequest")
-	proto.RegisterType((*CreateZoneRequest)(nil), "pb.CreateZoneRequest")
-	proto.RegisterType((*UpdateZoneRequest)(nil), "pb.UpdateZoneRequest")
-	proto.RegisterType((*UpdateZonesRequest)(nil), "pb.UpdateZonesRequest")
-	proto.RegisterType((*DeleteZoneRequest)(nil), "pb.DeleteZoneRequest")
-	proto.RegisterType((*DeleteZonesRequest)(nil), "pb.DeleteZonesRequest")
-	proto.RegisterType((*ClientGetCurrentZonesResponse)(nil), "pb.ClientGetCurrentZonesResponse")
-	proto.RegisterType((*ClientGetNearbyUsersResponse)(nil), "pb.ClientGetNearbyUsersResponse")
-	proto.RegisterType((*DeleteZoneResponse)(nil), "pb.DeleteZoneResponse")
-	proto.RegisterType((*GetZonesResponse)(nil), "pb.GetZonesResponse")
-	proto.RegisterType((*GetZoneResponse)(nil), "pb.GetZoneResponse")
-	proto.RegisterType((*CreateZoneResponse)(nil), "pb.CreateZoneResponse")
-	proto.RegisterType((*UpdateZoneResponse)(nil), "pb.UpdateZoneResponse")
-	proto.RegisterType((*UpdateZonesResponse)(nil), "pb.UpdateZonesResponse")
-	proto.RegisterType((*DeleteZonesResponse)(nil), "pb.DeleteZonesResponse")
+	proto.RegisterType((*GetNearbyUsersRequest)(nil), "pb.GetNearbyUsersRequest")
+	proto.RegisterType((*GetNearbyUsersResponse)(nil), "pb.GetNearbyUsersResponse")
 	proto.RegisterType((*GetFaqsRequest)(nil), "pb.GetFaqsRequest")
 	proto.RegisterType((*GetFaqRequest)(nil), "pb.GetFaqRequest")
 	proto.RegisterType((*CreateFaqRequest)(nil), "pb.CreateFaqRequest")
@@ -3190,143 +1967,99 @@ func init() {
 func init() { proto.RegisterFile("galasejahtera-service.proto", fileDescriptor_fe7d991659ed015b) }
 
 var fileDescriptor_fe7d991659ed015b = []byte{
-	// 2171 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xd4, 0x59, 0xdd, 0x6e, 0xdb, 0xc8,
-	0x15, 0x06, 0x25, 0xff, 0x1e, 0xff, 0x44, 0x1e, 0x5b, 0x09, 0x4d, 0x7b, 0x13, 0x95, 0x9b, 0x16,
-	0xae, 0x50, 0x4b, 0x59, 0xb7, 0x57, 0x69, 0x81, 0x6c, 0x7e, 0xd6, 0x6e, 0x8a, 0xd4, 0xd9, 0x2a,
-	0x9b, 0x6c, 0x51, 0x14, 0x05, 0xc6, 0xd4, 0x58, 0xe6, 0x2e, 0x45, 0x32, 0xe4, 0x28, 0x59, 0x75,
-	0xb1, 0x40, 0xd1, 0x47, 0x48, 0x2f, 0xfb, 0x16, 0xed, 0x45, 0xfb, 0x1e, 0x7d, 0x82, 0x02, 0x6d,
-	0x5f, 0xa1, 0xb7, 0xc5, 0x9c, 0x19, 0x92, 0x33, 0x24, 0xa5, 0xd8, 0x46, 0x6f, 0x72, 0x25, 0xce,
-	0xe1, 0x99, 0xef, 0xfc, 0xcc, 0x39, 0xdf, 0x8c, 0x38, 0xb0, 0x37, 0xa2, 0x01, 0x4d, 0xd9, 0x57,
-	0xf4, 0x82, 0xb3, 0x84, 0x1e, 0xa6, 0x2c, 0x79, 0xe3, 0x7b, 0xac, 0x17, 0x27, 0x11, 0x8f, 0x48,
-	0x23, 0x3e, 0x73, 0xf6, 0x47, 0x51, 0x34, 0x0a, 0x58, 0x9f, 0xc6, 0x7e, 0x9f, 0x86, 0x61, 0xc4,
-	0x29, 0xf7, 0xa3, 0x30, 0x95, 0x1a, 0xce, 0x8f, 0xf0, 0xc7, 0x3b, 0x1c, 0xb1, 0xf0, 0x30, 0x7d,
-	0x4b, 0x47, 0x23, 0x96, 0xf4, 0xa3, 0x18, 0x35, 0x6a, 0xb4, 0xf7, 0x14, 0x16, 0x8e, 0xce, 0x26,
-	0xe7, 0x7d, 0x36, 0x8e, 0xf9, 0x54, 0xbe, 0x74, 0x0f, 0x61, 0xef, 0x71, 0xe0, 0xb3, 0x90, 0x9f,
-	0x30, 0x3e, 0x60, 0x1e, 0x0b, 0xf9, 0x6f, 0xa2, 0x90, 0xa5, 0x03, 0xf6, 0x7a, 0xc2, 0x52, 0x4e,
-	0x36, 0xa1, 0xe1, 0x0f, 0x6d, 0xab, 0x63, 0x1d, 0xac, 0x0e, 0x1a, 0xfe, 0xd0, 0xfd, 0x14, 0xd6,
-	0x9f, 0x45, 0x23, 0x3f, 0xcc, 0xde, 0xef, 0xc0, 0x22, 0x1b, 0x53, 0x3f, 0x50, 0x2a, 0x72, 0x40,
-	0x1c, 0x58, 0x89, 0x69, 0x9a, 0xbe, 0x8d, 0x92, 0xa1, 0xdd, 0xc0, 0x17, 0xf9, 0xd8, 0xfd, 0xb3,
-	0x05, 0x1b, 0x0a, 0x22, 0x8d, 0xa3, 0x30, 0x65, 0xa4, 0x03, 0x6b, 0xd4, 0xf3, 0x58, 0x9a, 0x7e,
-	0x11, 0x7d, 0xcd, 0x42, 0x85, 0xa4, 0x8b, 0x88, 0x0b, 0xeb, 0x09, 0x3b, 0x4f, 0x58, 0x7a, 0x21,
-	0x55, 0x24, 0xa6, 0x21, 0x13, 0x28, 0x43, 0x3f, 0x8d, 0x03, 0x3a, 0x3d, 0xa5, 0x63, 0x66, 0x37,
-	0x25, 0x8a, 0x26, 0x22, 0x04, 0x16, 0x92, 0x28, 0x60, 0xf6, 0x02, 0xbe, 0xc2, 0x67, 0x15, 0xdf,
-	0x62, 0x1e, 0xdf, 0x97, 0x70, 0x63, 0x20, 0x51, 0xff, 0xbf, 0xee, 0xb9, 0x31, 0xac, 0x3c, 0xf4,
-	0xb8, 0xff, 0xc6, 0xe7, 0xd3, 0x72, 0x52, 0xc9, 0x4d, 0x58, 0xfa, 0x7d, 0x14, 0xb2, 0xa7, 0x59,
-	0xb2, 0xd4, 0x48, 0xc8, 0x27, 0x29, 0x4b, 0x9e, 0x0e, 0x55, 0x34, 0x6a, 0x24, 0x02, 0xe1, 0xfe,
-	0x58, 0x06, 0xd2, 0x1c, 0xe0, 0x33, 0x69, 0x41, 0x93, 0xf3, 0x00, 0x23, 0x69, 0x0e, 0xc4, 0xa3,
-	0xfb, 0x00, 0x9a, 0xc7, 0xf4, 0x75, 0xc5, 0xd8, 0x0e, 0x2c, 0x72, 0x9f, 0x07, 0x4c, 0xd9, 0x92,
-	0x03, 0x01, 0x39, 0x64, 0xa9, 0xa7, 0x0c, 0xe1, 0xb3, 0xfb, 0x9f, 0x06, 0x2c, 0xbc, 0x4c, 0x59,
-	0x52, 0x81, 0xc8, 0x12, 0xd9, 0xd0, 0x12, 0x49, 0x60, 0x21, 0x2c, 0xf2, 0x8e, 0xcf, 0x45, 0x71,
-	0x2c, 0x96, 0x8a, 0xc3, 0x4f, 0x31, 0x17, 0xcc, 0x5e, 0xea, 0x58, 0x07, 0x2b, 0x83, 0x7c, 0x6c,
-	0x14, 0xce, 0xb2, 0x59, 0x38, 0x62, 0x1d, 0x02, 0x9a, 0xf2, 0x97, 0xf1, 0x90, 0x72, 0x36, 0xb4,
-	0x57, 0x30, 0x52, 0x5d, 0x24, 0x72, 0x10, 0x50, 0x6e, 0xaf, 0x76, 0xac, 0x03, 0x6b, 0x20, 0x1e,
-	0x85, 0x57, 0x41, 0x14, 0x8e, 0x6c, 0x40, 0x11, 0x3e, 0x13, 0x1b, 0x96, 0x3d, 0xb1, 0xb0, 0x21,
-	0xb7, 0xd7, 0x10, 0x23, 0x1b, 0xe6, 0x79, 0x5d, 0xd7, 0xf2, 0x2a, 0x62, 0xf7, 0xec, 0x0d, 0x15,
-	0xbb, 0x27, 0xbc, 0x88, 0x2f, 0xa2, 0x90, 0x9d, 0x4e, 0xc6, 0x67, 0x2c, 0xb1, 0x37, 0x65, 0x35,
-	0x68, 0x22, 0x11, 0x35, 0x0d, 0x58, 0xc2, 0xed, 0x1b, 0x18, 0x9c, 0x1c, 0x60, 0xd4, 0xe1, 0x39,
-	0xf3, 0x84, 0xeb, 0x2d, 0x15, 0xb5, 0x1a, 0xbb, 0xef, 0x1a, 0xb0, 0x20, 0xba, 0xae, 0x2e, 0xd1,
-	0x98, 0xd4, 0x86, 0x96, 0x54, 0x15, 0x64, 0xb3, 0x1a, 0xe4, 0x82, 0x16, 0xa4, 0x08, 0x65, 0x1a,
-	0x33, 0x55, 0x0f, 0xf8, 0x2c, 0xca, 0x29, 0xa1, 0x43, 0x7f, 0x92, 0x62, 0xda, 0xad, 0x81, 0x1a,
-	0x09, 0xd7, 0x3c, 0x1a, 0x53, 0xcf, 0xe7, 0x53, 0x4c, 0x7a, 0x73, 0x90, 0x8f, 0x45, 0xb8, 0xa2,
-	0xe8, 0xd2, 0x2f, 0x7d, 0x7e, 0xe1, 0x87, 0x59, 0xd2, 0x35, 0x11, 0xe9, 0x01, 0xf1, 0xd3, 0xc7,
-	0x4a, 0xff, 0xb3, 0x6f, 0x3c, 0xc6, 0x86, 0x6c, 0x88, 0x6b, 0xb0, 0x32, 0xa8, 0x79, 0x93, 0x27,
-	0x19, 0xb4, 0x24, 0x8b, 0x82, 0xf2, 0xd3, 0xaf, 0xd5, 0x7a, 0xe0, 0xb3, 0xfb, 0x00, 0x6e, 0x9d,
-	0x30, 0xfe, 0xb9, 0x5a, 0xfd, 0x01, 0x4b, 0x05, 0x3f, 0xd5, 0x92, 0x52, 0x51, 0x67, 0x0d, 0xad,
-	0xce, 0xdc, 0xa7, 0xd0, 0x96, 0x85, 0x51, 0x60, 0xe4, 0x9c, 0xc5, 0xb5, 0x56, 0x96, 0x83, 0xb9,
-	0x9c, 0xf5, 0x13, 0xb0, 0xab, 0xbe, 0x28, 0x7a, 0xb0, 0x61, 0x79, 0xcc, 0xd2, 0x94, 0x8e, 0x98,
-	0xc2, 0xcb, 0x86, 0xee, 0xdf, 0x2d, 0xd8, 0x39, 0x61, 0x5c, 0xb5, 0xbd, 0x5f, 0x90, 0x2a, 0x81,
-	0x05, 0x9f, 0xb3, 0xb1, 0xd2, 0xc7, 0x67, 0xe1, 0x54, 0x94, 0x0c, 0x59, 0x92, 0xc5, 0x80, 0x03,
-	0xa1, 0x79, 0x9e, 0x44, 0x63, 0x5c, 0xed, 0xe6, 0x00, 0x9f, 0x45, 0xf4, 0x3c, 0x52, 0xbd, 0xdf,
-	0xe0, 0x11, 0xb9, 0x0d, 0x70, 0xee, 0x07, 0x9c, 0x25, 0x4f, 0x05, 0xa6, 0x6c, 0x35, 0x4d, 0x22,
-	0x96, 0x50, 0x8e, 0x5e, 0xd1, 0x60, 0x22, 0x5b, 0x6e, 0x75, 0xa0, 0x8b, 0x44, 0x49, 0xf9, 0xc3,
-	0xd4, 0x5e, 0xee, 0x34, 0x0f, 0x56, 0x07, 0xe2, 0xd1, 0xfd, 0xab, 0x05, 0x37, 0x4e, 0x18, 0x17,
-	0xdd, 0xff, 0x01, 0x79, 0xdd, 0x81, 0x4d, 0xe5, 0xf4, 0xac, 0xed, 0xeb, 0x21, 0x6c, 0x3d, 0x4e,
-	0x18, 0xe5, 0x6c, 0x8e, 0x12, 0xd9, 0x87, 0x85, 0x21, 0xe5, 0x14, 0x63, 0x5a, 0x3b, 0x5a, 0xe9,
-	0xc5, 0x67, 0x3d, 0x54, 0x47, 0xa9, 0x80, 0x90, 0x65, 0x75, 0x7d, 0x88, 0x27, 0x40, 0x0a, 0x88,
-	0x3c, 0xbf, 0x2a, 0x1e, 0x2b, 0x8f, 0xe7, 0x3d, 0x28, 0x1f, 0xc3, 0xd6, 0x13, 0x16, 0xb0, 0xb9,
-	0x8e, 0xb8, 0x3f, 0x00, 0x52, 0x28, 0xcd, 0x36, 0xe5, 0x1e, 0xe9, 0x7a, 0x79, 0x6d, 0x67, 0x0e,
-	0x58, 0xb5, 0x0e, 0x3c, 0x87, 0x76, 0xa9, 0xbc, 0xf3, 0x1d, 0x33, 0x9b, 0xd6, 0x3c, 0x58, 0x3b,
-	0x5a, 0x17, 0xd3, 0xb2, 0xbd, 0x4f, 0x4e, 0x95, 0x2d, 0xc8, 0xa9, 0xec, 0xd8, 0xe6, 0x40, 0x0e,
-	0xdc, 0x63, 0x68, 0x15, 0x45, 0x57, 0x71, 0xa1, 0x59, 0x75, 0x61, 0x06, 0x4e, 0x3f, 0x2f, 0xde,
-	0x4b, 0x46, 0x72, 0x04, 0x44, 0x2f, 0x8b, 0xcb, 0xce, 0xd1, 0xeb, 0xe0, 0x52, 0x73, 0x7e, 0x08,
-	0xdb, 0xc6, 0xc2, 0xab, 0x49, 0x44, 0x8b, 0x71, 0xb5, 0x50, 0x35, 0x16, 0x6e, 0x8e, 0xea, 0x4f,
-	0xb5, 0x23, 0xdc, 0x29, 0xa3, 0xc9, 0xd9, 0xd4, 0x58, 0xec, 0x7d, 0x58, 0x10, 0x7c, 0x5d, 0x75,
-	0x49, 0x48, 0xdd, 0x9f, 0xc1, 0x7e, 0x3e, 0xf9, 0xf1, 0x24, 0x49, 0xca, 0x07, 0xc0, 0xf9, 0xb3,
-	0x15, 0x4f, 0x18, 0x33, 0x3e, 0x14, 0x9e, 0x10, 0x4e, 0xbf, 0x97, 0x27, 0xe6, 0x28, 0xd5, 0xb5,
-	0x27, 0xaa, 0x97, 0x78, 0xe2, 0xfa, 0x10, 0x39, 0x4f, 0x18, 0xf9, 0xbd, 0x14, 0x4f, 0x68, 0x28,
-	0x39, 0x4f, 0xcc, 0x0b, 0x38, 0xe7, 0x89, 0xf9, 0xa6, 0x5c, 0x0f, 0x3e, 0x9a, 0x51, 0x2e, 0x45,
-	0x03, 0x88, 0xd3, 0xab, 0x5e, 0x2f, 0xd2, 0x17, 0x21, 0x25, 0x77, 0x61, 0x25, 0x9d, 0x9c, 0xe1,
-	0x0c, 0xbb, 0x51, 0x74, 0x34, 0x6a, 0xe4, 0x6f, 0xdc, 0x5f, 0x6b, 0x35, 0x69, 0x14, 0xb4, 0xb2,
-	0x71, 0x1b, 0x16, 0xf1, 0x04, 0x52, 0x21, 0x05, 0x29, 0x16, 0x5b, 0xb2, 0x78, 0x38, 0x9d, 0x8c,
-	0x15, 0x2f, 0x64, 0xc3, 0x82, 0xe6, 0x64, 0x2e, 0x66, 0x37, 0xad, 0x96, 0x3f, 0xc9, 0x4a, 0x95,
-	0x28, 0xcb, 0xac, 0x54, 0xcc, 0x98, 0xcb, 0x4a, 0x57, 0x30, 0x9c, 0xb3, 0xd2, 0xd5, 0xe6, 0xe8,
-	0x55, 0x77, 0xa9, 0x39, 0x39, 0x2b, 0x99, 0x31, 0xce, 0x65, 0xa5, 0xf7, 0xab, 0xfe, 0xc5, 0xc2,
-	0x2e, 0x3b, 0xa6, 0xaf, 0x3f, 0x20, 0x66, 0xb8, 0x03, 0x1b, 0xd2, 0xe7, 0x59, 0x7d, 0xf2, 0x00,
-	0x5a, 0x72, 0x4d, 0x66, 0xeb, 0x90, 0x3d, 0xa3, 0x1d, 0x97, 0x45, 0xb6, 0x85, 0xb6, 0x4c, 0xcb,
-	0x03, 0x68, 0xc9, 0x64, 0x5f, 0x17, 0xe0, 0x51, 0xc6, 0x2b, 0x7a, 0x66, 0xab, 0x9c, 0x30, 0x17,
-	0xc3, 0x85, 0x96, 0x5c, 0xc6, 0x39, 0x91, 0x7e, 0x3f, 0xa3, 0x8d, 0xb9, 0x76, 0xdc, 0x7b, 0x9a,
-	0x5a, 0x5e, 0x0f, 0x7b, 0x46, 0xbd, 0x95, 0x8c, 0x3f, 0xc1, 0x3e, 0x90, 0xa8, 0x15, 0xfd, 0x66,
-	0x45, 0x7f, 0x46, 0x37, 0x1d, 0x66, 0xd5, 0x75, 0x39, 0xa3, 0xf7, 0x32, 0x42, 0xbf, 0xca, 0x0c,
-	0x6d, 0xa1, 0x2e, 0x33, 0xe3, 0x20, 0xeb, 0x3d, 0x23, 0xb6, 0xba, 0xde, 0x38, 0xc8, 0x68, 0xe8,
-	0x7d, 0x9a, 0x47, 0xff, 0xdd, 0x85, 0x9d, 0x13, 0x1a, 0xd0, 0x17, 0xd9, 0xb7, 0xa2, 0x17, 0xf2,
-	0x53, 0x11, 0xf9, 0x2d, 0x56, 0x6a, 0x71, 0xf8, 0x22, 0xb6, 0x70, 0xa6, 0xee, 0xef, 0x86, 0xb3,
-	0x5b, 0xf3, 0x46, 0x9a, 0x74, 0x6f, 0xfe, 0xf1, 0x1f, 0xff, 0xfa, 0x53, 0xa3, 0x45, 0x36, 0xfb,
-	0x6f, 0x3e, 0xe9, 0xd3, 0x02, 0xec, 0x3b, 0xd8, 0xa9, 0x63, 0x60, 0x72, 0x47, 0x40, 0xcd, 0x39,
-	0x6c, 0x38, 0x9d, 0xd9, 0x0a, 0xca, 0xa4, 0x8b, 0x26, 0xf7, 0xdd, 0x5b, 0xc2, 0xa4, 0x87, 0x9a,
-	0x7d, 0xa4, 0xed, 0x7e, 0x88, 0xda, 0xf7, 0xad, 0x2e, 0xf9, 0x83, 0x05, 0xed, 0xda, 0x6d, 0x86,
-	0x98, 0xf8, 0x35, 0x07, 0x16, 0xe7, 0x7b, 0x73, 0x34, 0xe6, 0xb8, 0xe0, 0x49, 0x45, 0xb1, 0x4b,
-	0xa5, 0xc2, 0x85, 0x44, 0xcb, 0x80, 0xf6, 0x5d, 0xac, 0x94, 0x81, 0xea, 0x17, 0x33, 0x67, 0x47,
-	0x65, 0xdb, 0x34, 0xf9, 0x31, 0x9a, 0xfc, 0x88, 0xec, 0x69, 0x26, 0x13, 0x9c, 0x8c, 0x16, 0xfb,
-	0xdf, 0xfa, 0xc3, 0xef, 0x88, 0x07, 0x2d, 0x89, 0x5c, 0x1c, 0x46, 0x49, 0x1b, 0xed, 0x95, 0xff,
-	0xb3, 0x38, 0x37, 0xcb, 0x62, 0x65, 0xa7, 0x83, 0x76, 0x1c, 0xb7, 0x5d, 0xc9, 0xae, 0xb0, 0x20,
-	0x02, 0xcb, 0x8d, 0x14, 0x27, 0x51, 0x69, 0xa4, 0xf2, 0xaf, 0x46, 0x1a, 0xa9, 0x1e, 0x72, 0x33,
-	0x23, 0xce, 0x6c, 0x23, 0x2f, 0x61, 0x33, 0xcf, 0x91, 0xcc, 0xdb, 0xb6, 0x99, 0x96, 0x79, 0xb9,
-	0xb2, 0x11, 0x9e, 0x90, 0x96, 0x06, 0x8f, 0x59, 0x22, 0xaf, 0x00, 0x8a, 0x1d, 0x51, 0x4f, 0x8d,
-	0x76, 0xb4, 0xd1, 0x53, 0xa3, 0x6f, 0x82, 0xee, 0x2e, 0xc2, 0x6e, 0xbb, 0x58, 0xeb, 0x45, 0xd6,
-	0x85, 0xbb, 0x3f, 0x87, 0x95, 0xeb, 0x38, 0xba, 0x85, 0x88, 0x6b, 0x64, 0x35, 0x47, 0x24, 0xbf,
-	0x80, 0x65, 0xa5, 0x46, 0x88, 0x36, 0x27, 0xc3, 0xd9, 0x36, 0x64, 0x75, 0x4d, 0xa8, 0x95, 0xc3,
-	0x2b, 0x80, 0x62, 0x5f, 0xd6, 0xd7, 0xa8, 0x12, 0x6d, 0x75, 0xcb, 0xcf, 0xa2, 0x75, 0x6a, 0xa2,
-	0xfd, 0x02, 0xd6, 0xb4, 0xfd, 0x9e, 0x94, 0x10, 0xf2, 0x98, 0x6f, 0x55, 0xe4, 0x0a, 0x7a, 0x07,
-	0xa1, 0x37, 0x9d, 0x22, 0x6c, 0x81, 0xfa, 0x02, 0xa0, 0x38, 0x1a, 0x48, 0x6f, 0x2b, 0xc7, 0x4e,
-	0xe9, 0x6d, 0xf5, 0x04, 0x96, 0xa5, 0xa0, 0x5b, 0x4e, 0xc1, 0xaf, 0x60, 0x4d, 0x3b, 0x6f, 0x90,
-	0xd2, 0x74, 0xd3, 0xd5, 0x9a, 0x83, 0x49, 0xb6, 0x42, 0x5d, 0x6d, 0x85, 0x06, 0xb0, 0x9a, 0xef,
-	0x04, 0x64, 0xa7, 0xa8, 0x95, 0x62, 0x2b, 0x74, 0xda, 0x25, 0xa9, 0x59, 0x97, 0xee, 0x86, 0x00,
-	0x3b, 0xa7, 0xaf, 0x8b, 0x8c, 0x3e, 0xc1, 0x55, 0x17, 0x64, 0x9e, 0xaf, 0xba, 0xb6, 0x6b, 0xe6,
-	0xab, 0xae, 0xb3, 0xbd, 0xdb, 0x42, 0x34, 0x20, 0x2b, 0x19, 0x1a, 0x39, 0x86, 0x25, 0xa9, 0x44,
-	0xb6, 0x8a, 0x09, 0x19, 0x06, 0xd1, 0x45, 0x0a, 0xa2, 0x8d, 0x10, 0x37, 0x88, 0xe9, 0x90, 0x88,
-	0x30, 0xdf, 0x87, 0x64, 0x84, 0xe5, 0x13, 0x87, 0xd3, 0x2e, 0x49, 0xcd, 0x08, 0x9d, 0x6a, 0x84,
-	0x9f, 0x67, 0xb5, 0x88, 0x41, 0x9a, 0xd3, 0xd3, 0x9a, 0x5a, 0x34, 0x42, 0xdd, 0x46, 0xd8, 0x0d,
-	0x27, 0x0f, 0x55, 0x20, 0x3e, 0x87, 0xd5, 0x7c, 0x0f, 0x94, 0x5e, 0x96, 0x8f, 0x24, 0x4e, 0xbb,
-	0x24, 0x35, 0xc3, 0xee, 0x96, 0xc2, 0xfe, 0x65, 0x56, 0x80, 0x85, 0x8b, 0x95, 0x03, 0x8c, 0x5e,
-	0x80, 0x75, 0xab, 0xd1, 0x2d, 0x56, 0x23, 0xe7, 0x9a, 0xeb, 0xd0, 0xb0, 0xc1, 0x35, 0x26, 0x35,
-	0x4a, 0xae, 0x91, 0xdb, 0x69, 0x56, 0x18, 0xc6, 0x16, 0xba, 0x63, 0x0a, 0xeb, 0xb8, 0x46, 0xfe,
-	0xcd, 0x19, 0xe4, 0x9f, 0xbb, 0xd2, 0x47, 0x53, 0xec, 0xba, 0x2b, 0xe0, 0x19, 0xb5, 0x23, 0x3a,
-	0x43, 0x62, 0xfe, 0x0e, 0x3f, 0x59, 0xca, 0x6d, 0x4d, 0x21, 0x63, 0xfc, 0x57, 0x40, 0xde, 0x43,
-	0xe4, 0x36, 0xd9, 0xce, 0x3c, 0x95, 0xfb, 0xdc, 0x4c, 0xfc, 0xab, 0x7a, 0x6e, 0xe0, 0x0b, 0xcf,
-	0x67, 0xe1, 0x23, 0x15, 0x94, 0xfc, 0xbf, 0x04, 0xab, 0xcf, 0xf0, 0x5f, 0xe7, 0x77, 0x84, 0x24,
-	0x9a, 0x77, 0xe5, 0x4e, 0x37, 0x8a, 0xc1, 0xe0, 0xf7, 0xa2, 0x18, 0x0a, 0x7e, 0xbf, 0xce, 0x1e,
-	0x6c, 0xf0, 0xbb, 0x59, 0x61, 0x39, 0xbf, 0xcb, 0x22, 0x2b, 0x21, 0xd4, 0xf1, 0xbb, 0x99, 0x60,
-	0x83, 0xdf, 0x11, 0xda, 0xe0, 0xf7, 0xc2, 0xdb, 0xca, 0xe7, 0x47, 0xbd, 0xbd, 0xea, 0x52, 0xd0,
-	0x2d, 0xa7, 0x20, 0xe7, 0x77, 0xcd, 0xd5, 0xea, 0xf7, 0x4a, 0x9d, 0xdf, 0x6b, 0xbb, 0xa2, 0xab,
-	0x75, 0x45, 0x8a, 0x7f, 0xd7, 0x8d, 0x6f, 0xf5, 0x64, 0x4f, 0x2d, 0x4b, 0xdd, 0x6d, 0x82, 0xb3,
-	0x5f, 0xff, 0x52, 0x59, 0xb8, 0x8b, 0x16, 0x6e, 0x93, 0x7d, 0xd3, 0xf3, 0x7e, 0x76, 0x37, 0x90,
-	0xa0, 0x81, 0x08, 0x36, 0xcd, 0xbb, 0x06, 0xb2, 0x5b, 0x64, 0xb7, 0x74, 0xff, 0xe0, 0xdc, 0xec,
-	0xc9, 0x0b, 0xd9, 0x5e, 0x76, 0x21, 0xdb, 0xfb, 0x6c, 0x1c, 0xf3, 0xa9, 0xdb, 0x45, 0x53, 0x77,
-	0x9d, 0x3b, 0x85, 0x29, 0xc3, 0x4a, 0xff, 0x5b, 0xbc, 0xa9, 0xc0, 0x35, 0x7e, 0x04, 0x8b, 0x78,
-	0x89, 0x4a, 0x5a, 0xc2, 0x8e, 0x7e, 0x25, 0xeb, 0x6c, 0x69, 0x12, 0x73, 0x45, 0x5d, 0x4c, 0x53,
-	0x20, 0x5e, 0x09, 0x8c, 0x67, 0xb0, 0xf4, 0x2c, 0x1a, 0x45, 0x13, 0x4e, 0x66, 0x78, 0x34, 0xd3,
-	0x53, 0x82, 0x78, 0xeb, 0x2e, 0x28, 0x3c, 0x81, 0x71, 0x0a, 0xcb, 0xea, 0xe6, 0x74, 0x26, 0x1c,
-	0x76, 0x47, 0xe9, 0x7a, 0x35, 0x2b, 0x0d, 0x77, 0x4d, 0x60, 0xa9, 0x2b, 0xd3, 0xfb, 0x56, 0xf7,
-	0xd1, 0xbf, 0xad, 0x77, 0x0f, 0xff, 0x69, 0x91, 0xbf, 0x59, 0xd0, 0x36, 0xfe, 0x00, 0x75, 0xb2,
-	0x7f, 0x40, 0xc7, 0xb5, 0xe2, 0xce, 0x05, 0x0d, 0x87, 0x01, 0x4b, 0x3b, 0x89, 0x4c, 0x47, 0xda,
-	0x39, 0x4f, 0xa2, 0x71, 0xc7, 0xd4, 0xa5, 0x71, 0x1c, 0xf8, 0x1e, 0x5e, 0x92, 0xf7, 0xdc, 0xe7,
-	0xe4, 0xe8, 0x82, 0xf3, 0x38, 0xbd, 0xdf, 0xef, 0x8f, 0x7c, 0x7e, 0x31, 0x39, 0xeb, 0x79, 0xd1,
-	0xb8, 0x3f, 0xa2, 0x01, 0x3d, 0xcc, 0x6f, 0xe8, 0xfb, 0xe6, 0x7d, 0xfd, 0x19, 0x73, 0x76, 0xbd,
-	0x0b, 0x3f, 0xfc, 0xc6, 0x8f, 0xc2, 0xd1, 0x5b, 0xe6, 0x7f, 0x3a, 0xa5, 0x17, 0x51, 0x24, 0xe6,
-	0xf5, 0xc6, 0xd3, 0xa3, 0xc5, 0x4f, 0x7a, 0xf7, 0x7a, 0xf7, 0xba, 0x56, 0xe3, 0xa8, 0xa5, 0x19,
-	0xea, 0x7f, 0x95, 0x46, 0xe1, 0xfd, 0x8a, 0xe4, 0x6c, 0x09, 0x93, 0xf4, 0xe3, 0xff, 0x05, 0x00,
-	0x00, 0xff, 0xff, 0x7a, 0x0b, 0x0e, 0x61, 0x13, 0x20, 0x00, 0x00,
+	// 1463 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xd4, 0x58, 0x5b, 0x73, 0xdb, 0x44,
+	0x14, 0x1e, 0xd9, 0xb9, 0x9e, 0x5c, 0xea, 0x6c, 0x2e, 0x55, 0x95, 0x4c, 0xeb, 0x59, 0x0a, 0x13,
+	0x3c, 0xc4, 0x4a, 0x03, 0xbc, 0xe4, 0x25, 0x6d, 0x09, 0x09, 0x65, 0x4a, 0x5a, 0xdc, 0x0b, 0xcf,
+	0x6b, 0x7b, 0x63, 0xab, 0x95, 0x25, 0x47, 0xbb, 0x6e, 0xc9, 0x74, 0x78, 0xe1, 0x27, 0xc0, 0x23,
+	0xff, 0x02, 0x1e, 0xfa, 0x43, 0xe0, 0x0f, 0x30, 0x03, 0xff, 0x83, 0xd9, 0x9b, 0xb4, 0x92, 0x6c,
+	0x37, 0x74, 0x78, 0xe1, 0xc9, 0xbb, 0x47, 0xe7, 0x7c, 0xe7, 0xf6, 0x1d, 0x69, 0xd7, 0xb0, 0xdd,
+	0x23, 0x21, 0x61, 0xf4, 0x05, 0xe9, 0x73, 0x9a, 0x90, 0x3d, 0x46, 0x93, 0x57, 0x41, 0x87, 0x36,
+	0x87, 0x49, 0xcc, 0x63, 0x54, 0x19, 0xb6, 0xbd, 0x9d, 0x5e, 0x1c, 0xf7, 0x42, 0xea, 0x93, 0x61,
+	0xe0, 0x93, 0x28, 0x8a, 0x39, 0xe1, 0x41, 0x1c, 0x31, 0xa5, 0xe1, 0x7d, 0x22, 0x7f, 0x3a, 0x7b,
+	0x3d, 0x1a, 0xed, 0xb1, 0xd7, 0xa4, 0xd7, 0xa3, 0x89, 0x1f, 0x0f, 0xa5, 0xc6, 0x18, 0xed, 0x6d,
+	0x8d, 0x25, 0x77, 0xed, 0xd1, 0xb9, 0x4f, 0x07, 0x43, 0x7e, 0xa9, 0x1e, 0xe2, 0xbb, 0xb0, 0xfc,
+	0x30, 0xee, 0x05, 0x51, 0x8b, 0x5e, 0x8c, 0x28, 0xe3, 0x68, 0x03, 0x66, 0xe9, 0x80, 0x04, 0xa1,
+	0xeb, 0xd4, 0x9d, 0xdd, 0xc5, 0x96, 0xda, 0x20, 0x0f, 0x16, 0x86, 0x84, 0xb1, 0xd7, 0x71, 0xd2,
+	0x75, 0x2b, 0xf2, 0x41, 0xba, 0xc7, 0xbf, 0x38, 0xb0, 0xa2, 0x21, 0xd8, 0x30, 0x8e, 0x18, 0x45,
+	0x75, 0x58, 0x22, 0x9d, 0x0e, 0x65, 0xec, 0x69, 0xfc, 0x92, 0x46, 0x1a, 0xc9, 0x16, 0x21, 0x0c,
+	0xcb, 0x09, 0x3d, 0x4f, 0x28, 0xeb, 0x2b, 0x15, 0x85, 0x99, 0x93, 0x09, 0x94, 0x6e, 0xc0, 0x86,
+	0x21, 0xb9, 0x3c, 0x23, 0x03, 0xea, 0x56, 0x15, 0x8a, 0x25, 0x42, 0x08, 0x66, 0x92, 0x38, 0xa4,
+	0xee, 0x8c, 0x7c, 0x24, 0xd7, 0x68, 0x15, 0x2a, 0x41, 0xd7, 0x9d, 0x95, 0x92, 0x4a, 0xd0, 0xc5,
+	0xdf, 0xc1, 0xb5, 0x96, 0x42, 0xfd, 0x6f, 0xc3, 0xc3, 0x47, 0x50, 0x3d, 0x21, 0x17, 0xda, 0x9f,
+	0x63, 0xfc, 0x89, 0xfa, 0xf1, 0x80, 0x87, 0x54, 0xdb, 0xa8, 0x8d, 0x88, 0xb4, 0x4b, 0x59, 0x47,
+	0x27, 0x21, 0xd7, 0xf8, 0x0f, 0x07, 0x66, 0x9e, 0x31, 0x9a, 0x94, 0x20, 0x4c, 0x5a, 0x15, 0x2b,
+	0xad, 0xb4, 0x2d, 0xb3, 0x93, 0xda, 0x32, 0x9f, 0x6f, 0x8b, 0xc8, 0x32, 0x24, 0x8c, 0x3f, 0x1b,
+	0x76, 0x09, 0xa7, 0x5d, 0x77, 0xa1, 0xee, 0xec, 0x56, 0x5b, 0xb6, 0x08, 0xd5, 0xa0, 0x1a, 0x12,
+	0xee, 0x2e, 0xd6, 0x9d, 0x5d, 0xa7, 0x25, 0x96, 0xc2, 0x73, 0x18, 0x47, 0x3d, 0x17, 0xa4, 0x48,
+	0xae, 0x85, 0x8c, 0x07, 0x03, 0xea, 0x2e, 0x4b, 0x00, 0xb9, 0x16, 0x7e, 0x03, 0x76, 0xaf, 0xc3,
+	0x83, 0x57, 0xd4, 0x5d, 0xa9, 0x3b, 0xbb, 0x0b, 0xad, 0x74, 0x8f, 0x8f, 0xe0, 0xfa, 0x29, 0xe5,
+	0x8f, 0x75, 0x18, 0x2d, 0xca, 0x28, 0x37, 0xdc, 0x1a, 0x53, 0x2b, 0x95, 0x54, 0xc5, 0x4a, 0x0a,
+	0x3f, 0x80, 0x4d, 0x15, 0x61, 0x86, 0x91, 0x52, 0x93, 0x5b, 0x1d, 0x53, 0x9b, 0xa9, 0xd4, 0xfc,
+	0x0c, 0xdc, 0x72, 0x2c, 0x9a, 0x05, 0x2e, 0xcc, 0x0f, 0x28, 0x63, 0xa4, 0x47, 0x35, 0x9e, 0xd9,
+	0xe2, 0xdf, 0x1c, 0xb8, 0x76, 0x4a, 0xb9, 0xe8, 0x0d, 0x33, 0xbe, 0x11, 0xcc, 0x04, 0x9c, 0x0e,
+	0xb4, 0xaa, 0x5c, 0x8b, 0x78, 0xe2, 0xa4, 0x4b, 0x13, 0x13, 0xbe, 0xdc, 0x08, 0xcd, 0xf3, 0x24,
+	0x1e, 0xc8, 0x56, 0x57, 0x5b, 0x72, 0x2d, 0x12, 0xe7, 0xb1, 0xa4, 0x69, 0xb5, 0x55, 0xe1, 0x31,
+	0xba, 0x09, 0x70, 0x1e, 0x84, 0x9c, 0x26, 0x0f, 0x04, 0xa6, 0x6a, 0xa9, 0x25, 0x11, 0xbd, 0x53,
+	0xbb, 0xe7, 0x24, 0x1c, 0x51, 0x77, 0x4e, 0x31, 0xd4, 0x12, 0x89, 0xde, 0x05, 0x5d, 0xe6, 0xce,
+	0xd7, 0xab, 0xbb, 0x8b, 0x2d, 0xb1, 0xc4, 0x75, 0x58, 0xd5, 0x41, 0x4f, 0x28, 0x37, 0xbe, 0x07,
+	0x6b, 0x5f, 0x24, 0x94, 0x70, 0x3a, 0x45, 0x09, 0xed, 0xc0, 0x4c, 0x97, 0x70, 0x22, 0x73, 0x5a,
+	0x3a, 0x58, 0x68, 0x0e, 0xdb, 0x4d, 0xa9, 0x2e, 0xa5, 0x02, 0x42, 0xf5, 0xe6, 0xfd, 0x21, 0x8e,
+	0x01, 0x65, 0x10, 0x69, 0x7d, 0x75, 0x3e, 0x4e, 0x9a, 0xcf, 0x3b, 0x50, 0x3e, 0x80, 0xb5, 0x63,
+	0x1a, 0xd2, 0xa9, 0x81, 0xe0, 0x8f, 0x00, 0x65, 0x4a, 0x93, 0x5d, 0xe1, 0x03, 0x5b, 0x2f, 0x25,
+	0x88, 0x09, 0xc0, 0x19, 0x1b, 0xc0, 0x09, 0xd4, 0x32, 0x8e, 0x94, 0x2c, 0xaa, 0x65, 0x0b, 0x45,
+	0x5f, 0x4e, 0x14, 0xdb, 0xab, 0x2d, 0xb5, 0xc1, 0x7e, 0xca, 0xb5, 0x2b, 0x3a, 0x3e, 0x00, 0x64,
+	0x77, 0xf1, 0xaa, 0x36, 0x76, 0xdb, 0xae, 0x64, 0xf3, 0x31, 0xac, 0xe7, 0xfa, 0xa4, 0x8d, 0x90,
+	0x95, 0xe3, 0x62, 0xa6, 0x9a, 0xab, 0xf3, 0x14, 0xd5, 0xcf, 0x61, 0xf3, 0x94, 0xf2, 0x33, 0x4a,
+	0x92, 0xf6, 0x65, 0xae, 0x2b, 0x3b, 0x30, 0x33, 0x62, 0x34, 0x29, 0x07, 0x23, 0xa4, 0xb8, 0x05,
+	0x5b, 0x45, 0x33, 0xed, 0xe4, 0x26, 0xcc, 0x0a, 0x0d, 0x56, 0x2a, 0xba, 0x12, 0x8b, 0x31, 0x17,
+	0x8b, 0xb3, 0xd1, 0x40, 0xd7, 0xdd, 0x6c, 0xf1, 0xaf, 0x8e, 0x9c, 0x98, 0x13, 0x72, 0xf1, 0x3f,
+	0x9a, 0xf2, 0x5b, 0xb0, 0xa2, 0x62, 0x9e, 0xc4, 0xf9, 0x23, 0xa8, 0x29, 0x7a, 0x4c, 0xd6, 0x41,
+	0xdb, 0xb9, 0xd1, 0x9a, 0x17, 0x25, 0x13, 0xda, 0xaa, 0x43, 0x47, 0x50, 0x53, 0x7d, 0x7f, 0x5f,
+	0x80, 0xfb, 0xe6, 0x1d, 0x61, 0x57, 0xb6, 0x3c, 0xdf, 0x53, 0x31, 0x30, 0xd4, 0x14, 0xa3, 0xa6,
+	0x64, 0xfa, 0xa1, 0x79, 0x05, 0x4c, 0xf5, 0x83, 0xf7, 0x2d, 0xb5, 0x94, 0x35, 0xdb, 0x39, 0xea,
+	0x17, 0x9c, 0x1f, 0xcb, 0x91, 0x54, 0xa8, 0x25, 0xfd, 0x6a, 0x49, 0x7f, 0xc2, 0x60, 0xef, 0x19,
+	0x76, 0x5d, 0xcd, 0xe9, 0xbe, 0x79, 0x39, 0xff, 0x1b, 0x0b, 0xab, 0x51, 0x57, 0xb1, 0xd8, 0x35,
+	0xaf, 0x81, 0x5c, 0x6e, 0xe3, 0xc6, 0x74, 0xd7, 0xbc, 0x11, 0xdf, 0xa5, 0x79, 0xf0, 0x76, 0x05,
+	0x36, 0x4e, 0x49, 0x48, 0x9e, 0x98, 0xc3, 0xec, 0x13, 0x75, 0x96, 0x45, 0x2f, 0x65, 0xfe, 0xd6,
+	0xc8, 0xa2, 0x1b, 0x22, 0x9a, 0xb1, 0xd3, 0xef, 0x79, 0xe3, 0x1e, 0x29, 0xaf, 0x18, 0xff, 0xf8,
+	0xfb, 0x5f, 0x3f, 0x57, 0x76, 0xf0, 0x75, 0xff, 0xd5, 0x1d, 0xbf, 0x13, 0x06, 0x34, 0xe2, 0xbe,
+	0x9c, 0x6d, 0x3f, 0x92, 0xda, 0x87, 0x4e, 0x03, 0xb5, 0x60, 0x31, 0xad, 0x1e, 0xda, 0x10, 0x60,
+	0xc5, 0x21, 0xf0, 0x36, 0x0b, 0x52, 0x8d, 0xee, 0x4a, 0x74, 0x84, 0x57, 0x04, 0xfa, 0x39, 0xb9,
+	0x60, 0xfe, 0x9b, 0xa0, 0xfb, 0x83, 0xc0, 0x3c, 0x86, 0x79, 0x4d, 0x03, 0x84, 0x74, 0x78, 0x16,
+	0xd3, 0xbc, 0xf5, 0x9c, 0x4c, 0xa3, 0xd5, 0x24, 0x1a, 0xa0, 0x05, 0x83, 0x86, 0x4e, 0x60, 0x4e,
+	0x29, 0xa1, 0xb5, 0xcc, 0xc0, 0x60, 0x20, 0x5b, 0xa4, 0x21, 0x36, 0x25, 0xc4, 0x35, 0x94, 0x0f,
+	0x48, 0x64, 0x98, 0xf6, 0x4e, 0x65, 0x58, 0x9c, 0x52, 0x95, 0x61, 0x89, 0x12, 0x26, 0x43, 0xaf,
+	0x9c, 0xe1, 0x63, 0x80, 0x8c, 0x0f, 0x28, 0x6f, 0x9e, 0xe6, 0xb9, 0x55, 0x14, 0x6b, 0xd8, 0x75,
+	0x09, 0xbb, 0xe2, 0xa5, 0xa9, 0x0a, 0xc4, 0x47, 0xb0, 0x98, 0xf2, 0x46, 0x45, 0x59, 0x1c, 0x63,
+	0x15, 0x65, 0x69, 0x22, 0x4d, 0xda, 0x8d, 0x42, 0xda, 0xdf, 0x00, 0x64, 0x44, 0x44, 0x79, 0xdb,
+	0x7c, 0x88, 0x65, 0xbe, 0x9a, 0x6e, 0x34, 0xb2, 0x6e, 0x3c, 0x07, 0xc8, 0x3e, 0x9e, 0xc8, 0xa2,
+	0x84, 0x75, 0x8c, 0x50, 0x70, 0xe5, 0x6f, 0x2c, 0xbe, 0x21, 0xe1, 0xd6, 0xf1, 0xaa, 0x80, 0x53,
+	0x0c, 0x34, 0x95, 0xfc, 0x0a, 0x16, 0xcc, 0x69, 0x00, 0x19, 0x62, 0xe4, 0x08, 0xbe, 0x91, 0x17,
+	0x6a, 0xc4, 0x35, 0x89, 0xb8, 0x84, 0x16, 0x53, 0x44, 0xf4, 0xb5, 0x64, 0x9d, 0x0c, 0x0f, 0x59,
+	0x36, 0x45, 0xd6, 0xe5, 0x02, 0xdb, 0x92, 0x30, 0x35, 0x54, 0x08, 0x4c, 0x64, 0x9b, 0x7d, 0xc2,
+	0xed, 0xfe, 0x96, 0xb2, 0x2d, 0x9f, 0x0e, 0x4c, 0xb6, 0xde, 0x98, 0x6c, 0x9f, 0xc2, 0x92, 0x75,
+	0x34, 0x40, 0x05, 0x84, 0x34, 0xe7, 0xeb, 0x25, 0xb9, 0x86, 0xde, 0x90, 0xd0, 0xab, 0x5e, 0x96,
+	0xb6, 0x40, 0x7d, 0x62, 0x5a, 0x9d, 0x45, 0x5b, 0x3a, 0xe2, 0xd9, 0xad, 0x1e, 0x57, 0x82, 0x46,
+	0xb1, 0x04, 0xdf, 0xc2, 0x92, 0x75, 0x34, 0x41, 0x05, 0xf3, 0x7c, 0xa8, 0x63, 0xce, 0x30, 0xa6,
+	0x43, 0x0d, 0xab, 0x43, 0x4c, 0x9e, 0xfc, 0x72, 0x97, 0x0a, 0xb4, 0xad, 0xdb, 0x32, 0xee, 0xda,
+	0xe3, 0xed, 0x8c, 0x7f, 0xa8, 0x3d, 0xdc, 0x96, 0x1e, 0x6e, 0xa2, 0x9d, 0x7c, 0xe4, 0xbe, 0xb9,
+	0xc4, 0x24, 0xd2, 0x41, 0x0c, 0xab, 0xf9, 0x4b, 0x91, 0x7a, 0x9b, 0x8e, 0xbd, 0x28, 0x79, 0x5b,
+	0x4d, 0x75, 0xe3, 0x6f, 0x9a, 0x1b, 0x7f, 0xf3, 0x4b, 0x71, 0xe3, 0xc7, 0x0d, 0xe9, 0xea, 0xb6,
+	0x77, 0x2b, 0x73, 0x95, 0xf3, 0xe2, 0xbf, 0x91, 0x57, 0x2a, 0xd9, 0xe3, 0xfb, 0x30, 0x2b, 0x2f,
+	0xf5, 0xa8, 0x26, 0xfc, 0xd8, 0x7f, 0x11, 0x78, 0x6b, 0x96, 0x24, 0xdf, 0x51, 0x2c, 0xcb, 0x14,
+	0x8a, 0x47, 0x02, 0xe3, 0x21, 0xcc, 0x3d, 0x8c, 0x7b, 0xf1, 0x88, 0xa3, 0x09, 0x11, 0x4d, 0x8c,
+	0x14, 0x49, 0xbc, 0x65, 0x0c, 0x1a, 0x4f, 0x60, 0x9c, 0xc1, 0xbc, 0xbe, 0xc9, 0x4f, 0x84, 0x93,
+	0xd3, 0x51, 0xb8, 0xee, 0x1b, 0x6a, 0xe0, 0x25, 0x81, 0xa5, 0xaf, 0xf0, 0x87, 0x4e, 0xe3, 0xfe,
+	0xdf, 0xce, 0x4f, 0xf7, 0xfe, 0x74, 0xd0, 0x5b, 0x07, 0x36, 0x73, 0x1f, 0xb0, 0xba, 0xf9, 0x82,
+	0x9d, 0x8c, 0x15, 0xd7, 0xfb, 0x24, 0xea, 0x86, 0x94, 0xd5, 0x13, 0x55, 0x0e, 0x56, 0x17, 0x87,
+	0xbf, 0x7a, 0x5e, 0x97, 0x0c, 0x87, 0x61, 0xd0, 0x91, 0xff, 0xc2, 0x34, 0xf1, 0x23, 0x74, 0xd0,
+	0xe7, 0x7c, 0xc8, 0x0e, 0x7d, 0xbf, 0x17, 0xf0, 0xfe, 0xa8, 0xdd, 0xec, 0xc4, 0x03, 0xbf, 0x47,
+	0x42, 0xb2, 0x97, 0xfe, 0x05, 0xe4, 0xe7, 0xff, 0x10, 0x6a, 0x53, 0xef, 0x46, 0xa7, 0x1f, 0x44,
+	0xdf, 0x07, 0x71, 0xd4, 0x7b, 0x4d, 0x83, 0xbb, 0x97, 0xa4, 0x1f, 0xc7, 0xc2, 0xae, 0x39, 0xb8,
+	0x3c, 0x98, 0xbd, 0xd3, 0xdc, 0x6f, 0xee, 0x37, 0x9c, 0xca, 0x41, 0xcd, 0x72, 0xe4, 0xbf, 0x60,
+	0x71, 0x74, 0x58, 0x92, 0xb4, 0xe7, 0x64, 0x91, 0x3e, 0xfd, 0x27, 0x00, 0x00, 0xff, 0xff, 0xf4,
+	0xd2, 0x91, 0xd2, 0x74, 0x12, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -3341,34 +2074,8 @@ const _ = grpc.SupportPackageIsVersion6
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type GalaSejahteraServiceClient interface {
-	// Get Activities
-	GetActivities(ctx context.Context, in *GetActivitiesRequest, opts ...grpc.CallOption) (*GetActivitiesResponse, error)
-	// Client Get Nearby Users
-	ClientGetNearbyUsers(ctx context.Context, in *ClientGetNearbyUsersRequest, opts ...grpc.CallOption) (*ClientGetNearbyUsersResponse, error)
-	// Client Get Current Zones
-	ClientGetCurrentZones(ctx context.Context, in *ClientGetCurrentZonesRequest, opts ...grpc.CallOption) (*ClientGetCurrentZonesResponse, error)
-	// Client Get Recent Zones by User
-	ClientGetRecentZones(ctx context.Context, in *ClientGetRecentZonesRequest, opts ...grpc.CallOption) (*GetZonesResponse, error)
-	// Client Create User
-	ClientCreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error)
-	// Client Update User
-	ClientUpdateUser(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UpdateUserResponse, error)
-	// Client Get Zones
-	ClientGetZones(ctx context.Context, in *GetZonesRequest, opts ...grpc.CallOption) (*GetZonesResponse, error)
-	// Create Zone
-	CreateZone(ctx context.Context, in *CreateZoneRequest, opts ...grpc.CallOption) (*CreateZoneResponse, error)
-	// Get Zones
-	GetZones(ctx context.Context, in *GetZonesRequest, opts ...grpc.CallOption) (*GetZonesResponse, error)
-	// Get Zone
-	GetZone(ctx context.Context, in *GetZoneRequest, opts ...grpc.CallOption) (*GetZoneResponse, error)
-	// Update Zone
-	UpdateZone(ctx context.Context, in *UpdateZoneRequest, opts ...grpc.CallOption) (*UpdateZoneResponse, error)
-	// Update Zones
-	UpdateZones(ctx context.Context, in *UpdateZonesRequest, opts ...grpc.CallOption) (*UpdateZonesResponse, error)
-	// Delete Zone
-	DeleteZone(ctx context.Context, in *DeleteZoneRequest, opts ...grpc.CallOption) (*DeleteZoneResponse, error)
-	// Delete Zones
-	DeleteZones(ctx context.Context, in *DeleteZonesRequest, opts ...grpc.CallOption) (*DeleteZonesResponse, error)
+	// Get Nearby Users
+	GetNearbyUsers(ctx context.Context, in *GetNearbyUsersRequest, opts ...grpc.CallOption) (*GetNearbyUsersResponse, error)
 	// Create Faq
 	CreateFaq(ctx context.Context, in *CreateFaqRequest, opts ...grpc.CallOption) (*CreateFaqResponse, error)
 	// Get Faqs
@@ -3387,14 +2094,6 @@ type GalaSejahteraServiceClient interface {
 	CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error)
 	// Get Users
 	GetUsers(ctx context.Context, in *GetUsersRequest, opts ...grpc.CallOption) (*GetUsersResponse, error)
-	// Get Users By Zone
-	GetUsersByZone(ctx context.Context, in *GetUsersRequest, opts ...grpc.CallOption) (*GetUsersResponse, error)
-	// Get Recent Users By User
-	GetRecentUsersByUser(ctx context.Context, in *GetUsersRequest, opts ...grpc.CallOption) (*GetUsersResponse, error)
-	// Get Recent Users By Zone
-	GetRecentUsersByZone(ctx context.Context, in *GetUsersRequest, opts ...grpc.CallOption) (*GetUsersResponse, error)
-	// Get Recent Zones By User
-	GetRecentZonesByUser(ctx context.Context, in *GetZonesRequest, opts ...grpc.CallOption) (*GetZonesResponse, error)
 	// Get User
 	GetUser(ctx context.Context, in *GetUserRequest, opts ...grpc.CallOption) (*GetUserResponse, error)
 	// Update User
@@ -3425,126 +2124,9 @@ func NewGalaSejahteraServiceClient(cc grpc.ClientConnInterface) GalaSejahteraSer
 	return &galaSejahteraServiceClient{cc}
 }
 
-func (c *galaSejahteraServiceClient) GetActivities(ctx context.Context, in *GetActivitiesRequest, opts ...grpc.CallOption) (*GetActivitiesResponse, error) {
-	out := new(GetActivitiesResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/GetActivities", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *galaSejahteraServiceClient) ClientGetNearbyUsers(ctx context.Context, in *ClientGetNearbyUsersRequest, opts ...grpc.CallOption) (*ClientGetNearbyUsersResponse, error) {
-	out := new(ClientGetNearbyUsersResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/ClientGetNearbyUsers", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *galaSejahteraServiceClient) ClientGetCurrentZones(ctx context.Context, in *ClientGetCurrentZonesRequest, opts ...grpc.CallOption) (*ClientGetCurrentZonesResponse, error) {
-	out := new(ClientGetCurrentZonesResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/ClientGetCurrentZones", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *galaSejahteraServiceClient) ClientGetRecentZones(ctx context.Context, in *ClientGetRecentZonesRequest, opts ...grpc.CallOption) (*GetZonesResponse, error) {
-	out := new(GetZonesResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/ClientGetRecentZones", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *galaSejahteraServiceClient) ClientCreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error) {
-	out := new(CreateUserResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/ClientCreateUser", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *galaSejahteraServiceClient) ClientUpdateUser(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UpdateUserResponse, error) {
-	out := new(UpdateUserResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/ClientUpdateUser", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *galaSejahteraServiceClient) ClientGetZones(ctx context.Context, in *GetZonesRequest, opts ...grpc.CallOption) (*GetZonesResponse, error) {
-	out := new(GetZonesResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/ClientGetZones", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *galaSejahteraServiceClient) CreateZone(ctx context.Context, in *CreateZoneRequest, opts ...grpc.CallOption) (*CreateZoneResponse, error) {
-	out := new(CreateZoneResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/CreateZone", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *galaSejahteraServiceClient) GetZones(ctx context.Context, in *GetZonesRequest, opts ...grpc.CallOption) (*GetZonesResponse, error) {
-	out := new(GetZonesResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/GetZones", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *galaSejahteraServiceClient) GetZone(ctx context.Context, in *GetZoneRequest, opts ...grpc.CallOption) (*GetZoneResponse, error) {
-	out := new(GetZoneResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/GetZone", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *galaSejahteraServiceClient) UpdateZone(ctx context.Context, in *UpdateZoneRequest, opts ...grpc.CallOption) (*UpdateZoneResponse, error) {
-	out := new(UpdateZoneResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/UpdateZone", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *galaSejahteraServiceClient) UpdateZones(ctx context.Context, in *UpdateZonesRequest, opts ...grpc.CallOption) (*UpdateZonesResponse, error) {
-	out := new(UpdateZonesResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/UpdateZones", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *galaSejahteraServiceClient) DeleteZone(ctx context.Context, in *DeleteZoneRequest, opts ...grpc.CallOption) (*DeleteZoneResponse, error) {
-	out := new(DeleteZoneResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/DeleteZone", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *galaSejahteraServiceClient) DeleteZones(ctx context.Context, in *DeleteZonesRequest, opts ...grpc.CallOption) (*DeleteZonesResponse, error) {
-	out := new(DeleteZonesResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/DeleteZones", in, out, opts...)
+func (c *galaSejahteraServiceClient) GetNearbyUsers(ctx context.Context, in *GetNearbyUsersRequest, opts ...grpc.CallOption) (*GetNearbyUsersResponse, error) {
+	out := new(GetNearbyUsersResponse)
+	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/GetNearbyUsers", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3626,42 +2208,6 @@ func (c *galaSejahteraServiceClient) CreateUser(ctx context.Context, in *CreateU
 func (c *galaSejahteraServiceClient) GetUsers(ctx context.Context, in *GetUsersRequest, opts ...grpc.CallOption) (*GetUsersResponse, error) {
 	out := new(GetUsersResponse)
 	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/GetUsers", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *galaSejahteraServiceClient) GetUsersByZone(ctx context.Context, in *GetUsersRequest, opts ...grpc.CallOption) (*GetUsersResponse, error) {
-	out := new(GetUsersResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/GetUsersByZone", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *galaSejahteraServiceClient) GetRecentUsersByUser(ctx context.Context, in *GetUsersRequest, opts ...grpc.CallOption) (*GetUsersResponse, error) {
-	out := new(GetUsersResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/GetRecentUsersByUser", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *galaSejahteraServiceClient) GetRecentUsersByZone(ctx context.Context, in *GetUsersRequest, opts ...grpc.CallOption) (*GetUsersResponse, error) {
-	out := new(GetUsersResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/GetRecentUsersByZone", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *galaSejahteraServiceClient) GetRecentZonesByUser(ctx context.Context, in *GetZonesRequest, opts ...grpc.CallOption) (*GetZonesResponse, error) {
-	out := new(GetZonesResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/GetRecentZonesByUser", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -3760,34 +2306,8 @@ func (c *galaSejahteraServiceClient) Refresh(ctx context.Context, in *empty.Empt
 
 // GalaSejahteraServiceServer is the server API for GalaSejahteraService service.
 type GalaSejahteraServiceServer interface {
-	// Get Activities
-	GetActivities(context.Context, *GetActivitiesRequest) (*GetActivitiesResponse, error)
-	// Client Get Nearby Users
-	ClientGetNearbyUsers(context.Context, *ClientGetNearbyUsersRequest) (*ClientGetNearbyUsersResponse, error)
-	// Client Get Current Zones
-	ClientGetCurrentZones(context.Context, *ClientGetCurrentZonesRequest) (*ClientGetCurrentZonesResponse, error)
-	// Client Get Recent Zones by User
-	ClientGetRecentZones(context.Context, *ClientGetRecentZonesRequest) (*GetZonesResponse, error)
-	// Client Create User
-	ClientCreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error)
-	// Client Update User
-	ClientUpdateUser(context.Context, *UpdateUserRequest) (*UpdateUserResponse, error)
-	// Client Get Zones
-	ClientGetZones(context.Context, *GetZonesRequest) (*GetZonesResponse, error)
-	// Create Zone
-	CreateZone(context.Context, *CreateZoneRequest) (*CreateZoneResponse, error)
-	// Get Zones
-	GetZones(context.Context, *GetZonesRequest) (*GetZonesResponse, error)
-	// Get Zone
-	GetZone(context.Context, *GetZoneRequest) (*GetZoneResponse, error)
-	// Update Zone
-	UpdateZone(context.Context, *UpdateZoneRequest) (*UpdateZoneResponse, error)
-	// Update Zones
-	UpdateZones(context.Context, *UpdateZonesRequest) (*UpdateZonesResponse, error)
-	// Delete Zone
-	DeleteZone(context.Context, *DeleteZoneRequest) (*DeleteZoneResponse, error)
-	// Delete Zones
-	DeleteZones(context.Context, *DeleteZonesRequest) (*DeleteZonesResponse, error)
+	// Get Nearby Users
+	GetNearbyUsers(context.Context, *GetNearbyUsersRequest) (*GetNearbyUsersResponse, error)
 	// Create Faq
 	CreateFaq(context.Context, *CreateFaqRequest) (*CreateFaqResponse, error)
 	// Get Faqs
@@ -3806,14 +2326,6 @@ type GalaSejahteraServiceServer interface {
 	CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error)
 	// Get Users
 	GetUsers(context.Context, *GetUsersRequest) (*GetUsersResponse, error)
-	// Get Users By Zone
-	GetUsersByZone(context.Context, *GetUsersRequest) (*GetUsersResponse, error)
-	// Get Recent Users By User
-	GetRecentUsersByUser(context.Context, *GetUsersRequest) (*GetUsersResponse, error)
-	// Get Recent Users By Zone
-	GetRecentUsersByZone(context.Context, *GetUsersRequest) (*GetUsersResponse, error)
-	// Get Recent Zones By User
-	GetRecentZonesByUser(context.Context, *GetZonesRequest) (*GetZonesResponse, error)
 	// Get User
 	GetUser(context.Context, *GetUserRequest) (*GetUserResponse, error)
 	// Update User
@@ -3840,47 +2352,8 @@ type GalaSejahteraServiceServer interface {
 type UnimplementedGalaSejahteraServiceServer struct {
 }
 
-func (*UnimplementedGalaSejahteraServiceServer) GetActivities(ctx context.Context, req *GetActivitiesRequest) (*GetActivitiesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetActivities not implemented")
-}
-func (*UnimplementedGalaSejahteraServiceServer) ClientGetNearbyUsers(ctx context.Context, req *ClientGetNearbyUsersRequest) (*ClientGetNearbyUsersResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ClientGetNearbyUsers not implemented")
-}
-func (*UnimplementedGalaSejahteraServiceServer) ClientGetCurrentZones(ctx context.Context, req *ClientGetCurrentZonesRequest) (*ClientGetCurrentZonesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ClientGetCurrentZones not implemented")
-}
-func (*UnimplementedGalaSejahteraServiceServer) ClientGetRecentZones(ctx context.Context, req *ClientGetRecentZonesRequest) (*GetZonesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ClientGetRecentZones not implemented")
-}
-func (*UnimplementedGalaSejahteraServiceServer) ClientCreateUser(ctx context.Context, req *CreateUserRequest) (*CreateUserResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ClientCreateUser not implemented")
-}
-func (*UnimplementedGalaSejahteraServiceServer) ClientUpdateUser(ctx context.Context, req *UpdateUserRequest) (*UpdateUserResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ClientUpdateUser not implemented")
-}
-func (*UnimplementedGalaSejahteraServiceServer) ClientGetZones(ctx context.Context, req *GetZonesRequest) (*GetZonesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ClientGetZones not implemented")
-}
-func (*UnimplementedGalaSejahteraServiceServer) CreateZone(ctx context.Context, req *CreateZoneRequest) (*CreateZoneResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateZone not implemented")
-}
-func (*UnimplementedGalaSejahteraServiceServer) GetZones(ctx context.Context, req *GetZonesRequest) (*GetZonesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetZones not implemented")
-}
-func (*UnimplementedGalaSejahteraServiceServer) GetZone(ctx context.Context, req *GetZoneRequest) (*GetZoneResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetZone not implemented")
-}
-func (*UnimplementedGalaSejahteraServiceServer) UpdateZone(ctx context.Context, req *UpdateZoneRequest) (*UpdateZoneResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateZone not implemented")
-}
-func (*UnimplementedGalaSejahteraServiceServer) UpdateZones(ctx context.Context, req *UpdateZonesRequest) (*UpdateZonesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateZones not implemented")
-}
-func (*UnimplementedGalaSejahteraServiceServer) DeleteZone(ctx context.Context, req *DeleteZoneRequest) (*DeleteZoneResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteZone not implemented")
-}
-func (*UnimplementedGalaSejahteraServiceServer) DeleteZones(ctx context.Context, req *DeleteZonesRequest) (*DeleteZonesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteZones not implemented")
+func (*UnimplementedGalaSejahteraServiceServer) GetNearbyUsers(ctx context.Context, req *GetNearbyUsersRequest) (*GetNearbyUsersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetNearbyUsers not implemented")
 }
 func (*UnimplementedGalaSejahteraServiceServer) CreateFaq(ctx context.Context, req *CreateFaqRequest) (*CreateFaqResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateFaq not implemented")
@@ -3908,18 +2381,6 @@ func (*UnimplementedGalaSejahteraServiceServer) CreateUser(ctx context.Context, 
 }
 func (*UnimplementedGalaSejahteraServiceServer) GetUsers(ctx context.Context, req *GetUsersRequest) (*GetUsersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUsers not implemented")
-}
-func (*UnimplementedGalaSejahteraServiceServer) GetUsersByZone(ctx context.Context, req *GetUsersRequest) (*GetUsersResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetUsersByZone not implemented")
-}
-func (*UnimplementedGalaSejahteraServiceServer) GetRecentUsersByUser(ctx context.Context, req *GetUsersRequest) (*GetUsersResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRecentUsersByUser not implemented")
-}
-func (*UnimplementedGalaSejahteraServiceServer) GetRecentUsersByZone(ctx context.Context, req *GetUsersRequest) (*GetUsersResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRecentUsersByZone not implemented")
-}
-func (*UnimplementedGalaSejahteraServiceServer) GetRecentZonesByUser(ctx context.Context, req *GetZonesRequest) (*GetZonesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRecentZonesByUser not implemented")
 }
 func (*UnimplementedGalaSejahteraServiceServer) GetUser(ctx context.Context, req *GetUserRequest) (*GetUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetUser not implemented")
@@ -3956,254 +2417,20 @@ func RegisterGalaSejahteraServiceServer(s *grpc.Server, srv GalaSejahteraService
 	s.RegisterService(&_GalaSejahteraService_serviceDesc, srv)
 }
 
-func _GalaSejahteraService_GetActivities_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetActivitiesRequest)
+func _GalaSejahteraService_GetNearbyUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetNearbyUsersRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).GetActivities(ctx, in)
+		return srv.(GalaSejahteraServiceServer).GetNearbyUsers(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/GetActivities",
+		FullMethod: "/pb.GalaSejahteraService/GetNearbyUsers",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).GetActivities(ctx, req.(*GetActivitiesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GalaSejahteraService_ClientGetNearbyUsers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ClientGetNearbyUsersRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).ClientGetNearbyUsers(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/ClientGetNearbyUsers",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).ClientGetNearbyUsers(ctx, req.(*ClientGetNearbyUsersRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GalaSejahteraService_ClientGetCurrentZones_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ClientGetCurrentZonesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).ClientGetCurrentZones(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/ClientGetCurrentZones",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).ClientGetCurrentZones(ctx, req.(*ClientGetCurrentZonesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GalaSejahteraService_ClientGetRecentZones_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ClientGetRecentZonesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).ClientGetRecentZones(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/ClientGetRecentZones",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).ClientGetRecentZones(ctx, req.(*ClientGetRecentZonesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GalaSejahteraService_ClientCreateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateUserRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).ClientCreateUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/ClientCreateUser",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).ClientCreateUser(ctx, req.(*CreateUserRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GalaSejahteraService_ClientUpdateUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateUserRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).ClientUpdateUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/ClientUpdateUser",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).ClientUpdateUser(ctx, req.(*UpdateUserRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GalaSejahteraService_ClientGetZones_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetZonesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).ClientGetZones(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/ClientGetZones",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).ClientGetZones(ctx, req.(*GetZonesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GalaSejahteraService_CreateZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateZoneRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).CreateZone(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/CreateZone",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).CreateZone(ctx, req.(*CreateZoneRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GalaSejahteraService_GetZones_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetZonesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).GetZones(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/GetZones",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).GetZones(ctx, req.(*GetZonesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GalaSejahteraService_GetZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetZoneRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).GetZone(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/GetZone",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).GetZone(ctx, req.(*GetZoneRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GalaSejahteraService_UpdateZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateZoneRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).UpdateZone(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/UpdateZone",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).UpdateZone(ctx, req.(*UpdateZoneRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GalaSejahteraService_UpdateZones_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateZonesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).UpdateZones(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/UpdateZones",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).UpdateZones(ctx, req.(*UpdateZonesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GalaSejahteraService_DeleteZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteZoneRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).DeleteZone(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/DeleteZone",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).DeleteZone(ctx, req.(*DeleteZoneRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GalaSejahteraService_DeleteZones_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteZonesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).DeleteZones(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/DeleteZones",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).DeleteZones(ctx, req.(*DeleteZonesRequest))
+		return srv.(GalaSejahteraServiceServer).GetNearbyUsers(ctx, req.(*GetNearbyUsersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -4366,78 +2593,6 @@ func _GalaSejahteraService_GetUsers_Handler(srv interface{}, ctx context.Context
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(GalaSejahteraServiceServer).GetUsers(ctx, req.(*GetUsersRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GalaSejahteraService_GetUsersByZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUsersRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).GetUsersByZone(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/GetUsersByZone",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).GetUsersByZone(ctx, req.(*GetUsersRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GalaSejahteraService_GetRecentUsersByUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUsersRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).GetRecentUsersByUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/GetRecentUsersByUser",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).GetRecentUsersByUser(ctx, req.(*GetUsersRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GalaSejahteraService_GetRecentUsersByZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetUsersRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).GetRecentUsersByZone(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/GetRecentUsersByZone",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).GetRecentUsersByZone(ctx, req.(*GetUsersRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _GalaSejahteraService_GetRecentZonesByUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetZonesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).GetRecentZonesByUser(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/GetRecentZonesByUser",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).GetRecentZonesByUser(ctx, req.(*GetZonesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -4627,60 +2782,8 @@ var _GalaSejahteraService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*GalaSejahteraServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "GetActivities",
-			Handler:    _GalaSejahteraService_GetActivities_Handler,
-		},
-		{
-			MethodName: "ClientGetNearbyUsers",
-			Handler:    _GalaSejahteraService_ClientGetNearbyUsers_Handler,
-		},
-		{
-			MethodName: "ClientGetCurrentZones",
-			Handler:    _GalaSejahteraService_ClientGetCurrentZones_Handler,
-		},
-		{
-			MethodName: "ClientGetRecentZones",
-			Handler:    _GalaSejahteraService_ClientGetRecentZones_Handler,
-		},
-		{
-			MethodName: "ClientCreateUser",
-			Handler:    _GalaSejahteraService_ClientCreateUser_Handler,
-		},
-		{
-			MethodName: "ClientUpdateUser",
-			Handler:    _GalaSejahteraService_ClientUpdateUser_Handler,
-		},
-		{
-			MethodName: "ClientGetZones",
-			Handler:    _GalaSejahteraService_ClientGetZones_Handler,
-		},
-		{
-			MethodName: "CreateZone",
-			Handler:    _GalaSejahteraService_CreateZone_Handler,
-		},
-		{
-			MethodName: "GetZones",
-			Handler:    _GalaSejahteraService_GetZones_Handler,
-		},
-		{
-			MethodName: "GetZone",
-			Handler:    _GalaSejahteraService_GetZone_Handler,
-		},
-		{
-			MethodName: "UpdateZone",
-			Handler:    _GalaSejahteraService_UpdateZone_Handler,
-		},
-		{
-			MethodName: "UpdateZones",
-			Handler:    _GalaSejahteraService_UpdateZones_Handler,
-		},
-		{
-			MethodName: "DeleteZone",
-			Handler:    _GalaSejahteraService_DeleteZone_Handler,
-		},
-		{
-			MethodName: "DeleteZones",
-			Handler:    _GalaSejahteraService_DeleteZones_Handler,
+			MethodName: "GetNearbyUsers",
+			Handler:    _GalaSejahteraService_GetNearbyUsers_Handler,
 		},
 		{
 			MethodName: "CreateFaq",
@@ -4717,22 +2820,6 @@ var _GalaSejahteraService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetUsers",
 			Handler:    _GalaSejahteraService_GetUsers_Handler,
-		},
-		{
-			MethodName: "GetUsersByZone",
-			Handler:    _GalaSejahteraService_GetUsersByZone_Handler,
-		},
-		{
-			MethodName: "GetRecentUsersByUser",
-			Handler:    _GalaSejahteraService_GetRecentUsersByUser_Handler,
-		},
-		{
-			MethodName: "GetRecentUsersByZone",
-			Handler:    _GalaSejahteraService_GetRecentUsersByZone_Handler,
-		},
-		{
-			MethodName: "GetRecentZonesByUser",
-			Handler:    _GalaSejahteraService_GetRecentZonesByUser_Handler,
 		},
 		{
 			MethodName: "GetUser",

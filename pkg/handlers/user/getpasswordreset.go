@@ -3,13 +3,13 @@ package user
 import (
 	"context"
 	"fmt"
-	"os"
 	pb "galasejahtera/pkg/api"
 	"galasejahtera/pkg/constants"
 	"galasejahtera/pkg/dto"
 	"galasejahtera/pkg/logger"
 	"galasejahtera/pkg/model"
 	"galasejahtera/pkg/utility"
+	"os"
 	"time"
 
 	"google.golang.org/grpc/codes"
@@ -50,10 +50,9 @@ func (s *GetPasswordResetHandler) GetPasswordReset(ctx context.Context, req *pb.
 	}
 
 	auth, err := s.Model.CreateToken(ctx, &dto.AuthObject{
-		UserId:      req.Id,
-		TTL:         utility.MilliToTime(time.Now().Add(time.Hour*24*constants.PasswordResetTokenTTLDays).Unix()*1000 - 1000),
-		DisplayName: user.Name,
-		Type:        constants.Refresh,
+		UserId: req.Id,
+		TTL:    utility.MilliToTime(time.Now().Add(time.Hour*24*constants.PasswordResetTokenTTLDays).Unix()*1000 - 1000),
+		Type:   constants.Refresh,
 	})
 	if err != nil {
 		logger.Log.Error("GetPasswordReset: " + err.Error())
@@ -63,7 +62,7 @@ func (s *GetPasswordResetHandler) GetPasswordReset(ctx context.Context, req *pb.
 	passwordReset := os.Getenv("ADMIN_URL") + "/#/resetpassword?token=" + auth.Token
 
 	// send password reset email
-	err = utility.SendPasswordResetEmail(user.Email, user.Name, passwordReset)
+	err = utility.SendPasswordResetEmail(user.Email, user.Email, passwordReset)
 	if err != nil {
 		logger.Log.Warn("GetPasswordReset: " + err.Error())
 		return nil, err

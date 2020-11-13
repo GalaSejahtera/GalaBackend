@@ -2,10 +2,10 @@ package utility
 
 import (
 	"bytes"
-	"html/template"
-	"regexp"
 	"galasejahtera/pkg/constants"
 	"galasejahtera/pkg/dto"
+	"html/template"
+	"regexp"
 	"strings"
 	"time"
 	"unicode"
@@ -157,15 +157,6 @@ func RemoveZeroWidth(t string) string {
 func UserInUsers(users []*dto.User, user *dto.User) bool {
 	for _, u := range users {
 		if u.ID == user.ID {
-			return true
-		}
-	}
-	return false
-}
-
-func ZoneInZones(zones []*dto.Zone, zone *dto.Zone) bool {
-	for _, z := range zones {
-		if z.ID == zone.ID {
 			return true
 		}
 	}

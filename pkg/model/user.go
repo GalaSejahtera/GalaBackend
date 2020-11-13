@@ -2,11 +2,11 @@ package model
 
 import (
 	"context"
-	"os"
 	"galasejahtera/pkg/constants"
 	"galasejahtera/pkg/dto"
 	"galasejahtera/pkg/logger"
 	"galasejahtera/pkg/utility"
+	"os"
 	"strings"
 	"time"
 
@@ -40,15 +40,6 @@ func (m *Model) DisableInactiveUsers(ctx context.Context) error {
 		}
 	}
 	return nil
-}
-
-// QueryUsersByZone queries users by  zone
-func (m *Model) QueryUsersByZone(ctx context.Context, zone *dto.Zone) ([]*dto.User, error) {
-	users, err := m.zoneDAO.GetUsersByZone(ctx, zone)
-	if err != nil {
-		return nil, err
-	}
-	return users, nil
 }
 
 // CreateUser creates new user
@@ -92,30 +83,6 @@ func (m *Model) ClientUpdateUser(ctx context.Context, user *dto.User) (*dto.User
 	return u, nil
 }
 
-// ClientUpdateAppUser updates app user
-func (m *Model) ClientUpdateAppUser(ctx context.Context, user *dto.User) (*dto.User, error) {
-
-	// check if user exists
-	u, err := m.userDAO.Get(ctx, user.ID)
-	if err != nil {
-		return nil, err
-	}
-
-	// patch user
-	u.Name = user.Name
-	u.PhoneNumber = user.PhoneNumber
-	u.Alert = user.Alert
-	u.IC = user.IC
-	u.Infected = user.Infected
-
-	_, err = m.userDAO.Update(ctx, u)
-	if err != nil {
-		return nil, err
-	}
-
-	return u, nil
-}
-
 // UpdateUser updates user
 func (m *Model) UpdateUser(ctx context.Context, user *dto.User) (*dto.User, error) {
 
@@ -128,14 +95,10 @@ func (m *Model) UpdateUser(ctx context.Context, user *dto.User) (*dto.User, erro
 	// patch user
 	oldEmail := u.Email
 	u.Role = user.Role
-	u.Name = user.Name
 	u.Email = user.Email
 	u.IsActive = user.IsActive
 	u.Lat = user.Lat
 	u.Long = user.Long
-	u.PhoneNumber = user.PhoneNumber
-	u.IC = user.IC
-	u.Infected = user.Infected
 
 	_, err = m.userDAO.Update(ctx, u)
 	if err != nil {
@@ -453,11 +416,6 @@ func (m *Model) createToken(user *dto.User) (*dto.User, error) {
 	atClaims[constants.AccessUuid] = td.AccessUuid
 	atClaims[constants.UserId] = user.ID
 	atClaims[constants.Email] = user.Email
-	atClaims[constants.Name] = user.Name
-	atClaims[constants.IC] = user.IC
-	atClaims[constants.PhoneNumber] = user.PhoneNumber
-	atClaims[constants.Infected] = user.Infected
-	atClaims[constants.Alert] = user.Alert
 	atClaims[constants.Exp] = td.AtExpires
 	at := jwt.NewWithClaims(jwt.SigningMethodHS256, atClaims)
 	td.AccessToken, err = at.SignedString([]byte(os.Getenv("ACCESS_SECRET")))
@@ -470,11 +428,6 @@ func (m *Model) createToken(user *dto.User) (*dto.User, error) {
 	rtClaims[constants.RefreshUuid] = td.RefreshUuid
 	rtClaims[constants.UserId] = user.ID
 	rtClaims[constants.Email] = user.Email
-	rtClaims[constants.Name] = user.Name
-	rtClaims[constants.IC] = user.IC
-	rtClaims[constants.PhoneNumber] = user.PhoneNumber
-	rtClaims[constants.Infected] = user.Infected
-	rtClaims[constants.Alert] = user.Alert
 	rtClaims[constants.Exp] = td.RtExpires
 	rt := jwt.NewWithClaims(jwt.SigningMethodHS256, rtClaims)
 	td.RefreshToken, err = rt.SignedString([]byte(os.Getenv("REFRESH_SECRET")))
@@ -576,16 +529,6 @@ func (m *Model) deleteAuth(givenUuid string) error {
 		logger.Log.Warn("DeleteAuth", zap.String("error", err.Error()), zap.String("token", givenUuid))
 	}
 	return nil
-}
-
-// GetRecentUsersByZone gets recent users given zoneID
-func (m *Model) GetRecentUsersByZone(ctx context.Context, zoneID string) ([]*dto.User, error) {
-	return m.zoneDAO.QueryRecentUsersByZoneID(ctx, zoneID)
-}
-
-// GetRecentUsersByUser gets recent users given userID
-func (m *Model) GetRecentUsersByUser(ctx context.Context, userID string) ([]*dto.User, error) {
-	return m.userDAO.QueryRecentUsersByUserID(ctx, userID)
 }
 
 // GetNearbyUsers get nearby users count given user

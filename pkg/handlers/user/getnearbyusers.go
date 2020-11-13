@@ -1,4 +1,4 @@
-package client
+package user
 
 import (
 	"context"
@@ -15,7 +15,7 @@ type GetNearbyUsersHandler struct {
 	Model model.IModel
 }
 
-func (s *GetNearbyUsersHandler) GetNearbyUsers(ctx context.Context, req *pb.ClientGetNearbyUsersRequest) (*pb.ClientGetNearbyUsersResponse, error) {
+func (s *GetNearbyUsersHandler) GetNearbyUsers(ctx context.Context, req *pb.GetNearbyUsersRequest) (*pb.GetNearbyUsersResponse, error) {
 	if req.User == nil {
 		return nil, constants.InvalidArgumentError
 	}
@@ -49,7 +49,7 @@ func (s *GetNearbyUsersHandler) GetNearbyUsers(ctx context.Context, req *pb.Clie
 	return resp, nil
 }
 
-func (s *GetNearbyUsersHandler) usersToResponses(users []*dto.User) (*pb.ClientGetNearbyUsersResponse, error) {
+func (s *GetNearbyUsersHandler) usersToResponses(users []*dto.User) (*pb.GetNearbyUsersResponse, error) {
 	var resps []*pb.User
 	for _, user := range users {
 		resp := &pb.User{
@@ -59,7 +59,7 @@ func (s *GetNearbyUsersHandler) usersToResponses(users []*dto.User) (*pb.ClientG
 
 		resps = append(resps, resp)
 	}
-	rslt := &pb.ClientGetNearbyUsersResponse{
+	rslt := &pb.GetNearbyUsersResponse{
 		Users: resps,
 	}
 

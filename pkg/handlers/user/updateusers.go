@@ -57,23 +57,17 @@ func (s *UpdateUsersHandler) UpdateUsers(ctx context.Context, req *pb.UpdateUser
 
 func (s *UpdateUsersHandler) reqToUser(req *pb.UpdateUsersRequest) *dto.User {
 	user := &dto.User{
-		Role:        utility.RemoveZeroWidth(req.Data.Role),
-		Name:        utility.RemoveZeroWidth(req.Data.Name),
-		IC:          utility.RemoveZeroWidth(req.Data.Ic),
-		PhoneNumber: utility.RemoveZeroWidth(req.Data.PhoneNumber),
-		Email:       utility.RemoveZeroWidth(req.Data.Email),
-		Password:    utility.RemoveZeroWidth(req.Data.Password),
-		IsActive:    req.Data.IsActive,
-		Lat:         req.Data.Lat,
-		Long:        req.Data.Long,
+		Role:     utility.RemoveZeroWidth(req.Data.Role),
+		Email:    utility.RemoveZeroWidth(req.Data.Email),
+		Password: utility.RemoveZeroWidth(req.Data.Password),
+		IsActive: req.Data.IsActive,
+		Lat:      req.Data.Lat,
+		Long:     req.Data.Long,
 	}
 	return user
 }
 
 func (s *UpdateUsersHandler) validateAndProcessReq(user *dto.User) error {
-	user.Name = utility.NormalizeName(user.Name)
-	user.PhoneNumber = utility.NormalizePhoneNumber(user.PhoneNumber, "")
-	user.IC = utility.NormalizeID(user.IC)
 	valid := utility.ValidateEmail(user.Email)
 	if !valid {
 		return constants.InvalidEmailError

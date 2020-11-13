@@ -22,95 +22,11 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 
 // GalaSejahtera Backend Service
 service GalaSejahteraService {
-    // Get Activities
-    rpc GetActivities(GetActivitiesRequest) returns (GetActivitiesResponse){
-        option (google.api.http) = {
-            get: "/v1/activities"
-        };
-    }
-    // Client Get Nearby Users
-    rpc ClientGetNearbyUsers(ClientGetNearbyUsersRequest) returns (ClientGetNearbyUsersResponse){
+    // Get Nearby Users
+    rpc GetNearbyUsers(GetNearbyUsersRequest) returns (GetNearbyUsersResponse){
         option (google.api.http) = {
             post: "/v1/client/users/nearby"
             body: "*"
-        };
-    }
-    // Client Get Current Zones
-    rpc ClientGetCurrentZones(ClientGetCurrentZonesRequest) returns (ClientGetCurrentZonesResponse){
-        option (google.api.http) = {
-            post: "/v1/client/currentzones"
-            body: "*"
-        };
-    }
-    // Client Get Recent Zones by User
-    rpc ClientGetRecentZones(ClientGetRecentZonesRequest) returns (GetZonesResponse){
-        option (google.api.http) = {
-            get: "/v1/client/recentzones/{id}"
-        };
-    }
-    // Client Create User
-    rpc ClientCreateUser(CreateUserRequest) returns (CreateUserResponse) {
-        option (google.api.http) = {
-            post: "/v1/client/users/{id}"
-            body: "*"
-        };
-    }
-    // Client Update User
-    rpc ClientUpdateUser(UpdateUserRequest) returns (UpdateUserResponse){
-        option (google.api.http) = {
-            put: "/v1/client/users/{id}"
-            body: "*"
-        };
-    }
-    // Client Get Zones
-    rpc ClientGetZones(GetZonesRequest) returns (GetZonesResponse){
-        option (google.api.http) = {
-            get: "/v1/client/zones"
-        };
-    }
-    // Create Zone
-    rpc CreateZone(CreateZoneRequest) returns (CreateZoneResponse){
-        option (google.api.http) = {
-            post: "/v1/zones/{id}"
-            body: "*"
-        };
-    }
-    // Get Zones
-    rpc GetZones(GetZonesRequest) returns (GetZonesResponse){
-        option (google.api.http) = {
-            get: "/v1/zones"
-        };
-    }
-    // Get Zone
-    rpc GetZone(GetZoneRequest) returns (GetZoneResponse){
-        option (google.api.http) = {
-            get: "/v1/zones/{id}"
-        };
-    }
-    // Update Zone
-    rpc UpdateZone(UpdateZoneRequest) returns (UpdateZoneResponse){
-        option (google.api.http) = {
-            put: "/v1/zones/{id}"
-            body: "*"
-        };
-    }
-    // Update Zones
-    rpc UpdateZones(UpdateZonesRequest) returns (UpdateZonesResponse){
-        option (google.api.http) = {
-            put: "/v1/zones"
-            body: "*"
-        };
-    }
-    // Delete Zone
-    rpc DeleteZone(DeleteZoneRequest) returns (DeleteZoneResponse){
-        option (google.api.http) = {
-            delete: "/v1/zones/{id}"
-        };
-    }
-    // Delete Zones
-    rpc DeleteZones(DeleteZonesRequest) returns (DeleteZonesResponse){
-        option (google.api.http) = {
-            delete: "/v1/zones"
         };
     }
     // Create Faq
@@ -169,30 +85,6 @@ service GalaSejahteraService {
     rpc GetUsers(GetUsersRequest) returns (GetUsersResponse){
         option (google.api.http) = {
             get: "/v1/users"
-        };
-    }
-    // Get Users By Zone
-    rpc GetUsersByZone(GetUsersRequest) returns (GetUsersResponse){
-        option (google.api.http) = {
-            get: "/v1/zoneusers"
-        };
-    }
-    // Get Recent Users By User
-    rpc GetRecentUsersByUser(GetUsersRequest) returns (GetUsersResponse){
-        option (google.api.http) = {
-            get: "/v1/userrecentusers"
-        };
-    }
-    // Get Recent Users By Zone
-    rpc GetRecentUsersByZone(GetUsersRequest) returns (GetUsersResponse){
-        option (google.api.http) = {
-            get: "/v1/zonerecentusers"
-        };
-    }
-    // Get Recent Zones By User
-    rpc GetRecentZonesByUser(GetZonesRequest) returns (GetZonesResponse){
-        option (google.api.http) = {
-            get: "/v1/userrecentzones"
         };
     }
     // Get User
@@ -262,10 +154,6 @@ service GalaSejahteraService {
     }
 }
 
-message ClientGetRecentZonesRequest {
-    string id = 1;
-}
-
 message LoginRequest {
     string email = 1;
     string password = 2;
@@ -284,20 +172,6 @@ message RefreshResponse {
     string refreshToken = 2;
 }
 
-// activity payload
-message Activity {
-    // activity id
-    string id = 1;
-    // zone id
-    string zoneId = 2;
-    // user id
-    string userId = 3;
-    // time
-    int64 time = 4;
-    // ttl
-    int64 ttl = 5;
-}
-
 // faq payload
 message Faq {
     // faq id
@@ -312,14 +186,10 @@ message Faq {
 message User {
     // user id
     string id = 1;
-    // user role: superuser, user
+    // user role: user
     string role = 2;
-    // user name
-    string name = 3;
     // user email
     string email = 5;
-    // user account status (true - active, false - inactive)
-    bool isActive = 6;
     // user hashed password
     string password = 7;
     // lastUpdated time
@@ -328,44 +198,9 @@ message User {
     double lat = 9;
     // longitude
     double long = 10;
-    // consent time
-    int64 consent = 11;
     // time
     int64 time = 12;
-    // ic
-    string ic = 13;
-    // phone number
-    string phoneNumber = 14;
-    // alert
-    bool alert = 15;
-    // infected
-    bool infected = 16;
-}
-
-// zone payload
-message Zone {
-    // zone id
-    string id = 1;
-    // zone name
-    string name = 2;
-    // latitude
-    double lat = 3;
-    // longitude
-    double long = 4;
-    // type
-    int64 type = 5;
-    // double
-    double radius = 6;
-    // capacity
-    int64 capacity = 7;
-    // users within
-    int64 usersWithin = 8;
-    // is capacity exceeded
-    bool isCapacityExceeded = 9;
-    // time
-    int64 time = 10;
-    // risk
-    int64 risk = 11;
+    bool isActive = 13;
 }
 
 // get password reset request payload
@@ -388,24 +223,6 @@ message UpdatePasswordRequest {
 message GetPasswordResetResponse {
     // password reset message
     string message = 1;
-}
-
-// get activities request payload
-message GetActivitiesRequest {
-    // item to sort
-    string item = 1;
-    // order of item
-    string order = 2;
-    // pagination from
-    int64 from = 3;
-    // pagination to
-    int64 to = 4;
-    // item to filter
-    string filterItem = 5;
-    // value to filter
-    string filterValue = 6;
-    // user ids
-    repeated string ids = 7;
 }
 
 // get users request payload
@@ -474,14 +291,6 @@ message DeleteUserResponse {
     User data = 1;
 }
 
-// get activities response payload
-message GetActivitiesResponse {
-    // activities payload
-    repeated Activity data = 1;
-    // total activities
-    int64 total = 2;
-}
-
 // get users response payload
 message GetUsersResponse {
     // users payload
@@ -521,137 +330,17 @@ message DeleteUsersResponse {
 }
 
 // get nearby users request payload
-message ClientGetNearbyUsersRequest {
+message GetNearbyUsersRequest {
     // user
     User user = 1;
-}
-
-// get current zones request payload
-message ClientGetCurrentZonesRequest {
-    // user
-    User user = 1;
-}
-
-// ---------------- Zone -----------------
-
-// get zones request payload
-message GetZonesRequest {
-    // item to sort
-    string item = 1;
-    // order of item
-    string order = 2;
-    // pagination from
-    int64 from = 3;
-    // pagination to
-    int64 to = 4;
-    // item to filter
-    string filterItem = 5;
-    // value to filter
-    string filterValue = 6;
-    // zone ids
-    repeated string ids = 7;
-}
-
-// get zone request payload
-message GetZoneRequest {
-    // zone id
-    string id = 1;
-}
-
-// create zone request payload
-message CreateZoneRequest {
-    // zone id
-    string id = 1;
-    // zone payload
-    Zone data = 2;
-}
-
-// update zone request payload
-message UpdateZoneRequest {
-    // zone id
-    string id = 1;
-    // zone payload
-    Zone data = 2;
-}
-
-// update zones request payload
-message UpdateZonesRequest {
-    // zone ids
-    repeated string ids = 1;
-    // zone payload
-    Zone data = 2;
-}
-
-// delete zone request payload
-message DeleteZoneRequest {
-    // zone id
-    string id = 1;
-}
-
-// delete zones request payload
-message DeleteZonesRequest {
-    // zone ids
-    repeated string ids = 1;
-}
-
-// get current zones response payload
-message ClientGetCurrentZonesResponse {
-    // zone payload
-    Zone zone = 1;
-    // sub zones payload
-    repeated Zone subZones = 2;
 }
 
 // get nearby users response payload
-message ClientGetNearbyUsersResponse {
+message GetNearbyUsersResponse {
     // list of users
     repeated User users = 1;
     // number of nearby users
     int64 userNum = 2;
-}
-
-// delete zone response payload
-message DeleteZoneResponse {
-    // zone payload
-    Zone data = 1;
-}
-
-// get zones response payload
-message GetZonesResponse {
-    // zones payload
-    repeated Zone data = 1;
-    // total zones
-    int64 total = 2;
-}
-
-// get zone response payload
-message GetZoneResponse {
-    // zone payload
-    Zone data = 1;
-}
-
-// create zone response payload
-message CreateZoneResponse {
-    // zone payload
-    Zone data = 1;
-}
-
-// update zone response payload
-message UpdateZoneResponse {
-    // zone payload
-    Zone data = 1;
-}
-
-// update zones response payload
-message UpdateZonesResponse {
-    // zone ids
-    repeated string data = 1;
-}
-
-// delete zones response payload
-message DeleteZonesResponse {
-    // zone ids
-    repeated string data = 1;
 }
 
 // ---------------- Faq -----------------

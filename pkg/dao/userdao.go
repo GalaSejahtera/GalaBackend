@@ -6,7 +6,6 @@ import (
 	"galasejahtera/pkg/constants"
 	"galasejahtera/pkg/dto"
 	"galasejahtera/pkg/utility"
-	sort2 "sort"
 	"time"
 
 	"go.mongodb.org/mongo-driver/bson"
@@ -239,66 +238,6 @@ func (v *UserDAO) Update(ctx context.Context, user *dto.User) (*dto.User, error)
 	return user, nil
 }
 
-// QueryRecentUsersByUserID queries past 14 days users by userID
-func (v *UserDAO) QueryRecentUsersByUserID(ctx context.Context, userID string) ([]*dto.User, error) {
-	user, err := v.Get(ctx, userID)
-	if err != nil {
-		return nil, err
-	}
-
-	// set timestamp to 14 days ago, 12 am
-	now := utility.MalaysiaTime(time.Now())
-	daySelected, err := utility.DateStringToTime(utility.TimeToDateString(now.Add(time.Duration(-13) * 24 * time.Hour)))
-	t := utility.TimeToMilli(daySelected)
-	if err != nil {
-		return nil, err
-	}
-
-	var users []*dto.User
-
-	for _, user := range user.Users {
-		if user.Time >= t {
-			users = append(users, user)
-		}
-	}
-
-	sort2.Slice(users, func(i, j int) bool {
-		return users[i].Time > users[j].Time
-	})
-
-	return users, nil
-}
-
-// QueryRecentZonesByUserID queries past 14 days zones by userID
-func (v *UserDAO) QueryRecentZonesByUserID(ctx context.Context, userID string) ([]*dto.Zone, error) {
-	user, err := v.Get(ctx, userID)
-	if err != nil {
-		return nil, err
-	}
-
-	// set timestamp to 14 days ago, 12 am
-	now := utility.MalaysiaTime(time.Now())
-	daySelected, err := utility.DateStringToTime(utility.TimeToDateString(now.Add(time.Duration(-13) * 24 * time.Hour)))
-	t := utility.TimeToMilli(daySelected)
-	if err != nil {
-		return nil, err
-	}
-
-	var zones []*dto.Zone
-
-	for _, zone := range user.Zones {
-		if zone.Time >= t {
-			zones = append(zones, zone)
-		}
-	}
-
-	sort2.Slice(zones, func(i, j int) bool {
-		return zones[i].Time > zones[j].Time
-	})
-
-	return zones, nil
-}
-
 // GetNearbyUsers gets users within 50 meter
 func (v *UserDAO) GetNearbyUsers(ctx context.Context, user *dto.User) (int64, []*dto.User, error) {
 	if user.Location == nil || len(user.Location.Coordinates) != 2 {
@@ -452,16 +391,12 @@ func (v *UserDAO) updateUsersList(ctx context.Context, user *dto.User, targetUse
 
 		// clone target user into tmp
 		tmp := &dto.User{
-			ID:          targetUser.ID,
-			Role:        targetUser.Role,
-			Name:        targetUser.Name,
-			Email:       targetUser.Email,
-			Lat:         targetUser.Lat,
-			Long:        targetUser.Long,
-			Time:        utility.TimeToMilli(utility.MalaysiaTime(time.Now())),
-			IC:          targetUser.IC,
-			PhoneNumber: targetUser.PhoneNumber,
-			Infected:    targetUser.Infected,
+			ID:    targetUser.ID,
+			Role:  targetUser.Role,
+			Email: targetUser.Email,
+			Lat:   targetUser.Lat,
+			Long:  targetUser.Long,
+			Time:  utility.TimeToMilli(utility.MalaysiaTime(time.Now())),
 		}
 
 		// if target user is in user.Users, pull the result out

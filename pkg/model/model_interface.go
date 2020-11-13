@@ -8,8 +8,6 @@ import (
 // IModel ...
 type IModel interface {
 	///////////// User models
-	// ClientUpdateAppUser updates app user only
-	ClientUpdateAppUser(ctx context.Context, user *dto.User) (*dto.User, error)
 	// CreateUser creates new user
 	CreateUser(ctx context.Context, user *dto.User) (*dto.User, error)
 	// UpdateUser updates user
@@ -44,54 +42,10 @@ type IModel interface {
 	Logout(ctx context.Context, header string) error
 	// Refresh returns new token to authorized user by header
 	Refresh(ctx context.Context, header string) (*dto.User, error)
-	// QueryUsersByZone queries users by zone
-	QueryUsersByZone(ctx context.Context, zone *dto.Zone) ([]*dto.User, error)
-	// ClientUpdateUser updates user by client
-	ClientUpdateUser(ctx context.Context, user *dto.User) (*dto.User, error)
-	// DisableInactiveUsers disable inactive users
-	DisableInactiveUsers(ctx context.Context) error
-	// GetRecentUsersByZone gets recent users given zoneID
-	GetRecentUsersByZone(ctx context.Context, zoneID string) ([]*dto.User, error)
 	// GetNearbyUsers get nearby users count given user
 	GetNearbyUsers(ctx context.Context, user *dto.User) (int64, []*dto.User, error)
-	/////////////
-
-	///////////// Zone models
-	// CreateZone creates new zone
-	CreateZone(ctx context.Context, zone *dto.Zone) (*dto.Zone, error)
-	// UpdateZone updates zone
-	UpdateZone(ctx context.Context, zone *dto.Zone) (*dto.Zone, error)
-	// UpdateZones update zones
-	UpdateZones(ctx context.Context, zone *dto.Zone, ids []string) ([]string, error)
-	// GetZone gets zone by ID
-	GetZone(ctx context.Context, id string) (*dto.Zone, error)
-	// BatchGetZones get zones by slice of IDs
-	BatchGetZones(ctx context.Context, ids []string) ([]*dto.Zone, error)
-	// QueryZones queries zones by sort, range, filter
-	QueryZones(ctx context.Context, sort *dto.SortData, itemsRange *dto.RangeData, filter *dto.FilterData) (int64, []*dto.Zone, error)
-	// DeleteZone deletes zones by ID
-	DeleteZone(ctx context.Context, id string) (*dto.Zone, error)
-	// DeleteZones delete zones by IDs
-	DeleteZones(ctx context.Context, ids []string) ([]string, error)
-	// GetZonesByUser gets zones and sub zones given userID
-	GetZonesByUser(ctx context.Context, userID string) (*dto.Zone, []*dto.Zone, error)
-	// GetRecentZonesByUser gets recent zones given userID
-	GetRecentZonesByUser(ctx context.Context, userID string) ([]*dto.Zone, error)
-	// GetRecentUsersByUser gets recent users given userID
-	GetRecentUsersByUser(ctx context.Context, userID string) ([]*dto.User, error)
-	/////////////
-
-	///////////// Activity models
-	// CreateActivity creates new activity
-	CreateActivity(ctx context.Context, activity *dto.Activity) (*dto.Activity, error)
-	// GetActivity gets activity by ID
-	GetActivity(ctx context.Context, id string) (*dto.Activity, error)
-	// QueryActivities queries activities by sort, range, filter
-	QueryActivities(ctx context.Context, sort *dto.SortData, itemsRange *dto.RangeData, filter *dto.FilterData) (int64, []*dto.Activity, error)
-	// DeleteActivity deletes activity by ID
-	DeleteActivity(ctx context.Context, id string) (*dto.Activity, error)
-	// DeleteActivities delete activities by IDs
-	DeleteActivities(ctx context.Context, ids []string) ([]string, error)
+	// DisableInactiveUsers disable inactive users
+	DisableInactiveUsers(ctx context.Context) error
 	/////////////
 
 	///////////// Faq models

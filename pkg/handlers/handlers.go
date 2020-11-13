@@ -3,17 +3,14 @@ package handlers
 import (
 	"context"
 	"errors"
-	"os"
 	pb "galasejahtera/pkg/api"
 	"galasejahtera/pkg/constants"
 	"galasejahtera/pkg/dto"
-	"galasejahtera/pkg/handlers/activity"
-	"galasejahtera/pkg/handlers/client"
 	"galasejahtera/pkg/handlers/faq"
 	"galasejahtera/pkg/handlers/user"
-	"galasejahtera/pkg/handlers/zone"
 	"galasejahtera/pkg/logger"
 	"galasejahtera/pkg/model"
+	"os"
 	"strings"
 
 	"github.com/golang/protobuf/ptypes/empty"
@@ -31,272 +28,18 @@ func NewHandlers(model model.IModel) IHandlers {
 	return &Handlers{Model: model}
 }
 
-// -------------------- Client ------------------------
-
-func (s *Handlers) ClientGetRecentZones(ctx context.Context, req *pb.ClientGetRecentZonesRequest) (*pb.GetZonesResponse, error) {
-	handler := &client.GetRecentZonesHandler{Model: s.Model}
-	resp, err := handler.GetRecentZones(ctx, req)
-	if err != nil {
-		logger.Log.Error("GetRecentZonesClientHandler: " + err.Error())
-		return nil, err
-	}
-	logger.Log.Info("GetRecentZonesClientHandler")
-	return resp, nil
-}
-
-func (s *Handlers) ClientCreateUser(ctx context.Context, req *pb.CreateUserRequest) (*pb.CreateUserResponse, error) {
-	handler := &client.CreateUserClientHandler{Model: s.Model}
-	resp, err := handler.CreateUser(ctx, req)
-	if err != nil {
-		logger.Log.Error("CreateUserClientHandler: " + err.Error())
-		return nil, err
-	}
-	logger.Log.Info("CreateUserClientHandler")
-	return resp, nil
-}
-
-func (s *Handlers) ClientUpdateUser(ctx context.Context, req *pb.UpdateUserRequest) (*pb.UpdateUserResponse, error) {
+func (s *Handlers) GetNearbyUsers(ctx context.Context, req *pb.GetNearbyUsersRequest) (*pb.GetNearbyUsersResponse, error) {
 	u, err := s.validateUser(ctx, constants.AllCanAccess)
 	if err != nil {
 		return nil, constants.UnauthorizedAccessError
 	}
-	handler := &client.UpdateUserClientHandler{Model: s.Model}
-	resp, err := handler.UpdateUser(ctx, req)
-	if err != nil {
-		logger.Log.Error("ClientUpdateUserHandler: "+err.Error(), zap.String("UserID", u.ID), zap.String("TargetUserID", req.Id))
-		return nil, err
-	}
-	logger.Log.Info("ClientUpdateUserHandler", zap.String("UserID", u.ID), zap.String("TargetUserID", req.Id))
-	return resp, nil
-}
-
-func (s *Handlers) ClientGetNearbyUsers(ctx context.Context, req *pb.ClientGetNearbyUsersRequest) (*pb.ClientGetNearbyUsersResponse, error) {
-	u, err := s.validateUser(ctx, constants.AllCanAccess)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
-	handler := &client.GetNearbyUsersHandler{Model: s.Model}
+	handler := &user.GetNearbyUsersHandler{Model: s.Model}
 	resp, err := handler.GetNearbyUsers(ctx, req)
 	if err != nil {
 		logger.Log.Error("ClientGetNearbyUsersHandler: "+err.Error(), zap.String("UserID", u.ID))
 		return nil, err
 	}
 	logger.Log.Info("ClientGetNearbyUsersHandler", zap.String("UserID", u.ID))
-	return resp, nil
-}
-
-func (s *Handlers) ClientGetCurrentZones(ctx context.Context, req *pb.ClientGetCurrentZonesRequest) (*pb.ClientGetCurrentZonesResponse, error) {
-	u, err := s.validateUser(ctx, constants.AllCanAccess)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
-	handler := &client.GetCurrentZonesHandler{Model: s.Model}
-	resp, err := handler.GetCurrentZones(ctx, req)
-	if err != nil {
-		logger.Log.Error("ClientGetCurrentZonesHandler: "+err.Error(), zap.String("UserID", u.ID))
-		return nil, err
-	}
-	logger.Log.Info("ClientGetCurrentZonesHandler", zap.String("UserID", u.ID))
-	return resp, nil
-}
-
-func (s *Handlers) ClientGetZones(ctx context.Context, req *pb.GetZonesRequest) (*pb.GetZonesResponse, error) {
-	u, err := s.validateUser(ctx, constants.AllCanAccess)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
-	handler := &zone.GetZonesHandler{Model: s.Model}
-	resp, err := handler.GetZones(ctx, req)
-	if err != nil {
-		logger.Log.Error("GetZonesClientHandler: "+err.Error(), zap.String("UserID", u.ID))
-		return nil, err
-	}
-	logger.Log.Info("GetZonesClientHandler", zap.String("UserID", u.ID))
-	return resp, nil
-}
-func (s *Handlers) ClientGetUsers(ctx context.Context, req *pb.GetUsersRequest) (*pb.GetUsersResponse, error) {
-	u, err := s.validateUser(ctx, constants.AllCanAccess)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
-	handler := &client.GetUsersClientHandler{Model: s.Model}
-	resp, err := handler.GetUsers(ctx, req)
-	if err != nil {
-		logger.Log.Error("GetUsersClientHandler: "+err.Error(), zap.String("UserID", u.ID))
-		return nil, err
-	}
-	logger.Log.Info("GetUsersClientHandler", zap.String("UserID", u.ID))
-	return resp, nil
-}
-
-// -------------------- Client ------------------------
-
-// -------------------- Zones ------------------------
-
-func (s *Handlers) CreateZone(ctx context.Context, req *pb.CreateZoneRequest) (*pb.CreateZoneResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserAndAdmin)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
-	handler := &zone.CreateZoneHandler{Model: s.Model}
-	resp, err := handler.CreateZone(ctx, req)
-	if err != nil {
-		logger.Log.Error("CreateZoneHandler: "+err.Error(), zap.String("UserID", u.ID))
-		return nil, err
-	}
-	logger.Log.Info("CreateZoneHandler", zap.String("UserID", u.ID))
-	return resp, nil
-}
-
-func (s *Handlers) GetZones(ctx context.Context, req *pb.GetZonesRequest) (*pb.GetZonesResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserAndAdmin)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
-	handler := &zone.GetZonesHandler{Model: s.Model}
-	resp, err := handler.GetZones(ctx, req)
-	if err != nil {
-		logger.Log.Error("GetZonesHandler: "+err.Error(), zap.String("UserID", u.ID))
-		return nil, err
-	}
-	logger.Log.Info("GetZonesHandler", zap.String("UserID", u.ID))
-	return resp, nil
-}
-
-func (s *Handlers) GetZone(ctx context.Context, req *pb.GetZoneRequest) (*pb.GetZoneResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserAndAdmin)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
-	handler := &zone.GetZoneHandler{Model: s.Model}
-	resp, err := handler.GetZone(ctx, req)
-	if err != nil {
-		logger.Log.Error("GetZoneHandler: "+err.Error(), zap.String("UserID", u.ID), zap.String("ZoneID", req.Id))
-		return nil, err
-	}
-	logger.Log.Info("GetZoneHandler", zap.String("UserID", u.ID), zap.String("ZoneID", req.Id))
-	return resp, nil
-}
-
-func (s *Handlers) DeleteZone(ctx context.Context, req *pb.DeleteZoneRequest) (*pb.DeleteZoneResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserOnly)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
-	handler := &zone.DeleteZoneHandler{Model: s.Model}
-	resp, err := handler.DeleteZone(ctx, req)
-	if err != nil {
-		logger.Log.Error("DeleteZoneHandler: "+err.Error(), zap.String("UserID", u.ID), zap.String("TargetZoneID", req.Id))
-		return nil, err
-	}
-	logger.Log.Info("DeleteZoneHandler", zap.String("UserID", u.ID), zap.String("TargetZoneID", req.Id))
-	return resp, nil
-}
-
-func (s *Handlers) UpdateZone(ctx context.Context, req *pb.UpdateZoneRequest) (*pb.UpdateZoneResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserAndAdmin)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
-	handler := &zone.UpdateZoneHandler{Model: s.Model}
-	resp, err := handler.UpdateZone(ctx, req)
-	if err != nil {
-		logger.Log.Error("UpdateZoneHandler: "+err.Error(), zap.String("UserID", u.ID), zap.String("TargetZoneID", req.Id))
-		return nil, err
-	}
-	logger.Log.Info("UpdateZoneHandler", zap.String("UserID", u.ID), zap.String("TargetZoneID", req.Id))
-	return resp, nil
-}
-
-func (s *Handlers) DeleteZones(ctx context.Context, req *pb.DeleteZonesRequest) (*pb.DeleteZonesResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserOnly)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
-	handler := &zone.DeleteZonesHandler{Model: s.Model}
-	resp, err := handler.DeleteZones(ctx, req)
-	if err != nil {
-		logger.Log.Error("DeleteZonesHandler: "+err.Error(), zap.String("UserID", u.ID), zap.Strings("TargetZoneIDs", req.Ids))
-		return nil, err
-	}
-	logger.Log.Info("DeleteZonesHandler", zap.String("UserID", u.ID), zap.Strings("TargetZoneIDs", req.Ids))
-	return resp, nil
-}
-
-func (s *Handlers) UpdateZones(ctx context.Context, req *pb.UpdateZonesRequest) (*pb.UpdateZonesResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserAndAdmin)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
-	handler := &zone.UpdateZonesHandler{Model: s.Model}
-	resp, err := handler.UpdateZones(ctx, req)
-	if err != nil {
-		logger.Log.Error("UpdateZonesHandler: "+err.Error(), zap.String("UserID", u.ID), zap.Strings("TargetZoneIDs", req.Ids))
-		return nil, err
-	}
-	logger.Log.Info("UpdateZonesHandler", zap.String("UserID", u.ID), zap.Strings("TargetZoneIDs", req.Ids))
-	return resp, nil
-}
-
-// -------------------- Zones ------------------------
-
-func (s *Handlers) GetRecentUsersByZone(ctx context.Context, req *pb.GetUsersRequest) (*pb.GetUsersResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserAndAdmin)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
-	handler := &user.GetRecentUsersByZoneHandler{Model: s.Model}
-	resp, err := handler.GetRecentUsersByZone(ctx, req)
-	if err != nil {
-		logger.Log.Error("GetRecentUsersByZoneHandler: "+err.Error(), zap.String("UserID", u.ID))
-		return nil, err
-	}
-	logger.Log.Info("GetRecentUsersByZoneHandler", zap.String("UserID", u.ID))
-	return resp, nil
-}
-
-func (s *Handlers) GetRecentUsersByUser(ctx context.Context, req *pb.GetUsersRequest) (*pb.GetUsersResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserAndAdmin)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
-	handler := &user.GetRecentUsersByUserHandler{Model: s.Model}
-	resp, err := handler.GetRecentUsersByUser(ctx, req)
-	if err != nil {
-		logger.Log.Error("GetRecentUsersByUserHandler: "+err.Error(), zap.String("UserID", u.ID))
-		return nil, err
-	}
-	logger.Log.Info("GetRecentUsersByUserHandler", zap.String("UserID", u.ID))
-	return resp, nil
-}
-
-func (s *Handlers) GetRecentZonesByUser(ctx context.Context, req *pb.GetZonesRequest) (*pb.GetZonesResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserAndAdmin)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
-	handler := &zone.GetRecentZonesByUserHandler{Model: s.Model}
-	resp, err := handler.GetRecentZonesByUser(ctx, req)
-	if err != nil {
-		logger.Log.Error("GetRecentZonesByUserHandler: "+err.Error(), zap.String("UserID", u.ID))
-		return nil, err
-	}
-	logger.Log.Info("GetRecentZonesByUserHandler", zap.String("UserID", u.ID))
-	return resp, nil
-}
-
-func (s *Handlers) GetUsersByZone(ctx context.Context, req *pb.GetUsersRequest) (*pb.GetUsersResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserAndAdmin)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
-	handler := &user.GetUsersByZoneHandler{Model: s.Model}
-	resp, err := handler.GetUsersByZone(ctx, req)
-	if err != nil {
-		logger.Log.Error("GetUsersByZoneHandler: "+err.Error(), zap.String("UserID", u.ID))
-		return nil, err
-	}
-	logger.Log.Info("GetUsersByZoneHandler", zap.String("UserID", u.ID))
 	return resp, nil
 }
 
@@ -600,22 +343,3 @@ func (s *Handlers) validateUser(ctx context.Context, roles []string) (*dto.User,
 }
 
 // -------------------- Users ------------------------
-
-// -------------------- Activities ------------------------
-
-func (s *Handlers) GetActivities(ctx context.Context, req *pb.GetActivitiesRequest) (*pb.GetActivitiesResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserAndAdmin)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
-	handler := &activity.GetActivitiesHandler{Model: s.Model}
-	resp, err := handler.GetActivities(ctx, req)
-	if err != nil {
-		logger.Log.Error("GetActivitiesHandler: "+err.Error(), zap.String("UserID", u.ID))
-		return nil, err
-	}
-	logger.Log.Info("GetActivitiesHandler", zap.String("UserID", u.ID))
-	return resp, nil
-}
-
-// -------------------- Activities ------------------------

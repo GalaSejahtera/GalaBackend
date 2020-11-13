@@ -19,159 +19,15 @@
     "application/json"
   ],
   "paths": {
-    "/v1/activities": {
-      "get": {
-        "summary": "Get Activities",
-        "operationId": "GetActivities",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbGetActivitiesResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "item",
-            "description": "item to sort.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "order",
-            "description": "order of item.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "from",
-            "description": "pagination from.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "to",
-            "description": "pagination to.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "filterItem",
-            "description": "item to filter.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "filterValue",
-            "description": "value to filter.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "ids",
-            "description": "user ids.",
-            "in": "query",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "multi"
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      }
-    },
-    "/v1/client/currentzones": {
-      "post": {
-        "summary": "Client Get Current Zones",
-        "operationId": "ClientGetCurrentZones",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbClientGetCurrentZonesResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/pbClientGetCurrentZonesRequest"
-            }
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      }
-    },
-    "/v1/client/recentzones/{id}": {
-      "get": {
-        "summary": "Client Get Recent Zones by User",
-        "operationId": "ClientGetRecentZones",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbGetZonesResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      }
-    },
     "/v1/client/users/nearby": {
       "post": {
-        "summary": "Client Get Nearby Users",
-        "operationId": "ClientGetNearbyUsers",
+        "summary": "Get Nearby Users",
+        "operationId": "GetNearbyUsers",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/pbClientGetNearbyUsersResponse"
+              "$ref": "#/definitions/pbGetNearbyUsersResponse"
             }
           },
           "default": {
@@ -187,166 +43,8 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/pbClientGetNearbyUsersRequest"
+              "$ref": "#/definitions/pbGetNearbyUsersRequest"
             }
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      }
-    },
-    "/v1/client/users/{id}": {
-      "post": {
-        "summary": "Client Create User",
-        "operationId": "ClientCreateUser",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbCreateUserResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "description": "user id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/pbCreateUserRequest"
-            }
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      },
-      "put": {
-        "summary": "Client Update User",
-        "operationId": "ClientUpdateUser",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbUpdateUserResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "description": "user id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/pbUpdateUserRequest"
-            }
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      }
-    },
-    "/v1/client/zones": {
-      "get": {
-        "summary": "Client Get Zones",
-        "operationId": "ClientGetZones",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbGetZonesResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "item",
-            "description": "item to sort.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "order",
-            "description": "order of item.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "from",
-            "description": "pagination from.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "to",
-            "description": "pagination to.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "filterItem",
-            "description": "item to filter.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "filterValue",
-            "description": "value to filter.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "ids",
-            "description": "zone ids.",
-            "in": "query",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "multi"
           }
         ],
         "tags": [
@@ -726,166 +424,6 @@
         ]
       }
     },
-    "/v1/userrecentusers": {
-      "get": {
-        "summary": "Get Recent Users By User",
-        "operationId": "GetRecentUsersByUser",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbGetUsersResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "item",
-            "description": "item to sort.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "order",
-            "description": "order of item.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "from",
-            "description": "pagination from.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "to",
-            "description": "pagination to.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "filterItem",
-            "description": "item to filter.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "filterValue",
-            "description": "value to filter.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "ids",
-            "description": "user ids.",
-            "in": "query",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "multi"
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      }
-    },
-    "/v1/userrecentzones": {
-      "get": {
-        "summary": "Get Recent Zones By User",
-        "operationId": "GetRecentZonesByUser",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbGetZonesResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "item",
-            "description": "item to sort.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "order",
-            "description": "order of item.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "from",
-            "description": "pagination from.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "to",
-            "description": "pagination to.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "filterItem",
-            "description": "item to filter.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "filterValue",
-            "description": "value to filter.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "ids",
-            "description": "zone ids.",
-            "in": "query",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "multi"
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      }
-    },
     "/v1/users": {
       "get": {
         "summary": "Get Users",
@@ -1247,535 +785,9 @@
           "GalaSejahteraService"
         ]
       }
-    },
-    "/v1/zonerecentusers": {
-      "get": {
-        "summary": "Get Recent Users By Zone",
-        "operationId": "GetRecentUsersByZone",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbGetUsersResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "item",
-            "description": "item to sort.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "order",
-            "description": "order of item.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "from",
-            "description": "pagination from.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "to",
-            "description": "pagination to.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "filterItem",
-            "description": "item to filter.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "filterValue",
-            "description": "value to filter.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "ids",
-            "description": "user ids.",
-            "in": "query",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "multi"
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      }
-    },
-    "/v1/zones": {
-      "get": {
-        "summary": "Get Zones",
-        "operationId": "GetZones",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbGetZonesResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "item",
-            "description": "item to sort.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "order",
-            "description": "order of item.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "from",
-            "description": "pagination from.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "to",
-            "description": "pagination to.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "filterItem",
-            "description": "item to filter.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "filterValue",
-            "description": "value to filter.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "ids",
-            "description": "zone ids.",
-            "in": "query",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "multi"
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      },
-      "delete": {
-        "summary": "Delete Zones",
-        "operationId": "DeleteZones",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbDeleteZonesResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "ids",
-            "description": "zone ids.",
-            "in": "query",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "multi"
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      },
-      "put": {
-        "summary": "Update Zones",
-        "operationId": "UpdateZones",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbUpdateZonesResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/pbUpdateZonesRequest"
-            }
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      }
-    },
-    "/v1/zones/{id}": {
-      "get": {
-        "summary": "Get Zone",
-        "operationId": "GetZone",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbGetZoneResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "description": "zone id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      },
-      "delete": {
-        "summary": "Delete Zone",
-        "operationId": "DeleteZone",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbDeleteZoneResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "description": "zone id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      },
-      "post": {
-        "summary": "Create Zone",
-        "operationId": "CreateZone",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbCreateZoneResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "description": "zone id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/pbCreateZoneRequest"
-            }
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      },
-      "put": {
-        "summary": "Update Zone",
-        "operationId": "UpdateZone",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbUpdateZoneResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "description": "zone id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/pbUpdateZoneRequest"
-            }
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      }
-    },
-    "/v1/zoneusers": {
-      "get": {
-        "summary": "Get Users By Zone",
-        "operationId": "GetUsersByZone",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbGetUsersResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "item",
-            "description": "item to sort.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "order",
-            "description": "order of item.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "from",
-            "description": "pagination from.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "to",
-            "description": "pagination to.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "filterItem",
-            "description": "item to filter.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "filterValue",
-            "description": "value to filter.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "ids",
-            "description": "user ids.",
-            "in": "query",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "multi"
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      }
     }
   },
   "definitions": {
-    "pbActivity": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "title": "activity id"
-        },
-        "zoneId": {
-          "type": "string",
-          "title": "zone id"
-        },
-        "userId": {
-          "type": "string",
-          "title": "user id"
-        },
-        "time": {
-          "type": "string",
-          "format": "int64",
-          "title": "time"
-        },
-        "ttl": {
-          "type": "string",
-          "format": "int64",
-          "title": "ttl"
-        }
-      },
-      "title": "activity payload"
-    },
-    "pbClientGetCurrentZonesRequest": {
-      "type": "object",
-      "properties": {
-        "user": {
-          "$ref": "#/definitions/pbUser",
-          "title": "user"
-        }
-      },
-      "title": "get current zones request payload"
-    },
-    "pbClientGetCurrentZonesResponse": {
-      "type": "object",
-      "properties": {
-        "zone": {
-          "$ref": "#/definitions/pbZone",
-          "title": "zone payload"
-        },
-        "subZones": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/pbZone"
-          },
-          "title": "sub zones payload"
-        }
-      },
-      "title": "get current zones response payload"
-    },
-    "pbClientGetNearbyUsersRequest": {
-      "type": "object",
-      "properties": {
-        "user": {
-          "$ref": "#/definitions/pbUser",
-          "title": "user"
-        }
-      },
-      "title": "get nearby users request payload"
-    },
-    "pbClientGetNearbyUsersResponse": {
-      "type": "object",
-      "properties": {
-        "users": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/pbUser"
-          },
-          "title": "list of users"
-        },
-        "userNum": {
-          "type": "string",
-          "format": "int64",
-          "title": "number of nearby users"
-        }
-      },
-      "title": "get nearby users response payload"
-    },
     "pbCreateFaqRequest": {
       "type": "object",
       "properties": {
@@ -1824,30 +836,6 @@
       },
       "title": "create user response payload"
     },
-    "pbCreateZoneRequest": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "title": "zone id"
-        },
-        "data": {
-          "$ref": "#/definitions/pbZone",
-          "title": "zone payload"
-        }
-      },
-      "title": "create zone request payload"
-    },
-    "pbCreateZoneResponse": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "$ref": "#/definitions/pbZone",
-          "title": "zone payload"
-        }
-      },
-      "title": "create zone response payload"
-    },
     "pbDeleteFaqResponse": {
       "type": "object",
       "properties": {
@@ -1894,29 +882,6 @@
       },
       "title": "delete users response payload"
     },
-    "pbDeleteZoneResponse": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "$ref": "#/definitions/pbZone",
-          "title": "zone payload"
-        }
-      },
-      "title": "delete zone response payload"
-    },
-    "pbDeleteZonesResponse": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "zone ids"
-        }
-      },
-      "title": "delete zones response payload"
-    },
     "pbFaq": {
       "type": "object",
       "properties": {
@@ -1934,24 +899,6 @@
         }
       },
       "title": "faq payload"
-    },
-    "pbGetActivitiesResponse": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/pbActivity"
-          },
-          "title": "activities payload"
-        },
-        "total": {
-          "type": "string",
-          "format": "int64",
-          "title": "total activities"
-        }
-      },
-      "title": "get activities response payload"
     },
     "pbGetFaqResponse": {
       "type": "object",
@@ -1980,6 +927,34 @@
         }
       },
       "title": "get faqs response payload"
+    },
+    "pbGetNearbyUsersRequest": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/pbUser",
+          "title": "user"
+        }
+      },
+      "title": "get nearby users request payload"
+    },
+    "pbGetNearbyUsersResponse": {
+      "type": "object",
+      "properties": {
+        "users": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pbUser"
+          },
+          "title": "list of users"
+        },
+        "userNum": {
+          "type": "string",
+          "format": "int64",
+          "title": "number of nearby users"
+        }
+      },
+      "title": "get nearby users response payload"
     },
     "pbGetPasswordResetResponse": {
       "type": "object",
@@ -2018,34 +993,6 @@
         }
       },
       "title": "get users response payload"
-    },
-    "pbGetZoneResponse": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "$ref": "#/definitions/pbZone",
-          "title": "zone payload"
-        }
-      },
-      "title": "get zone response payload"
-    },
-    "pbGetZonesResponse": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/pbZone"
-          },
-          "title": "zones payload"
-        },
-        "total": {
-          "type": "string",
-          "format": "int64",
-          "title": "total zones"
-        }
-      },
-      "title": "get zones response payload"
     },
     "pbLoginRequest": {
       "type": "object",
@@ -2211,60 +1158,6 @@
       },
       "title": "update users response payload"
     },
-    "pbUpdateZoneRequest": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "title": "zone id"
-        },
-        "data": {
-          "$ref": "#/definitions/pbZone",
-          "title": "zone payload"
-        }
-      },
-      "title": "update zone request payload"
-    },
-    "pbUpdateZoneResponse": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "$ref": "#/definitions/pbZone",
-          "title": "zone payload"
-        }
-      },
-      "title": "update zone response payload"
-    },
-    "pbUpdateZonesRequest": {
-      "type": "object",
-      "properties": {
-        "ids": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "zone ids"
-        },
-        "data": {
-          "$ref": "#/definitions/pbZone",
-          "title": "zone payload"
-        }
-      },
-      "title": "update zones request payload"
-    },
-    "pbUpdateZonesResponse": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "zone ids"
-        }
-      },
-      "title": "update zones response payload"
-    },
     "pbUser": {
       "type": "object",
       "properties": {
@@ -2274,20 +1167,11 @@
         },
         "role": {
           "type": "string",
-          "title": "user role: superuser, user"
-        },
-        "name": {
-          "type": "string",
-          "title": "user name"
+          "title": "user role: user"
         },
         "email": {
           "type": "string",
           "title": "user email"
-        },
-        "isActive": {
-          "type": "boolean",
-          "format": "boolean",
-          "title": "user account status (true - active, false - inactive)"
         },
         "password": {
           "type": "string",
@@ -2308,95 +1192,17 @@
           "format": "double",
           "title": "longitude"
         },
-        "consent": {
-          "type": "string",
-          "format": "int64",
-          "title": "consent time"
-        },
         "time": {
           "type": "string",
           "format": "int64",
           "title": "time"
         },
-        "ic": {
-          "type": "string",
-          "title": "ic"
-        },
-        "phoneNumber": {
-          "type": "string",
-          "title": "phone number"
-        },
-        "alert": {
+        "isActive": {
           "type": "boolean",
-          "format": "boolean",
-          "title": "alert"
-        },
-        "infected": {
-          "type": "boolean",
-          "format": "boolean",
-          "title": "infected"
+          "format": "boolean"
         }
       },
       "title": "user payload"
-    },
-    "pbZone": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "title": "zone id"
-        },
-        "name": {
-          "type": "string",
-          "title": "zone name"
-        },
-        "lat": {
-          "type": "number",
-          "format": "double",
-          "title": "latitude"
-        },
-        "long": {
-          "type": "number",
-          "format": "double",
-          "title": "longitude"
-        },
-        "type": {
-          "type": "string",
-          "format": "int64",
-          "title": "type"
-        },
-        "radius": {
-          "type": "number",
-          "format": "double",
-          "title": "double"
-        },
-        "capacity": {
-          "type": "string",
-          "format": "int64",
-          "title": "capacity"
-        },
-        "usersWithin": {
-          "type": "string",
-          "format": "int64",
-          "title": "users within"
-        },
-        "isCapacityExceeded": {
-          "type": "boolean",
-          "format": "boolean",
-          "title": "is capacity exceeded"
-        },
-        "time": {
-          "type": "string",
-          "format": "int64",
-          "title": "time"
-        },
-        "risk": {
-          "type": "string",
-          "format": "int64",
-          "title": "risk"
-        }
-      },
-      "title": "zone payload"
     },
     "protobufAny": {
       "type": "object",

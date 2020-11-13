@@ -83,16 +83,11 @@ func (s *GetUsersHandler) usersToResponses(users []*dto.User) (*pb.GetUsersRespo
 		resp := &pb.User{
 			Id:          user.ID,
 			Role:        user.Role,
-			Name:        user.Name,
-			PhoneNumber: user.PhoneNumber,
-			Ic:          user.IC,
 			Email:       user.Email,
 			IsActive:    user.IsActive,
 			LastUpdated: user.LastUpdated,
 			Lat:         user.Lat,
 			Long:        user.Long,
-			Consent:     user.Consent,
-			Infected:    user.Infected,
 		}
 
 		resps = append(resps, resp)
