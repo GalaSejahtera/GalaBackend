@@ -1,0 +1,761 @@
+syntax = "proto3";
+package pb;
+
+import "google/api/annotations.proto";
+import "protoc-gen-swagger/options/annotations.proto";
+import "google/protobuf/empty.proto";
+
+option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
+	info: {
+	    description: "SafeWorkout Service handles requests from SafeWorkout application.";
+		title: "SafeWorkout Service";
+        version: "1.0.0";
+        contact: {
+            url: "https://github.com/safe-workout/safeworkout-be";
+            email: "chinxiongwei@yahoo.com.my";
+        };
+    };
+    schemes: HTTPS;
+    consumes: "application/json";
+    produces: "application/json";
+};
+
+// SafeWorkout Backend Service
+service SafeWorkoutService {
+    // Get Activities
+    rpc GetActivities(GetActivitiesRequest) returns (GetActivitiesResponse){
+        option (google.api.http) = {
+            get: "/v1/activities"
+        };
+    }
+    // Client Get Nearby Users
+    rpc ClientGetNearbyUsers(ClientGetNearbyUsersRequest) returns (ClientGetNearbyUsersResponse){
+        option (google.api.http) = {
+            post: "/v1/client/users/nearby"
+            body: "*"
+        };
+    }
+    // Client Get Current Zones
+    rpc ClientGetCurrentZones(ClientGetCurrentZonesRequest) returns (ClientGetCurrentZonesResponse){
+        option (google.api.http) = {
+            post: "/v1/client/currentzones"
+            body: "*"
+        };
+    }
+    // Client Get Recent Zones by User
+    rpc ClientGetRecentZones(ClientGetRecentZonesRequest) returns (GetZonesResponse){
+        option (google.api.http) = {
+            get: "/v1/client/recentzones/{id}"
+        };
+    }
+    // Client Create User
+    rpc ClientCreateUser(CreateUserRequest) returns (CreateUserResponse) {
+        option (google.api.http) = {
+            post: "/v1/client/users/{id}"
+            body: "*"
+        };
+    }
+    // Client Update User
+    rpc ClientUpdateUser(UpdateUserRequest) returns (UpdateUserResponse){
+        option (google.api.http) = {
+            put: "/v1/client/users/{id}"
+            body: "*"
+        };
+    }
+    // Client Get Zones
+    rpc ClientGetZones(GetZonesRequest) returns (GetZonesResponse){
+        option (google.api.http) = {
+            get: "/v1/client/zones"
+        };
+    }
+    // Create Zone
+    rpc CreateZone(CreateZoneRequest) returns (CreateZoneResponse){
+        option (google.api.http) = {
+            post: "/v1/zones/{id}"
+            body: "*"
+        };
+    }
+    // Get Zones
+    rpc GetZones(GetZonesRequest) returns (GetZonesResponse){
+        option (google.api.http) = {
+            get: "/v1/zones"
+        };
+    }
+    // Get Zone
+    rpc GetZone(GetZoneRequest) returns (GetZoneResponse){
+        option (google.api.http) = {
+            get: "/v1/zones/{id}"
+        };
+    }
+    // Update Zone
+    rpc UpdateZone(UpdateZoneRequest) returns (UpdateZoneResponse){
+        option (google.api.http) = {
+            put: "/v1/zones/{id}"
+            body: "*"
+        };
+    }
+    // Update Zones
+    rpc UpdateZones(UpdateZonesRequest) returns (UpdateZonesResponse){
+        option (google.api.http) = {
+            put: "/v1/zones"
+            body: "*"
+        };
+    }
+    // Delete Zone
+    rpc DeleteZone(DeleteZoneRequest) returns (DeleteZoneResponse){
+        option (google.api.http) = {
+            delete: "/v1/zones/{id}"
+        };
+    }
+    // Delete Zones
+    rpc DeleteZones(DeleteZonesRequest) returns (DeleteZonesResponse){
+        option (google.api.http) = {
+            delete: "/v1/zones"
+        };
+    }
+    // Create Faq
+    rpc CreateFaq(CreateFaqRequest) returns (CreateFaqResponse){
+        option (google.api.http) = {
+            post: "/v1/faqs/{id}"
+            body: "*"
+        };
+    }
+    // Get Faqs
+    rpc GetFaqs(GetFaqsRequest) returns (GetFaqsResponse){
+        option (google.api.http) = {
+            get: "/v1/faqs"
+        };
+    }
+    // Get Faq
+    rpc GetFaq(GetFaqRequest) returns (GetFaqResponse){
+        option (google.api.http) = {
+            get: "/v1/faqs/{id}"
+        };
+    }
+    // Update Faq
+    rpc UpdateFaq(UpdateFaqRequest) returns (UpdateFaqResponse){
+        option (google.api.http) = {
+            put: "/v1/faqs/{id}"
+            body: "*"
+        };
+    }
+    // Update Faqs
+    rpc UpdateFaqs(UpdateFaqsRequest) returns (UpdateFaqsResponse){
+        option (google.api.http) = {
+            put: "/v1/faqs"
+            body: "*"
+        };
+    }
+    // Delete Faq
+    rpc DeleteFaq(DeleteFaqRequest) returns (DeleteFaqResponse){
+        option (google.api.http) = {
+            delete: "/v1/faqs/{id}"
+        };
+    }
+    // Delete Faqs
+    rpc DeleteFaqs(DeleteFaqsRequest) returns (DeleteFaqsResponse){
+        option (google.api.http) = {
+            delete: "/v1/faqs"
+        };
+    }
+    // Create User
+    rpc CreateUser(CreateUserRequest) returns (CreateUserResponse){
+        option (google.api.http) = {
+            post: "/v1/users/{id}"
+            body: "*"
+        };
+    }
+    // Get Users
+    rpc GetUsers(GetUsersRequest) returns (GetUsersResponse){
+        option (google.api.http) = {
+            get: "/v1/users"
+        };
+    }
+    // Get Users By Zone
+    rpc GetUsersByZone(GetUsersRequest) returns (GetUsersResponse){
+        option (google.api.http) = {
+            get: "/v1/zoneusers"
+        };
+    }
+    // Get Recent Users By User
+    rpc GetRecentUsersByUser(GetUsersRequest) returns (GetUsersResponse){
+        option (google.api.http) = {
+            get: "/v1/userrecentusers"
+        };
+    }
+    // Get Recent Users By Zone
+    rpc GetRecentUsersByZone(GetUsersRequest) returns (GetUsersResponse){
+        option (google.api.http) = {
+            get: "/v1/zonerecentusers"
+        };
+    }
+    // Get Recent Zones By User
+    rpc GetRecentZonesByUser(GetZonesRequest) returns (GetZonesResponse){
+        option (google.api.http) = {
+            get: "/v1/userrecentzones"
+        };
+    }
+    // Get User
+    rpc GetUser(GetUserRequest) returns (GetUserResponse){
+        option (google.api.http) = {
+            get: "/v1/users/{id}"
+        };
+    }
+    // Update User
+    rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse){
+        option (google.api.http) = {
+            put: "/v1/users/{id}"
+            body: "*"
+        };
+    }
+    // Update Users
+    rpc UpdateUsers(UpdateUsersRequest) returns (UpdateUsersResponse){
+        option (google.api.http) = {
+            put: "/v1/users"
+            body: "*"
+        };
+    }
+    // Delete User
+    rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse){
+        option (google.api.http) = {
+            delete: "/v1/users/{id}"
+        };
+    }
+    // Delete Users
+    rpc DeleteUsers(DeleteUsersRequest) returns (DeleteUsersResponse){
+        option (google.api.http) = {
+            delete: "/v1/users"
+        };
+    }
+    // Get Password Reset
+    rpc GetPasswordReset(GetPasswordResetRequest) returns (GetPasswordResetResponse){
+        option (google.api.http) = {
+            get: "/v1/users/{id}/passwordreset"
+        };
+    }
+    // Update Password
+    rpc UpdatePassword(UpdatePasswordRequest) returns (google.protobuf.Empty){
+        option (google.api.http) = {
+            put: "/v1/users/passwordreset/{token}"
+            body: "*"
+        };
+    }
+    // Login
+    rpc Login(LoginRequest) returns (LoginResponse){
+        option (google.api.http) = {
+            post: "/v1/login"
+            body: "*"
+        };
+    }
+    // Logout
+    rpc Logout(google.protobuf.Empty) returns (google.protobuf.Empty){
+        option (google.api.http) = {
+            post: "/v1/logout"
+        };
+    }
+    // Refresh
+    rpc Refresh(google.protobuf.Empty) returns (RefreshResponse){
+        option (google.api.http) = {
+            post: "/v1/refresh"
+            body: "*"
+        };
+    }
+}
+
+message ClientGetRecentZonesRequest {
+    string id = 1;
+}
+
+message LoginRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message LoginResponse {
+    string accessToken = 1;
+    string refreshToken = 2;
+    string displayName = 3;
+    string role = 4;
+    string id = 5;
+}
+
+message RefreshResponse {
+    string accessToken = 1;
+    string refreshToken = 2;
+}
+
+// activity payload
+message Activity {
+    // activity id
+    string id = 1;
+    // zone id
+    string zoneId = 2;
+    // user id
+    string userId = 3;
+    // time
+    int64 time = 4;
+    // ttl
+    int64 ttl = 5;
+}
+
+// faq payload
+message Faq {
+    // faq id
+    string id = 1;
+    // faq title
+    string title = 2;
+    // faq desc
+    string desc = 3;
+}
+
+// user payload
+message User {
+    // user id
+    string id = 1;
+    // user role: superuser, user
+    string role = 2;
+    // user name
+    string name = 3;
+    // user email
+    string email = 5;
+    // user account status (true - active, false - inactive)
+    bool isActive = 6;
+    // user hashed password
+    string password = 7;
+    // lastUpdated time
+    int64 lastUpdated = 8;
+    // latitude
+    double lat = 9;
+    // longitude
+    double long = 10;
+    // consent time
+    int64 consent = 11;
+    // time
+    int64 time = 12;
+    // ic
+    string ic = 13;
+    // phone number
+    string phoneNumber = 14;
+    // alert
+    bool alert = 15;
+    // infected
+    bool infected = 16;
+}
+
+// zone payload
+message Zone {
+    // zone id
+    string id = 1;
+    // zone name
+    string name = 2;
+    // latitude
+    double lat = 3;
+    // longitude
+    double long = 4;
+    // type
+    int64 type = 5;
+    // double
+    double radius = 6;
+    // capacity
+    int64 capacity = 7;
+    // users within
+    int64 usersWithin = 8;
+    // is capacity exceeded
+    bool isCapacityExceeded = 9;
+    // time
+    int64 time = 10;
+    // risk
+    int64 risk = 11;
+}
+
+// get password reset request payload
+message GetPasswordResetRequest {
+    // user id
+    string id = 1;
+    // email
+    string email = 2;
+}
+
+// get password reset request payload
+message UpdatePasswordRequest {
+    // token
+    string token = 1;
+    // password
+    string password = 2;
+}
+
+// get password reset response payload
+message GetPasswordResetResponse {
+    // password reset message
+    string message = 1;
+}
+
+// get activities request payload
+message GetActivitiesRequest {
+    // item to sort
+    string item = 1;
+    // order of item
+    string order = 2;
+    // pagination from
+    int64 from = 3;
+    // pagination to
+    int64 to = 4;
+    // item to filter
+    string filterItem = 5;
+    // value to filter
+    string filterValue = 6;
+    // user ids
+    repeated string ids = 7;
+}
+
+// get users request payload
+message GetUsersRequest {
+    // item to sort
+    string item = 1;
+    // order of item
+    string order = 2;
+    // pagination from
+    int64 from = 3;
+    // pagination to
+    int64 to = 4;
+    // item to filter
+    string filterItem = 5;
+    // value to filter
+    string filterValue = 6;
+    // user ids
+    repeated string ids = 7;
+}
+
+// get user request payload
+message GetUserRequest {
+    // user id
+    string id = 1;
+}
+
+// create user request payload
+message CreateUserRequest {
+    // user id
+    string id = 1;
+    // user payload
+    User data = 2;
+}
+
+// update user request payload
+message UpdateUserRequest {
+    // user id
+    string id = 1;
+    // user payload
+    User data = 2;
+}
+
+// update users request payload
+message UpdateUsersRequest {
+    // user ids
+    repeated string ids = 1;
+    // user payload
+    User data = 2;
+}
+
+// delete user request payload
+message DeleteUserRequest {
+    // user id
+    string id = 1;
+}
+
+// delete users request payload
+message DeleteUsersRequest {
+    // user ids
+    repeated string ids = 1;
+}
+
+// delete user response payload
+message DeleteUserResponse {
+    // user payload
+    User data = 1;
+}
+
+// get activities response payload
+message GetActivitiesResponse {
+    // activities payload
+    repeated Activity data = 1;
+    // total activities
+    int64 total = 2;
+}
+
+// get users response payload
+message GetUsersResponse {
+    // users payload
+    repeated User data = 1;
+    // total users
+    int64 total = 2;
+}
+
+// get user response payload
+message GetUserResponse {
+    // user payload
+    User data = 1;
+}
+
+// create user response payload
+message CreateUserResponse {
+    // user payload
+    User data = 1;
+}
+
+// update user response payload
+message UpdateUserResponse {
+    // user payload
+    User data = 1;
+}
+
+// update users response payload
+message UpdateUsersResponse {
+    // user ids
+    repeated string data = 1;
+}
+
+// delete users response payload
+message DeleteUsersResponse {
+    // user ids
+    repeated string data = 1;
+}
+
+// get nearby users request payload
+message ClientGetNearbyUsersRequest {
+    // user
+    User user = 1;
+}
+
+// get current zones request payload
+message ClientGetCurrentZonesRequest {
+    // user
+    User user = 1;
+}
+
+// ---------------- Zone -----------------
+
+// get zones request payload
+message GetZonesRequest {
+    // item to sort
+    string item = 1;
+    // order of item
+    string order = 2;
+    // pagination from
+    int64 from = 3;
+    // pagination to
+    int64 to = 4;
+    // item to filter
+    string filterItem = 5;
+    // value to filter
+    string filterValue = 6;
+    // zone ids
+    repeated string ids = 7;
+}
+
+// get zone request payload
+message GetZoneRequest {
+    // zone id
+    string id = 1;
+}
+
+// create zone request payload
+message CreateZoneRequest {
+    // zone id
+    string id = 1;
+    // zone payload
+    Zone data = 2;
+}
+
+// update zone request payload
+message UpdateZoneRequest {
+    // zone id
+    string id = 1;
+    // zone payload
+    Zone data = 2;
+}
+
+// update zones request payload
+message UpdateZonesRequest {
+    // zone ids
+    repeated string ids = 1;
+    // zone payload
+    Zone data = 2;
+}
+
+// delete zone request payload
+message DeleteZoneRequest {
+    // zone id
+    string id = 1;
+}
+
+// delete zones request payload
+message DeleteZonesRequest {
+    // zone ids
+    repeated string ids = 1;
+}
+
+// get current zones response payload
+message ClientGetCurrentZonesResponse {
+    // zone payload
+    Zone zone = 1;
+    // sub zones payload
+    repeated Zone subZones = 2;
+}
+
+// get nearby users response payload
+message ClientGetNearbyUsersResponse {
+    // list of users
+    repeated User users = 1;
+    // number of nearby users
+    int64 userNum = 2;
+}
+
+// delete zone response payload
+message DeleteZoneResponse {
+    // zone payload
+    Zone data = 1;
+}
+
+// get zones response payload
+message GetZonesResponse {
+    // zones payload
+    repeated Zone data = 1;
+    // total zones
+    int64 total = 2;
+}
+
+// get zone response payload
+message GetZoneResponse {
+    // zone payload
+    Zone data = 1;
+}
+
+// create zone response payload
+message CreateZoneResponse {
+    // zone payload
+    Zone data = 1;
+}
+
+// update zone response payload
+message UpdateZoneResponse {
+    // zone payload
+    Zone data = 1;
+}
+
+// update zones response payload
+message UpdateZonesResponse {
+    // zone ids
+    repeated string data = 1;
+}
+
+// delete zones response payload
+message DeleteZonesResponse {
+    // zone ids
+    repeated string data = 1;
+}
+
+// ---------------- Faq -----------------
+
+// get faqs request payload
+message GetFaqsRequest {
+    // item to sort
+    string item = 1;
+    // order of item
+    string order = 2;
+    // pagination from
+    int64 from = 3;
+    // pagination to
+    int64 to = 4;
+    // item to filter
+    string filterItem = 5;
+    // value to filter
+    string filterValue = 6;
+    // faq ids
+    repeated string ids = 7;
+}
+
+// get faq request payload
+message GetFaqRequest {
+    // faq id
+    string id = 1;
+}
+
+// create faq request payload
+message CreateFaqRequest {
+    // faq id
+    string id = 1;
+    // faq payload
+    Faq data = 2;
+}
+
+// update faq request payload
+message UpdateFaqRequest {
+    // faq id
+    string id = 1;
+    // faq payload
+    Faq data = 2;
+}
+
+// update faqs request payload
+message UpdateFaqsRequest {
+    // faq ids
+    repeated string ids = 1;
+    // faq payload
+    Faq data = 2;
+}
+
+// delete faq request payload
+message DeleteFaqRequest {
+    // faq id
+    string id = 1;
+}
+
+// delete faqs request payload
+message DeleteFaqsRequest {
+    // faq ids
+    repeated string ids = 1;
+}
+
+// delete faq response payload
+message DeleteFaqResponse {
+    // faq payload
+    Faq data = 1;
+}
+
+// get faqs response payload
+message GetFaqsResponse {
+    // faqs payload
+    repeated Faq data = 1;
+    // total faqs
+    int64 total = 2;
+}
+
+// get faq response payload
+message GetFaqResponse {
+    // faq payload
+    Faq data = 1;
+}
+
+// create faq response payload
+message CreateFaqResponse {
+    // faq payload
+    Faq data = 1;
+}
+
+// update faq response payload
+message UpdateFaqResponse {
+    // faq payload
+    Faq data = 1;
+}
+
+// update faqs response payload
+message UpdateFaqsResponse {
+    // faq ids
+    repeated string data = 1;
+}
+
+// delete faqs response payload
+message DeleteFaqsResponse {
+    // faq ids
+    repeated string data = 1;
+}

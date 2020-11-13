@@ -1,0 +1,15 @@
+[Unit]
+Description=Golang Service
+ConditionPathExists=/home/wing8169/go/src/github.com/safe-workout/safeworkout-be
+After=network.target
+
+[Service]
+Restart=on-failure
+RestartSec=10
+startLimitIntervalSec=60
+
+WorkingDirectory=/home/wing8169/go/src/github.com/safe-workout/safeworkout-be
+ExecStart=/home/wing8169/go/src/github.com/safe-workout/safeworkout-be
+
+[Install]
+WantedBy=multi-user.target

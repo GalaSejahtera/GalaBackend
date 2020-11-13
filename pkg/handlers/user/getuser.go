@@ -1,0 +1,56 @@
+package user
+
+import (
+	"context"
+	pb "safeworkout/pkg/api"
+	"safeworkout/pkg/constants"
+	"safeworkout/pkg/dto"
+	"safeworkout/pkg/logger"
+	"safeworkout/pkg/model"
+
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
+)
+
+type GetUserHandler struct {
+	Model model.IModel
+}
+
+func (s *GetUserHandler) GetUser(ctx context.Context, req *pb.GetUserRequest) (*pb.GetUserResponse, error) {
+	user, err := s.Model.GetUser(ctx, req.Id)
+	if err != nil {
+		logger.Log.Error("GetUserHandler: " + err.Error())
+		if status.Code(err) == codes.Unknown {
+			return nil, constants.UserNotFoundError
+		}
+		return nil, constants.InternalError
+	}
+
+	resp, err := s.userToResponse(user)
+	if err != nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+func (s *GetUserHandler) userToResponse(user *dto.User) (*pb.GetUserResponse, error) {
+	resp := &pb.GetUserResponse{
+		Data: &pb.User{
+			Id:          user.ID,
+			Role:        user.Role,
+			Name:        user.Name,
+			PhoneNumber: user.PhoneNumber,
+			Ic:          user.IC,
+			Email:       user.Email,
+			IsActive:    user.IsActive,
+			LastUpdated: user.LastUpdated,
+			Lat:         user.Lat,
+			Long:        user.Long,
+			Consent:     user.Consent,
+			Infected:    user.Infected,
+		},
+	}
+
+	return resp, nil
+}
