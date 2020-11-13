@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 	"go.uber.org/zap"
-	"safeworkout/pkg/logger"
+	"galasejahtera/pkg/logger"
 	"sync"
 	"time"
 )

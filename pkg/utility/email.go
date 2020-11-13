@@ -44,7 +44,7 @@ type email struct {
 }
 
 func (e *email) send() error {
-	// using safeworkout email as sender
+	// using galasejahtera email as sender
 	username := os.Getenv("EMAIL_ADDRESS")
 	password := os.Getenv("EMAIL_PASSWORD")
 

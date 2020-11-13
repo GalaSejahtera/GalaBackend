@@ -2,7 +2,7 @@ package middleware
 
 import (
 	"net/http"
-	"safeworkout/pkg/utility"
+	"galasejahtera/pkg/utility"
 	"strings"
 	"time"
 

@@ -7,11 +7,11 @@ import "google/protobuf/empty.proto";
 
 option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 	info: {
-	    description: "SafeWorkout Service handles requests from SafeWorkout application.";
-		title: "SafeWorkout Service";
+	    description: "GalaSejahtera Service handles requests from GalaSejahtera application.";
+		title: "GalaSejahtera Service";
         version: "1.0.0";
         contact: {
-            url: "https://github.com/safe-workout/safeworkout-be";
+            url: "https://github.com/gala-sejahtera/galasejahtera-be";
             email: "chinxiongwei@yahoo.com.my";
         };
     };
@@ -20,8 +20,8 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
     produces: "application/json";
 };
 
-// SafeWorkout Backend Service
-service SafeWorkoutService {
+// GalaSejahtera Backend Service
+service GalaSejahteraService {
     // Get Activities
     rpc GetActivities(GetActivitiesRequest) returns (GetActivitiesResponse){
         option (google.api.http) = {

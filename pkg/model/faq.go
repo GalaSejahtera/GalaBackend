@@ -2,8 +2,8 @@ package model
 
 import (
 	"context"
-	"safeworkout/pkg/constants"
-	"safeworkout/pkg/dto"
+	"galasejahtera/pkg/constants"
+	"galasejahtera/pkg/dto"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

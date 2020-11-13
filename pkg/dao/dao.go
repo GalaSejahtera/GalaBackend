@@ -3,7 +3,7 @@ package dao
 import (
 	"context"
 
-	"safeworkout/pkg/dto"
+	"galasejahtera/pkg/dto"
 )
 
 // IUserDAO ...

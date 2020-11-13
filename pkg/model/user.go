@@ -3,10 +3,10 @@ package model
 import (
 	"context"
 	"os"
-	"safeworkout/pkg/constants"
-	"safeworkout/pkg/dto"
-	"safeworkout/pkg/logger"
-	"safeworkout/pkg/utility"
+	"galasejahtera/pkg/constants"
+	"galasejahtera/pkg/dto"
+	"galasejahtera/pkg/logger"
+	"galasejahtera/pkg/utility"
 	"strings"
 	"time"
 

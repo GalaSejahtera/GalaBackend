@@ -4,8 +4,8 @@ import (
 	"context"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	"safeworkout/pkg/constants"
-	"safeworkout/pkg/dto"
+	"galasejahtera/pkg/constants"
+	"galasejahtera/pkg/dto"
 )
 
 // CreateZone creates new zone

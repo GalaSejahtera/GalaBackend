@@ -1,6 +1,6 @@
 [Unit]
 Description=Golang Service
-ConditionPathExists=/home/wing8169/go/src/github.com/safe-workout/safeworkout-be
+ConditionPathExists=/home/wing8169/go/src/github.com/gala-sejahtera/galasejahtera-be
 After=network.target
 
 [Service]
@@ -8,8 +8,8 @@ Restart=on-failure
 RestartSec=10
 startLimitIntervalSec=60
 
-WorkingDirectory=/home/wing8169/go/src/github.com/safe-workout/safeworkout-be
-ExecStart=/home/wing8169/go/src/github.com/safe-workout/safeworkout-be
+WorkingDirectory=/home/wing8169/go/src/github.com/gala-sejahtera/galasejahtera-be
+ExecStart=/home/wing8169/go/src/github.com/gala-sejahtera/galasejahtera-be
 
 [Install]
 WantedBy=multi-user.target

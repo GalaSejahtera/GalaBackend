@@ -1,4 +1,4 @@
-module safeworkout
+module galasejahtera
 
 go 1.13
 

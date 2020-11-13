@@ -2,9 +2,9 @@ package faq
 
 import (
 	"context"
-	pb "safeworkout/pkg/api"
-	"safeworkout/pkg/constants"
-	"safeworkout/pkg/model"
+	pb "galasejahtera/pkg/api"
+	"galasejahtera/pkg/constants"
+	"galasejahtera/pkg/model"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

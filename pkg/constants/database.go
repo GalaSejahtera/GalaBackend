@@ -2,7 +2,7 @@ package constants
 
 // Database
 const (
-	SafeWorkout = "safeworkout"
+	GalaSejahtera = "galasejahtera"
 )
 
 // Collections

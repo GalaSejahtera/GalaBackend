@@ -6,9 +6,9 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"safeworkout/pkg/constants"
-	"safeworkout/pkg/dto"
-	"safeworkout/pkg/utility"
+	"galasejahtera/pkg/constants"
+	"galasejahtera/pkg/dto"
+	"galasejahtera/pkg/utility"
 	"time"
 )
 
@@ -26,7 +26,7 @@ func InitActivityDAO(client *mongo.Client) IActivityDAO {
 func (v *ActivityDAO) Create(ctx context.Context, activity *dto.Activity) (*dto.Activity, error) {
 	activity.TTL = utility.MilliToTime(time.Now().Add(time.Hour*24).Unix()*1000 - 1000)
 	// create activity
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Activities)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Activities)
 	if _, err := collection.InsertOne(ctx, activity); err != nil {
 		return nil, err
 	}
@@ -35,7 +35,7 @@ func (v *ActivityDAO) Create(ctx context.Context, activity *dto.Activity) (*dto.
 
 // Get gets activity by ID
 func (v *ActivityDAO) Get(ctx context.Context, id string) (*dto.Activity, error) {
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Activities)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Activities)
 	activity := &dto.Activity{}
 	if err := collection.FindOne(ctx, bson.D{{constants.ID, id}}).Decode(&activity); err != nil {
 		return nil, err
@@ -45,7 +45,7 @@ func (v *ActivityDAO) Get(ctx context.Context, id string) (*dto.Activity, error)
 
 // Query queries activities by sort, range, filter
 func (v *ActivityDAO) Query(ctx context.Context, sort *dto.SortData, itemsRange *dto.RangeData, filter *dto.FilterData) (int64, []*dto.Activity, error) {
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Activities)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Activities)
 
 	var cursor *mongo.Cursor
 	var err error
@@ -136,7 +136,7 @@ func (v *ActivityDAO) Query(ctx context.Context, sort *dto.SortData, itemsRange 
 
 // Delete deletes activity by ID
 func (v *ActivityDAO) Delete(ctx context.Context, id string) error {
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Activities)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Activities)
 	if _, err := collection.DeleteOne(ctx, bson.D{{constants.ID, id}}); err != nil {
 		return err
 	}

@@ -3,9 +3,9 @@ package dao
 import (
 	"context"
 	"fmt"
-	"safeworkout/pkg/constants"
-	"safeworkout/pkg/dto"
-	"safeworkout/pkg/utility"
+	"galasejahtera/pkg/constants"
+	"galasejahtera/pkg/dto"
+	"galasejahtera/pkg/utility"
 	sort2 "sort"
 	"time"
 
@@ -42,7 +42,7 @@ func (v *UserDAO) Create(ctx context.Context, user *dto.User) (*dto.User, error)
 	user.Location = location
 
 	// create user
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Users)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Users)
 	if _, err := collection.InsertOne(ctx, user); err != nil {
 		return nil, err
 	}
@@ -51,7 +51,7 @@ func (v *UserDAO) Create(ctx context.Context, user *dto.User) (*dto.User, error)
 
 // Get gets user by ID
 func (v *UserDAO) Get(ctx context.Context, id string) (*dto.User, error) {
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Users)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Users)
 	user := &dto.User{}
 	if err := collection.FindOne(ctx, bson.D{{constants.ID, id}}).Decode(&user); err != nil {
 		return nil, err
@@ -80,7 +80,7 @@ func (v *UserDAO) BatchGet(ctx context.Context, ids []string) ([]*dto.User, erro
 
 // Query queries users by sort, range, filter
 func (v *UserDAO) Query(ctx context.Context, sort *dto.SortData, itemsRange *dto.RangeData, filter *dto.FilterData) (int64, []*dto.User, error) {
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Users)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Users)
 
 	var cursor *mongo.Cursor
 	var err error
@@ -199,7 +199,7 @@ func (v *UserDAO) Query(ctx context.Context, sort *dto.SortData, itemsRange *dto
 
 // Delete deletes user by ID
 func (v *UserDAO) Delete(ctx context.Context, id string) error {
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Users)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Users)
 	if _, err := collection.DeleteOne(ctx, bson.D{{constants.ID, id}}); err != nil {
 		return err
 	}
@@ -229,7 +229,7 @@ func (v *UserDAO) Update(ctx context.Context, user *dto.User) (*dto.User, error)
 	}
 	user.Location = location
 
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Users)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Users)
 	_, err := collection.UpdateOne(ctx, bson.D{{constants.ID, user.ID}}, bson.D{
 		{"$set", user},
 	})
@@ -305,7 +305,7 @@ func (v *UserDAO) GetNearbyUsers(ctx context.Context, user *dto.User) (int64, []
 		return 0, nil, constants.InvalidArgumentError
 	}
 
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Users)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Users)
 
 	query := bson.D{{
 		"$and",
@@ -446,7 +446,7 @@ func (v *UserDAO) updateUsersList(ctx context.Context, user *dto.User, targetUse
 		return err
 	}
 
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Users)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Users)
 
 	for _, targetUser := range targetUsers {
 

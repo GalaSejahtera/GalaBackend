@@ -2,7 +2,7 @@ package model
 
 import (
 	"context"
-	"safeworkout/pkg/dao"
+	"galasejahtera/pkg/dao"
 
 	"go.mongodb.org/mongo-driver/mongo"
 )

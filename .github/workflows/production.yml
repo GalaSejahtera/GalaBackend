@@ -19,38 +19,38 @@ jobs:
 
       - name: Pull cache
         run: |
-          docker pull safeworkout/be:production || true
-          docker pull safeworkout/be:production-builder || true
+          docker pull galasejahtera/be:production || true
+          docker pull galasejahtera/be:production-builder || true
 
       - name: Build builder
         run: >
           docker build .
           --file Dockerfile
           --target build_base
-          --cache-from safeworkout/be:production-builder
-          --tag safeworkout/be:production-builder
-          --tag safeworkout/be:builder-${GITHUB_SHA::7}
+          --cache-from galasejahtera/be:production-builder
+          --tag galasejahtera/be:production-builder
+          --tag galasejahtera/be:builder-${GITHUB_SHA::7}
 
       - name: Build image
         run: >
           docker build .
           --file Dockerfile
-          --cache-from safeworkout/be:production
-          --cache-from safeworkout/be:builder-${GITHUB_SHA::7}
-          --tag safeworkout/be:production
-          --tag safeworkout/be:${GITHUB_SHA::7}
+          --cache-from galasejahtera/be:production
+          --cache-from galasejahtera/be:builder-${GITHUB_SHA::7}
+          --tag galasejahtera/be:production
+          --tag galasejahtera/be:${GITHUB_SHA::7}
 
       - name: Push image
         run: |
-          docker push safeworkout/be:production
-          docker push safeworkout/be:${GITHUB_SHA::7}
-          docker push safeworkout/be:production-builder
-          docker push safeworkout/be:builder-${GITHUB_SHA::7}
+          docker push galasejahtera/be:production
+          docker push galasejahtera/be:${GITHUB_SHA::7}
+          docker push galasejahtera/be:production-builder
+          docker push galasejahtera/be:builder-${GITHUB_SHA::7}
 
       - name: Deploy image
         uses: appleboy/ssh-action@master
         env:
-          HOST: api.safeworkout.org
+          HOST: api.galasejahtera.org
           ACCESS_SECRET: ${{ secrets.PRODUCTION_ACCESS_SECRET }}
           ADMIN_URL: ${{ secrets.PRODUCTION_ADMIN_URL }}
           BACKEND_USER: ${{ secrets.PRODUCTION_BACKEND_USER }}
@@ -85,7 +85,7 @@ jobs:
             AUTH_ENABLED'
           script: |
             echo "$DOCKERHUB_PASSWORD" | docker login -u $DOCKERHUB_USERNAME --password-stdin
-            docker pull safeworkout/be:${GITHUB_SHA::7}
+            docker pull galasejahtera/be:${GITHUB_SHA::7}
             docker container stop be-production || true
             docker container rm be-production || true
             docker container run -d \
@@ -105,5 +105,5 @@ jobs:
               -e "SMTP_SERVER_PORT=$SMTP_SERVER_PORT" \
               -e "TEMPLATES_PATH=$TEMPLATES_PATH" \
               -e "AUTH_ENABLED=$AUTH_ENABLED" \
-              safeworkout/be:${GITHUB_SHA::7}
+              galasejahtera/be:${GITHUB_SHA::7}
             docker image prune -a -f && docker system prune -a -f

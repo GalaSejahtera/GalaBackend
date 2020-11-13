@@ -6,8 +6,8 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"safeworkout/pkg/constants"
-	"safeworkout/pkg/dto"
+	"galasejahtera/pkg/constants"
+	"galasejahtera/pkg/dto"
 )
 
 // FaqDAO ...
@@ -23,7 +23,7 @@ func InitFaqDAO(client *mongo.Client) IFaqDAO {
 // Create creates new faq
 func (v *FaqDAO) Create(ctx context.Context, faq *dto.Faq) (*dto.Faq, error) {
 	// create faq
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Faqs)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Faqs)
 	if _, err := collection.InsertOne(ctx, faq); err != nil {
 		return nil, err
 	}
@@ -33,7 +33,7 @@ func (v *FaqDAO) Create(ctx context.Context, faq *dto.Faq) (*dto.Faq, error) {
 // Update updates zone
 func (v *FaqDAO) Update(ctx context.Context, faq *dto.Faq) (*dto.Faq, error) {
 	// update faq
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Faqs)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Faqs)
 	_, err := collection.UpdateOne(ctx, bson.D{{constants.ID, faq.ID}}, bson.D{
 		{"$set", faq},
 	})
@@ -45,7 +45,7 @@ func (v *FaqDAO) Update(ctx context.Context, faq *dto.Faq) (*dto.Faq, error) {
 
 // Get gets faq by ID
 func (v *FaqDAO) Get(ctx context.Context, id string) (*dto.Faq, error) {
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Faqs)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Faqs)
 	faq := &dto.Faq{}
 	if err := collection.FindOne(ctx, bson.D{{constants.ID, id}}).Decode(&faq); err != nil {
 		return nil, err
@@ -68,7 +68,7 @@ func (v *FaqDAO) BatchGet(ctx context.Context, ids []string) ([]*dto.Faq, error)
 
 // Query queries faqs by sort, range, filter
 func (v *FaqDAO) Query(ctx context.Context, sort *dto.SortData, itemsRange *dto.RangeData, filter *dto.FilterData) (int64, []*dto.Faq, error) {
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Faqs)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Faqs)
 
 	var cursor *mongo.Cursor
 	var err error
@@ -159,7 +159,7 @@ func (v *FaqDAO) Query(ctx context.Context, sort *dto.SortData, itemsRange *dto.
 
 // Delete deletes faq by ID
 func (v *FaqDAO) Delete(ctx context.Context, id string) error {
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Faqs)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Faqs)
 	if _, err := collection.DeleteOne(ctx, bson.D{{constants.ID, id}}); err != nil {
 		return err
 	}

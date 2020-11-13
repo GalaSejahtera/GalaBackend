@@ -7,12 +7,12 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"os"
-	"safeworkout/pkg/handlers"
-	"safeworkout/pkg/logger"
-	model2 "safeworkout/pkg/model"
-	"safeworkout/pkg/protocol/grpc"
-	"safeworkout/pkg/protocol/rest"
-	"safeworkout/pkg/utility"
+	"galasejahtera/pkg/handlers"
+	"galasejahtera/pkg/logger"
+	model2 "galasejahtera/pkg/model"
+	"galasejahtera/pkg/protocol/grpc"
+	"galasejahtera/pkg/protocol/rest"
+	"galasejahtera/pkg/utility"
 )
 
 // Config is configuration for Server

@@ -2,10 +2,10 @@ package user
 
 import (
 	"context"
-	pb "safeworkout/pkg/api"
-	"safeworkout/pkg/dto"
-	"safeworkout/pkg/logger"
-	"safeworkout/pkg/model"
+	pb "galasejahtera/pkg/api"
+	"galasejahtera/pkg/dto"
+	"galasejahtera/pkg/logger"
+	"galasejahtera/pkg/model"
 )
 
 type LoginHandler struct {

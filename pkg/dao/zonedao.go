@@ -3,10 +3,10 @@ package dao
 import (
 	"context"
 	"fmt"
-	"safeworkout/pkg/constants"
-	"safeworkout/pkg/dto"
-	"safeworkout/pkg/logger"
-	"safeworkout/pkg/utility"
+	"galasejahtera/pkg/constants"
+	"galasejahtera/pkg/dto"
+	"galasejahtera/pkg/logger"
+	"galasejahtera/pkg/utility"
 	sort2 "sort"
 	"time"
 
@@ -35,7 +35,7 @@ func (v *ZoneDAO) Create(ctx context.Context, zone *dto.Zone) (*dto.Zone, error)
 	zone.Location = location
 
 	// create zone
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Zones)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Zones)
 	if _, err := collection.InsertOne(ctx, zone); err != nil {
 		return nil, err
 	}
@@ -44,7 +44,7 @@ func (v *ZoneDAO) Create(ctx context.Context, zone *dto.Zone) (*dto.Zone, error)
 
 // Get gets zone by ID
 func (v *ZoneDAO) Get(ctx context.Context, id string) (*dto.Zone, error) {
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Zones)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Zones)
 	zone := &dto.Zone{}
 	if err := collection.FindOne(ctx, bson.D{{constants.ID, id}}).Decode(&zone); err != nil {
 		return nil, err
@@ -89,7 +89,7 @@ func (v *ZoneDAO) BatchGet(ctx context.Context, ids []string) ([]*dto.Zone, erro
 
 // Query queries zones by sort, range, filter
 func (v *ZoneDAO) Query(ctx context.Context, sort *dto.SortData, itemsRange *dto.RangeData, filter *dto.FilterData) (int64, []*dto.Zone, error) {
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Zones)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Zones)
 
 	var cursor *mongo.Cursor
 	var err error
@@ -257,7 +257,7 @@ func (v *ZoneDAO) sortZones(zones []*dto.Zone, field string, order string) {
 
 // Delete deletes zone by ID
 func (v *ZoneDAO) Delete(ctx context.Context, id string) error {
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Zones)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Zones)
 	if _, err := collection.DeleteOne(ctx, bson.D{{constants.ID, id}}); err != nil {
 		return err
 	}
@@ -287,7 +287,7 @@ func (v *ZoneDAO) Update(ctx context.Context, zone *dto.Zone) (*dto.Zone, error)
 	zone.Location = location
 
 	// update zone
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Zones)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Zones)
 	_, err := collection.UpdateOne(ctx, bson.D{{constants.ID, zone.ID}}, bson.D{
 		{"$set", zone},
 	})
@@ -303,7 +303,7 @@ func (v *ZoneDAO) GetUsersByZone(ctx context.Context, zone *dto.Zone) ([]*dto.Us
 		return []*dto.User{}, nil
 	}
 
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Users)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Users)
 
 	query := bson.D{{
 		"$and",
@@ -366,7 +366,7 @@ func (v *ZoneDAO) GetSubZones(ctx context.Context, zone *dto.Zone, user *dto.Use
 		return []*dto.Zone{}, nil
 	}
 
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Zones)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Zones)
 
 	query := bson.D{{
 		"$and",
@@ -451,7 +451,7 @@ func (v *ZoneDAO) GetByUser(ctx context.Context, user *dto.User) (*dto.Zone, []*
 	}
 
 	// get all zones within 100 km
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Zones)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Zones)
 
 	query := bson.D{{
 		"$and",
@@ -570,7 +570,7 @@ func (v *ZoneDAO) QueryRecentUsersByZoneID(ctx context.Context, zoneID string) (
 
 // updateZonesList update visited zones list for contact tracing
 func (v *ZoneDAO) updateZonesList(ctx context.Context, user *dto.User, targetZone *dto.Zone) error {
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Users)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Users)
 
 	// clone target zone into tmp
 	tmp := &dto.Zone{
@@ -637,7 +637,7 @@ func (v *ZoneDAO) updateUsersList(ctx context.Context, zone *dto.Zone, targetUse
 		return err
 	}
 
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.Zones)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Zones)
 
 	// clone target user into tmp
 	tmp := &dto.User{

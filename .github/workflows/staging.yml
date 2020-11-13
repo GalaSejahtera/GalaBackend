@@ -19,38 +19,38 @@ jobs:
 
       - name: Pull cache
         run: |
-          docker pull safeworkout/be:staging || true
-          docker pull safeworkout/be:staging-builder || true
+          docker pull galasejahtera/be:staging || true
+          docker pull galasejahtera/be:staging-builder || true
 
       - name: Build builder
         run: >
           docker build .
           --file Dockerfile
           --target build_base
-          --cache-from safeworkout/be:staging-builder
-          --tag safeworkout/be:staging-builder
-          --tag safeworkout/be:builder-${GITHUB_SHA::7}
+          --cache-from galasejahtera/be:staging-builder
+          --tag galasejahtera/be:staging-builder
+          --tag galasejahtera/be:builder-${GITHUB_SHA::7}
 
       - name: Build image
         run: >
           docker build .
           --file Dockerfile
-          --cache-from safeworkout/be:staging
-          --cache-from safeworkout/be:builder-${GITHUB_SHA::7}
-          --tag safeworkout/be:staging
-          --tag safeworkout/be:${GITHUB_SHA::7}
+          --cache-from galasejahtera/be:staging
+          --cache-from galasejahtera/be:builder-${GITHUB_SHA::7}
+          --tag galasejahtera/be:staging
+          --tag galasejahtera/be:${GITHUB_SHA::7}
 
       - name: Push image
         run: |
-          docker push safeworkout/be:staging
-          docker push safeworkout/be:${GITHUB_SHA::7}
-          docker push safeworkout/be:staging-builder
-          docker push safeworkout/be:builder-${GITHUB_SHA::7}
+          docker push galasejahtera/be:staging
+          docker push galasejahtera/be:${GITHUB_SHA::7}
+          docker push galasejahtera/be:staging-builder
+          docker push galasejahtera/be:builder-${GITHUB_SHA::7}
 
       - name: Deploy image
         uses: appleboy/ssh-action@master
         env:
-          HOST: api.staging.safeworkout.org
+          HOST: api.staging.galasejahtera.org
           ACCESS_SECRET: ${{ secrets.STAGING_ACCESS_SECRET }}
           ADMIN_URL: ${{ secrets.STAGING_ADMIN_URL }}
           BACKEND_USER: ${{ secrets.STAGING_BACKEND_USER }}
@@ -85,7 +85,7 @@ jobs:
             AUTH_ENABLED'
           script: |
             echo "$DOCKERHUB_PASSWORD" | docker login -u $DOCKERHUB_USERNAME --password-stdin
-            docker pull safeworkout/be:${GITHUB_SHA::7}
+            docker pull galasejahtera/be:${GITHUB_SHA::7}
             docker container stop be-staging || true
             docker container rm be-staging || true
             docker container run -d \
@@ -105,5 +105,5 @@ jobs:
               -e "SMTP_SERVER_PORT=$SMTP_SERVER_PORT" \
               -e "TEMPLATES_PATH=$TEMPLATES_PATH" \
               -e "AUTH_ENABLED=$AUTH_ENABLED" \
-              safeworkout/be:${GITHUB_SHA::7}
+              galasejahtera/be:${GITHUB_SHA::7}
             docker image prune -a -f && docker system prune -a -f

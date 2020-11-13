@@ -5,10 +5,10 @@ import (
 	"net"
 	"os"
 	"os/signal"
-	pb "safeworkout/pkg/api"
-	"safeworkout/pkg/handlers"
-	"safeworkout/pkg/logger"
-	"safeworkout/pkg/protocol/grpc/middleware"
+	pb "galasejahtera/pkg/api"
+	"galasejahtera/pkg/handlers"
+	"galasejahtera/pkg/logger"
+	"galasejahtera/pkg/protocol/grpc/middleware"
 
 	"google.golang.org/grpc"
 )
@@ -28,7 +28,7 @@ func RunServer(ctx context.Context, handler handlers.IHandlers, port string) err
 
 	// register handlers
 	server := grpc.NewServer(opts...)
-	pb.RegisterSafeWorkoutServiceServer(server, handler)
+	pb.RegisterGalaSejahteraServiceServer(server, handler)
 
 	// graceful shutdown
 	c := make(chan os.Signal, 1)

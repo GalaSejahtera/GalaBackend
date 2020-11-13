@@ -2,7 +2,7 @@ package model
 
 import (
 	"context"
-	"safeworkout/pkg/dto"
+	"galasejahtera/pkg/dto"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

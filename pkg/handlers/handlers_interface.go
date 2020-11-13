@@ -2,7 +2,7 @@ package handlers
 
 import (
 	"context"
-	pb "safeworkout/pkg/api"
+	pb "galasejahtera/pkg/api"
 
 	"github.com/golang/protobuf/ptypes/empty"
 )

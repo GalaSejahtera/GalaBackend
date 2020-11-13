@@ -2,9 +2,9 @@ package user
 
 import (
 	"context"
-	"safeworkout/pkg/constants"
-	"safeworkout/pkg/logger"
-	"safeworkout/pkg/model"
+	"galasejahtera/pkg/constants"
+	"galasejahtera/pkg/logger"
+	"galasejahtera/pkg/model"
 	"strings"
 
 	"github.com/golang/protobuf/ptypes/empty"

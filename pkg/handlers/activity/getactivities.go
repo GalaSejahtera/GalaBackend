@@ -2,12 +2,12 @@ package activity
 
 import (
 	"context"
-	pb "safeworkout/pkg/api"
-	"safeworkout/pkg/constants"
-	"safeworkout/pkg/dto"
-	"safeworkout/pkg/logger"
-	"safeworkout/pkg/model"
-	"safeworkout/pkg/utility"
+	pb "galasejahtera/pkg/api"
+	"galasejahtera/pkg/constants"
+	"galasejahtera/pkg/dto"
+	"galasejahtera/pkg/logger"
+	"galasejahtera/pkg/model"
+	"galasejahtera/pkg/utility"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

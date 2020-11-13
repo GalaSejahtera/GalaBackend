@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	cmd "safeworkout/pkg/cmd/server"
+	cmd "galasejahtera/pkg/cmd/server"
 )
 
 func main() {

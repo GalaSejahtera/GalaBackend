@@ -5,9 +5,9 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
-	pb "safeworkout/pkg/api"
-	"safeworkout/pkg/logger"
-	"safeworkout/pkg/protocol/rest/middleware"
+	pb "galasejahtera/pkg/api"
+	"galasejahtera/pkg/logger"
+	"galasejahtera/pkg/protocol/rest/middleware"
 	"time"
 
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
@@ -23,7 +23,7 @@ func RunServer(ctx context.Context, grpcPort, httpPort string) error {
 	//mux := runtime.NewServeMux()
 	mux := runtime.NewServeMux(runtime.WithMarshalerOption(runtime.MIMEWildcard, &runtime.JSONPb{OrigName: true, EmitDefaults: true}))
 	opts := []grpc.DialOption{grpc.WithInsecure()}
-	if err := pb.RegisterSafeWorkoutServiceHandlerFromEndpoint(ctx, mux, "localhost:"+grpcPort, opts); err != nil {
+	if err := pb.RegisterGalaSejahteraServiceHandlerFromEndpoint(ctx, mux, "localhost:"+grpcPort, opts); err != nil {
 		logger.Log.Fatal("failed to start HTTP gateway", zap.String("reason", err.Error()))
 	}
 

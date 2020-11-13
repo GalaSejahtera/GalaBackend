@@ -2,8 +2,8 @@ package dao
 
 import (
 	"context"
-	"safeworkout/pkg/constants"
-	"safeworkout/pkg/dto"
+	"galasejahtera/pkg/constants"
+	"galasejahtera/pkg/dto"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -28,14 +28,14 @@ func (v *AuthDAO) InitIndex(ctx context.Context) error {
 		}, Options: options.Index().SetExpireAfterSeconds(1),
 	}
 
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.AuthTokens)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.AuthTokens)
 	_, err := collection.Indexes().CreateOne(ctx, mod)
 	return err
 }
 
 // Create creates new auth token
 func (v *AuthDAO) Create(ctx context.Context, auth *dto.AuthObject) (*dto.AuthObject, error) {
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.AuthTokens)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.AuthTokens)
 	if _, err := collection.InsertOne(ctx, auth); err != nil {
 		return nil, err
 	}
@@ -44,7 +44,7 @@ func (v *AuthDAO) Create(ctx context.Context, auth *dto.AuthObject) (*dto.AuthOb
 
 // Get gets auth token
 func (v *AuthDAO) Get(ctx context.Context, token string) (*dto.AuthObject, error) {
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.AuthTokens)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.AuthTokens)
 	auth := &dto.AuthObject{}
 	if err := collection.FindOne(ctx, bson.D{{constants.Token, token}}).Decode(&auth); err != nil {
 		return nil, err
@@ -54,7 +54,7 @@ func (v *AuthDAO) Get(ctx context.Context, token string) (*dto.AuthObject, error
 
 // Delete deletes user by token
 func (v *AuthDAO) Delete(ctx context.Context, token string) error {
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.AuthTokens)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.AuthTokens)
 	_, err := collection.DeleteOne(ctx, bson.D{{constants.Token, token}})
 	if err != nil {
 		return err
@@ -64,7 +64,7 @@ func (v *AuthDAO) Delete(ctx context.Context, token string) error {
 
 // DeleteByID deletes user by ID
 func (v *AuthDAO) DeleteByID(ctx context.Context, id string) error {
-	collection := v.client.Database(constants.SafeWorkout).Collection(constants.AuthTokens)
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.AuthTokens)
 
 	query := bson.D{{
 		"$and",

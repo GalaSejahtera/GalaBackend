@@ -1,11 +1,11 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "SafeWorkout Service",
-    "description": "SafeWorkout Service handles requests from SafeWorkout application.",
+    "title": "GalaSejahtera Service",
+    "description": "GalaSejahtera Service handles requests from GalaSejahtera application.",
     "version": "1.0.0",
     "contact": {
-      "url": "https://github.com/safe-workout/safeworkout-be",
+      "url": "https://github.com/gala-sejahtera/galasejahtera-be",
       "email": "chinxiongwei@yahoo.com.my"
     }
   },
@@ -95,7 +95,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       }
     },
@@ -128,7 +128,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       }
     },
@@ -159,7 +159,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       }
     },
@@ -192,7 +192,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       }
     },
@@ -232,7 +232,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       },
       "put": {
@@ -270,7 +270,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       }
     },
@@ -350,7 +350,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       }
     },
@@ -430,7 +430,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       },
       "delete": {
@@ -464,7 +464,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       },
       "put": {
@@ -495,7 +495,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       }
     },
@@ -527,7 +527,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       },
       "delete": {
@@ -557,7 +557,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       },
       "post": {
@@ -595,7 +595,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       },
       "put": {
@@ -633,7 +633,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       }
     },
@@ -666,7 +666,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       }
     },
@@ -689,7 +689,7 @@
           }
         },
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       }
     },
@@ -722,7 +722,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       }
     },
@@ -802,7 +802,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       }
     },
@@ -882,7 +882,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       }
     },
@@ -962,7 +962,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       },
       "delete": {
@@ -996,7 +996,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       },
       "put": {
@@ -1027,7 +1027,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       }
     },
@@ -1067,7 +1067,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       }
     },
@@ -1099,7 +1099,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       },
       "delete": {
@@ -1129,7 +1129,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       },
       "post": {
@@ -1167,7 +1167,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       },
       "put": {
@@ -1205,7 +1205,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       }
     },
@@ -1244,7 +1244,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       }
     },
@@ -1324,7 +1324,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       }
     },
@@ -1404,7 +1404,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       },
       "delete": {
@@ -1438,7 +1438,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       },
       "put": {
@@ -1469,7 +1469,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       }
     },
@@ -1501,7 +1501,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       },
       "delete": {
@@ -1531,7 +1531,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       },
       "post": {
@@ -1569,7 +1569,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       },
       "put": {
@@ -1607,7 +1607,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       }
     },
@@ -1687,7 +1687,7 @@
           }
         ],
         "tags": [
-          "SafeWorkoutService"
+          "GalaSejahteraService"
         ]
       }
     }

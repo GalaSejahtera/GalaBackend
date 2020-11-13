@@ -2,7 +2,7 @@ package model
 
 import (
 	"context"
-	"safeworkout/pkg/dto"
+	"galasejahtera/pkg/dto"
 )
 
 // IModel ...

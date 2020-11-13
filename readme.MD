@@ -45,23 +45,23 @@ export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin
 
 cd $GOPATH/src
 
-env GIT_TERMINAL_PROMPT=1 go get github.com/safe-workout/safeworkout-be
+env GIT_TERMINAL_PROMPT=1 go get github.com/gala-sejahtera/galasejahtera-be
 
 ## Build Backend Project
 
-cd github.com/safe-workout/safeworkout-be
+cd github.com/gala-sejahtera/galasejahtera-be
 
 go build cmd/server/main.go
 
 ## Initialize Service
 
-sudo nano /lib/systemd/system/safeworkoutbe.service
+sudo nano /lib/systemd/system/galasejahterabe.service
 
 [Unit]
 
 Description=Golang Service
 
-ConditionPathExists=/home/wing8169/go/src/github.com/safe-workout/safeworkout-be/main
+ConditionPathExists=/home/wing8169/go/src/github.com/gala-sejahtera/galasejahtera-be/main
 
 After=network.target
 
@@ -73,9 +73,9 @@ RestartSec=10
 
 startLimitIntervalSec=60
 
-WorkingDirectory=/home/wing8169/go/src/github.com/safe-workout/safeworkout-be
+WorkingDirectory=/home/wing8169/go/src/github.com/gala-sejahtera/galasejahtera-be
 
-ExecStart=/home/wing8169/go/src/github.com/safe-workout/safeworkout-be/main
+ExecStart=/home/wing8169/go/src/github.com/gala-sejahtera/galasejahtera-be/main
 
 [Install]
 
@@ -83,7 +83,7 @@ WantedBy=multi-user.target
 
 ## Input Environment Variables
 
-systemctl edit safeworkoutbe
+systemctl edit galasejahterabe
 
 [Service]
 
@@ -97,9 +97,9 @@ Environment="ACCESS_SECRET=$2a$04$gKZuI64CEh7Jovqf/UTefO58PwT1YuGooEHG/W7oX8AYKF
 
 Environment="REFRESH_SECRET=$2a$04$Sy7aXxwd.auGV4diE8u3iueKpAS.vaY4XSA.Zji6pGOrrY8Ox3eHa"
 
-Environment="EMAIL_ADDRESS=safeworkout2020@gmail.com"
+Environment="EMAIL_ADDRESS=galasejahtera2020@gmail.com"
 
-Environment="EMAIL_PASSWORD=SafeWorkout2020!"
+Environment="EMAIL_PASSWORD=GalaSejahtera2020!"
 
 Environment="SMTP_SERVER_HOST=smtp.gmail.com"
 
@@ -111,11 +111,11 @@ Environment="ADMIN_URL=http://localhost"
 
 ## Start Service
 
-sudo service safeworkoutbe start
+sudo service galasejahterabe start
 
 ## Restart Service
 
-sudo service safeworkoutbe restart
+sudo service galasejahterabe restart
 
 ## Expose Port in Firewall
 
@@ -131,19 +131,19 @@ sudo lsof -i -P -n | grep LISTEN
 
 navbe() {
 
-        cd $HOME/go/src/github.com/safe-workout/safeworkout-be
+        cd $HOME/go/src/github.com/gala-sejahtera/galasejahtera-be
 
 }
 
 deploybe() {
 
-        cd $HOME/go/src/github.com/safe-workout/safeworkout-be
+        cd $HOME/go/src/github.com/gala-sejahtera/galasejahtera-be
 
         go build cmd/server/main.go
 
         cd ~
 
-        sudo service safeworkoutbe restart
+        sudo service galasejahterabe restart
 
 }
 
