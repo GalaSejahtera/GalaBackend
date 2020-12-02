@@ -29,6 +29,12 @@ service GalaSejahteraService {
             body: "*"
         };
     }
+    // Get Covid Kases
+    rpc GetKases(google.protobuf.Empty) returns (GetKasesResponse){
+        option (google.api.http) = {
+            get: "/v1/kases"
+        };
+    }
     // Create Faq
     rpc CreateFaq(CreateFaqRequest) returns (CreateFaqResponse){
         option (google.api.http) = {
@@ -341,6 +347,11 @@ message GetNearbyUsersResponse {
     repeated User users = 1;
     // number of nearby users
     int64 userNum = 2;
+}
+
+// get kases response payload
+message GetKasesResponse {
+    map<string, int64> data = 1;
 }
 
 // ---------------- Faq -----------------

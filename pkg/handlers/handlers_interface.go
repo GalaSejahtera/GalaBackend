@@ -33,5 +33,7 @@ type IHandlers interface {
 	UpdateFaq(ctx context.Context, req *pb.UpdateFaqRequest) (*pb.UpdateFaqResponse, error)
 	DeleteFaqs(ctx context.Context, req *pb.DeleteFaqsRequest) (*pb.DeleteFaqsResponse, error)
 	UpdateFaqs(ctx context.Context, req *pb.UpdateFaqsRequest) (*pb.UpdateFaqsResponse, error)
-	// -------------- Zone ----------------
+	// -------------- Faq ----------------
+
+	GetKases(ctx context.Context, req *empty.Empty) (*pb.GetKasesResponse, error)
 }

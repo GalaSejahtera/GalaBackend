@@ -335,6 +335,29 @@
         ]
       }
     },
+    "/v1/kases": {
+      "get": {
+        "summary": "Get Covid Kases",
+        "operationId": "GetKases",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbGetKasesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "GalaSejahteraService"
+        ]
+      }
+    },
     "/v1/login": {
       "post": {
         "summary": "Login",
@@ -927,6 +950,19 @@
         }
       },
       "title": "get faqs response payload"
+    },
+    "pbGetKasesResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "format": "int64"
+          }
+        }
+      },
+      "title": "get kases response payload"
     },
     "pbGetNearbyUsersRequest": {
       "type": "object",

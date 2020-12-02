@@ -7,6 +7,7 @@ import (
 	"galasejahtera/pkg/constants"
 	"galasejahtera/pkg/dto"
 	"galasejahtera/pkg/handlers/faq"
+	"galasejahtera/pkg/handlers/kase"
 	"galasejahtera/pkg/handlers/user"
 	"galasejahtera/pkg/logger"
 	"galasejahtera/pkg/model"
@@ -26,6 +27,16 @@ type Handlers struct {
 // NewHandlers ...
 func NewHandlers(model model.IModel) IHandlers {
 	return &Handlers{Model: model}
+}
+
+func (s *Handlers) GetKases(ctx context.Context, req *empty.Empty) (*pb.GetKasesResponse, error) {
+	handler := &kase.GetKasesHandler{Model: s.Model}
+	resp, err := handler.GetKases(ctx, req)
+	if err != nil {
+		logger.Log.Error("GetKasesHandler: " + err.Error())
+		return nil, err
+	}
+	return resp, nil
 }
 
 func (s *Handlers) GetNearbyUsers(ctx context.Context, req *pb.GetNearbyUsersRequest) (*pb.GetNearbyUsersResponse, error) {
