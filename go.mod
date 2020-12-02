@@ -6,6 +6,7 @@ require (
 	cloud.google.com/go/firestore v1.2.0 // indirect
 	firebase.google.com/go v3.12.0+incompatible
 	github.com/algolia/algoliasearch-client-go/v3 v3.6.1 // indirect
+	github.com/aymerick/raymond v2.0.2+incompatible // indirect
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/dongri/phonenumber v0.0.0-20191114083529-37aca6809ea4
 	github.com/golang/protobuf v1.3.5
