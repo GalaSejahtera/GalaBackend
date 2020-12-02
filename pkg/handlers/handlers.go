@@ -29,47 +29,32 @@ func NewHandlers(model model.IModel) IHandlers {
 }
 
 func (s *Handlers) GetNearbyUsers(ctx context.Context, req *pb.GetNearbyUsersRequest) (*pb.GetNearbyUsersResponse, error) {
-	u, err := s.validateUser(ctx, constants.AllCanAccess)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
 	handler := &user.GetNearbyUsersHandler{Model: s.Model}
 	resp, err := handler.GetNearbyUsers(ctx, req)
 	if err != nil {
-		logger.Log.Error("ClientGetNearbyUsersHandler: "+err.Error(), zap.String("UserID", u.ID))
+		logger.Log.Error("ClientGetNearbyUsersHandler: " + err.Error())
 		return nil, err
 	}
-	logger.Log.Info("ClientGetNearbyUsersHandler", zap.String("UserID", u.ID))
 	return resp, nil
 }
 
 func (s *Handlers) CreateUser(ctx context.Context, req *pb.CreateUserRequest) (*pb.CreateUserResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserOnly)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
 	handler := &user.CreateUserHandler{Model: s.Model}
 	resp, err := handler.CreateUser(ctx, req)
 	if err != nil {
-		logger.Log.Error("CreateUserHandler: "+err.Error(), zap.String("UserID", u.ID))
+		logger.Log.Error("CreateUserHandler: " + err.Error())
 		return nil, err
 	}
-	logger.Log.Info("CreateUserHandler", zap.String("UserID", u.ID))
 	return resp, nil
 }
 
 func (s *Handlers) GetUsers(ctx context.Context, req *pb.GetUsersRequest) (*pb.GetUsersResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserAndAdmin)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
 	handler := &user.GetUsersHandler{Model: s.Model}
 	resp, err := handler.GetUsers(ctx, req)
 	if err != nil {
-		logger.Log.Error("GetUsersHandler: "+err.Error(), zap.String("UserID", u.ID))
+		logger.Log.Error("GetUsersHandler: " + err.Error())
 		return nil, err
 	}
-	logger.Log.Info("GetUsersHandler", zap.String("UserID", u.ID))
 	return resp, nil
 }
 
@@ -85,62 +70,46 @@ func (s *Handlers) GetUser(ctx context.Context, req *pb.GetUserRequest) (*pb.Get
 }
 
 func (s *Handlers) DeleteUser(ctx context.Context, req *pb.DeleteUserRequest) (*pb.DeleteUserResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserOnly)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
 	handler := &user.DeleteUserHandler{Model: s.Model}
 	resp, err := handler.DeleteUser(ctx, req)
 	if err != nil {
-		logger.Log.Error("DeleteUserHandler: "+err.Error(), zap.String("UserID", u.ID), zap.String("TargetUserID", req.Id))
+		logger.Log.Error("DeleteUserHandler: "+err.Error(), zap.String("TargetUserID", req.Id))
 		return nil, err
 	}
-	logger.Log.Info("DeleteUserHandler", zap.String("UserID", u.ID), zap.String("TargetUserID", req.Id))
+	logger.Log.Info("DeleteUserHandler", zap.String("TargetUserID", req.Id))
 	return resp, nil
 }
 
 func (s *Handlers) UpdateUser(ctx context.Context, req *pb.UpdateUserRequest) (*pb.UpdateUserResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserOnly)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
 	handler := &user.UpdateUserHandler{Model: s.Model}
 	resp, err := handler.UpdateUser(ctx, req)
 	if err != nil {
-		logger.Log.Error("UpdateUserHandler: "+err.Error(), zap.String("UserID", u.ID), zap.String("TargetUserID", req.Id))
+		logger.Log.Error("UpdateUserHandler: "+err.Error(), zap.String("TargetUserID", req.Id))
 		return nil, err
 	}
-	logger.Log.Info("UpdateUserHandler", zap.String("UserID", u.ID), zap.String("TargetUserID", req.Id))
+	logger.Log.Info("UpdateUserHandler", zap.String("TargetUserID", req.Id))
 	return resp, nil
 }
 
 func (s *Handlers) DeleteUsers(ctx context.Context, req *pb.DeleteUsersRequest) (*pb.DeleteUsersResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserOnly)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
 	handler := &user.DeleteUsersHandler{Model: s.Model}
 	resp, err := handler.DeleteUsers(ctx, req)
 	if err != nil {
-		logger.Log.Error("DeleteUsersHandler: "+err.Error(), zap.String("UserID", u.ID), zap.Strings("TargetUserIDs", req.Ids))
+		logger.Log.Error("DeleteUsersHandler: "+err.Error(), zap.Strings("TargetUserIDs", req.Ids))
 		return nil, err
 	}
-	logger.Log.Info("DeleteUsersHandler", zap.String("UserID", u.ID), zap.Strings("TargetUserIDs", req.Ids))
+	logger.Log.Info("DeleteUsersHandler", zap.Strings("TargetUserIDs", req.Ids))
 	return resp, nil
 }
 
 func (s *Handlers) UpdateUsers(ctx context.Context, req *pb.UpdateUsersRequest) (*pb.UpdateUsersResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserOnly)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
 	handler := &user.UpdateUsersHandler{Model: s.Model}
 	resp, err := handler.UpdateUsers(ctx, req)
 	if err != nil {
-		logger.Log.Error("UpdateUsersHandler: "+err.Error(), zap.String("UserID", u.ID), zap.Strings("TargetUserIDs", req.Ids))
+		logger.Log.Error("UpdateUsersHandler: "+err.Error(), zap.Strings("TargetUserIDs", req.Ids))
 		return nil, err
 	}
-	logger.Log.Info("UpdateUsersHandler", zap.String("UserID", u.ID), zap.Strings("TargetUserIDs", req.Ids))
+	logger.Log.Info("UpdateUsersHandler", zap.Strings("TargetUserIDs", req.Ids))
 	return resp, nil
 }
 
@@ -198,17 +167,13 @@ func (s *Handlers) Refresh(ctx context.Context, _ *empty.Empty) (*pb.RefreshResp
 // -------------------- Faqs ------------------------
 
 func (s *Handlers) CreateFaq(ctx context.Context, req *pb.CreateFaqRequest) (*pb.CreateFaqResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserOnly)
-	if err != nil {
-		return nil, constants.UnauthorizedAccessError
-	}
 	handler := &faq.CreateFaqHandler{Model: s.Model}
 	resp, err := handler.CreateFaq(ctx, req)
 	if err != nil {
-		logger.Log.Error("CreateFaqHandler: "+err.Error(), zap.String("UserID", u.ID))
+		logger.Log.Error("CreateFaqHandler: " + err.Error())
 		return nil, err
 	}
-	logger.Log.Info("CreateFaqHandler", zap.String("UserID", u.ID))
+	logger.Log.Info("CreateFaqHandler")
 	return resp, nil
 }
 
@@ -223,7 +188,7 @@ func (s *Handlers) GetFaqs(ctx context.Context, req *pb.GetFaqsRequest) (*pb.Get
 }
 
 func (s *Handlers) GetFaq(ctx context.Context, req *pb.GetFaqRequest) (*pb.GetFaqResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserOnly)
+	u, err := s.validateUser(ctx, constants.AllCanAccess)
 	if err != nil {
 		return nil, constants.UnauthorizedAccessError
 	}
@@ -238,7 +203,7 @@ func (s *Handlers) GetFaq(ctx context.Context, req *pb.GetFaqRequest) (*pb.GetFa
 }
 
 func (s *Handlers) DeleteFaq(ctx context.Context, req *pb.DeleteFaqRequest) (*pb.DeleteFaqResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserOnly)
+	u, err := s.validateUser(ctx, constants.AllCanAccess)
 	if err != nil {
 		return nil, constants.UnauthorizedAccessError
 	}
@@ -253,7 +218,7 @@ func (s *Handlers) DeleteFaq(ctx context.Context, req *pb.DeleteFaqRequest) (*pb
 }
 
 func (s *Handlers) UpdateFaq(ctx context.Context, req *pb.UpdateFaqRequest) (*pb.UpdateFaqResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserOnly)
+	u, err := s.validateUser(ctx, constants.AllCanAccess)
 	if err != nil {
 		return nil, constants.UnauthorizedAccessError
 	}
@@ -268,7 +233,7 @@ func (s *Handlers) UpdateFaq(ctx context.Context, req *pb.UpdateFaqRequest) (*pb
 }
 
 func (s *Handlers) DeleteFaqs(ctx context.Context, req *pb.DeleteFaqsRequest) (*pb.DeleteFaqsResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserOnly)
+	u, err := s.validateUser(ctx, constants.AllCanAccess)
 	if err != nil {
 		return nil, constants.UnauthorizedAccessError
 	}
@@ -283,7 +248,7 @@ func (s *Handlers) DeleteFaqs(ctx context.Context, req *pb.DeleteFaqsRequest) (*
 }
 
 func (s *Handlers) UpdateFaqs(ctx context.Context, req *pb.UpdateFaqsRequest) (*pb.UpdateFaqsResponse, error) {
-	u, err := s.validateUser(ctx, constants.SuperUserOnly)
+	u, err := s.validateUser(ctx, constants.AllCanAccess)
 	if err != nil {
 		return nil, constants.UnauthorizedAccessError
 	}

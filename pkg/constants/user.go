@@ -7,11 +7,7 @@ const (
 )
 
 const (
-	SuperUser = "superuser"
-	Admin     = "admin"
-	User      = "user"
+	User = "user"
 )
 
-var SuperUserOnly = []string{SuperUser}
-var SuperUserAndAdmin = []string{SuperUser, Admin}
-var AllCanAccess = []string{SuperUser, Admin, User}
+var AllCanAccess = []string{User}
