@@ -61,9 +61,9 @@ func NormalizePhoneNumber(phoneNum string, countryCode string) string {
 	return number
 }
 
-func NormalizeID(id string) string {
+func NormalizeContent(id string) string {
 	re := regexp.MustCompile(`[^0-9a-zA-Z]`)
-	return strings.ToUpper(re.ReplaceAllString(id, ""))
+	return re.ReplaceAllString(id, "")
 }
 
 func NormalizeDate(date string) (string, error) {
@@ -201,7 +201,36 @@ func GetZoneRisk(radius float64, capacity, usersWithin int64) int64 {
 	return constants.MinimumRisk
 }
 
-func CrawlNews(page int64) []*dto.Covid {
+func CrawlStory(id string) string {
+	// Request the HTML page.https://www.malaysiakini.com/news/559862
+	res, err := http.Get(fmt.Sprintf("https://www.malaysiakini.com/news/%s", id))
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer res.Body.Close()
+	if res.StatusCode != 200 {
+		log.Fatalf("status code error: %d %s", res.StatusCode, res.Status)
+	}
+
+	// Load the HTML document
+	doc, err := goquery.NewDocumentFromReader(res.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	contents := ""
+	// Find the review items
+	doc.Find("p").Each(func(i int, s *goquery.Selection) {
+		content := s.Text()
+		if len(NormalizeContent(content)) == 0 {
+			return
+		}
+		contents += content + "\n\n"
+	})
+	return contents
+}
+
+func CrawlStories(page int64) []*dto.Covid {
 	// Request the HTML page.
 	res, err := http.Get(fmt.Sprintf("https://www.malaysiakini.com/en/tag/covid-19?alt=json&page=%d", page))
 	if err != nil {

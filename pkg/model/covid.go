@@ -3,12 +3,18 @@ package model
 import (
 	"context"
 	"galasejahtera/pkg/dto"
+	"galasejahtera/pkg/utility"
 )
 
 // GetCovid gets covid by ID
 func (m *Model) GetCovid(ctx context.Context, id string) (*dto.Covid, error) {
-	// TODO: make this to fetch by SID with contents
-	return m.covidDAO.Get(ctx, id)
+	utility.CrawlStory(id)
+	c, err := m.covidDAO.Get(ctx, id)
+	if err != nil {
+		return nil, err
+	}
+	c.Content = utility.CrawlStory(id)
+	return c, nil
 }
 
 // QueryCovids queries covids by sort, range, filter
