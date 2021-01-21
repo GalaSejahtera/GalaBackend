@@ -45,11 +45,11 @@ export PATH=$PATH:$GOPATH/bin:/usr/local/go/bin
 
 cd $GOPATH/src
 
-env GIT_TERMINAL_PROMPT=1 go get github.com/gala-sejahtera/galasejahtera-be
+env GIT_TERMINAL_PROMPT=1 go get github.com/GalaSejahtera/GalaBackend
 
 ## Build Backend Project
 
-cd github.com/gala-sejahtera/galasejahtera-be
+cd github.com/GalaSejahtera/GalaBackend
 
 go build cmd/server/main.go
 
@@ -61,7 +61,7 @@ sudo nano /lib/systemd/system/galasejahterabe.service
 
 Description=Golang Service
 
-ConditionPathExists=/home/wing8169/go/src/github.com/gala-sejahtera/galasejahtera-be/main
+ConditionPathExists=/home/lewis/go/src/github.com/GalaSejahtera/GalaBackend/main
 
 After=network.target
 
@@ -73,9 +73,9 @@ RestartSec=10
 
 startLimitIntervalSec=60
 
-WorkingDirectory=/home/wing8169/go/src/github.com/gala-sejahtera/galasejahtera-be
+WorkingDirectory=/home/lewis/go/src/github.com/GalaSejahtera/GalaBackend
 
-ExecStart=/home/wing8169/go/src/github.com/gala-sejahtera/galasejahtera-be/main
+ExecStart=/home/lewis/go/src/github.com/GalaSejahtera/GalaBackend/main
 
 [Install]
 
@@ -131,13 +131,13 @@ sudo lsof -i -P -n | grep LISTEN
 
 navbe() {
 
-        cd $HOME/go/src/github.com/gala-sejahtera/galasejahtera-be
+        cd $HOME/go/src/github.com/GalaSejahtera/GalaBackend
 
 }
 
 deploybe() {
 
-        cd $HOME/go/src/github.com/gala-sejahtera/galasejahtera-be
+        cd $HOME/go/src/github.com/GalaSejahtera/GalaBackend
 
         go build cmd/server/main.go
 
