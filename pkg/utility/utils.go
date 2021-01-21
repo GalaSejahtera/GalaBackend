@@ -16,54 +16,16 @@ import (
 	"time"
 	"unicode"
 	"unicode/utf8"
-
-	"github.com/dongri/phonenumber"
 )
-
-func NormalizePhoneNumber(phoneNum string, countryCode string) string {
-	code := countryCode
-
-	number := phonenumber.Parse(phoneNum, code)
-	if number != "" {
-		return number
-	}
-
-	// default MY
-	number = phonenumber.Parse(phoneNum, "MY")
-	if number != "" {
-		return number
-	}
-
-	country := phonenumber.GetISO3166ByNumber(phoneNum, true)
-	number = phonenumber.ParseWithLandLine(phoneNum, country.CountryName)
-	if number != "" {
-		return number
-	}
-
-	country = phonenumber.GetISO3166ByNumber(phoneNum, false)
-	number = phonenumber.ParseWithLandLine(phoneNum, country.CountryName)
-	if number != "" {
-		return number
-	}
-
-	country = phonenumber.GetISO3166ByNumber("+"+phoneNum, true)
-	number = phonenumber.ParseWithLandLine("+"+phoneNum, country.CountryName)
-	if number != "" {
-		return number
-	}
-
-	country = phonenumber.GetISO3166ByNumber("+"+phoneNum, false)
-	number = phonenumber.ParseWithLandLine("+"+phoneNum, country.CountryName)
-	if number != "" {
-		return number
-	}
-
-	return number
-}
 
 func NormalizeContent(id string) string {
 	re := regexp.MustCompile(`[^0-9a-zA-Z]`)
 	return re.ReplaceAllString(id, "")
+}
+
+func NormalizePlace(id string) string {
+	re := regexp.MustCompile(`[^0-9a-zA-Z]`)
+	return strings.ToUpper(re.ReplaceAllString(id, ""))
 }
 
 func NormalizeDate(date string) (string, error) {
@@ -73,15 +35,6 @@ func NormalizeDate(date string) (string, error) {
 		return "", constants.InvalidDateError
 	}
 	return d, nil
-}
-
-func NormalizeRole(role string) string {
-	re := regexp.MustCompile(`[^a-zA-Z]`)
-	return strings.ToLower(re.ReplaceAllString(role, ""))
-}
-
-func NormalizeName(name string) string {
-	return strings.Trim(name, " ")
 }
 
 func ValidateEmail(email string) bool {
@@ -228,6 +181,36 @@ func CrawlStory(id string) string {
 		contents += content + "\n\n"
 	})
 	return contents
+}
+
+func CrawlDaily() *dto.Daily {
+	// Request the HTML page.
+	res, err := http.Get("https://knowyourzone.xyz/api/data/covid19/latest")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer res.Body.Close()
+	if res.StatusCode != 200 {
+		log.Fatalf("status code error: %d %s", res.StatusCode, res.Status)
+	}
+
+	// Load the HTML document
+	doc, err := goquery.NewDocumentFromReader(res.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// get json string
+	jsonContent := doc.Text()
+	textBytes := []byte(jsonContent)
+	daily := &dto.Daily{}
+	err = json.Unmarshal(textBytes, &daily)
+	if err != nil {
+		fmt.Println(err)
+		return &dto.Daily{}
+	}
+
+	return daily
 }
 
 func CrawlStories(page int64) []*dto.Covid {

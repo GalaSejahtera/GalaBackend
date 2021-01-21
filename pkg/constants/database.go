@@ -13,6 +13,7 @@ const (
 	Activities = "activities"
 	Reports    = "reports"
 	Covids     = "covids"
+	Dailies    = "dailies"
 )
 
 // Fields
@@ -55,6 +56,9 @@ const (
 	// Activity
 	Time   = "time"
 	ZoneId = "zoneId"
+
+	// Daily
+	LastUpdated = "last_updated"
 )
 
 // Keywords

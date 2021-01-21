@@ -8,7 +8,6 @@ import (
 
 // GetCovid gets covid by ID
 func (m *Model) GetCovid(ctx context.Context, id string) (*dto.Covid, error) {
-	utility.CrawlStory(id)
 	c, err := m.covidDAO.Get(ctx, id)
 	if err != nil {
 		return nil, err

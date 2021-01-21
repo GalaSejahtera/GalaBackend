@@ -243,6 +243,37 @@
         ]
       }
     },
+    "/v1/places/{id}": {
+      "get": {
+        "summary": "Get District",
+        "operationId": "GetDistrict",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbGetDistrictResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "GalaSejahteraService"
+        ]
+      }
+    },
     "/v1/refresh": {
       "post": {
         "summary": "Refresh",
@@ -1048,6 +1079,19 @@
       },
       "title": "delete users response payload"
     },
+    "pbDistrict": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "total": {
+          "type": "string",
+          "format": "int64"
+        }
+      },
+      "title": "district payload"
+    },
     "pbGetCovidResponse": {
       "type": "object",
       "properties": {
@@ -1075,6 +1119,16 @@
         }
       },
       "title": "get covids response payload"
+    },
+    "pbGetDistrictResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/pbDistrict",
+          "title": "district payload"
+        }
+      },
+      "title": "get district response payload"
     },
     "pbGetKasesResponse": {
       "type": "object",

@@ -34,6 +34,12 @@ service GalaSejahteraService {
             get: "/v1/covids/{id}"
         };
     }
+    // Get District
+    rpc GetDistrict(GetDistrictRequest) returns (GetDistrictResponse){
+        option (google.api.http) = {
+            get: "/v1/places/{id}"
+        };
+    }
     // Get Nearby Users
     rpc GetNearbyUsers(GetNearbyUsersRequest) returns (GetNearbyUsersResponse){
         option (google.api.http) = {
@@ -202,6 +208,11 @@ message Covid {
     string newsUrl = 8;
 }
 
+// district payload
+message District {
+    string name = 1;
+    int64 total = 2;
+}
 
 // report payload
 message Report {
@@ -376,6 +387,19 @@ message GetNearbyUsersResponse {
 // get kases response payload
 message GetKasesResponse {
     map<string, int64> data = 1;
+}
+
+// ---------------- Covid -----------------
+
+// get district request payload
+message GetDistrictRequest {
+    string id = 1;
+}
+
+// get district response payload
+message GetDistrictResponse {
+    // district payload
+    District data = 1;
 }
 
 // ---------------- Covid -----------------

@@ -40,5 +40,9 @@ type IHandlers interface {
 	GetCovid(ctx context.Context, req *pb.GetCovidRequest) (*pb.GetCovidResponse, error)
 	// -------------- Covid ----------------
 
+	// -------------- Daily ----------------
+	GetDistrict(ctx context.Context, req *pb.GetDistrictRequest) (*pb.GetDistrictResponse, error)
+	// -------------- Daily ----------------
+
 	GetKases(ctx context.Context, req *empty.Empty) (*pb.GetKasesResponse, error)
 }

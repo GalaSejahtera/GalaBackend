@@ -3,8 +3,8 @@ package utility
 import (
 	"context"
 	"fmt"
-	"go.uber.org/zap"
 	"galasejahtera/pkg/logger"
+	"go.uber.org/zap"
 	"sync"
 	"time"
 )
@@ -20,7 +20,6 @@ type Scheduler struct {
 func (it *Scheduler) isr() {
 	fmt.Printf("Scheduler : Job called\n")
 	if it.Enabled {
-		// disable inactive user
 		err := it.Job(context.Background())
 		if err != nil {
 			logger.Log.Error("error in scheduler revoke job function", zap.String("reason", err.Error()))

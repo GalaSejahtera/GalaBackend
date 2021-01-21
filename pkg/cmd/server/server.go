@@ -49,6 +49,8 @@ func RunServer() error {
 	}
 	defer mongoClient.Disconnect(ctx)
 
+	utility.CrawlDaily()
+
 	// initialize model
 	model := model2.InitModel(mongoClient)
 
@@ -58,6 +60,10 @@ func RunServer() error {
 	// initialize scheduler
 	go func() {
 		it := utility.Scheduler{Enabled: true, Job: model.DisableInactiveUsers}
+		it.Start()
+	}()
+	go func() {
+		it := utility.DailyScheduler{Enabled: true, Job: model.UpdateDailies}
 		it.Start()
 	}()
 

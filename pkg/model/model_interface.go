@@ -73,4 +73,9 @@ type IModel interface {
 	// QueryCovids queries covids by sort, range, filter
 	QueryCovids(ctx context.Context, sort *dto.SortData, itemsRange *dto.RangeData, filter *dto.FilterData) (int64, []*dto.Covid, error)
 	/////////////
+
+	///////////// Daily models
+	GetDaily(ctx context.Context) (*dto.Daily, error)
+	UpdateDailies(ctx context.Context) error
+	/////////////
 }

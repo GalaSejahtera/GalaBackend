@@ -74,3 +74,20 @@ type ICovidDAO interface {
 	// Update updates covid
 	Update(ctx context.Context, covid *dto.Covid) (*dto.Covid, error)
 }
+
+// IDailyDAO ...
+type IDailyDAO interface {
+	// Create creates new daily
+	Create(ctx context.Context, daily *dto.Daily) (*dto.Daily, error)
+	// Get gets daily
+	Get(ctx context.Context, id string) (*dto.Daily, error)
+	// BatchGet gets dailies by slice of IDs
+	BatchGet(ctx context.Context, ids []string) ([]*dto.Daily, error)
+	// Query queries dailies by sort, range, filter
+	Query(ctx context.Context, sort *dto.SortData, itemsRange *dto.RangeData, filter *dto.FilterData) (int64, []*dto.Daily, error)
+	// Delete deletes daily by ID
+	Delete(ctx context.Context, id string) error
+	// BatchDelete deletes dailies by IDs
+	BatchDelete(ctx context.Context, ids []string) ([]string, error)
+	QueryByTimeRange(ctx context.Context, startTime int64, endTime int64) (int64, []*dto.Daily, error)
+}

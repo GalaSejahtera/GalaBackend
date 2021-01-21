@@ -16,3 +16,22 @@ type Covid struct {
 type Container struct {
 	Stories []*Covid `json:"stories" bson:"stories"`
 }
+
+// District ...
+type District struct {
+	Name  string `json:"name" bson:"name"`
+	Total int64  `json:"total" bson:"total"`
+}
+
+// State ...
+type State struct {
+	Name      string      `json:"name" bson:"name"`
+	Total     int64       `json:"total" bson:"total"`
+	Districts []*District `json:"districts" bson:"districts"`
+}
+
+// Daily ...
+type Daily struct {
+	States      []*State `json:"states" bson:"states"`
+	LastUpdated int64    `json:"last_updated" bson:"last_updated"`
+}

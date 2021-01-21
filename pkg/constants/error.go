@@ -19,7 +19,7 @@ var (
 	EmailAlreadyExistError       = status.Error(codes.AlreadyExists, "Email already exist, please use another email.")
 
 	UserNotFoundError     = status.Error(codes.NotFound, "User not found!")
-	ZoneNotFoundError     = status.Error(codes.NotFound, "Zone not found!")
+	DailyNotFoundError    = status.Error(codes.NotFound, "Covid-19 cases report not found!")
 	ReportNotFoundError   = status.Error(codes.NotFound, "Report not found!")
 	CovidNotFoundError    = status.Error(codes.NotFound, "Article not found!")
 	ActivityNotFoundError = status.Error(codes.NotFound, "Activity not found!")

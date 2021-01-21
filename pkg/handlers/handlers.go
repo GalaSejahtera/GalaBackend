@@ -7,6 +7,7 @@ import (
 	"galasejahtera/pkg/constants"
 	"galasejahtera/pkg/dto"
 	"galasejahtera/pkg/handlers/covid"
+	"galasejahtera/pkg/handlers/daily"
 	"galasejahtera/pkg/handlers/kase"
 	"galasejahtera/pkg/handlers/report"
 	"galasejahtera/pkg/handlers/user"
@@ -298,6 +299,21 @@ func (s *Handlers) UpdateReports(ctx context.Context, req *pb.UpdateReportsReque
 }
 
 // -------------------- Reports ------------------------
+
+// -------------------- Daily ------------------------
+
+func (s *Handlers) GetDistrict(ctx context.Context, req *pb.GetDistrictRequest) (*pb.GetDistrictResponse, error) {
+	handler := &daily.GetDailyHandler{Model: s.Model}
+	resp, err := handler.GetDistrict(ctx, req)
+	if err != nil {
+		logger.Log.Error("GetDistrictHandler: "+err.Error(), zap.String("District", req.Id))
+		return nil, err
+	}
+	logger.Log.Info("GetDistrictHandler", zap.String("District", req.Id))
+	return resp, nil
+}
+
+// -------------------- Daily ------------------------
 
 func (s *Handlers) validateUser(ctx context.Context, roles []string) (*dto.User, error) {
 	if os.Getenv("AUTH_ENABLED") != "true" {
