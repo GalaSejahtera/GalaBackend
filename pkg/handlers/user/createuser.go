@@ -29,6 +29,7 @@ func (s *CreateUserHandler) CreateUser(ctx context.Context, req *pb.CreateUserRe
 		Long:     req.Data.Long,
 		Users:    []*dto.User{},
 		IsActive: req.Data.IsActive,
+		Name:     req.Data.Name,
 	}
 	err := s.validateAndProcessReq(user)
 	if err != nil {
@@ -81,6 +82,7 @@ func (s *CreateUserHandler) userToResp(user *dto.User) *pb.CreateUserResponse {
 			Lat:         user.Lat,
 			Long:        user.Long,
 			IsActive:    user.IsActive,
+			Name:        user.Name,
 		},
 	}
 }

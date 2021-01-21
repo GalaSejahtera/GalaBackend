@@ -88,6 +88,7 @@ func (s *GetUsersHandler) usersToResponses(users []*dto.User) (*pb.GetUsersRespo
 			LastUpdated: user.LastUpdated,
 			Lat:         user.Lat,
 			Long:        user.Long,
+			Name:        user.Name,
 		}
 
 		resps = append(resps, resp)

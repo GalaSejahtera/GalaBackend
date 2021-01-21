@@ -1236,6 +1236,9 @@
         "isActive": {
           "type": "boolean",
           "format": "boolean"
+        },
+        "name": {
+          "type": "string"
         }
       },
       "title": "user payload"

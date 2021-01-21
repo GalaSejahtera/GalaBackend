@@ -61,6 +61,7 @@ func (s *UpdateUserHandler) reqToUser(req *pb.UpdateUserRequest) *dto.User {
 		IsActive: req.Data.IsActive,
 		Lat:      req.Data.Lat,
 		Long:     req.Data.Long,
+		Name:     req.Data.Name,
 	}
 	return user
 }
@@ -75,6 +76,7 @@ func (s *UpdateUserHandler) userToResp(user *dto.User) *pb.UpdateUserResponse {
 			LastUpdated: user.LastUpdated,
 			Lat:         user.Lat,
 			Long:        user.Long,
+			Name:        user.Name,
 		},
 	}
 	return resp

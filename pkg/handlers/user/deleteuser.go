@@ -38,6 +38,7 @@ func (s *DeleteUserHandler) userToResp(user *dto.User) *pb.DeleteUserResponse {
 			Lat:         user.Lat,
 			Long:        user.Long,
 			IsActive:    user.IsActive,
+			Name:        user.Name,
 		},
 	}
 	return resp

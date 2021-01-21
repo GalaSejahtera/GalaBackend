@@ -44,6 +44,7 @@ func (s *GetUserHandler) userToResponse(user *dto.User) (*pb.GetUserResponse, er
 			LastUpdated: user.LastUpdated,
 			Lat:         user.Lat,
 			Long:        user.Long,
+			Name:        user.Name,
 		},
 	}
 

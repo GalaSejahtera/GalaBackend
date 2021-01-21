@@ -74,6 +74,7 @@ func (m *Model) ClientUpdateUser(ctx context.Context, user *dto.User) (*dto.User
 	u.Lat = user.Lat
 	u.Long = user.Long
 	u.LastUpdated = user.LastUpdated
+	u.Name = user.Name
 
 	_, err = m.userDAO.Update(ctx, u)
 	if err != nil {
@@ -99,6 +100,7 @@ func (m *Model) UpdateUser(ctx context.Context, user *dto.User) (*dto.User, erro
 	u.IsActive = user.IsActive
 	u.Lat = user.Lat
 	u.Long = user.Long
+	u.Name = user.Name
 
 	_, err = m.userDAO.Update(ctx, u)
 	if err != nil {
@@ -417,6 +419,7 @@ func (m *Model) createToken(user *dto.User) (*dto.User, error) {
 	atClaims[constants.UserId] = user.ID
 	atClaims[constants.Email] = user.Email
 	atClaims[constants.Exp] = td.AtExpires
+	atClaims[constants.Name] = user.Name
 	at := jwt.NewWithClaims(jwt.SigningMethodHS256, atClaims)
 	td.AccessToken, err = at.SignedString([]byte(os.Getenv("ACCESS_SECRET")))
 	if err != nil {
@@ -429,6 +432,7 @@ func (m *Model) createToken(user *dto.User) (*dto.User, error) {
 	rtClaims[constants.UserId] = user.ID
 	rtClaims[constants.Email] = user.Email
 	rtClaims[constants.Exp] = td.RtExpires
+	rtClaims[constants.Name] = user.Name
 	rt := jwt.NewWithClaims(jwt.SigningMethodHS256, rtClaims)
 	td.RefreshToken, err = rt.SignedString([]byte(os.Getenv("REFRESH_SECRET")))
 	if err != nil {

@@ -207,6 +207,7 @@ message User {
     // time
     int64 time = 12;
     bool isActive = 13;
+    string name = 14;
 }
 
 // get password reset request payload

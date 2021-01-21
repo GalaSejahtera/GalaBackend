@@ -21,4 +21,5 @@ type User struct {
 	Time         int64     `json:"time" bson:"time"`
 	Users        []*User   `json:"users" bson:"users"`
 	IsActive     bool      `json:"isActive" bson:"isActive"`
+	Name         string    `json:"name" bson:"name"`
 }
