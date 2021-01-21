@@ -3,16 +3,16 @@ package cmd
 import (
 	"context"
 	"fmt"
-	"github.com/joho/godotenv"
-	"go.mongodb.org/mongo-driver/mongo"
-	"go.mongodb.org/mongo-driver/mongo/options"
-	"os"
 	"galasejahtera/pkg/handlers"
 	"galasejahtera/pkg/logger"
 	model2 "galasejahtera/pkg/model"
 	"galasejahtera/pkg/protocol/grpc"
 	"galasejahtera/pkg/protocol/rest"
 	"galasejahtera/pkg/utility"
+	"github.com/joho/godotenv"
+	"go.mongodb.org/mongo-driver/mongo"
+	"go.mongodb.org/mongo-driver/mongo/options"
+	"os"
 )
 
 // Config is configuration for Server

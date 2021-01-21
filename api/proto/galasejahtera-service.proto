@@ -22,6 +22,18 @@ option (grpc.gateway.protoc_gen_swagger.options.openapiv2_swagger) = {
 
 // GalaSejahtera Backend Service
 service GalaSejahteraService {
+    // Get Covids
+    rpc GetCovids(GetCovidsRequest) returns (GetCovidsResponse){
+        option (google.api.http) = {
+            get: "/v1/covids"
+        };
+    }
+    // Get Covid
+    rpc GetCovid(GetCovidRequest) returns (GetCovidResponse){
+        option (google.api.http) = {
+            get: "/v1/covids/{id}"
+        };
+    }
     // Get Nearby Users
     rpc GetNearbyUsers(GetNearbyUsersRequest) returns (GetNearbyUsersResponse){
         option (google.api.http) = {
@@ -177,6 +189,19 @@ message RefreshResponse {
     string accessToken = 1;
     string refreshToken = 2;
 }
+
+// covid payload
+message Covid {
+    string id = 1;
+    string title = 2;
+    int64 sid = 3;
+    string image_feat_single = 4;
+    string summary = 5;
+    string date_pub2 = 6;
+    string content = 7;
+    string newsUrl = 8;
+}
+
 
 // report payload
 message Report {
@@ -351,6 +376,46 @@ message GetNearbyUsersResponse {
 // get kases response payload
 message GetKasesResponse {
     map<string, int64> data = 1;
+}
+
+// ---------------- Covid -----------------
+
+// get covids request payload
+message GetCovidsRequest {
+    // item to sort
+    string item = 1;
+    // order of item
+    string order = 2;
+    // pagination from
+    int64 from = 3;
+    // pagination to
+    int64 to = 4;
+    // item to filter
+    string filterItem = 5;
+    // value to filter
+    string filterValue = 6;
+    // covid ids
+    repeated string ids = 7;
+}
+
+// get covid request payload
+message GetCovidRequest {
+    // covid id
+    string id = 1;
+}
+
+// get covids response payload
+message GetCovidsResponse {
+    // covids payload
+    repeated Covid data = 1;
+    // total covids
+    int64 total = 2;
+}
+
+// get covid response payload
+message GetCovidResponse {
+    // covid payload
+    Covid data = 1;
 }
 
 // ---------------- Report -----------------

@@ -52,6 +52,118 @@
         ]
       }
     },
+    "/v1/covids": {
+      "get": {
+        "summary": "Get Covids",
+        "operationId": "GetCovids",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbGetCovidsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "item",
+            "description": "item to sort.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "order",
+            "description": "order of item.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "from",
+            "description": "pagination from.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "to",
+            "description": "pagination to.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "filterItem",
+            "description": "item to filter.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filterValue",
+            "description": "value to filter.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ids",
+            "description": "covid ids.",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "GalaSejahteraService"
+        ]
+      }
+    },
+    "/v1/covids/{id}": {
+      "get": {
+        "summary": "Get Covid",
+        "operationId": "GetCovid",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbGetCovidResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "covid id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "GalaSejahteraService"
+        ]
+      }
+    },
     "/v1/kases": {
       "get": {
         "summary": "Get Covid Kases",
@@ -811,6 +923,37 @@
     }
   },
   "definitions": {
+    "pbCovid": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "sid": {
+          "type": "string",
+          "format": "int64"
+        },
+        "image_feat_single": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "date_pub2": {
+          "type": "string"
+        },
+        "content": {
+          "type": "string"
+        },
+        "newsUrl": {
+          "type": "string"
+        }
+      },
+      "title": "covid payload"
+    },
     "pbCreateReportRequest": {
       "type": "object",
       "properties": {
@@ -904,6 +1047,34 @@
         }
       },
       "title": "delete users response payload"
+    },
+    "pbGetCovidResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/pbCovid",
+          "title": "covid payload"
+        }
+      },
+      "title": "get covid response payload"
+    },
+    "pbGetCovidsResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pbCovid"
+          },
+          "title": "covids payload"
+        },
+        "total": {
+          "type": "string",
+          "format": "int64",
+          "title": "total covids"
+        }
+      },
+      "title": "get covids response payload"
     },
     "pbGetKasesResponse": {
       "type": "object",

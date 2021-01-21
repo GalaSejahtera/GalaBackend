@@ -6,6 +6,7 @@ import (
 	pb "galasejahtera/pkg/api"
 	"galasejahtera/pkg/constants"
 	"galasejahtera/pkg/dto"
+	"galasejahtera/pkg/handlers/covid"
 	"galasejahtera/pkg/handlers/kase"
 	"galasejahtera/pkg/handlers/report"
 	"galasejahtera/pkg/handlers/user"
@@ -172,6 +173,29 @@ func (s *Handlers) Refresh(ctx context.Context, _ *empty.Empty) (*pb.RefreshResp
 	if err != nil {
 		return nil, err
 	}
+	return resp, nil
+}
+
+// -------------------- Covids ------------------------
+
+func (s *Handlers) GetCovids(ctx context.Context, req *pb.GetCovidsRequest) (*pb.GetCovidsResponse, error) {
+	handler := &covid.GetCovidsHandler{Model: s.Model}
+	resp, err := handler.GetCovids(ctx, req)
+	if err != nil {
+		logger.Log.Error("GetCovidsHandler: " + err.Error())
+		return nil, err
+	}
+	return resp, nil
+}
+
+func (s *Handlers) GetCovid(ctx context.Context, req *pb.GetCovidRequest) (*pb.GetCovidResponse, error) {
+	handler := &covid.GetCovidHandler{Model: s.Model}
+	resp, err := handler.GetCovid(ctx, req)
+	if err != nil {
+		logger.Log.Error("GetCovidHandler: "+err.Error(), zap.String("CovidID", req.Id))
+		return nil, err
+	}
+	logger.Log.Info("GetCovidHandler", zap.String("CovidID", req.Id))
 	return resp, nil
 }
 

@@ -2,10 +2,16 @@ package utility
 
 import (
 	"bytes"
+	"encoding/json"
+	"fmt"
 	"galasejahtera/pkg/constants"
 	"galasejahtera/pkg/dto"
+	"github.com/PuerkitoBio/goquery"
 	"html/template"
+	"log"
+	"net/http"
 	"regexp"
+	"strconv"
 	"strings"
 	"time"
 	"unicode"
@@ -193,4 +199,40 @@ func GetZoneRisk(radius float64, capacity, usersWithin int64) int64 {
 		return constants.LowRisk
 	}
 	return constants.MinimumRisk
+}
+
+func CrawlNews(page int64) []*dto.Covid {
+	// Request the HTML page.
+	res, err := http.Get(fmt.Sprintf("https://www.malaysiakini.com/en/tag/covid-19?alt=json&page=%d", page))
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer res.Body.Close()
+	if res.StatusCode != 200 {
+		log.Fatalf("status code error: %d %s", res.StatusCode, res.Status)
+	}
+
+	// Load the HTML document
+	doc, err := goquery.NewDocumentFromReader(res.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// get json string
+	jsonContent := doc.Text()
+	textBytes := []byte(jsonContent)
+	stories := &dto.Container{}
+	err = json.Unmarshal(textBytes, &stories)
+	if err != nil {
+		fmt.Println(err)
+		return []*dto.Covid{}
+	}
+
+	// patch news url
+	for _, story := range stories.Stories {
+		story.ID = strconv.FormatInt(story.SID, 10)
+		story.NewsURL = fmt.Sprintf("https://www.malaysiakini.com/news/%s", story.ID)
+	}
+
+	return stories.Stories
 }

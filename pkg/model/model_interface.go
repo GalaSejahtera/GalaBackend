@@ -66,4 +66,11 @@ type IModel interface {
 	// UpdateZones update reports
 	UpdateReports(ctx context.Context, report *dto.Report, ids []string) ([]string, error)
 	/////////////
+
+	///////////// Covid models
+	// GetCovid gets activity by ID
+	GetCovid(ctx context.Context, id string) (*dto.Covid, error)
+	// QueryCovids queries covids by sort, range, filter
+	QueryCovids(ctx context.Context, sort *dto.SortData, itemsRange *dto.RangeData, filter *dto.FilterData) (int64, []*dto.Covid, error)
+	/////////////
 }

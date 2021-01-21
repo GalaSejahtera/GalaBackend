@@ -35,5 +35,10 @@ type IHandlers interface {
 	UpdateReports(ctx context.Context, req *pb.UpdateReportsRequest) (*pb.UpdateReportsResponse, error)
 	// -------------- Report ----------------
 
+	// -------------- Covid ----------------
+	GetCovids(ctx context.Context, req *pb.GetCovidsRequest) (*pb.GetCovidsResponse, error)
+	GetCovid(ctx context.Context, req *pb.GetCovidRequest) (*pb.GetCovidResponse, error)
+	// -------------- Covid ----------------
+
 	GetKases(ctx context.Context, req *empty.Empty) (*pb.GetKasesResponse, error)
 }

@@ -12,6 +12,7 @@ const (
 	Zones      = "zones"
 	Activities = "activities"
 	Reports    = "reports"
+	Covids     = "covids"
 )
 
 // Fields

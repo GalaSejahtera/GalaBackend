@@ -56,3 +56,21 @@ type IReportDAO interface {
 	// Update updates report
 	Update(ctx context.Context, report *dto.Report) (*dto.Report, error)
 }
+
+// ICovidDAO ...
+type ICovidDAO interface {
+	// Create creates new covid
+	Create(ctx context.Context, covid *dto.Covid) (*dto.Covid, error)
+	// Get gets covid
+	Get(ctx context.Context, id string) (*dto.Covid, error)
+	// BatchGet gets covids by slice of IDs
+	BatchGet(ctx context.Context, ids []string) ([]*dto.Covid, error)
+	// Query queries covids by sort, range, filter
+	Query(ctx context.Context, sort *dto.SortData, itemsRange *dto.RangeData, filter *dto.FilterData) (int64, []*dto.Covid, error)
+	// Delete deletes covid by ID
+	Delete(ctx context.Context, id string) error
+	// BatchDelete deletes covids by IDs
+	BatchDelete(ctx context.Context, ids []string) ([]string, error)
+	// Update updates covid
+	Update(ctx context.Context, covid *dto.Covid) (*dto.Covid, error)
+}

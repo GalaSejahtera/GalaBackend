@@ -11,6 +11,7 @@ type Model struct {
 	userDAO   dao.IUserDAO
 	authDAO   dao.IAuthDAO
 	reportDAO dao.IReportDAO
+	covidDAO  dao.ICovidDAO
 }
 
 // InitModel ...
@@ -19,5 +20,6 @@ func InitModel(client *mongo.Client) IModel {
 		userDAO:   dao.InitUserDAO(client),
 		authDAO:   dao.InitAuthDAO(client),
 		reportDAO: dao.InitReportDAO(client),
+		covidDAO:  dao.InitCovidDAO(client),
 	}
 }

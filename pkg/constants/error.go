@@ -21,6 +21,7 @@ var (
 	UserNotFoundError     = status.Error(codes.NotFound, "User not found!")
 	ZoneNotFoundError     = status.Error(codes.NotFound, "Zone not found!")
 	ReportNotFoundError   = status.Error(codes.NotFound, "Report not found!")
+	CovidNotFoundError    = status.Error(codes.NotFound, "Article not found!")
 	ActivityNotFoundError = status.Error(codes.NotFound, "Activity not found!")
 	MetadataNotFoundError = status.Error(codes.NotFound, "Metadata not found!")
 
