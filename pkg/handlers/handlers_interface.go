@@ -25,15 +25,15 @@ type IHandlers interface {
 	GetNearbyUsers(ctx context.Context, req *pb.GetNearbyUsersRequest) (*pb.GetNearbyUsersResponse, error)
 	// -------------- User ----------------
 
-	// -------------- Faq ----------------
-	CreateFaq(ctx context.Context, req *pb.CreateFaqRequest) (*pb.CreateFaqResponse, error)
-	GetFaqs(ctx context.Context, req *pb.GetFaqsRequest) (*pb.GetFaqsResponse, error)
-	GetFaq(ctx context.Context, req *pb.GetFaqRequest) (*pb.GetFaqResponse, error)
-	DeleteFaq(ctx context.Context, req *pb.DeleteFaqRequest) (*pb.DeleteFaqResponse, error)
-	UpdateFaq(ctx context.Context, req *pb.UpdateFaqRequest) (*pb.UpdateFaqResponse, error)
-	DeleteFaqs(ctx context.Context, req *pb.DeleteFaqsRequest) (*pb.DeleteFaqsResponse, error)
-	UpdateFaqs(ctx context.Context, req *pb.UpdateFaqsRequest) (*pb.UpdateFaqsResponse, error)
-	// -------------- Faq ----------------
+	// -------------- Report ----------------
+	CreateReport(ctx context.Context, req *pb.CreateReportRequest) (*pb.CreateReportResponse, error)
+	GetReports(ctx context.Context, req *pb.GetReportsRequest) (*pb.GetReportsResponse, error)
+	GetReport(ctx context.Context, req *pb.GetReportRequest) (*pb.GetReportResponse, error)
+	DeleteReport(ctx context.Context, req *pb.DeleteReportRequest) (*pb.DeleteReportResponse, error)
+	UpdateReport(ctx context.Context, req *pb.UpdateReportRequest) (*pb.UpdateReportResponse, error)
+	DeleteReports(ctx context.Context, req *pb.DeleteReportsRequest) (*pb.DeleteReportsResponse, error)
+	UpdateReports(ctx context.Context, req *pb.UpdateReportsRequest) (*pb.UpdateReportsResponse, error)
+	// -------------- Report ----------------
 
 	GetKases(ctx context.Context, req *empty.Empty) (*pb.GetKasesResponse, error)
 }

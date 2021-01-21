@@ -52,289 +52,6 @@
         ]
       }
     },
-    "/v1/faqs": {
-      "get": {
-        "summary": "Get Faqs",
-        "operationId": "GetFaqs",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbGetFaqsResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "item",
-            "description": "item to sort.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "order",
-            "description": "order of item.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "from",
-            "description": "pagination from.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "to",
-            "description": "pagination to.",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "int64"
-          },
-          {
-            "name": "filterItem",
-            "description": "item to filter.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "filterValue",
-            "description": "value to filter.",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "ids",
-            "description": "faq ids.",
-            "in": "query",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "multi"
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      },
-      "delete": {
-        "summary": "Delete Faqs",
-        "operationId": "DeleteFaqs",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbDeleteFaqsResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "ids",
-            "description": "faq ids.",
-            "in": "query",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "collectionFormat": "multi"
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      },
-      "put": {
-        "summary": "Update Faqs",
-        "operationId": "UpdateFaqs",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbUpdateFaqsResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/pbUpdateFaqsRequest"
-            }
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      }
-    },
-    "/v1/faqs/{id}": {
-      "get": {
-        "summary": "Get Faq",
-        "operationId": "GetFaq",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbGetFaqResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "description": "faq id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      },
-      "delete": {
-        "summary": "Delete Faq",
-        "operationId": "DeleteFaq",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbDeleteFaqResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "description": "faq id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      },
-      "post": {
-        "summary": "Create Faq",
-        "operationId": "CreateFaq",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbCreateFaqResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "description": "faq id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/pbCreateFaqRequest"
-            }
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      },
-      "put": {
-        "summary": "Update Faq",
-        "operationId": "UpdateFaq",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbUpdateFaqResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "description": "faq id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/pbUpdateFaqRequest"
-            }
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      }
-    },
     "/v1/kases": {
       "get": {
         "summary": "Get Covid Kases",
@@ -439,6 +156,289 @@
             "required": true,
             "schema": {
               "properties": {}
+            }
+          }
+        ],
+        "tags": [
+          "GalaSejahteraService"
+        ]
+      }
+    },
+    "/v1/reports": {
+      "get": {
+        "summary": "Get Reports",
+        "operationId": "GetReports",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbGetReportsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "item",
+            "description": "item to sort.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "order",
+            "description": "order of item.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "from",
+            "description": "pagination from.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "to",
+            "description": "pagination to.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "filterItem",
+            "description": "item to filter.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "filterValue",
+            "description": "value to filter.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "ids",
+            "description": "report ids.",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "GalaSejahteraService"
+        ]
+      },
+      "delete": {
+        "summary": "Delete Reports",
+        "operationId": "DeleteReports",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbDeleteReportsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "ids",
+            "description": "report ids.",
+            "in": "query",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "collectionFormat": "multi"
+          }
+        ],
+        "tags": [
+          "GalaSejahteraService"
+        ]
+      },
+      "put": {
+        "summary": "Update Reports",
+        "operationId": "UpdateReports",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbUpdateReportsResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbUpdateReportsRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GalaSejahteraService"
+        ]
+      }
+    },
+    "/v1/reports/{id}": {
+      "get": {
+        "summary": "Get Report",
+        "operationId": "GetReport",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbGetReportResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "report id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "GalaSejahteraService"
+        ]
+      },
+      "delete": {
+        "summary": "Delete Report",
+        "operationId": "DeleteReport",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbDeleteReportResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "report id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "GalaSejahteraService"
+        ]
+      },
+      "post": {
+        "summary": "Create Report",
+        "operationId": "CreateReport",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbCreateReportResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "report id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbCreateReportRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GalaSejahteraService"
+        ]
+      },
+      "put": {
+        "summary": "Update Report",
+        "operationId": "UpdateReport",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbUpdateReportResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "report id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbUpdateReportRequest"
             }
           }
         ],
@@ -811,29 +811,29 @@
     }
   },
   "definitions": {
-    "pbCreateFaqRequest": {
+    "pbCreateReportRequest": {
       "type": "object",
       "properties": {
         "id": {
           "type": "string",
-          "title": "faq id"
+          "title": "report id"
         },
         "data": {
-          "$ref": "#/definitions/pbFaq",
-          "title": "faq payload"
+          "$ref": "#/definitions/pbReport",
+          "title": "report payload"
         }
       },
-      "title": "create faq request payload"
+      "title": "create report request payload"
     },
-    "pbCreateFaqResponse": {
+    "pbCreateReportResponse": {
       "type": "object",
       "properties": {
         "data": {
-          "$ref": "#/definitions/pbFaq",
-          "title": "faq payload"
+          "$ref": "#/definitions/pbReport",
+          "title": "report payload"
         }
       },
-      "title": "create faq response payload"
+      "title": "create report response payload"
     },
     "pbCreateUserRequest": {
       "type": "object",
@@ -859,17 +859,17 @@
       },
       "title": "create user response payload"
     },
-    "pbDeleteFaqResponse": {
+    "pbDeleteReportResponse": {
       "type": "object",
       "properties": {
         "data": {
-          "$ref": "#/definitions/pbFaq",
-          "title": "faq payload"
+          "$ref": "#/definitions/pbReport",
+          "title": "report payload"
         }
       },
-      "title": "delete faq response payload"
+      "title": "delete report response payload"
     },
-    "pbDeleteFaqsResponse": {
+    "pbDeleteReportsResponse": {
       "type": "object",
       "properties": {
         "data": {
@@ -877,10 +877,10 @@
           "items": {
             "type": "string"
           },
-          "title": "faq ids"
+          "title": "report ids"
         }
       },
-      "title": "delete faqs response payload"
+      "title": "delete reports response payload"
     },
     "pbDeleteUserResponse": {
       "type": "object",
@@ -904,52 +904,6 @@
         }
       },
       "title": "delete users response payload"
-    },
-    "pbFaq": {
-      "type": "object",
-      "properties": {
-        "id": {
-          "type": "string",
-          "title": "faq id"
-        },
-        "title": {
-          "type": "string",
-          "title": "faq title"
-        },
-        "desc": {
-          "type": "string",
-          "title": "faq desc"
-        }
-      },
-      "title": "faq payload"
-    },
-    "pbGetFaqResponse": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "$ref": "#/definitions/pbFaq",
-          "title": "faq payload"
-        }
-      },
-      "title": "get faq response payload"
-    },
-    "pbGetFaqsResponse": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "type": "array",
-          "items": {
-            "$ref": "#/definitions/pbFaq"
-          },
-          "title": "faqs payload"
-        },
-        "total": {
-          "type": "string",
-          "format": "int64",
-          "title": "total faqs"
-        }
-      },
-      "title": "get faqs response payload"
     },
     "pbGetKasesResponse": {
       "type": "object",
@@ -1001,6 +955,34 @@
         }
       },
       "title": "get password reset response payload"
+    },
+    "pbGetReportResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/pbReport",
+          "title": "report payload"
+        }
+      },
+      "title": "get report response payload"
+    },
+    "pbGetReportsResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pbReport"
+          },
+          "title": "reports payload"
+        },
+        "total": {
+          "type": "string",
+          "format": "int64",
+          "title": "total reports"
+        }
+      },
+      "title": "get reports response payload"
     },
     "pbGetUserResponse": {
       "type": "object",
@@ -1072,59 +1054,25 @@
         }
       }
     },
-    "pbUpdateFaqRequest": {
+    "pbReport": {
       "type": "object",
       "properties": {
         "id": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "createdAt": {
           "type": "string",
-          "title": "faq id"
+          "format": "int64"
         },
-        "data": {
-          "$ref": "#/definitions/pbFaq",
-          "title": "faq payload"
+        "hasSymptom": {
+          "type": "boolean",
+          "format": "boolean"
         }
       },
-      "title": "update faq request payload"
-    },
-    "pbUpdateFaqResponse": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "$ref": "#/definitions/pbFaq",
-          "title": "faq payload"
-        }
-      },
-      "title": "update faq response payload"
-    },
-    "pbUpdateFaqsRequest": {
-      "type": "object",
-      "properties": {
-        "ids": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "faq ids"
-        },
-        "data": {
-          "$ref": "#/definitions/pbFaq",
-          "title": "faq payload"
-        }
-      },
-      "title": "update faqs request payload"
-    },
-    "pbUpdateFaqsResponse": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "title": "faq ids"
-        }
-      },
-      "title": "update faqs response payload"
+      "title": "report payload"
     },
     "pbUpdatePasswordRequest": {
       "type": "object",
@@ -1139,6 +1087,60 @@
         }
       },
       "title": "get password reset request payload"
+    },
+    "pbUpdateReportRequest": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "title": "report id"
+        },
+        "data": {
+          "$ref": "#/definitions/pbReport",
+          "title": "report payload"
+        }
+      },
+      "title": "update report request payload"
+    },
+    "pbUpdateReportResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "$ref": "#/definitions/pbReport",
+          "title": "report payload"
+        }
+      },
+      "title": "update report response payload"
+    },
+    "pbUpdateReportsRequest": {
+      "type": "object",
+      "properties": {
+        "ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "report ids"
+        },
+        "data": {
+          "$ref": "#/definitions/pbReport",
+          "title": "report payload"
+        }
+      },
+      "title": "update reports request payload"
+    },
+    "pbUpdateReportsResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "report ids"
+        }
+      },
+      "title": "update reports response payload"
     },
     "pbUpdateUserRequest": {
       "type": "object",

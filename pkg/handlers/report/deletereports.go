@@ -1,4 +1,4 @@
-package faq
+package report
 
 import (
 	"context"
@@ -10,26 +10,26 @@ import (
 	"google.golang.org/grpc/status"
 )
 
-type DeleteFaqsHandler struct {
+type DeleteReportsHandler struct {
 	Model model.IModel
 }
 
-func (s *DeleteFaqsHandler) DeleteFaqs(ctx context.Context, req *pb.DeleteFaqsRequest) (*pb.DeleteFaqsResponse, error) {
+func (s *DeleteReportsHandler) DeleteReports(ctx context.Context, req *pb.DeleteReportsRequest) (*pb.DeleteReportsResponse, error) {
 	var ids []string
 
-	// remove faqs
+	// remove reports
 	for _, id := range req.Ids {
-		u, err := s.Model.DeleteFaq(ctx, id)
+		u, err := s.Model.DeleteReport(ctx, id)
 		if err != nil {
 			if status.Code(err) == codes.Unknown {
-				return nil, constants.FaqNotFoundError
+				return nil, constants.ReportNotFoundError
 			}
 			return nil, constants.InternalError
 		}
 
-		// add faq into deleted faq IDs
+		// add report into deleted report IDs
 		ids = append(ids, u.ID)
 	}
 
-	return &pb.DeleteFaqsResponse{Data: ids}, nil
+	return &pb.DeleteReportsResponse{Data: ids}, nil
 }

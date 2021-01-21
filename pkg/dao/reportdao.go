@@ -3,77 +3,77 @@ package dao
 import (
 	"context"
 	"fmt"
+	"galasejahtera/pkg/constants"
+	"galasejahtera/pkg/dto"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
-	"galasejahtera/pkg/constants"
-	"galasejahtera/pkg/dto"
 )
 
-// FaqDAO ...
-type FaqDAO struct {
+// ReportDAO ...
+type ReportDAO struct {
 	client *mongo.Client
 }
 
-// InitFaqDAO ...
-func InitFaqDAO(client *mongo.Client) IFaqDAO {
-	return &FaqDAO{client: client}
+// InitReportDAO ...
+func InitReportDAO(client *mongo.Client) IReportDAO {
+	return &ReportDAO{client: client}
 }
 
-// Create creates new faq
-func (v *FaqDAO) Create(ctx context.Context, faq *dto.Faq) (*dto.Faq, error) {
-	// create faq
-	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Faqs)
-	if _, err := collection.InsertOne(ctx, faq); err != nil {
+// Create creates new report
+func (v *ReportDAO) Create(ctx context.Context, report *dto.Report) (*dto.Report, error) {
+	// create report
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Reports)
+	if _, err := collection.InsertOne(ctx, report); err != nil {
 		return nil, err
 	}
-	return faq, nil
+	return report, nil
 }
 
 // Update updates zone
-func (v *FaqDAO) Update(ctx context.Context, faq *dto.Faq) (*dto.Faq, error) {
-	// update faq
-	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Faqs)
-	_, err := collection.UpdateOne(ctx, bson.D{{constants.ID, faq.ID}}, bson.D{
-		{"$set", faq},
+func (v *ReportDAO) Update(ctx context.Context, report *dto.Report) (*dto.Report, error) {
+	// update report
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Reports)
+	_, err := collection.UpdateOne(ctx, bson.D{{constants.ID, report.ID}}, bson.D{
+		{"$set", report},
 	})
 	if err != nil {
 		return nil, err
 	}
-	return faq, nil
+	return report, nil
 }
 
-// Get gets faq by ID
-func (v *FaqDAO) Get(ctx context.Context, id string) (*dto.Faq, error) {
-	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Faqs)
-	faq := &dto.Faq{}
-	if err := collection.FindOne(ctx, bson.D{{constants.ID, id}}).Decode(&faq); err != nil {
+// Get gets report by ID
+func (v *ReportDAO) Get(ctx context.Context, id string) (*dto.Report, error) {
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Reports)
+	report := &dto.Report{}
+	if err := collection.FindOne(ctx, bson.D{{constants.ID, id}}).Decode(&report); err != nil {
 		return nil, err
 	}
-	return faq, nil
+	return report, nil
 }
 
-// BatchGet gets faqs by slice of IDs
-func (v *FaqDAO) BatchGet(ctx context.Context, ids []string) ([]*dto.Faq, error) {
-	var faqs []*dto.Faq
+// BatchGet gets reports by slice of IDs
+func (v *ReportDAO) BatchGet(ctx context.Context, ids []string) ([]*dto.Report, error) {
+	var reports []*dto.Report
 	for _, id := range ids {
-		faq, err := v.Get(ctx, id)
+		report, err := v.Get(ctx, id)
 		if err != nil {
 			return nil, err
 		}
-		faqs = append(faqs, faq)
+		reports = append(reports, report)
 	}
-	return faqs, nil
+	return reports, nil
 }
 
-// Query queries faqs by sort, range, filter
-func (v *FaqDAO) Query(ctx context.Context, sort *dto.SortData, itemsRange *dto.RangeData, filter *dto.FilterData) (int64, []*dto.Faq, error) {
-	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Faqs)
+// Query queries reports by sort, range, filter
+func (v *ReportDAO) Query(ctx context.Context, sort *dto.SortData, itemsRange *dto.RangeData, filter *dto.FilterData) (int64, []*dto.Report, error) {
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Reports)
 
 	var cursor *mongo.Cursor
 	var err error
 	var count int64
-	var faqs []*dto.Faq
+	var reports []*dto.Report
 
 	findOptions := options.Find()
 	// set range
@@ -99,13 +99,13 @@ func (v *FaqDAO) Query(ctx context.Context, sort *dto.SortData, itemsRange *dto.
 			if err != nil {
 				return 0, nil, err
 			}
-			return 1, []*dto.Faq{d}, nil
+			return 1, []*dto.Report{d}, nil
 		}
 
 		// else: do query filter
 		if filter.Item == "q" {
 			query := bson.M{
-				constants.Title: bson.M{
+				constants.UserId: bson.M{
 					"$regex":   fmt.Sprintf("%s.*", filter.Value),
 					"$options": "i",
 				},
@@ -147,27 +147,27 @@ func (v *FaqDAO) Query(ctx context.Context, sort *dto.SortData, itemsRange *dto.
 
 	defer cursor.Close(ctx)
 	for cursor.Next(ctx) {
-		faq := &dto.Faq{}
-		if err = cursor.Decode(&faq); err != nil {
+		report := &dto.Report{}
+		if err = cursor.Decode(&report); err != nil {
 			return 0, nil, err
 		}
-		faqs = append(faqs, faq)
+		reports = append(reports, report)
 	}
 
-	return count, faqs, nil
+	return count, reports, nil
 }
 
-// Delete deletes faq by ID
-func (v *FaqDAO) Delete(ctx context.Context, id string) error {
-	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Faqs)
+// Delete deletes report by ID
+func (v *ReportDAO) Delete(ctx context.Context, id string) error {
+	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Reports)
 	if _, err := collection.DeleteOne(ctx, bson.D{{constants.ID, id}}); err != nil {
 		return err
 	}
 	return nil
 }
 
-// BatchDelete deletes faqs by IDs
-func (v *FaqDAO) BatchDelete(ctx context.Context, ids []string) ([]string, error) {
+// BatchDelete deletes reports by IDs
+func (v *ReportDAO) BatchDelete(ctx context.Context, ids []string) ([]string, error) {
 	var deletedIDs []string
 	for _, id := range ids {
 		err := v.Delete(ctx, id)

@@ -39,20 +39,20 @@ type IAuthDAO interface {
 	DeleteByID(ctx context.Context, id string) error
 }
 
-// IFaqDAO ...
-type IFaqDAO interface {
-	// Create creates new faq
-	Create(ctx context.Context, faq *dto.Faq) (*dto.Faq, error)
-	// Get gets faq
-	Get(ctx context.Context, id string) (*dto.Faq, error)
-	// BatchGet gets faqs by slice of IDs
-	BatchGet(ctx context.Context, ids []string) ([]*dto.Faq, error)
-	// Query queries faqs by sort, range, filter
-	Query(ctx context.Context, sort *dto.SortData, itemsRange *dto.RangeData, filter *dto.FilterData) (int64, []*dto.Faq, error)
-	// Delete deletes faq by ID
+// IReportDAO ...
+type IReportDAO interface {
+	// Create creates new report
+	Create(ctx context.Context, report *dto.Report) (*dto.Report, error)
+	// Get gets report
+	Get(ctx context.Context, id string) (*dto.Report, error)
+	// BatchGet gets reports by slice of IDs
+	BatchGet(ctx context.Context, ids []string) ([]*dto.Report, error)
+	// Query queries reports by sort, range, filter
+	Query(ctx context.Context, sort *dto.SortData, itemsRange *dto.RangeData, filter *dto.FilterData) (int64, []*dto.Report, error)
+	// Delete deletes report by ID
 	Delete(ctx context.Context, id string) error
-	// BatchDelete deletes faqs by IDs
+	// BatchDelete deletes reports by IDs
 	BatchDelete(ctx context.Context, ids []string) ([]string, error)
-	// Update updates faq
-	Update(ctx context.Context, faq *dto.Faq) (*dto.Faq, error)
+	// Update updates report
+	Update(ctx context.Context, report *dto.Report) (*dto.Report, error)
 }

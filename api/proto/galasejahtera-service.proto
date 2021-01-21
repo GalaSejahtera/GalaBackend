@@ -35,49 +35,49 @@ service GalaSejahteraService {
             get: "/v1/kases"
         };
     }
-    // Create Faq
-    rpc CreateFaq(CreateFaqRequest) returns (CreateFaqResponse){
+    // Create Report
+    rpc CreateReport(CreateReportRequest) returns (CreateReportResponse){
         option (google.api.http) = {
-            post: "/v1/faqs/{id}"
+            post: "/v1/reports/{id}"
             body: "*"
         };
     }
-    // Get Faqs
-    rpc GetFaqs(GetFaqsRequest) returns (GetFaqsResponse){
+    // Get Reports
+    rpc GetReports(GetReportsRequest) returns (GetReportsResponse){
         option (google.api.http) = {
-            get: "/v1/faqs"
+            get: "/v1/reports"
         };
     }
-    // Get Faq
-    rpc GetFaq(GetFaqRequest) returns (GetFaqResponse){
+    // Get Report
+    rpc GetReport(GetReportRequest) returns (GetReportResponse){
         option (google.api.http) = {
-            get: "/v1/faqs/{id}"
+            get: "/v1/reports/{id}"
         };
     }
-    // Update Faq
-    rpc UpdateFaq(UpdateFaqRequest) returns (UpdateFaqResponse){
+    // Update Report
+    rpc UpdateReport(UpdateReportRequest) returns (UpdateReportResponse){
         option (google.api.http) = {
-            put: "/v1/faqs/{id}"
+            put: "/v1/reports/{id}"
             body: "*"
         };
     }
-    // Update Faqs
-    rpc UpdateFaqs(UpdateFaqsRequest) returns (UpdateFaqsResponse){
+    // Update Reports
+    rpc UpdateReports(UpdateReportsRequest) returns (UpdateReportsResponse){
         option (google.api.http) = {
-            put: "/v1/faqs"
+            put: "/v1/reports"
             body: "*"
         };
     }
-    // Delete Faq
-    rpc DeleteFaq(DeleteFaqRequest) returns (DeleteFaqResponse){
+    // Delete Report
+    rpc DeleteReport(DeleteReportRequest) returns (DeleteReportResponse){
         option (google.api.http) = {
-            delete: "/v1/faqs/{id}"
+            delete: "/v1/reports/{id}"
         };
     }
-    // Delete Faqs
-    rpc DeleteFaqs(DeleteFaqsRequest) returns (DeleteFaqsResponse){
+    // Delete Reports
+    rpc DeleteReports(DeleteReportsRequest) returns (DeleteReportsResponse){
         option (google.api.http) = {
-            delete: "/v1/faqs"
+            delete: "/v1/reports"
         };
     }
     // Create User
@@ -178,14 +178,12 @@ message RefreshResponse {
     string refreshToken = 2;
 }
 
-// faq payload
-message Faq {
-    // faq id
+// report payload
+message Report {
     string id = 1;
-    // faq title
-    string title = 2;
-    // faq desc
-    string desc = 3;
+    string userId = 2;
+    int64 createdAt = 3;
+    bool hasSymptom = 4;
 }
 
 // user payload
@@ -355,10 +353,10 @@ message GetKasesResponse {
     map<string, int64> data = 1;
 }
 
-// ---------------- Faq -----------------
+// ---------------- Report -----------------
 
-// get faqs request payload
-message GetFaqsRequest {
+// get reports request payload
+message GetReportsRequest {
     // item to sort
     string item = 1;
     // order of item
@@ -371,92 +369,92 @@ message GetFaqsRequest {
     string filterItem = 5;
     // value to filter
     string filterValue = 6;
-    // faq ids
+    // report ids
     repeated string ids = 7;
 }
 
-// get faq request payload
-message GetFaqRequest {
-    // faq id
+// get report request payload
+message GetReportRequest {
+    // report id
     string id = 1;
 }
 
-// create faq request payload
-message CreateFaqRequest {
-    // faq id
+// create report request payload
+message CreateReportRequest {
+    // report id
     string id = 1;
-    // faq payload
-    Faq data = 2;
+    // report payload
+    Report data = 2;
 }
 
-// update faq request payload
-message UpdateFaqRequest {
-    // faq id
+// update report request payload
+message UpdateReportRequest {
+    // report id
     string id = 1;
-    // faq payload
-    Faq data = 2;
+    // report payload
+    Report data = 2;
 }
 
-// update faqs request payload
-message UpdateFaqsRequest {
-    // faq ids
+// update reports request payload
+message UpdateReportsRequest {
+    // report ids
     repeated string ids = 1;
-    // faq payload
-    Faq data = 2;
+    // report payload
+    Report data = 2;
 }
 
-// delete faq request payload
-message DeleteFaqRequest {
-    // faq id
+// delete report request payload
+message DeleteReportRequest {
+    // report id
     string id = 1;
 }
 
-// delete faqs request payload
-message DeleteFaqsRequest {
-    // faq ids
+// delete reports request payload
+message DeleteReportsRequest {
+    // report ids
     repeated string ids = 1;
 }
 
-// delete faq response payload
-message DeleteFaqResponse {
-    // faq payload
-    Faq data = 1;
+// delete report response payload
+message DeleteReportResponse {
+    // report payload
+    Report data = 1;
 }
 
-// get faqs response payload
-message GetFaqsResponse {
-    // faqs payload
-    repeated Faq data = 1;
-    // total faqs
+// get reports response payload
+message GetReportsResponse {
+    // reports payload
+    repeated Report data = 1;
+    // total reports
     int64 total = 2;
 }
 
-// get faq response payload
-message GetFaqResponse {
-    // faq payload
-    Faq data = 1;
+// get report response payload
+message GetReportResponse {
+    // report payload
+    Report data = 1;
 }
 
-// create faq response payload
-message CreateFaqResponse {
-    // faq payload
-    Faq data = 1;
+// create report response payload
+message CreateReportResponse {
+    // report payload
+    Report data = 1;
 }
 
-// update faq response payload
-message UpdateFaqResponse {
-    // faq payload
-    Faq data = 1;
+// update report response payload
+message UpdateReportResponse {
+    // report payload
+    Report data = 1;
 }
 
-// update faqs response payload
-message UpdateFaqsResponse {
-    // faq ids
+// update reports response payload
+message UpdateReportsResponse {
+    // report ids
     repeated string data = 1;
 }
 
-// delete faqs response payload
-message DeleteFaqsResponse {
-    // faq ids
+// delete reports response payload
+message DeleteReportsResponse {
+    // report ids
     repeated string data = 1;
 }

@@ -1,35 +1,35 @@
-package faq
+package report
 
 import (
 	"context"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/status"
 	pb "galasejahtera/pkg/api"
 	"galasejahtera/pkg/constants"
 	"galasejahtera/pkg/dto"
 	"galasejahtera/pkg/logger"
 	"galasejahtera/pkg/model"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
 )
 
-type GetFaqsHandler struct {
+type GetReportsHandler struct {
 	Model model.IModel
 }
 
-func (s *GetFaqsHandler) GetFaqs(ctx context.Context, req *pb.GetFaqsRequest) (*pb.GetFaqsResponse, error) {
+func (s *GetReportsHandler) GetReports(ctx context.Context, req *pb.GetReportsRequest) (*pb.GetReportsResponse, error) {
 	var sort *dto.SortData
 	var itemsRange *dto.RangeData
 	var filter *dto.FilterData
 
 	// If the request is batch get, call batch get model
 	if len(req.Ids) > 0 {
-		faqs, err := s.Model.BatchGetFaqs(ctx, req.Ids)
+		reports, err := s.Model.BatchGetReports(ctx, req.Ids)
 		if err != nil {
 			if status.Code(err) == codes.Unknown {
-				return nil, constants.FaqNotFoundError
+				return nil, constants.ReportNotFoundError
 			}
 			return nil, constants.InternalError
 		}
-		resp, err := s.faqsToResponses(faqs)
+		resp, err := s.reportsToResponses(reports)
 		if err != nil {
 			return nil, err
 		}
@@ -58,16 +58,16 @@ func (s *GetFaqsHandler) GetFaqs(ctx context.Context, req *pb.GetFaqsRequest) (*
 		}
 	}
 
-	total, faqs, err := s.Model.QueryFaqs(ctx, sort, itemsRange, filter)
+	total, reports, err := s.Model.QueryReports(ctx, sort, itemsRange, filter)
 	if err != nil {
-		logger.Log.Error("GetFaqsHandler: " + err.Error())
+		logger.Log.Error("GetReportsHandler: " + err.Error())
 		if status.Code(err) == codes.Unknown {
-			return nil, constants.FaqNotFoundError
+			return nil, constants.ReportNotFoundError
 		}
 		return nil, constants.InternalError
 	}
 
-	resp, err := s.faqsToResponses(faqs)
+	resp, err := s.reportsToResponses(reports)
 	if err != nil {
 		return nil, err
 	}
@@ -76,18 +76,19 @@ func (s *GetFaqsHandler) GetFaqs(ctx context.Context, req *pb.GetFaqsRequest) (*
 	return resp, nil
 }
 
-func (s *GetFaqsHandler) faqsToResponses(faqs []*dto.Faq) (*pb.GetFaqsResponse, error) {
-	var resps []*pb.Faq
-	for _, faq := range faqs {
-		resp := &pb.Faq{
-			Id:    faq.ID,
-			Title: faq.Title,
-			Desc:  faq.Desc,
+func (s *GetReportsHandler) reportsToResponses(reports []*dto.Report) (*pb.GetReportsResponse, error) {
+	var resps []*pb.Report
+	for _, report := range reports {
+		resp := &pb.Report{
+			Id:         report.ID,
+			CreatedAt:  report.CreatedAt,
+			HasSymptom: report.HasSymptom,
+			UserId:     report.UserID,
 		}
 
 		resps = append(resps, resp)
 	}
-	rslt := &pb.GetFaqsResponse{
+	rslt := &pb.GetReportsResponse{
 		Data: resps,
 	}
 

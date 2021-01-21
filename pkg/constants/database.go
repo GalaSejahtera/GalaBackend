@@ -11,7 +11,7 @@ const (
 	AuthTokens = "authtokens"
 	Zones      = "zones"
 	Activities = "activities"
-	Faqs       = "faqs"
+	Reports    = "reports"
 )
 
 // Fields
@@ -54,10 +54,6 @@ const (
 	// Activity
 	Time   = "time"
 	ZoneId = "zoneId"
-
-	// Faq
-	Title = "title"
-	Desc  = "desc"
 )
 
 // Keywords

@@ -6,8 +6,8 @@ import (
 	pb "galasejahtera/pkg/api"
 	"galasejahtera/pkg/constants"
 	"galasejahtera/pkg/dto"
-	"galasejahtera/pkg/handlers/faq"
 	"galasejahtera/pkg/handlers/kase"
+	"galasejahtera/pkg/handlers/report"
 	"galasejahtera/pkg/handlers/user"
 	"galasejahtera/pkg/logger"
 	"galasejahtera/pkg/model"
@@ -175,105 +175,105 @@ func (s *Handlers) Refresh(ctx context.Context, _ *empty.Empty) (*pb.RefreshResp
 	return resp, nil
 }
 
-// -------------------- Faqs ------------------------
+// -------------------- Reports ------------------------
 
-func (s *Handlers) CreateFaq(ctx context.Context, req *pb.CreateFaqRequest) (*pb.CreateFaqResponse, error) {
-	handler := &faq.CreateFaqHandler{Model: s.Model}
-	resp, err := handler.CreateFaq(ctx, req)
+func (s *Handlers) CreateReport(ctx context.Context, req *pb.CreateReportRequest) (*pb.CreateReportResponse, error) {
+	handler := &report.CreateReportHandler{Model: s.Model}
+	resp, err := handler.CreateReport(ctx, req)
 	if err != nil {
-		logger.Log.Error("CreateFaqHandler: " + err.Error())
+		logger.Log.Error("CreateReportHandler: " + err.Error())
 		return nil, err
 	}
-	logger.Log.Info("CreateFaqHandler")
+	logger.Log.Info("CreateReportHandler")
 	return resp, nil
 }
 
-func (s *Handlers) GetFaqs(ctx context.Context, req *pb.GetFaqsRequest) (*pb.GetFaqsResponse, error) {
-	handler := &faq.GetFaqsHandler{Model: s.Model}
-	resp, err := handler.GetFaqs(ctx, req)
+func (s *Handlers) GetReports(ctx context.Context, req *pb.GetReportsRequest) (*pb.GetReportsResponse, error) {
+	handler := &report.GetReportsHandler{Model: s.Model}
+	resp, err := handler.GetReports(ctx, req)
 	if err != nil {
-		logger.Log.Error("GetFaqsHandler: " + err.Error())
+		logger.Log.Error("GetReportsHandler: " + err.Error())
 		return nil, err
 	}
 	return resp, nil
 }
 
-func (s *Handlers) GetFaq(ctx context.Context, req *pb.GetFaqRequest) (*pb.GetFaqResponse, error) {
+func (s *Handlers) GetReport(ctx context.Context, req *pb.GetReportRequest) (*pb.GetReportResponse, error) {
 	u, err := s.validateUser(ctx, constants.AllCanAccess)
 	if err != nil {
 		return nil, constants.UnauthorizedAccessError
 	}
-	handler := &faq.GetFaqHandler{Model: s.Model}
-	resp, err := handler.GetFaq(ctx, req)
+	handler := &report.GetReportHandler{Model: s.Model}
+	resp, err := handler.GetReport(ctx, req)
 	if err != nil {
-		logger.Log.Error("GetFaqHandler: "+err.Error(), zap.String("UserID", u.ID), zap.String("FaqID", req.Id))
+		logger.Log.Error("GetReportHandler: "+err.Error(), zap.String("UserID", u.ID), zap.String("ReportID", req.Id))
 		return nil, err
 	}
-	logger.Log.Info("GetFaqHandler", zap.String("UserID", u.ID), zap.String("FaqID", req.Id))
+	logger.Log.Info("GetReportHandler", zap.String("UserID", u.ID), zap.String("ReportID", req.Id))
 	return resp, nil
 }
 
-func (s *Handlers) DeleteFaq(ctx context.Context, req *pb.DeleteFaqRequest) (*pb.DeleteFaqResponse, error) {
+func (s *Handlers) DeleteReport(ctx context.Context, req *pb.DeleteReportRequest) (*pb.DeleteReportResponse, error) {
 	u, err := s.validateUser(ctx, constants.AllCanAccess)
 	if err != nil {
 		return nil, constants.UnauthorizedAccessError
 	}
-	handler := &faq.DeleteFaqHandler{Model: s.Model}
-	resp, err := handler.DeleteFaq(ctx, req)
+	handler := &report.DeleteReportHandler{Model: s.Model}
+	resp, err := handler.DeleteReport(ctx, req)
 	if err != nil {
-		logger.Log.Error("DeleteFaqHandler: "+err.Error(), zap.String("UserID", u.ID), zap.String("TargetFaqID", req.Id))
+		logger.Log.Error("DeleteReportHandler: "+err.Error(), zap.String("UserID", u.ID), zap.String("TargetReportID", req.Id))
 		return nil, err
 	}
-	logger.Log.Info("DeleteFaqHandler", zap.String("UserID", u.ID), zap.String("TargetFaqID", req.Id))
+	logger.Log.Info("DeleteReportHandler", zap.String("UserID", u.ID), zap.String("TargetReportID", req.Id))
 	return resp, nil
 }
 
-func (s *Handlers) UpdateFaq(ctx context.Context, req *pb.UpdateFaqRequest) (*pb.UpdateFaqResponse, error) {
+func (s *Handlers) UpdateReport(ctx context.Context, req *pb.UpdateReportRequest) (*pb.UpdateReportResponse, error) {
 	u, err := s.validateUser(ctx, constants.AllCanAccess)
 	if err != nil {
 		return nil, constants.UnauthorizedAccessError
 	}
-	handler := &faq.UpdateFaqHandler{Model: s.Model}
-	resp, err := handler.UpdateFaq(ctx, req)
+	handler := &report.UpdateReportHandler{Model: s.Model}
+	resp, err := handler.UpdateReport(ctx, req)
 	if err != nil {
-		logger.Log.Error("UpdateFaqHandler: "+err.Error(), zap.String("UserID", u.ID), zap.String("TargetFaqID", req.Id))
+		logger.Log.Error("UpdateReportHandler: "+err.Error(), zap.String("UserID", u.ID), zap.String("TargetReportID", req.Id))
 		return nil, err
 	}
-	logger.Log.Info("UpdateFaqHandler", zap.String("UserID", u.ID), zap.String("TargetFaqID", req.Id))
+	logger.Log.Info("UpdateReportHandler", zap.String("UserID", u.ID), zap.String("TargetReportID", req.Id))
 	return resp, nil
 }
 
-func (s *Handlers) DeleteFaqs(ctx context.Context, req *pb.DeleteFaqsRequest) (*pb.DeleteFaqsResponse, error) {
+func (s *Handlers) DeleteReports(ctx context.Context, req *pb.DeleteReportsRequest) (*pb.DeleteReportsResponse, error) {
 	u, err := s.validateUser(ctx, constants.AllCanAccess)
 	if err != nil {
 		return nil, constants.UnauthorizedAccessError
 	}
-	handler := &faq.DeleteFaqsHandler{Model: s.Model}
-	resp, err := handler.DeleteFaqs(ctx, req)
+	handler := &report.DeleteReportsHandler{Model: s.Model}
+	resp, err := handler.DeleteReports(ctx, req)
 	if err != nil {
-		logger.Log.Error("DeleteFaqsHandler: "+err.Error(), zap.String("UserID", u.ID), zap.Strings("TargetFaqIDs", req.Ids))
+		logger.Log.Error("DeleteReportsHandler: "+err.Error(), zap.String("UserID", u.ID), zap.Strings("TargetReportIDs", req.Ids))
 		return nil, err
 	}
-	logger.Log.Info("DeleteFaqsHandler", zap.String("UserID", u.ID), zap.Strings("TargetFaqIDs", req.Ids))
+	logger.Log.Info("DeleteReportsHandler", zap.String("UserID", u.ID), zap.Strings("TargetReportIDs", req.Ids))
 	return resp, nil
 }
 
-func (s *Handlers) UpdateFaqs(ctx context.Context, req *pb.UpdateFaqsRequest) (*pb.UpdateFaqsResponse, error) {
+func (s *Handlers) UpdateReports(ctx context.Context, req *pb.UpdateReportsRequest) (*pb.UpdateReportsResponse, error) {
 	u, err := s.validateUser(ctx, constants.AllCanAccess)
 	if err != nil {
 		return nil, constants.UnauthorizedAccessError
 	}
-	handler := &faq.UpdateFaqsHandler{Model: s.Model}
-	resp, err := handler.UpdateFaqs(ctx, req)
+	handler := &report.UpdateReportsHandler{Model: s.Model}
+	resp, err := handler.UpdateReports(ctx, req)
 	if err != nil {
-		logger.Log.Error("UpdateFaqsHandler: "+err.Error(), zap.String("UserID", u.ID), zap.Strings("TargetFaqIDs", req.Ids))
+		logger.Log.Error("UpdateReportsHandler: "+err.Error(), zap.String("UserID", u.ID), zap.Strings("TargetReportIDs", req.Ids))
 		return nil, err
 	}
-	logger.Log.Info("UpdateFaqsHandler", zap.String("UserID", u.ID), zap.Strings("TargetFaqIDs", req.Ids))
+	logger.Log.Info("UpdateReportsHandler", zap.String("UserID", u.ID), zap.Strings("TargetReportIDs", req.Ids))
 	return resp, nil
 }
 
-// -------------------- Faqs ------------------------
+// -------------------- Reports ------------------------
 
 func (s *Handlers) validateUser(ctx context.Context, roles []string) (*dto.User, error) {
 	if os.Getenv("AUTH_ENABLED") != "true" {

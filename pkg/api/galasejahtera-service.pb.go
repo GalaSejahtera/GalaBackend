@@ -192,63 +192,68 @@ func (m *RefreshResponse) GetRefreshToken() string {
 	return ""
 }
 
-// faq payload
-type Faq struct {
-	// faq id
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// faq title
-	Title string `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	// faq desc
-	Desc                 string   `protobuf:"bytes,3,opt,name=desc,proto3" json:"desc,omitempty"`
+// report payload
+type Report struct {
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	UserId               string   `protobuf:"bytes,2,opt,name=userId,proto3" json:"userId,omitempty"`
+	CreatedAt            int64    `protobuf:"varint,3,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
+	HasSymptom           bool     `protobuf:"varint,4,opt,name=hasSymptom,proto3" json:"hasSymptom,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *Faq) Reset()         { *m = Faq{} }
-func (m *Faq) String() string { return proto.CompactTextString(m) }
-func (*Faq) ProtoMessage()    {}
-func (*Faq) Descriptor() ([]byte, []int) {
+func (m *Report) Reset()         { *m = Report{} }
+func (m *Report) String() string { return proto.CompactTextString(m) }
+func (*Report) ProtoMessage()    {}
+func (*Report) Descriptor() ([]byte, []int) {
 	return fileDescriptor_fe7d991659ed015b, []int{3}
 }
 
-func (m *Faq) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Faq.Unmarshal(m, b)
+func (m *Report) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Report.Unmarshal(m, b)
 }
-func (m *Faq) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Faq.Marshal(b, m, deterministic)
+func (m *Report) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Report.Marshal(b, m, deterministic)
 }
-func (m *Faq) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Faq.Merge(m, src)
+func (m *Report) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Report.Merge(m, src)
 }
-func (m *Faq) XXX_Size() int {
-	return xxx_messageInfo_Faq.Size(m)
+func (m *Report) XXX_Size() int {
+	return xxx_messageInfo_Report.Size(m)
 }
-func (m *Faq) XXX_DiscardUnknown() {
-	xxx_messageInfo_Faq.DiscardUnknown(m)
+func (m *Report) XXX_DiscardUnknown() {
+	xxx_messageInfo_Report.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_Faq proto.InternalMessageInfo
+var xxx_messageInfo_Report proto.InternalMessageInfo
 
-func (m *Faq) GetId() string {
+func (m *Report) GetId() string {
 	if m != nil {
 		return m.Id
 	}
 	return ""
 }
 
-func (m *Faq) GetTitle() string {
+func (m *Report) GetUserId() string {
 	if m != nil {
-		return m.Title
+		return m.UserId
 	}
 	return ""
 }
 
-func (m *Faq) GetDesc() string {
+func (m *Report) GetCreatedAt() int64 {
 	if m != nil {
-		return m.Desc
+		return m.CreatedAt
 	}
-	return ""
+	return 0
+}
+
+func (m *Report) GetHasSymptom() bool {
+	if m != nil {
+		return m.HasSymptom
+	}
+	return false
 }
 
 // user payload
@@ -1307,8 +1312,8 @@ func (m *GetKasesResponse) GetData() map[string]int64 {
 	return nil
 }
 
-// get faqs request payload
-type GetFaqsRequest struct {
+// get reports request payload
+type GetReportsRequest struct {
 	// item to sort
 	Item string `protobuf:"bytes,1,opt,name=item,proto3" json:"item,omitempty"`
 	// order of item
@@ -1321,650 +1326,650 @@ type GetFaqsRequest struct {
 	FilterItem string `protobuf:"bytes,5,opt,name=filterItem,proto3" json:"filterItem,omitempty"`
 	// value to filter
 	FilterValue string `protobuf:"bytes,6,opt,name=filterValue,proto3" json:"filterValue,omitempty"`
-	// faq ids
+	// report ids
 	Ids                  []string `protobuf:"bytes,7,rep,name=ids,proto3" json:"ids,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *GetFaqsRequest) Reset()         { *m = GetFaqsRequest{} }
-func (m *GetFaqsRequest) String() string { return proto.CompactTextString(m) }
-func (*GetFaqsRequest) ProtoMessage()    {}
-func (*GetFaqsRequest) Descriptor() ([]byte, []int) {
+func (m *GetReportsRequest) Reset()         { *m = GetReportsRequest{} }
+func (m *GetReportsRequest) String() string { return proto.CompactTextString(m) }
+func (*GetReportsRequest) ProtoMessage()    {}
+func (*GetReportsRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_fe7d991659ed015b, []int{25}
 }
 
-func (m *GetFaqsRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetFaqsRequest.Unmarshal(m, b)
+func (m *GetReportsRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetReportsRequest.Unmarshal(m, b)
 }
-func (m *GetFaqsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetFaqsRequest.Marshal(b, m, deterministic)
+func (m *GetReportsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetReportsRequest.Marshal(b, m, deterministic)
 }
-func (m *GetFaqsRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetFaqsRequest.Merge(m, src)
+func (m *GetReportsRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetReportsRequest.Merge(m, src)
 }
-func (m *GetFaqsRequest) XXX_Size() int {
-	return xxx_messageInfo_GetFaqsRequest.Size(m)
+func (m *GetReportsRequest) XXX_Size() int {
+	return xxx_messageInfo_GetReportsRequest.Size(m)
 }
-func (m *GetFaqsRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetFaqsRequest.DiscardUnknown(m)
+func (m *GetReportsRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetReportsRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetFaqsRequest proto.InternalMessageInfo
+var xxx_messageInfo_GetReportsRequest proto.InternalMessageInfo
 
-func (m *GetFaqsRequest) GetItem() string {
+func (m *GetReportsRequest) GetItem() string {
 	if m != nil {
 		return m.Item
 	}
 	return ""
 }
 
-func (m *GetFaqsRequest) GetOrder() string {
+func (m *GetReportsRequest) GetOrder() string {
 	if m != nil {
 		return m.Order
 	}
 	return ""
 }
 
-func (m *GetFaqsRequest) GetFrom() int64 {
+func (m *GetReportsRequest) GetFrom() int64 {
 	if m != nil {
 		return m.From
 	}
 	return 0
 }
 
-func (m *GetFaqsRequest) GetTo() int64 {
+func (m *GetReportsRequest) GetTo() int64 {
 	if m != nil {
 		return m.To
 	}
 	return 0
 }
 
-func (m *GetFaqsRequest) GetFilterItem() string {
+func (m *GetReportsRequest) GetFilterItem() string {
 	if m != nil {
 		return m.FilterItem
 	}
 	return ""
 }
 
-func (m *GetFaqsRequest) GetFilterValue() string {
+func (m *GetReportsRequest) GetFilterValue() string {
 	if m != nil {
 		return m.FilterValue
 	}
 	return ""
 }
 
-func (m *GetFaqsRequest) GetIds() []string {
+func (m *GetReportsRequest) GetIds() []string {
 	if m != nil {
 		return m.Ids
 	}
 	return nil
 }
 
-// get faq request payload
-type GetFaqRequest struct {
-	// faq id
+// get report request payload
+type GetReportRequest struct {
+	// report id
 	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *GetFaqRequest) Reset()         { *m = GetFaqRequest{} }
-func (m *GetFaqRequest) String() string { return proto.CompactTextString(m) }
-func (*GetFaqRequest) ProtoMessage()    {}
-func (*GetFaqRequest) Descriptor() ([]byte, []int) {
+func (m *GetReportRequest) Reset()         { *m = GetReportRequest{} }
+func (m *GetReportRequest) String() string { return proto.CompactTextString(m) }
+func (*GetReportRequest) ProtoMessage()    {}
+func (*GetReportRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_fe7d991659ed015b, []int{26}
 }
 
-func (m *GetFaqRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetFaqRequest.Unmarshal(m, b)
+func (m *GetReportRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetReportRequest.Unmarshal(m, b)
 }
-func (m *GetFaqRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetFaqRequest.Marshal(b, m, deterministic)
+func (m *GetReportRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetReportRequest.Marshal(b, m, deterministic)
 }
-func (m *GetFaqRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetFaqRequest.Merge(m, src)
+func (m *GetReportRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetReportRequest.Merge(m, src)
 }
-func (m *GetFaqRequest) XXX_Size() int {
-	return xxx_messageInfo_GetFaqRequest.Size(m)
+func (m *GetReportRequest) XXX_Size() int {
+	return xxx_messageInfo_GetReportRequest.Size(m)
 }
-func (m *GetFaqRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetFaqRequest.DiscardUnknown(m)
+func (m *GetReportRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetReportRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetFaqRequest proto.InternalMessageInfo
+var xxx_messageInfo_GetReportRequest proto.InternalMessageInfo
 
-func (m *GetFaqRequest) GetId() string {
+func (m *GetReportRequest) GetId() string {
 	if m != nil {
 		return m.Id
 	}
 	return ""
 }
 
-// create faq request payload
-type CreateFaqRequest struct {
-	// faq id
+// create report request payload
+type CreateReportRequest struct {
+	// report id
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// faq payload
-	Data                 *Faq     `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	// report payload
+	Data                 *Report  `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *CreateFaqRequest) Reset()         { *m = CreateFaqRequest{} }
-func (m *CreateFaqRequest) String() string { return proto.CompactTextString(m) }
-func (*CreateFaqRequest) ProtoMessage()    {}
-func (*CreateFaqRequest) Descriptor() ([]byte, []int) {
+func (m *CreateReportRequest) Reset()         { *m = CreateReportRequest{} }
+func (m *CreateReportRequest) String() string { return proto.CompactTextString(m) }
+func (*CreateReportRequest) ProtoMessage()    {}
+func (*CreateReportRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_fe7d991659ed015b, []int{27}
 }
 
-func (m *CreateFaqRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateFaqRequest.Unmarshal(m, b)
+func (m *CreateReportRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateReportRequest.Unmarshal(m, b)
 }
-func (m *CreateFaqRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateFaqRequest.Marshal(b, m, deterministic)
+func (m *CreateReportRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateReportRequest.Marshal(b, m, deterministic)
 }
-func (m *CreateFaqRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateFaqRequest.Merge(m, src)
+func (m *CreateReportRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateReportRequest.Merge(m, src)
 }
-func (m *CreateFaqRequest) XXX_Size() int {
-	return xxx_messageInfo_CreateFaqRequest.Size(m)
+func (m *CreateReportRequest) XXX_Size() int {
+	return xxx_messageInfo_CreateReportRequest.Size(m)
 }
-func (m *CreateFaqRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateFaqRequest.DiscardUnknown(m)
+func (m *CreateReportRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateReportRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CreateFaqRequest proto.InternalMessageInfo
+var xxx_messageInfo_CreateReportRequest proto.InternalMessageInfo
 
-func (m *CreateFaqRequest) GetId() string {
+func (m *CreateReportRequest) GetId() string {
 	if m != nil {
 		return m.Id
 	}
 	return ""
 }
 
-func (m *CreateFaqRequest) GetData() *Faq {
+func (m *CreateReportRequest) GetData() *Report {
 	if m != nil {
 		return m.Data
 	}
 	return nil
 }
 
-// update faq request payload
-type UpdateFaqRequest struct {
-	// faq id
+// update report request payload
+type UpdateReportRequest struct {
+	// report id
 	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	// faq payload
-	Data                 *Faq     `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	// report payload
+	Data                 *Report  `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UpdateFaqRequest) Reset()         { *m = UpdateFaqRequest{} }
-func (m *UpdateFaqRequest) String() string { return proto.CompactTextString(m) }
-func (*UpdateFaqRequest) ProtoMessage()    {}
-func (*UpdateFaqRequest) Descriptor() ([]byte, []int) {
+func (m *UpdateReportRequest) Reset()         { *m = UpdateReportRequest{} }
+func (m *UpdateReportRequest) String() string { return proto.CompactTextString(m) }
+func (*UpdateReportRequest) ProtoMessage()    {}
+func (*UpdateReportRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_fe7d991659ed015b, []int{28}
 }
 
-func (m *UpdateFaqRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateFaqRequest.Unmarshal(m, b)
+func (m *UpdateReportRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateReportRequest.Unmarshal(m, b)
 }
-func (m *UpdateFaqRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateFaqRequest.Marshal(b, m, deterministic)
+func (m *UpdateReportRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateReportRequest.Marshal(b, m, deterministic)
 }
-func (m *UpdateFaqRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateFaqRequest.Merge(m, src)
+func (m *UpdateReportRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateReportRequest.Merge(m, src)
 }
-func (m *UpdateFaqRequest) XXX_Size() int {
-	return xxx_messageInfo_UpdateFaqRequest.Size(m)
+func (m *UpdateReportRequest) XXX_Size() int {
+	return xxx_messageInfo_UpdateReportRequest.Size(m)
 }
-func (m *UpdateFaqRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateFaqRequest.DiscardUnknown(m)
+func (m *UpdateReportRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateReportRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UpdateFaqRequest proto.InternalMessageInfo
+var xxx_messageInfo_UpdateReportRequest proto.InternalMessageInfo
 
-func (m *UpdateFaqRequest) GetId() string {
+func (m *UpdateReportRequest) GetId() string {
 	if m != nil {
 		return m.Id
 	}
 	return ""
 }
 
-func (m *UpdateFaqRequest) GetData() *Faq {
+func (m *UpdateReportRequest) GetData() *Report {
 	if m != nil {
 		return m.Data
 	}
 	return nil
 }
 
-// update faqs request payload
-type UpdateFaqsRequest struct {
-	// faq ids
+// update reports request payload
+type UpdateReportsRequest struct {
+	// report ids
 	Ids []string `protobuf:"bytes,1,rep,name=ids,proto3" json:"ids,omitempty"`
-	// faq payload
-	Data                 *Faq     `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
+	// report payload
+	Data                 *Report  `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UpdateFaqsRequest) Reset()         { *m = UpdateFaqsRequest{} }
-func (m *UpdateFaqsRequest) String() string { return proto.CompactTextString(m) }
-func (*UpdateFaqsRequest) ProtoMessage()    {}
-func (*UpdateFaqsRequest) Descriptor() ([]byte, []int) {
+func (m *UpdateReportsRequest) Reset()         { *m = UpdateReportsRequest{} }
+func (m *UpdateReportsRequest) String() string { return proto.CompactTextString(m) }
+func (*UpdateReportsRequest) ProtoMessage()    {}
+func (*UpdateReportsRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_fe7d991659ed015b, []int{29}
 }
 
-func (m *UpdateFaqsRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateFaqsRequest.Unmarshal(m, b)
+func (m *UpdateReportsRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateReportsRequest.Unmarshal(m, b)
 }
-func (m *UpdateFaqsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateFaqsRequest.Marshal(b, m, deterministic)
+func (m *UpdateReportsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateReportsRequest.Marshal(b, m, deterministic)
 }
-func (m *UpdateFaqsRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateFaqsRequest.Merge(m, src)
+func (m *UpdateReportsRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateReportsRequest.Merge(m, src)
 }
-func (m *UpdateFaqsRequest) XXX_Size() int {
-	return xxx_messageInfo_UpdateFaqsRequest.Size(m)
+func (m *UpdateReportsRequest) XXX_Size() int {
+	return xxx_messageInfo_UpdateReportsRequest.Size(m)
 }
-func (m *UpdateFaqsRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateFaqsRequest.DiscardUnknown(m)
+func (m *UpdateReportsRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateReportsRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UpdateFaqsRequest proto.InternalMessageInfo
+var xxx_messageInfo_UpdateReportsRequest proto.InternalMessageInfo
 
-func (m *UpdateFaqsRequest) GetIds() []string {
+func (m *UpdateReportsRequest) GetIds() []string {
 	if m != nil {
 		return m.Ids
 	}
 	return nil
 }
 
-func (m *UpdateFaqsRequest) GetData() *Faq {
+func (m *UpdateReportsRequest) GetData() *Report {
 	if m != nil {
 		return m.Data
 	}
 	return nil
 }
 
-// delete faq request payload
-type DeleteFaqRequest struct {
-	// faq id
+// delete report request payload
+type DeleteReportRequest struct {
+	// report id
 	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *DeleteFaqRequest) Reset()         { *m = DeleteFaqRequest{} }
-func (m *DeleteFaqRequest) String() string { return proto.CompactTextString(m) }
-func (*DeleteFaqRequest) ProtoMessage()    {}
-func (*DeleteFaqRequest) Descriptor() ([]byte, []int) {
+func (m *DeleteReportRequest) Reset()         { *m = DeleteReportRequest{} }
+func (m *DeleteReportRequest) String() string { return proto.CompactTextString(m) }
+func (*DeleteReportRequest) ProtoMessage()    {}
+func (*DeleteReportRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_fe7d991659ed015b, []int{30}
 }
 
-func (m *DeleteFaqRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteFaqRequest.Unmarshal(m, b)
+func (m *DeleteReportRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteReportRequest.Unmarshal(m, b)
 }
-func (m *DeleteFaqRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteFaqRequest.Marshal(b, m, deterministic)
+func (m *DeleteReportRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteReportRequest.Marshal(b, m, deterministic)
 }
-func (m *DeleteFaqRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteFaqRequest.Merge(m, src)
+func (m *DeleteReportRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteReportRequest.Merge(m, src)
 }
-func (m *DeleteFaqRequest) XXX_Size() int {
-	return xxx_messageInfo_DeleteFaqRequest.Size(m)
+func (m *DeleteReportRequest) XXX_Size() int {
+	return xxx_messageInfo_DeleteReportRequest.Size(m)
 }
-func (m *DeleteFaqRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteFaqRequest.DiscardUnknown(m)
+func (m *DeleteReportRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteReportRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DeleteFaqRequest proto.InternalMessageInfo
+var xxx_messageInfo_DeleteReportRequest proto.InternalMessageInfo
 
-func (m *DeleteFaqRequest) GetId() string {
+func (m *DeleteReportRequest) GetId() string {
 	if m != nil {
 		return m.Id
 	}
 	return ""
 }
 
-// delete faqs request payload
-type DeleteFaqsRequest struct {
-	// faq ids
+// delete reports request payload
+type DeleteReportsRequest struct {
+	// report ids
 	Ids                  []string `protobuf:"bytes,1,rep,name=ids,proto3" json:"ids,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *DeleteFaqsRequest) Reset()         { *m = DeleteFaqsRequest{} }
-func (m *DeleteFaqsRequest) String() string { return proto.CompactTextString(m) }
-func (*DeleteFaqsRequest) ProtoMessage()    {}
-func (*DeleteFaqsRequest) Descriptor() ([]byte, []int) {
+func (m *DeleteReportsRequest) Reset()         { *m = DeleteReportsRequest{} }
+func (m *DeleteReportsRequest) String() string { return proto.CompactTextString(m) }
+func (*DeleteReportsRequest) ProtoMessage()    {}
+func (*DeleteReportsRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_fe7d991659ed015b, []int{31}
 }
 
-func (m *DeleteFaqsRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteFaqsRequest.Unmarshal(m, b)
+func (m *DeleteReportsRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteReportsRequest.Unmarshal(m, b)
 }
-func (m *DeleteFaqsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteFaqsRequest.Marshal(b, m, deterministic)
+func (m *DeleteReportsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteReportsRequest.Marshal(b, m, deterministic)
 }
-func (m *DeleteFaqsRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteFaqsRequest.Merge(m, src)
+func (m *DeleteReportsRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteReportsRequest.Merge(m, src)
 }
-func (m *DeleteFaqsRequest) XXX_Size() int {
-	return xxx_messageInfo_DeleteFaqsRequest.Size(m)
+func (m *DeleteReportsRequest) XXX_Size() int {
+	return xxx_messageInfo_DeleteReportsRequest.Size(m)
 }
-func (m *DeleteFaqsRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteFaqsRequest.DiscardUnknown(m)
+func (m *DeleteReportsRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteReportsRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DeleteFaqsRequest proto.InternalMessageInfo
+var xxx_messageInfo_DeleteReportsRequest proto.InternalMessageInfo
 
-func (m *DeleteFaqsRequest) GetIds() []string {
+func (m *DeleteReportsRequest) GetIds() []string {
 	if m != nil {
 		return m.Ids
 	}
 	return nil
 }
 
-// delete faq response payload
-type DeleteFaqResponse struct {
-	// faq payload
-	Data                 *Faq     `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+// delete report response payload
+type DeleteReportResponse struct {
+	// report payload
+	Data                 *Report  `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *DeleteFaqResponse) Reset()         { *m = DeleteFaqResponse{} }
-func (m *DeleteFaqResponse) String() string { return proto.CompactTextString(m) }
-func (*DeleteFaqResponse) ProtoMessage()    {}
-func (*DeleteFaqResponse) Descriptor() ([]byte, []int) {
+func (m *DeleteReportResponse) Reset()         { *m = DeleteReportResponse{} }
+func (m *DeleteReportResponse) String() string { return proto.CompactTextString(m) }
+func (*DeleteReportResponse) ProtoMessage()    {}
+func (*DeleteReportResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_fe7d991659ed015b, []int{32}
 }
 
-func (m *DeleteFaqResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteFaqResponse.Unmarshal(m, b)
+func (m *DeleteReportResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteReportResponse.Unmarshal(m, b)
 }
-func (m *DeleteFaqResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteFaqResponse.Marshal(b, m, deterministic)
+func (m *DeleteReportResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteReportResponse.Marshal(b, m, deterministic)
 }
-func (m *DeleteFaqResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteFaqResponse.Merge(m, src)
+func (m *DeleteReportResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteReportResponse.Merge(m, src)
 }
-func (m *DeleteFaqResponse) XXX_Size() int {
-	return xxx_messageInfo_DeleteFaqResponse.Size(m)
+func (m *DeleteReportResponse) XXX_Size() int {
+	return xxx_messageInfo_DeleteReportResponse.Size(m)
 }
-func (m *DeleteFaqResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteFaqResponse.DiscardUnknown(m)
+func (m *DeleteReportResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteReportResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DeleteFaqResponse proto.InternalMessageInfo
+var xxx_messageInfo_DeleteReportResponse proto.InternalMessageInfo
 
-func (m *DeleteFaqResponse) GetData() *Faq {
+func (m *DeleteReportResponse) GetData() *Report {
 	if m != nil {
 		return m.Data
 	}
 	return nil
 }
 
-// get faqs response payload
-type GetFaqsResponse struct {
-	// faqs payload
-	Data []*Faq `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
-	// total faqs
+// get reports response payload
+type GetReportsResponse struct {
+	// reports payload
+	Data []*Report `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+	// total reports
 	Total                int64    `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *GetFaqsResponse) Reset()         { *m = GetFaqsResponse{} }
-func (m *GetFaqsResponse) String() string { return proto.CompactTextString(m) }
-func (*GetFaqsResponse) ProtoMessage()    {}
-func (*GetFaqsResponse) Descriptor() ([]byte, []int) {
+func (m *GetReportsResponse) Reset()         { *m = GetReportsResponse{} }
+func (m *GetReportsResponse) String() string { return proto.CompactTextString(m) }
+func (*GetReportsResponse) ProtoMessage()    {}
+func (*GetReportsResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_fe7d991659ed015b, []int{33}
 }
 
-func (m *GetFaqsResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetFaqsResponse.Unmarshal(m, b)
+func (m *GetReportsResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetReportsResponse.Unmarshal(m, b)
 }
-func (m *GetFaqsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetFaqsResponse.Marshal(b, m, deterministic)
+func (m *GetReportsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetReportsResponse.Marshal(b, m, deterministic)
 }
-func (m *GetFaqsResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetFaqsResponse.Merge(m, src)
+func (m *GetReportsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetReportsResponse.Merge(m, src)
 }
-func (m *GetFaqsResponse) XXX_Size() int {
-	return xxx_messageInfo_GetFaqsResponse.Size(m)
+func (m *GetReportsResponse) XXX_Size() int {
+	return xxx_messageInfo_GetReportsResponse.Size(m)
 }
-func (m *GetFaqsResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetFaqsResponse.DiscardUnknown(m)
+func (m *GetReportsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetReportsResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetFaqsResponse proto.InternalMessageInfo
+var xxx_messageInfo_GetReportsResponse proto.InternalMessageInfo
 
-func (m *GetFaqsResponse) GetData() []*Faq {
+func (m *GetReportsResponse) GetData() []*Report {
 	if m != nil {
 		return m.Data
 	}
 	return nil
 }
 
-func (m *GetFaqsResponse) GetTotal() int64 {
+func (m *GetReportsResponse) GetTotal() int64 {
 	if m != nil {
 		return m.Total
 	}
 	return 0
 }
 
-// get faq response payload
-type GetFaqResponse struct {
-	// faq payload
-	Data                 *Faq     `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+// get report response payload
+type GetReportResponse struct {
+	// report payload
+	Data                 *Report  `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *GetFaqResponse) Reset()         { *m = GetFaqResponse{} }
-func (m *GetFaqResponse) String() string { return proto.CompactTextString(m) }
-func (*GetFaqResponse) ProtoMessage()    {}
-func (*GetFaqResponse) Descriptor() ([]byte, []int) {
+func (m *GetReportResponse) Reset()         { *m = GetReportResponse{} }
+func (m *GetReportResponse) String() string { return proto.CompactTextString(m) }
+func (*GetReportResponse) ProtoMessage()    {}
+func (*GetReportResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_fe7d991659ed015b, []int{34}
 }
 
-func (m *GetFaqResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetFaqResponse.Unmarshal(m, b)
+func (m *GetReportResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_GetReportResponse.Unmarshal(m, b)
 }
-func (m *GetFaqResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetFaqResponse.Marshal(b, m, deterministic)
+func (m *GetReportResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_GetReportResponse.Marshal(b, m, deterministic)
 }
-func (m *GetFaqResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetFaqResponse.Merge(m, src)
+func (m *GetReportResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GetReportResponse.Merge(m, src)
 }
-func (m *GetFaqResponse) XXX_Size() int {
-	return xxx_messageInfo_GetFaqResponse.Size(m)
+func (m *GetReportResponse) XXX_Size() int {
+	return xxx_messageInfo_GetReportResponse.Size(m)
 }
-func (m *GetFaqResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetFaqResponse.DiscardUnknown(m)
+func (m *GetReportResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_GetReportResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_GetFaqResponse proto.InternalMessageInfo
+var xxx_messageInfo_GetReportResponse proto.InternalMessageInfo
 
-func (m *GetFaqResponse) GetData() *Faq {
+func (m *GetReportResponse) GetData() *Report {
 	if m != nil {
 		return m.Data
 	}
 	return nil
 }
 
-// create faq response payload
-type CreateFaqResponse struct {
-	// faq payload
-	Data                 *Faq     `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+// create report response payload
+type CreateReportResponse struct {
+	// report payload
+	Data                 *Report  `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *CreateFaqResponse) Reset()         { *m = CreateFaqResponse{} }
-func (m *CreateFaqResponse) String() string { return proto.CompactTextString(m) }
-func (*CreateFaqResponse) ProtoMessage()    {}
-func (*CreateFaqResponse) Descriptor() ([]byte, []int) {
+func (m *CreateReportResponse) Reset()         { *m = CreateReportResponse{} }
+func (m *CreateReportResponse) String() string { return proto.CompactTextString(m) }
+func (*CreateReportResponse) ProtoMessage()    {}
+func (*CreateReportResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_fe7d991659ed015b, []int{35}
 }
 
-func (m *CreateFaqResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreateFaqResponse.Unmarshal(m, b)
+func (m *CreateReportResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_CreateReportResponse.Unmarshal(m, b)
 }
-func (m *CreateFaqResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreateFaqResponse.Marshal(b, m, deterministic)
+func (m *CreateReportResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_CreateReportResponse.Marshal(b, m, deterministic)
 }
-func (m *CreateFaqResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreateFaqResponse.Merge(m, src)
+func (m *CreateReportResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateReportResponse.Merge(m, src)
 }
-func (m *CreateFaqResponse) XXX_Size() int {
-	return xxx_messageInfo_CreateFaqResponse.Size(m)
+func (m *CreateReportResponse) XXX_Size() int {
+	return xxx_messageInfo_CreateReportResponse.Size(m)
 }
-func (m *CreateFaqResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreateFaqResponse.DiscardUnknown(m)
+func (m *CreateReportResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateReportResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_CreateFaqResponse proto.InternalMessageInfo
+var xxx_messageInfo_CreateReportResponse proto.InternalMessageInfo
 
-func (m *CreateFaqResponse) GetData() *Faq {
+func (m *CreateReportResponse) GetData() *Report {
 	if m != nil {
 		return m.Data
 	}
 	return nil
 }
 
-// update faq response payload
-type UpdateFaqResponse struct {
-	// faq payload
-	Data                 *Faq     `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
+// update report response payload
+type UpdateReportResponse struct {
+	// report payload
+	Data                 *Report  `protobuf:"bytes,1,opt,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UpdateFaqResponse) Reset()         { *m = UpdateFaqResponse{} }
-func (m *UpdateFaqResponse) String() string { return proto.CompactTextString(m) }
-func (*UpdateFaqResponse) ProtoMessage()    {}
-func (*UpdateFaqResponse) Descriptor() ([]byte, []int) {
+func (m *UpdateReportResponse) Reset()         { *m = UpdateReportResponse{} }
+func (m *UpdateReportResponse) String() string { return proto.CompactTextString(m) }
+func (*UpdateReportResponse) ProtoMessage()    {}
+func (*UpdateReportResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_fe7d991659ed015b, []int{36}
 }
 
-func (m *UpdateFaqResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateFaqResponse.Unmarshal(m, b)
+func (m *UpdateReportResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateReportResponse.Unmarshal(m, b)
 }
-func (m *UpdateFaqResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateFaqResponse.Marshal(b, m, deterministic)
+func (m *UpdateReportResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateReportResponse.Marshal(b, m, deterministic)
 }
-func (m *UpdateFaqResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateFaqResponse.Merge(m, src)
+func (m *UpdateReportResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateReportResponse.Merge(m, src)
 }
-func (m *UpdateFaqResponse) XXX_Size() int {
-	return xxx_messageInfo_UpdateFaqResponse.Size(m)
+func (m *UpdateReportResponse) XXX_Size() int {
+	return xxx_messageInfo_UpdateReportResponse.Size(m)
 }
-func (m *UpdateFaqResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateFaqResponse.DiscardUnknown(m)
+func (m *UpdateReportResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateReportResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UpdateFaqResponse proto.InternalMessageInfo
+var xxx_messageInfo_UpdateReportResponse proto.InternalMessageInfo
 
-func (m *UpdateFaqResponse) GetData() *Faq {
+func (m *UpdateReportResponse) GetData() *Report {
 	if m != nil {
 		return m.Data
 	}
 	return nil
 }
 
-// update faqs response payload
-type UpdateFaqsResponse struct {
-	// faq ids
+// update reports response payload
+type UpdateReportsResponse struct {
+	// report ids
 	Data                 []string `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *UpdateFaqsResponse) Reset()         { *m = UpdateFaqsResponse{} }
-func (m *UpdateFaqsResponse) String() string { return proto.CompactTextString(m) }
-func (*UpdateFaqsResponse) ProtoMessage()    {}
-func (*UpdateFaqsResponse) Descriptor() ([]byte, []int) {
+func (m *UpdateReportsResponse) Reset()         { *m = UpdateReportsResponse{} }
+func (m *UpdateReportsResponse) String() string { return proto.CompactTextString(m) }
+func (*UpdateReportsResponse) ProtoMessage()    {}
+func (*UpdateReportsResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_fe7d991659ed015b, []int{37}
 }
 
-func (m *UpdateFaqsResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_UpdateFaqsResponse.Unmarshal(m, b)
+func (m *UpdateReportsResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateReportsResponse.Unmarshal(m, b)
 }
-func (m *UpdateFaqsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_UpdateFaqsResponse.Marshal(b, m, deterministic)
+func (m *UpdateReportsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateReportsResponse.Marshal(b, m, deterministic)
 }
-func (m *UpdateFaqsResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateFaqsResponse.Merge(m, src)
+func (m *UpdateReportsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateReportsResponse.Merge(m, src)
 }
-func (m *UpdateFaqsResponse) XXX_Size() int {
-	return xxx_messageInfo_UpdateFaqsResponse.Size(m)
+func (m *UpdateReportsResponse) XXX_Size() int {
+	return xxx_messageInfo_UpdateReportsResponse.Size(m)
 }
-func (m *UpdateFaqsResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateFaqsResponse.DiscardUnknown(m)
+func (m *UpdateReportsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateReportsResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UpdateFaqsResponse proto.InternalMessageInfo
+var xxx_messageInfo_UpdateReportsResponse proto.InternalMessageInfo
 
-func (m *UpdateFaqsResponse) GetData() []string {
+func (m *UpdateReportsResponse) GetData() []string {
 	if m != nil {
 		return m.Data
 	}
 	return nil
 }
 
-// delete faqs response payload
-type DeleteFaqsResponse struct {
-	// faq ids
+// delete reports response payload
+type DeleteReportsResponse struct {
+	// report ids
 	Data                 []string `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
 }
 
-func (m *DeleteFaqsResponse) Reset()         { *m = DeleteFaqsResponse{} }
-func (m *DeleteFaqsResponse) String() string { return proto.CompactTextString(m) }
-func (*DeleteFaqsResponse) ProtoMessage()    {}
-func (*DeleteFaqsResponse) Descriptor() ([]byte, []int) {
+func (m *DeleteReportsResponse) Reset()         { *m = DeleteReportsResponse{} }
+func (m *DeleteReportsResponse) String() string { return proto.CompactTextString(m) }
+func (*DeleteReportsResponse) ProtoMessage()    {}
+func (*DeleteReportsResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_fe7d991659ed015b, []int{38}
 }
 
-func (m *DeleteFaqsResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeleteFaqsResponse.Unmarshal(m, b)
+func (m *DeleteReportsResponse) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_DeleteReportsResponse.Unmarshal(m, b)
 }
-func (m *DeleteFaqsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeleteFaqsResponse.Marshal(b, m, deterministic)
+func (m *DeleteReportsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_DeleteReportsResponse.Marshal(b, m, deterministic)
 }
-func (m *DeleteFaqsResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteFaqsResponse.Merge(m, src)
+func (m *DeleteReportsResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteReportsResponse.Merge(m, src)
 }
-func (m *DeleteFaqsResponse) XXX_Size() int {
-	return xxx_messageInfo_DeleteFaqsResponse.Size(m)
+func (m *DeleteReportsResponse) XXX_Size() int {
+	return xxx_messageInfo_DeleteReportsResponse.Size(m)
 }
-func (m *DeleteFaqsResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteFaqsResponse.DiscardUnknown(m)
+func (m *DeleteReportsResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteReportsResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_DeleteFaqsResponse proto.InternalMessageInfo
+var xxx_messageInfo_DeleteReportsResponse proto.InternalMessageInfo
 
-func (m *DeleteFaqsResponse) GetData() []string {
+func (m *DeleteReportsResponse) GetData() []string {
 	if m != nil {
 		return m.Data
 	}
@@ -1975,7 +1980,7 @@ func init() {
 	proto.RegisterType((*LoginRequest)(nil), "pb.LoginRequest")
 	proto.RegisterType((*LoginResponse)(nil), "pb.LoginResponse")
 	proto.RegisterType((*RefreshResponse)(nil), "pb.RefreshResponse")
-	proto.RegisterType((*Faq)(nil), "pb.Faq")
+	proto.RegisterType((*Report)(nil), "pb.Report")
 	proto.RegisterType((*User)(nil), "pb.User")
 	proto.RegisterType((*GetPasswordResetRequest)(nil), "pb.GetPasswordResetRequest")
 	proto.RegisterType((*UpdatePasswordRequest)(nil), "pb.UpdatePasswordRequest")
@@ -1998,124 +2003,126 @@ func init() {
 	proto.RegisterType((*GetNearbyUsersResponse)(nil), "pb.GetNearbyUsersResponse")
 	proto.RegisterType((*GetKasesResponse)(nil), "pb.GetKasesResponse")
 	proto.RegisterMapType((map[string]int64)(nil), "pb.GetKasesResponse.DataEntry")
-	proto.RegisterType((*GetFaqsRequest)(nil), "pb.GetFaqsRequest")
-	proto.RegisterType((*GetFaqRequest)(nil), "pb.GetFaqRequest")
-	proto.RegisterType((*CreateFaqRequest)(nil), "pb.CreateFaqRequest")
-	proto.RegisterType((*UpdateFaqRequest)(nil), "pb.UpdateFaqRequest")
-	proto.RegisterType((*UpdateFaqsRequest)(nil), "pb.UpdateFaqsRequest")
-	proto.RegisterType((*DeleteFaqRequest)(nil), "pb.DeleteFaqRequest")
-	proto.RegisterType((*DeleteFaqsRequest)(nil), "pb.DeleteFaqsRequest")
-	proto.RegisterType((*DeleteFaqResponse)(nil), "pb.DeleteFaqResponse")
-	proto.RegisterType((*GetFaqsResponse)(nil), "pb.GetFaqsResponse")
-	proto.RegisterType((*GetFaqResponse)(nil), "pb.GetFaqResponse")
-	proto.RegisterType((*CreateFaqResponse)(nil), "pb.CreateFaqResponse")
-	proto.RegisterType((*UpdateFaqResponse)(nil), "pb.UpdateFaqResponse")
-	proto.RegisterType((*UpdateFaqsResponse)(nil), "pb.UpdateFaqsResponse")
-	proto.RegisterType((*DeleteFaqsResponse)(nil), "pb.DeleteFaqsResponse")
+	proto.RegisterType((*GetReportsRequest)(nil), "pb.GetReportsRequest")
+	proto.RegisterType((*GetReportRequest)(nil), "pb.GetReportRequest")
+	proto.RegisterType((*CreateReportRequest)(nil), "pb.CreateReportRequest")
+	proto.RegisterType((*UpdateReportRequest)(nil), "pb.UpdateReportRequest")
+	proto.RegisterType((*UpdateReportsRequest)(nil), "pb.UpdateReportsRequest")
+	proto.RegisterType((*DeleteReportRequest)(nil), "pb.DeleteReportRequest")
+	proto.RegisterType((*DeleteReportsRequest)(nil), "pb.DeleteReportsRequest")
+	proto.RegisterType((*DeleteReportResponse)(nil), "pb.DeleteReportResponse")
+	proto.RegisterType((*GetReportsResponse)(nil), "pb.GetReportsResponse")
+	proto.RegisterType((*GetReportResponse)(nil), "pb.GetReportResponse")
+	proto.RegisterType((*CreateReportResponse)(nil), "pb.CreateReportResponse")
+	proto.RegisterType((*UpdateReportResponse)(nil), "pb.UpdateReportResponse")
+	proto.RegisterType((*UpdateReportsResponse)(nil), "pb.UpdateReportsResponse")
+	proto.RegisterType((*DeleteReportsResponse)(nil), "pb.DeleteReportsResponse")
 }
 
 func init() { proto.RegisterFile("galasejahtera-service.proto", fileDescriptor_fe7d991659ed015b) }
 
 var fileDescriptor_fe7d991659ed015b = []byte{
-	// 1554 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xd4, 0x58, 0xdd, 0x6e, 0xdb, 0xc6,
-	0x12, 0x06, 0x25, 0xff, 0x69, 0xfc, 0x13, 0x79, 0xfd, 0x13, 0x86, 0x36, 0x1c, 0x61, 0x4f, 0xce,
-	0x81, 0x8f, 0x70, 0x2c, 0x3a, 0x3a, 0xe7, 0xa0, 0x85, 0x6f, 0x9c, 0xa4, 0x8e, 0xdd, 0x34, 0xa9,
-	0x93, 0x2a, 0x3f, 0xbd, 0x5e, 0x4b, 0x6b, 0x99, 0x31, 0x45, 0xca, 0xdc, 0xb5, 0x53, 0x23, 0x28,
-	0x0a, 0x14, 0x7d, 0x82, 0xf6, 0xb2, 0x6f, 0xd1, 0x5e, 0xf4, 0x41, 0xfa, 0x04, 0x05, 0x5a, 0xa0,
-	0x8f, 0x51, 0xec, 0x1f, 0xb9, 0x24, 0x25, 0xc7, 0x0d, 0x7a, 0xd3, 0x2b, 0xed, 0x0e, 0x67, 0xbe,
-	0x99, 0xd9, 0xf9, 0x76, 0x34, 0x24, 0xac, 0xf5, 0x49, 0x48, 0x18, 0x7d, 0x4d, 0x4e, 0x38, 0x4d,
-	0xc8, 0x16, 0xa3, 0xc9, 0x45, 0xd0, 0xa5, 0xad, 0x61, 0x12, 0xf3, 0x18, 0x55, 0x86, 0x47, 0xde,
-	0x7a, 0x3f, 0x8e, 0xfb, 0x21, 0xf5, 0xc9, 0x30, 0xf0, 0x49, 0x14, 0xc5, 0x9c, 0xf0, 0x20, 0x8e,
-	0x98, 0xd2, 0xf0, 0xfe, 0x23, 0x7f, 0xba, 0x5b, 0x7d, 0x1a, 0x6d, 0xb1, 0x37, 0xa4, 0xdf, 0xa7,
-	0x89, 0x1f, 0x0f, 0xa5, 0xc6, 0x08, 0xed, 0x35, 0x8d, 0x25, 0x77, 0x47, 0xe7, 0xc7, 0x3e, 0x1d,
-	0x0c, 0xf9, 0xa5, 0x7a, 0x88, 0xef, 0xc1, 0xdc, 0x93, 0xb8, 0x1f, 0x44, 0x1d, 0x7a, 0x76, 0x4e,
-	0x19, 0x47, 0xcb, 0x30, 0x49, 0x07, 0x24, 0x08, 0x5d, 0xa7, 0xe1, 0x6c, 0xd6, 0x3a, 0x6a, 0x83,
-	0x3c, 0x98, 0x19, 0x12, 0xc6, 0xde, 0xc4, 0x49, 0xcf, 0xad, 0xc8, 0x07, 0xe9, 0x1e, 0x7f, 0xef,
-	0xc0, 0xbc, 0x86, 0x60, 0xc3, 0x38, 0x62, 0x14, 0x35, 0x60, 0x96, 0x74, 0xbb, 0x94, 0xb1, 0x17,
-	0xf1, 0x29, 0x8d, 0x34, 0x92, 0x2d, 0x42, 0x18, 0xe6, 0x12, 0x7a, 0x9c, 0x50, 0x76, 0xa2, 0x54,
-	0x14, 0x66, 0x4e, 0x26, 0x50, 0x7a, 0x01, 0x1b, 0x86, 0xe4, 0xf2, 0x90, 0x0c, 0xa8, 0x5b, 0x55,
-	0x28, 0x96, 0x08, 0x21, 0x98, 0x48, 0xe2, 0x90, 0xba, 0x13, 0xf2, 0x91, 0x5c, 0xa3, 0x05, 0xa8,
-	0x04, 0x3d, 0x77, 0x52, 0x4a, 0x2a, 0x41, 0x0f, 0x7f, 0x0e, 0x37, 0x3a, 0x0a, 0xf5, 0xaf, 0x0d,
-	0x0f, 0xef, 0x42, 0x75, 0x9f, 0x9c, 0x69, 0x7f, 0x8e, 0xf1, 0x27, 0xce, 0x8f, 0x07, 0x3c, 0xa4,
-	0xda, 0x46, 0x6d, 0x44, 0xa4, 0x3d, 0xca, 0xba, 0x3a, 0x09, 0xb9, 0xc6, 0xbf, 0x3b, 0x30, 0xf1,
-	0x92, 0xd1, 0xa4, 0x04, 0x61, 0xd2, 0xaa, 0x58, 0x69, 0xa5, 0x65, 0x99, 0x1c, 0x57, 0x96, 0xe9,
-	0x7c, 0x59, 0x44, 0x96, 0x21, 0x61, 0xfc, 0xe5, 0xb0, 0x47, 0x38, 0xed, 0xb9, 0x33, 0x0d, 0x67,
-	0xb3, 0xda, 0xb1, 0x45, 0xa8, 0x0e, 0xd5, 0x90, 0x70, 0xb7, 0xd6, 0x70, 0x36, 0x9d, 0x8e, 0x58,
-	0x0a, 0xcf, 0x61, 0x1c, 0xf5, 0x5d, 0x90, 0x22, 0xb9, 0x16, 0x32, 0x1e, 0x0c, 0xa8, 0x3b, 0x27,
-	0x01, 0xe4, 0x5a, 0xf8, 0x0d, 0xd8, 0xfd, 0x2e, 0x0f, 0x2e, 0xa8, 0x3b, 0xdf, 0x70, 0x36, 0x67,
-	0x3a, 0xe9, 0x5e, 0xe8, 0x47, 0xa2, 0x5e, 0x0b, 0x2a, 0x7a, 0xb1, 0xc6, 0xbb, 0x70, 0xf3, 0x80,
-	0xf2, 0x67, 0x3a, 0xb4, 0x0e, 0x65, 0x94, 0x1b, 0xbe, 0x8d, 0x38, 0x3f, 0x95, 0x68, 0xc5, 0x4a,
-	0x14, 0x3f, 0x82, 0x15, 0x15, 0x75, 0x86, 0x91, 0xd2, 0x95, 0x5b, 0x55, 0x54, 0x9b, 0x2b, 0xe9,
-	0xfa, 0x3f, 0x70, 0xcb, 0xb1, 0x68, 0x66, 0xb8, 0x30, 0x3d, 0xa0, 0x8c, 0x91, 0x3e, 0xd5, 0x78,
-	0x66, 0x8b, 0x7f, 0x74, 0xe0, 0xc6, 0x01, 0xe5, 0xa2, 0x5e, 0xcc, 0xf8, 0x46, 0x30, 0x11, 0x70,
-	0x3a, 0xd0, 0xaa, 0x72, 0x2d, 0xe2, 0x89, 0x93, 0x1e, 0x4d, 0x4c, 0xf8, 0x72, 0x23, 0x34, 0x8f,
-	0x93, 0x78, 0x20, 0xcb, 0x5f, 0xed, 0xc8, 0xb5, 0x48, 0x9c, 0xc7, 0x92, 0xba, 0xd5, 0x4e, 0x85,
-	0xc7, 0x68, 0x03, 0xe0, 0x38, 0x08, 0x39, 0x4d, 0x1e, 0x09, 0x4c, 0x55, 0x66, 0x4b, 0x22, 0xea,
-	0xa9, 0x76, 0xaf, 0x48, 0x78, 0x4e, 0xdd, 0x29, 0xc5, 0x5a, 0x4b, 0x24, 0xea, 0x19, 0xf4, 0x98,
-	0x3b, 0xdd, 0xa8, 0x6e, 0xd6, 0x3a, 0x62, 0x89, 0x1b, 0xb0, 0xa0, 0x83, 0x1e, 0x73, 0xdc, 0xf8,
-	0x3e, 0x2c, 0x7e, 0x94, 0x50, 0xc2, 0xe9, 0x15, 0x4a, 0x68, 0x1d, 0x26, 0x7a, 0x84, 0x13, 0x99,
-	0xd3, 0x6c, 0x7b, 0xa6, 0x35, 0x3c, 0x6a, 0x49, 0x75, 0x29, 0x15, 0x10, 0xaa, 0x36, 0xef, 0x0f,
-	0xb1, 0x07, 0x28, 0x83, 0x48, 0xcf, 0x57, 0xe7, 0xe3, 0xa4, 0xf9, 0xbc, 0x03, 0xe5, 0x1f, 0xb0,
-	0xb8, 0x47, 0x43, 0x7a, 0x65, 0x20, 0xf8, 0x5f, 0x80, 0x32, 0xa5, 0xf1, 0xae, 0x70, 0xdb, 0xd6,
-	0x4b, 0x09, 0x62, 0x02, 0x70, 0x46, 0x06, 0xb0, 0x0f, 0xf5, 0x8c, 0x23, 0x25, 0x8b, 0x6a, 0xd9,
-	0x42, 0xd1, 0x97, 0x13, 0xc5, 0xf6, 0x6a, 0x47, 0x6d, 0xb0, 0x9f, 0x72, 0xed, 0x9a, 0x8e, 0xdb,
-	0x80, 0xec, 0x2a, 0x5e, 0xd7, 0xc6, 0x2e, 0xdb, 0xb5, 0x6c, 0xfe, 0x0d, 0x4b, 0xb9, 0x3a, 0x69,
-	0x23, 0x64, 0xe5, 0x58, 0xcb, 0x54, 0x73, 0xe7, 0x7c, 0x85, 0xea, 0xff, 0x61, 0xe5, 0x80, 0xf2,
-	0x43, 0x4a, 0x92, 0xa3, 0xcb, 0x5c, 0x55, 0xd6, 0x61, 0xe2, 0x9c, 0xd1, 0xa4, 0x1c, 0x8c, 0x90,
-	0xe2, 0x0e, 0xac, 0x16, 0xcd, 0xb4, 0x93, 0x0d, 0x98, 0x14, 0x1a, 0xac, 0x74, 0xe8, 0x4a, 0x2c,
-	0xae, 0xb9, 0x58, 0x1c, 0x9e, 0x0f, 0xf4, 0xb9, 0x9b, 0x2d, 0xfe, 0x4a, 0x56, 0xf0, 0x31, 0x61,
-	0x34, 0x43, 0x6b, 0xe7, 0x2a, 0xb8, 0x21, 0xc0, 0x8a, 0x3a, 0xad, 0x3d, 0xc2, 0xc9, 0xc3, 0x88,
-	0x27, 0x97, 0x2a, 0x25, 0xef, 0x03, 0xa8, 0xa5, 0x22, 0x41, 0xae, 0x53, 0x7a, 0xa9, 0x39, 0x28,
-	0x96, 0xa2, 0xec, 0x17, 0xf2, 0x16, 0xeb, 0xb2, 0xcb, 0xcd, 0x4e, 0xe5, 0x43, 0x07, 0xff, 0xe0,
-	0xc8, 0x2b, 0xbb, 0x4f, 0xce, 0xfe, 0x46, 0x6d, 0xe6, 0x36, 0xcc, 0xab, 0x98, 0xc7, 0x5d, 0xba,
-	0x5d, 0xa8, 0x2b, 0x7e, 0x8e, 0xd7, 0x41, 0x6b, 0xb9, 0xbb, 0x3d, 0x2d, 0x8e, 0x59, 0x68, 0x2b,
-	0x8a, 0xec, 0x42, 0x5d, 0x11, 0xef, 0x7d, 0x01, 0x1e, 0x98, 0x26, 0x65, 0x9f, 0x6c, 0xb9, 0xc1,
-	0x5c, 0x89, 0x81, 0xa1, 0xae, 0x28, 0x7d, 0x45, 0xa6, 0xff, 0x34, 0x3d, 0xe8, 0x4a, 0x3f, 0x78,
-	0xdb, 0x52, 0x4b, 0x89, 0xb6, 0x96, 0xbb, 0x7b, 0x05, 0xe7, 0x7b, 0xb2, 0x27, 0x28, 0xd4, 0x92,
-	0x7e, 0xb5, 0xa4, 0x3f, 0xa6, 0xb3, 0x6c, 0x19, 0x76, 0x5d, 0xcf, 0xe9, 0xb6, 0xf9, 0x77, 0xf8,
-	0x33, 0x16, 0x56, 0xa1, 0xae, 0x63, 0xb1, 0x69, 0xfa, 0x50, 0x2e, 0xb7, 0x51, 0x7d, 0x62, 0xd3,
-	0xb4, 0xe4, 0x77, 0x69, 0xb6, 0xbf, 0x59, 0x80, 0xe5, 0x03, 0x12, 0x92, 0xe7, 0x66, 0xc2, 0x7e,
-	0xae, 0x06, 0x6c, 0x74, 0x2a, 0xf3, 0xb7, 0x7a, 0x06, 0xba, 0xa5, 0xef, 0x73, 0xb9, 0xfd, 0x78,
-	0xde, 0xa8, 0x47, 0xca, 0x2b, 0xc6, 0x5f, 0xff, 0xfc, 0xeb, 0x77, 0x95, 0x75, 0x7c, 0xd3, 0xbf,
-	0xb8, 0xeb, 0x77, 0xc3, 0x80, 0x46, 0xdc, 0x97, 0xcd, 0xc5, 0x8f, 0xa4, 0xf6, 0x8e, 0xd3, 0x44,
-	0x8f, 0x61, 0xc6, 0x34, 0x0a, 0xb4, 0xda, 0x52, 0x43, 0x78, 0xcb, 0x0c, 0xe1, 0xad, 0x87, 0x62,
-	0x08, 0xf7, 0x96, 0x47, 0xb5, 0x13, 0xbc, 0x28, 0xd1, 0x67, 0x51, 0x4d, 0xa0, 0x9f, 0x4a, 0x80,
-	0x0e, 0xd4, 0xd2, 0x52, 0x20, 0x69, 0x55, 0xbc, 0x51, 0xde, 0x4a, 0x41, 0xaa, 0xc1, 0x5c, 0x09,
-	0x86, 0xf0, 0xbc, 0x00, 0x3b, 0x26, 0x67, 0xcc, 0x7f, 0x1b, 0xf4, 0xbe, 0x14, 0x01, 0xee, 0xc1,
-	0xb4, 0xe6, 0x14, 0x42, 0x3a, 0x0e, 0x8b, 0xb6, 0xde, 0x52, 0x4e, 0xa6, 0xd1, 0xea, 0x12, 0x0d,
-	0xd0, 0x8c, 0x41, 0x43, 0xfb, 0x30, 0xa5, 0x94, 0xd0, 0x62, 0x66, 0x60, 0x30, 0x90, 0x2d, 0xd2,
-	0x10, 0x2b, 0x12, 0xe2, 0x06, 0xca, 0x07, 0x24, 0x32, 0x4c, 0x89, 0xa0, 0x32, 0x2c, 0x5e, 0x79,
-	0x95, 0x61, 0x89, 0x5f, 0x26, 0x43, 0xaf, 0x9c, 0xe1, 0x33, 0x80, 0x8c, 0x5c, 0x28, 0x6f, 0x9e,
-	0xe6, 0xb9, 0x5a, 0x14, 0x6b, 0xd8, 0x25, 0x09, 0x3b, 0xef, 0xa5, 0xa9, 0x0a, 0xc4, 0xa7, 0x50,
-	0x4b, 0x49, 0xa8, 0xa2, 0x2c, 0xf6, 0x04, 0x15, 0x65, 0xe9, 0x7a, 0x9b, 0xb4, 0x9b, 0x85, 0xb4,
-	0x3f, 0x05, 0xc8, 0x58, 0x8d, 0xf2, 0xb6, 0xf9, 0x10, 0xcb, 0xe4, 0x37, 0xd5, 0x68, 0x66, 0xd5,
-	0x78, 0x05, 0x90, 0x8d, 0x02, 0xc8, 0xa2, 0x84, 0x35, 0x14, 0x29, 0xb8, 0xf2, 0xc4, 0x80, 0x6f,
-	0x49, 0xb8, 0x25, 0xbc, 0x20, 0xe0, 0x14, 0x9d, 0xcd, 0x49, 0x7e, 0x2c, 0xc9, 0xac, 0xee, 0x8c,
-	0x21, 0x46, 0xee, 0xb6, 0x2c, 0xe7, 0x85, 0xa3, 0x98, 0xac, 0xfe, 0x7d, 0x3f, 0x91, 0xac, 0x93,
-	0xe1, 0x21, 0xcb, 0xa6, 0xc8, 0xba, 0x5c, 0x60, 0xab, 0x12, 0xa6, 0x8e, 0x0a, 0x81, 0x89, 0x6c,
-	0xb3, 0x81, 0xc4, 0xae, 0x6f, 0x29, 0xdb, 0xf2, 0xac, 0x63, 0xb2, 0xf5, 0x46, 0x64, 0xfb, 0x02,
-	0x66, 0xad, 0x41, 0x07, 0x15, 0x10, 0xd2, 0x9c, 0x6f, 0x96, 0xe4, 0x1a, 0x7a, 0x59, 0x42, 0x2f,
-	0x78, 0x59, 0xda, 0x02, 0xf5, 0xb9, 0x29, 0x75, 0x16, 0x6d, 0x69, 0x60, 0xb5, 0x4b, 0x3d, 0xea,
-	0x08, 0x9a, 0xc5, 0x23, 0xf8, 0x0c, 0x66, 0xad, 0x41, 0x0b, 0x15, 0xcc, 0xf3, 0xa1, 0x8e, 0x98,
-	0xc8, 0x4c, 0x85, 0x9a, 0x56, 0x85, 0x98, 0x9c, 0x82, 0x72, 0xaf, 0x48, 0x68, 0x4d, 0x97, 0x65,
-	0xd4, 0x4b, 0x9c, 0xb7, 0x3e, 0xfa, 0xa1, 0xf6, 0x70, 0x47, 0x7a, 0xd8, 0x40, 0xeb, 0xf9, 0xc8,
-	0x7d, 0xf3, 0x4a, 0x96, 0x48, 0x07, 0x31, 0x2c, 0xe4, 0x5f, 0xf1, 0x54, 0x6b, 0x1e, 0xf9, 0xda,
-	0xe7, 0x8d, 0x69, 0xa7, 0xb8, 0x29, 0x5d, 0xdd, 0xf1, 0x6e, 0x67, 0xae, 0x72, 0x5e, 0xfc, 0xb7,
-	0xf2, 0x05, 0x51, 0xd6, 0xf8, 0x01, 0x4c, 0xca, 0xcf, 0x16, 0xa8, 0x2e, 0xfc, 0xd8, 0x1f, 0x41,
-	0xbc, 0x45, 0x4b, 0x92, 0xaf, 0x28, 0x96, 0xc7, 0x14, 0x8a, 0x47, 0x02, 0xe3, 0x09, 0x4c, 0x3d,
-	0x89, 0xfb, 0xf1, 0x39, 0x1f, 0xdb, 0xe0, 0xc7, 0x45, 0x8a, 0x24, 0xde, 0x1c, 0x06, 0x8d, 0x27,
-	0x30, 0x0e, 0x61, 0x5a, 0x7f, 0xab, 0x18, 0x0b, 0x27, 0x6f, 0x47, 0xe1, 0x83, 0x86, 0xa1, 0x06,
-	0x9e, 0x15, 0x58, 0xfa, 0x23, 0xc5, 0x8e, 0xd3, 0x7c, 0xf0, 0x9b, 0xf3, 0xed, 0xfd, 0x5f, 0x1c,
-	0xf4, 0x93, 0x03, 0x2b, 0xb9, 0x7f, 0xc3, 0x86, 0xf9, 0x3b, 0xdc, 0x1f, 0x29, 0x6e, 0x9c, 0x90,
-	0xa8, 0x17, 0x52, 0xd6, 0x48, 0xd4, 0x71, 0xb0, 0x86, 0x98, 0x24, 0x1b, 0x79, 0x5d, 0x32, 0x1c,
-	0x86, 0x41, 0x57, 0x7e, 0x67, 0x6a, 0xe1, 0xa7, 0xa8, 0x7d, 0xc2, 0xf9, 0x90, 0xed, 0xf8, 0x7e,
-	0x3f, 0xe0, 0x27, 0xe7, 0x47, 0xad, 0x6e, 0x3c, 0xf0, 0xfb, 0x24, 0x24, 0x5b, 0xe9, 0x47, 0x2e,
-	0x3f, 0xff, 0xc9, 0xeb, 0x88, 0x7a, 0xb7, 0xba, 0x27, 0x41, 0xf4, 0x45, 0x10, 0x47, 0xfd, 0x37,
-	0x34, 0xb8, 0x77, 0x49, 0x4e, 0xe2, 0x58, 0xd8, 0xb5, 0x06, 0x97, 0xed, 0xc9, 0xbb, 0xad, 0xed,
-	0xd6, 0x76, 0xd3, 0xa9, 0xb4, 0xeb, 0x96, 0x23, 0xff, 0x35, 0x8b, 0xa3, 0x9d, 0x92, 0xe4, 0x68,
-	0x4a, 0x1e, 0xd2, 0x7f, 0xff, 0x08, 0x00, 0x00, 0xff, 0xff, 0xde, 0xa8, 0x98, 0x35, 0x56, 0x13,
-	0x00, 0x00,
+	// 1588 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xd4, 0x58, 0x5b, 0x6f, 0xdb, 0x46,
+	0x16, 0x06, 0x25, 0xdf, 0x74, 0x7c, 0x89, 0x3d, 0x96, 0x6d, 0x9a, 0x36, 0xbc, 0xc2, 0x6c, 0x76,
+	0xe1, 0x55, 0xd6, 0x62, 0xa2, 0xec, 0x66, 0x17, 0x7e, 0x69, 0x9c, 0xc6, 0x71, 0x6e, 0x70, 0x53,
+	0x39, 0x49, 0x51, 0xb4, 0x28, 0x30, 0x96, 0xc6, 0x12, 0x63, 0x8a, 0x54, 0x39, 0x63, 0xa7, 0x42,
+	0x50, 0x14, 0xe8, 0x4f, 0x68, 0x1f, 0xfb, 0x33, 0x8a, 0xa2, 0x3f, 0xa4, 0x2f, 0x7d, 0x2d, 0xd0,
+	0x02, 0xfd, 0x19, 0xc5, 0x5c, 0x28, 0xcd, 0x88, 0x94, 0x62, 0xb4, 0x7d, 0xe9, 0x93, 0x66, 0x0e,
+	0xcf, 0x7c, 0xe7, 0xf6, 0xcd, 0xd1, 0x21, 0x61, 0xab, 0x4d, 0x42, 0xc2, 0xe8, 0x2b, 0xd2, 0xe1,
+	0x34, 0x21, 0x7b, 0x8c, 0x26, 0x97, 0x41, 0x93, 0xd6, 0x7a, 0x49, 0xcc, 0x63, 0x54, 0xe8, 0x9d,
+	0x7a, 0xdb, 0xed, 0x38, 0x6e, 0x87, 0xd4, 0x27, 0xbd, 0xc0, 0x27, 0x51, 0x14, 0x73, 0xc2, 0x83,
+	0x38, 0x62, 0x4a, 0xc3, 0xfb, 0xb7, 0xfc, 0x69, 0xee, 0xb5, 0x69, 0xb4, 0xc7, 0x5e, 0x93, 0x76,
+	0x9b, 0x26, 0x7e, 0xdc, 0x93, 0x1a, 0x39, 0xda, 0x5b, 0x1a, 0x4b, 0xee, 0x4e, 0x2f, 0xce, 0x7c,
+	0xda, 0xed, 0xf1, 0xbe, 0x7a, 0x88, 0xef, 0xc2, 0xc2, 0xd3, 0xb8, 0x1d, 0x44, 0x0d, 0xfa, 0xe9,
+	0x05, 0x65, 0x1c, 0x95, 0x61, 0x9a, 0x76, 0x49, 0x10, 0xba, 0x4e, 0xc5, 0xd9, 0x2d, 0x35, 0xd4,
+	0x06, 0x79, 0x30, 0xd7, 0x23, 0x8c, 0xbd, 0x8e, 0x93, 0x96, 0x5b, 0x90, 0x0f, 0x06, 0x7b, 0xfc,
+	0x8d, 0x03, 0x8b, 0x1a, 0x82, 0xf5, 0xe2, 0x88, 0x51, 0x54, 0x81, 0x79, 0xd2, 0x6c, 0x52, 0xc6,
+	0x9e, 0xc7, 0xe7, 0x34, 0xd2, 0x48, 0xa6, 0x08, 0x61, 0x58, 0x48, 0xe8, 0x59, 0x42, 0x59, 0x47,
+	0xa9, 0x28, 0x4c, 0x4b, 0x26, 0x50, 0x5a, 0x01, 0xeb, 0x85, 0xa4, 0x7f, 0x4c, 0xba, 0xd4, 0x2d,
+	0x2a, 0x14, 0x43, 0x84, 0x10, 0x4c, 0x25, 0x71, 0x48, 0xdd, 0x29, 0xf9, 0x48, 0xae, 0xd1, 0x12,
+	0x14, 0x82, 0x96, 0x3b, 0x2d, 0x25, 0x85, 0xa0, 0x85, 0x3f, 0x80, 0x6b, 0x0d, 0x85, 0xfa, 0xe7,
+	0xba, 0x87, 0x23, 0x98, 0x69, 0xd0, 0x5e, 0x9c, 0x70, 0x6d, 0xd2, 0x49, 0x4d, 0xa2, 0x75, 0x98,
+	0xb9, 0x60, 0x34, 0x79, 0x94, 0xa6, 0x4a, 0xef, 0xd0, 0x36, 0x94, 0x9a, 0x09, 0x25, 0x9c, 0xb6,
+	0x0e, 0xb8, 0x0c, 0xa7, 0xd8, 0x18, 0x0a, 0xd0, 0x0e, 0x40, 0x87, 0xb0, 0x93, 0x7e, 0xb7, 0xc7,
+	0xe3, 0xae, 0x0c, 0x69, 0xae, 0x61, 0x48, 0xf0, 0xaf, 0x0e, 0x4c, 0xbd, 0x60, 0x34, 0xc9, 0x98,
+	0x4b, 0xb3, 0x50, 0x30, 0xb2, 0x30, 0xa8, 0xe2, 0xf4, 0xb8, 0x2a, 0xce, 0xda, 0x55, 0x14, 0x49,
+	0x09, 0x09, 0xe3, 0x2f, 0x7a, 0x2d, 0xe1, 0x8f, 0x3b, 0x27, 0xdd, 0x33, 0x45, 0x68, 0x19, 0x8a,
+	0x21, 0xe1, 0x6e, 0xa9, 0xe2, 0xec, 0x3a, 0x0d, 0xb1, 0x14, 0x96, 0xc3, 0x38, 0x6a, 0xbb, 0x20,
+	0x45, 0x72, 0x2d, 0x64, 0x3c, 0xe8, 0x52, 0x77, 0x41, 0x02, 0xc8, 0xb5, 0xb0, 0x1b, 0xb0, 0x83,
+	0x26, 0x0f, 0x2e, 0xa9, 0xbb, 0x28, 0x03, 0x1b, 0xec, 0x85, 0x7e, 0x24, 0xca, 0xbb, 0xa4, 0xbc,
+	0x17, 0x6b, 0xfc, 0x0e, 0x6c, 0x1c, 0x51, 0xfe, 0x4c, 0xbb, 0xd6, 0xa0, 0x8c, 0xf2, 0x94, 0x9e,
+	0xa3, 0xc1, 0x0f, 0x02, 0x2d, 0x18, 0x81, 0xe2, 0x47, 0xb0, 0xa6, 0xbc, 0x1e, 0x62, 0x0c, 0xd8,
+	0xcd, 0x8d, 0xa2, 0xab, 0xcd, 0x44, 0x76, 0xff, 0x07, 0xdc, 0xac, 0x2f, 0x9a, 0x48, 0x2e, 0xcc,
+	0x76, 0x29, 0x63, 0xa4, 0x4d, 0x35, 0x5e, 0xba, 0xc5, 0xdf, 0x3a, 0x70, 0xed, 0x88, 0x72, 0x51,
+	0x2f, 0x96, 0xda, 0x46, 0x30, 0x15, 0x70, 0xda, 0xd5, 0xaa, 0x72, 0x2d, 0xfc, 0x89, 0x93, 0x16,
+	0x4d, 0x52, 0xf7, 0xe5, 0x46, 0x68, 0x9e, 0x25, 0x71, 0x57, 0x73, 0x44, 0xae, 0x45, 0xe0, 0x3c,
+	0x96, 0xb4, 0x28, 0x36, 0x0a, 0x3c, 0x16, 0x74, 0x39, 0x0b, 0x42, 0x4e, 0x93, 0x47, 0x02, 0x53,
+	0x95, 0xd9, 0x90, 0x88, 0x7a, 0xaa, 0xdd, 0x4b, 0x12, 0x5e, 0x50, 0x77, 0x46, 0x91, 0xdc, 0x10,
+	0x89, 0x7a, 0x06, 0x2d, 0xe6, 0xce, 0x56, 0x8a, 0xbb, 0xa5, 0x86, 0x58, 0xe2, 0x0a, 0x2c, 0x69,
+	0xa7, 0xc7, 0xa4, 0x1b, 0x1f, 0xc0, 0xca, 0xbb, 0x92, 0xb1, 0x13, 0x94, 0xd0, 0x36, 0x4c, 0xb5,
+	0x08, 0x27, 0x32, 0xa6, 0xf9, 0xfa, 0x5c, 0xad, 0x77, 0x5a, 0x93, 0xea, 0x52, 0x2a, 0x20, 0x54,
+	0x6d, 0x7e, 0x3f, 0xc4, 0x7d, 0x40, 0x43, 0x88, 0x41, 0x7e, 0x75, 0x3c, 0xce, 0x20, 0x9e, 0xb7,
+	0xa0, 0xfc, 0x1d, 0x56, 0xee, 0xd3, 0x90, 0x4e, 0x74, 0x04, 0xff, 0x13, 0xd0, 0x50, 0x69, 0xbc,
+	0x29, 0x5c, 0x37, 0xf5, 0x06, 0x04, 0x49, 0x1d, 0x70, 0x72, 0x1d, 0x78, 0x00, 0xcb, 0x43, 0x8e,
+	0x64, 0x4e, 0x14, 0xb3, 0x27, 0x14, 0x7d, 0x39, 0x51, 0x6c, 0x2f, 0x36, 0xd4, 0x06, 0xfb, 0x03,
+	0xae, 0x5d, 0xd1, 0x70, 0x1d, 0x90, 0x59, 0xc5, 0xab, 0x9e, 0x31, 0xcb, 0x76, 0xa5, 0x33, 0xff,
+	0x82, 0x55, 0xab, 0x4e, 0xfa, 0x10, 0x32, 0x62, 0x2c, 0x0d, 0x55, 0xad, 0x3c, 0x4f, 0x50, 0xfd,
+	0x2f, 0xac, 0x1d, 0x51, 0x7e, 0x4c, 0x49, 0x72, 0xda, 0xb7, 0xaa, 0xb2, 0x0d, 0x53, 0xa2, 0xd3,
+	0x66, 0x9d, 0x11, 0x52, 0xdc, 0x80, 0xf5, 0xd1, 0x63, 0xda, 0xc8, 0x0e, 0x4c, 0x0b, 0x0d, 0x96,
+	0x49, 0xba, 0x12, 0x8b, 0x6b, 0x2e, 0x16, 0xc7, 0x17, 0x5d, 0x9d, 0xf7, 0x74, 0x8b, 0xbf, 0x90,
+	0x15, 0x7c, 0x42, 0x18, 0x1d, 0xa2, 0xd5, 0xad, 0x0a, 0xee, 0x08, 0xb0, 0x51, 0x9d, 0xda, 0x7d,
+	0xc2, 0xc9, 0x61, 0xc4, 0x93, 0xbe, 0x0a, 0xc9, 0xfb, 0x1f, 0x94, 0x06, 0x22, 0x41, 0xae, 0x73,
+	0xda, 0xd7, 0x1c, 0x14, 0x4b, 0x51, 0xf6, 0x4b, 0x79, 0x8b, 0x75, 0xd9, 0xe5, 0x66, 0xbf, 0xf0,
+	0x7f, 0x07, 0x7f, 0xe7, 0xc0, 0xca, 0x91, 0xe8, 0x48, 0xe2, 0x8f, 0xe8, 0x2f, 0xd4, 0x69, 0xb0,
+	0x4c, 0x9c, 0x72, 0x7b, 0xdc, 0xd5, 0x3b, 0x84, 0x55, 0xc5, 0xd2, 0x89, 0x6a, 0x68, 0xc7, 0xba,
+	0xe4, 0x20, 0xf2, 0xad, 0x0f, 0x28, 0xba, 0x1c, 0xa6, 0x24, 0xfc, 0x63, 0x30, 0x0f, 0xa1, 0x6c,
+	0xc2, 0x4c, 0xe8, 0x3a, 0x6f, 0x43, 0xfa, 0x47, 0x4a, 0xf5, 0xc9, 0xe1, 0xef, 0x42, 0xd9, 0x54,
+	0x9b, 0xd0, 0x7b, 0xee, 0xd8, 0x9a, 0x06, 0xaf, 0xcd, 0xcb, 0x99, 0x75, 0xe4, 0x31, 0x20, 0x93,
+	0x3b, 0x99, 0x53, 0xc5, 0xbc, 0x53, 0x63, 0x7a, 0xd0, 0x6d, 0x83, 0x87, 0x57, 0x76, 0xe0, 0x0e,
+	0x94, 0xed, 0x0a, 0x5f, 0xfd, 0x9c, 0x5d, 0xd2, 0x2b, 0x9e, 0xbb, 0x91, 0x8e, 0x05, 0xa3, 0x31,
+	0xe7, 0xb5, 0x99, 0x1b, 0xb0, 0x36, 0x92, 0xff, 0xf1, 0xca, 0xf5, 0x1f, 0x97, 0xa0, 0x7c, 0x44,
+	0x42, 0x72, 0x92, 0x8e, 0xf4, 0x27, 0x6a, 0xa2, 0x47, 0xe7, 0xf2, 0x2f, 0xd5, 0xe8, 0x3a, 0x68,
+	0x53, 0x77, 0x84, 0x6c, 0x03, 0xf3, 0xbc, 0xbc, 0x47, 0xca, 0x2a, 0xc6, 0x5f, 0xfe, 0xf0, 0xf3,
+	0xd7, 0x85, 0x6d, 0xbc, 0xe1, 0x5f, 0xde, 0xf2, 0x9b, 0x61, 0x40, 0x23, 0xee, 0xcb, 0xf6, 0xe4,
+	0x47, 0x52, 0x7b, 0xdf, 0xa9, 0xa2, 0x27, 0x30, 0x97, 0xb6, 0x1a, 0xb4, 0x5e, 0x53, 0x53, 0x7f,
+	0x2d, 0x9d, 0xfa, 0x6b, 0x87, 0x62, 0xea, 0xf7, 0xca, 0x79, 0x0d, 0x09, 0xaf, 0x48, 0xf4, 0x79,
+	0x54, 0x12, 0xe8, 0xe7, 0x12, 0xe0, 0x13, 0x58, 0x30, 0x8b, 0x83, 0x36, 0xc4, 0xc1, 0x9c, 0x0b,
+	0xe9, 0xb9, 0xd9, 0x07, 0x1a, 0x75, 0x4b, 0xa2, 0xae, 0xe1, 0x65, 0x81, 0x9a, 0xa8, 0x34, 0xfa,
+	0x6f, 0x82, 0xd6, 0xe7, 0xc2, 0xd9, 0x67, 0x00, 0x43, 0xf6, 0xa1, 0x35, 0xed, 0x96, 0x4d, 0x76,
+	0x6f, 0x7d, 0x54, 0xac, 0x91, 0x57, 0x25, 0xf2, 0x22, 0x9a, 0x37, 0x90, 0x51, 0x03, 0x4a, 0x03,
+	0x55, 0x54, 0xb6, 0x4e, 0xa6, 0x78, 0x6b, 0x23, 0x52, 0x0d, 0xe7, 0x4a, 0x38, 0x84, 0x32, 0x8e,
+	0x8a, 0x2c, 0x98, 0x94, 0x51, 0x59, 0xc8, 0xe9, 0x27, 0x2a, 0x0b, 0x79, 0xac, 0x4c, 0xb3, 0xe0,
+	0xe5, 0x66, 0xe1, 0x63, 0x58, 0xb4, 0x28, 0x89, 0x32, 0x38, 0x83, 0x5c, 0x6c, 0xe6, 0x3c, 0xd1,
+	0x26, 0xd6, 0xa5, 0x89, 0x65, 0xcf, 0x4c, 0x87, 0x40, 0xff, 0x08, 0x16, 0x4c, 0x0e, 0x2b, 0xef,
+	0x73, 0x9a, 0x8f, 0xf2, 0x3e, 0xaf, 0x89, 0xa4, 0xa9, 0xa9, 0x66, 0x53, 0xf3, 0x21, 0x2c, 0x5a,
+	0x17, 0x04, 0x65, 0x40, 0x6c, 0xd7, 0x73, 0x6f, 0x53, 0x5a, 0xc9, 0xaa, 0x55, 0xc9, 0x97, 0x00,
+	0xc3, 0x01, 0x45, 0x71, 0x23, 0x33, 0x76, 0x2a, 0x6e, 0x64, 0xe7, 0x18, 0xbc, 0x29, 0x11, 0x57,
+	0xf1, 0x92, 0x40, 0x54, 0x57, 0x24, 0xcd, 0xf6, 0x43, 0x79, 0x41, 0xd4, 0x3d, 0x5c, 0xd5, 0x54,
+	0xb0, 0x6e, 0x60, 0xd9, 0x16, 0xe6, 0xdd, 0x0e, 0x35, 0x13, 0x3c, 0x86, 0x59, 0xad, 0x86, 0x90,
+	0x71, 0x26, 0xc5, 0x59, 0xb5, 0x64, 0x76, 0x95, 0xd0, 0x88, 0x63, 0x22, 0xda, 0xe1, 0x98, 0xa4,
+	0xa2, 0xcd, 0x4c, 0xc8, 0x2a, 0xda, 0xec, 0x04, 0x96, 0x46, 0xeb, 0xe5, 0x44, 0xfb, 0x1c, 0xe6,
+	0x8d, 0xf1, 0x0b, 0x8d, 0x20, 0x0c, 0x62, 0xde, 0xc8, 0xc8, 0x35, 0x74, 0x59, 0x42, 0x2f, 0x79,
+	0xc3, 0xb0, 0x05, 0xea, 0x09, 0xc0, 0x70, 0x52, 0x53, 0xde, 0x66, 0xc6, 0x68, 0xe5, 0x6d, 0x76,
+	0x20, 0x4e, 0x53, 0x50, 0x1d, 0x4d, 0xc1, 0xfb, 0x30, 0x6f, 0x8c, 0x7f, 0x68, 0xe4, 0xb8, 0xed,
+	0x6a, 0xce, 0x9c, 0x98, 0x56, 0xa8, 0x6a, 0x54, 0x88, 0xc9, 0x11, 0xc3, 0x7a, 0x71, 0x43, 0x5b,
+	0xba, 0x2c, 0x79, 0xaf, 0x96, 0xde, 0x76, 0xfe, 0x43, 0x6d, 0xe1, 0xba, 0xb4, 0xb0, 0x83, 0xb6,
+	0x6d, 0xcf, 0xfd, 0xf4, 0x45, 0x31, 0x91, 0x06, 0x62, 0x58, 0xb2, 0x5f, 0x3c, 0x91, 0x71, 0x6b,
+	0x47, 0x5e, 0x46, 0xbd, 0x31, 0x2d, 0x1a, 0x57, 0xa5, 0xa9, 0xeb, 0xde, 0xdf, 0x86, 0xa6, 0x2c,
+	0x2b, 0xfe, 0x1b, 0xf9, 0xda, 0x2a, 0x6b, 0x7c, 0x0f, 0xa6, 0xe5, 0xb7, 0x17, 0xb4, 0x2c, 0xec,
+	0x98, 0x5f, 0x72, 0xbc, 0x15, 0x43, 0x62, 0x57, 0x14, 0xcb, 0x34, 0x85, 0xe2, 0x91, 0xc0, 0x78,
+	0x0a, 0x33, 0x4f, 0xe3, 0x76, 0x7c, 0xc1, 0xc7, 0xfe, 0x69, 0x8c, 0xf3, 0x14, 0x49, 0xbc, 0x05,
+	0x0c, 0x1a, 0x4f, 0x60, 0x1c, 0xc3, 0xac, 0xfe, 0xe0, 0x32, 0x16, 0x6e, 0x55, 0xfd, 0x33, 0x5b,
+	0x5f, 0x65, 0x52, 0x6a, 0x60, 0xdd, 0x08, 0xe4, 0xc3, 0x7d, 0xa7, 0x7a, 0xef, 0x17, 0xe7, 0xab,
+	0x83, 0x9f, 0x1c, 0xf4, 0xbd, 0x03, 0x6b, 0xd6, 0x3f, 0x6c, 0x25, 0xfd, 0x8b, 0x7d, 0x90, 0x2b,
+	0xae, 0x74, 0x48, 0xd4, 0x0a, 0x29, 0xab, 0x24, 0x2a, 0x1d, 0xac, 0x22, 0x86, 0xdb, 0x8a, 0xad,
+	0x4b, 0x7a, 0xbd, 0x30, 0x68, 0xca, 0x8f, 0x65, 0x35, 0xfc, 0x1e, 0xaa, 0x77, 0x38, 0xef, 0xb1,
+	0x7d, 0xdf, 0x6f, 0x07, 0xbc, 0x73, 0x71, 0x5a, 0x6b, 0xc6, 0x5d, 0xbf, 0x4d, 0x42, 0xb2, 0x37,
+	0xf8, 0x52, 0xe7, 0xdb, 0xdf, 0xed, 0x4e, 0xa9, 0xb7, 0xd9, 0xec, 0x04, 0xd1, 0x67, 0x41, 0x1c,
+	0xb5, 0x5f, 0xd3, 0xe0, 0x6e, 0x9f, 0x74, 0xe2, 0x58, 0x9c, 0xab, 0x75, 0xfb, 0xf5, 0xe9, 0x5b,
+	0xb5, 0x9b, 0xb5, 0x9b, 0x55, 0xa7, 0x50, 0x5f, 0x36, 0x0c, 0xf9, 0xaf, 0x58, 0x1c, 0xed, 0x67,
+	0x24, 0xa7, 0x33, 0x32, 0x49, 0xb7, 0x7f, 0x0b, 0x00, 0x00, 0xff, 0xff, 0x3a, 0x87, 0xfb, 0xa4,
+	0x1b, 0x14, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -2134,20 +2141,20 @@ type GalaSejahteraServiceClient interface {
 	GetNearbyUsers(ctx context.Context, in *GetNearbyUsersRequest, opts ...grpc.CallOption) (*GetNearbyUsersResponse, error)
 	// Get Covid Kases
 	GetKases(ctx context.Context, in *empty.Empty, opts ...grpc.CallOption) (*GetKasesResponse, error)
-	// Create Faq
-	CreateFaq(ctx context.Context, in *CreateFaqRequest, opts ...grpc.CallOption) (*CreateFaqResponse, error)
-	// Get Faqs
-	GetFaqs(ctx context.Context, in *GetFaqsRequest, opts ...grpc.CallOption) (*GetFaqsResponse, error)
-	// Get Faq
-	GetFaq(ctx context.Context, in *GetFaqRequest, opts ...grpc.CallOption) (*GetFaqResponse, error)
-	// Update Faq
-	UpdateFaq(ctx context.Context, in *UpdateFaqRequest, opts ...grpc.CallOption) (*UpdateFaqResponse, error)
-	// Update Faqs
-	UpdateFaqs(ctx context.Context, in *UpdateFaqsRequest, opts ...grpc.CallOption) (*UpdateFaqsResponse, error)
-	// Delete Faq
-	DeleteFaq(ctx context.Context, in *DeleteFaqRequest, opts ...grpc.CallOption) (*DeleteFaqResponse, error)
-	// Delete Faqs
-	DeleteFaqs(ctx context.Context, in *DeleteFaqsRequest, opts ...grpc.CallOption) (*DeleteFaqsResponse, error)
+	// Create Report
+	CreateReport(ctx context.Context, in *CreateReportRequest, opts ...grpc.CallOption) (*CreateReportResponse, error)
+	// Get Reports
+	GetReports(ctx context.Context, in *GetReportsRequest, opts ...grpc.CallOption) (*GetReportsResponse, error)
+	// Get Report
+	GetReport(ctx context.Context, in *GetReportRequest, opts ...grpc.CallOption) (*GetReportResponse, error)
+	// Update Report
+	UpdateReport(ctx context.Context, in *UpdateReportRequest, opts ...grpc.CallOption) (*UpdateReportResponse, error)
+	// Update Reports
+	UpdateReports(ctx context.Context, in *UpdateReportsRequest, opts ...grpc.CallOption) (*UpdateReportsResponse, error)
+	// Delete Report
+	DeleteReport(ctx context.Context, in *DeleteReportRequest, opts ...grpc.CallOption) (*DeleteReportResponse, error)
+	// Delete Reports
+	DeleteReports(ctx context.Context, in *DeleteReportsRequest, opts ...grpc.CallOption) (*DeleteReportsResponse, error)
 	// Create User
 	CreateUser(ctx context.Context, in *CreateUserRequest, opts ...grpc.CallOption) (*CreateUserResponse, error)
 	// Get Users
@@ -2200,63 +2207,63 @@ func (c *galaSejahteraServiceClient) GetKases(ctx context.Context, in *empty.Emp
 	return out, nil
 }
 
-func (c *galaSejahteraServiceClient) CreateFaq(ctx context.Context, in *CreateFaqRequest, opts ...grpc.CallOption) (*CreateFaqResponse, error) {
-	out := new(CreateFaqResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/CreateFaq", in, out, opts...)
+func (c *galaSejahteraServiceClient) CreateReport(ctx context.Context, in *CreateReportRequest, opts ...grpc.CallOption) (*CreateReportResponse, error) {
+	out := new(CreateReportResponse)
+	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/CreateReport", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *galaSejahteraServiceClient) GetFaqs(ctx context.Context, in *GetFaqsRequest, opts ...grpc.CallOption) (*GetFaqsResponse, error) {
-	out := new(GetFaqsResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/GetFaqs", in, out, opts...)
+func (c *galaSejahteraServiceClient) GetReports(ctx context.Context, in *GetReportsRequest, opts ...grpc.CallOption) (*GetReportsResponse, error) {
+	out := new(GetReportsResponse)
+	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/GetReports", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *galaSejahteraServiceClient) GetFaq(ctx context.Context, in *GetFaqRequest, opts ...grpc.CallOption) (*GetFaqResponse, error) {
-	out := new(GetFaqResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/GetFaq", in, out, opts...)
+func (c *galaSejahteraServiceClient) GetReport(ctx context.Context, in *GetReportRequest, opts ...grpc.CallOption) (*GetReportResponse, error) {
+	out := new(GetReportResponse)
+	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/GetReport", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *galaSejahteraServiceClient) UpdateFaq(ctx context.Context, in *UpdateFaqRequest, opts ...grpc.CallOption) (*UpdateFaqResponse, error) {
-	out := new(UpdateFaqResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/UpdateFaq", in, out, opts...)
+func (c *galaSejahteraServiceClient) UpdateReport(ctx context.Context, in *UpdateReportRequest, opts ...grpc.CallOption) (*UpdateReportResponse, error) {
+	out := new(UpdateReportResponse)
+	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/UpdateReport", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *galaSejahteraServiceClient) UpdateFaqs(ctx context.Context, in *UpdateFaqsRequest, opts ...grpc.CallOption) (*UpdateFaqsResponse, error) {
-	out := new(UpdateFaqsResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/UpdateFaqs", in, out, opts...)
+func (c *galaSejahteraServiceClient) UpdateReports(ctx context.Context, in *UpdateReportsRequest, opts ...grpc.CallOption) (*UpdateReportsResponse, error) {
+	out := new(UpdateReportsResponse)
+	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/UpdateReports", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *galaSejahteraServiceClient) DeleteFaq(ctx context.Context, in *DeleteFaqRequest, opts ...grpc.CallOption) (*DeleteFaqResponse, error) {
-	out := new(DeleteFaqResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/DeleteFaq", in, out, opts...)
+func (c *galaSejahteraServiceClient) DeleteReport(ctx context.Context, in *DeleteReportRequest, opts ...grpc.CallOption) (*DeleteReportResponse, error) {
+	out := new(DeleteReportResponse)
+	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/DeleteReport", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *galaSejahteraServiceClient) DeleteFaqs(ctx context.Context, in *DeleteFaqsRequest, opts ...grpc.CallOption) (*DeleteFaqsResponse, error) {
-	out := new(DeleteFaqsResponse)
-	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/DeleteFaqs", in, out, opts...)
+func (c *galaSejahteraServiceClient) DeleteReports(ctx context.Context, in *DeleteReportsRequest, opts ...grpc.CallOption) (*DeleteReportsResponse, error) {
+	out := new(DeleteReportsResponse)
+	err := c.cc.Invoke(ctx, "/pb.GalaSejahteraService/DeleteReports", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -2377,20 +2384,20 @@ type GalaSejahteraServiceServer interface {
 	GetNearbyUsers(context.Context, *GetNearbyUsersRequest) (*GetNearbyUsersResponse, error)
 	// Get Covid Kases
 	GetKases(context.Context, *empty.Empty) (*GetKasesResponse, error)
-	// Create Faq
-	CreateFaq(context.Context, *CreateFaqRequest) (*CreateFaqResponse, error)
-	// Get Faqs
-	GetFaqs(context.Context, *GetFaqsRequest) (*GetFaqsResponse, error)
-	// Get Faq
-	GetFaq(context.Context, *GetFaqRequest) (*GetFaqResponse, error)
-	// Update Faq
-	UpdateFaq(context.Context, *UpdateFaqRequest) (*UpdateFaqResponse, error)
-	// Update Faqs
-	UpdateFaqs(context.Context, *UpdateFaqsRequest) (*UpdateFaqsResponse, error)
-	// Delete Faq
-	DeleteFaq(context.Context, *DeleteFaqRequest) (*DeleteFaqResponse, error)
-	// Delete Faqs
-	DeleteFaqs(context.Context, *DeleteFaqsRequest) (*DeleteFaqsResponse, error)
+	// Create Report
+	CreateReport(context.Context, *CreateReportRequest) (*CreateReportResponse, error)
+	// Get Reports
+	GetReports(context.Context, *GetReportsRequest) (*GetReportsResponse, error)
+	// Get Report
+	GetReport(context.Context, *GetReportRequest) (*GetReportResponse, error)
+	// Update Report
+	UpdateReport(context.Context, *UpdateReportRequest) (*UpdateReportResponse, error)
+	// Update Reports
+	UpdateReports(context.Context, *UpdateReportsRequest) (*UpdateReportsResponse, error)
+	// Delete Report
+	DeleteReport(context.Context, *DeleteReportRequest) (*DeleteReportResponse, error)
+	// Delete Reports
+	DeleteReports(context.Context, *DeleteReportsRequest) (*DeleteReportsResponse, error)
 	// Create User
 	CreateUser(context.Context, *CreateUserRequest) (*CreateUserResponse, error)
 	// Get Users
@@ -2427,26 +2434,26 @@ func (*UnimplementedGalaSejahteraServiceServer) GetNearbyUsers(ctx context.Conte
 func (*UnimplementedGalaSejahteraServiceServer) GetKases(ctx context.Context, req *empty.Empty) (*GetKasesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetKases not implemented")
 }
-func (*UnimplementedGalaSejahteraServiceServer) CreateFaq(ctx context.Context, req *CreateFaqRequest) (*CreateFaqResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateFaq not implemented")
+func (*UnimplementedGalaSejahteraServiceServer) CreateReport(ctx context.Context, req *CreateReportRequest) (*CreateReportResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateReport not implemented")
 }
-func (*UnimplementedGalaSejahteraServiceServer) GetFaqs(ctx context.Context, req *GetFaqsRequest) (*GetFaqsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetFaqs not implemented")
+func (*UnimplementedGalaSejahteraServiceServer) GetReports(ctx context.Context, req *GetReportsRequest) (*GetReportsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetReports not implemented")
 }
-func (*UnimplementedGalaSejahteraServiceServer) GetFaq(ctx context.Context, req *GetFaqRequest) (*GetFaqResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetFaq not implemented")
+func (*UnimplementedGalaSejahteraServiceServer) GetReport(ctx context.Context, req *GetReportRequest) (*GetReportResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetReport not implemented")
 }
-func (*UnimplementedGalaSejahteraServiceServer) UpdateFaq(ctx context.Context, req *UpdateFaqRequest) (*UpdateFaqResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateFaq not implemented")
+func (*UnimplementedGalaSejahteraServiceServer) UpdateReport(ctx context.Context, req *UpdateReportRequest) (*UpdateReportResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateReport not implemented")
 }
-func (*UnimplementedGalaSejahteraServiceServer) UpdateFaqs(ctx context.Context, req *UpdateFaqsRequest) (*UpdateFaqsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateFaqs not implemented")
+func (*UnimplementedGalaSejahteraServiceServer) UpdateReports(ctx context.Context, req *UpdateReportsRequest) (*UpdateReportsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateReports not implemented")
 }
-func (*UnimplementedGalaSejahteraServiceServer) DeleteFaq(ctx context.Context, req *DeleteFaqRequest) (*DeleteFaqResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteFaq not implemented")
+func (*UnimplementedGalaSejahteraServiceServer) DeleteReport(ctx context.Context, req *DeleteReportRequest) (*DeleteReportResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteReport not implemented")
 }
-func (*UnimplementedGalaSejahteraServiceServer) DeleteFaqs(ctx context.Context, req *DeleteFaqsRequest) (*DeleteFaqsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteFaqs not implemented")
+func (*UnimplementedGalaSejahteraServiceServer) DeleteReports(ctx context.Context, req *DeleteReportsRequest) (*DeleteReportsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteReports not implemented")
 }
 func (*UnimplementedGalaSejahteraServiceServer) CreateUser(ctx context.Context, req *CreateUserRequest) (*CreateUserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
@@ -2525,128 +2532,128 @@ func _GalaSejahteraService_GetKases_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GalaSejahteraService_CreateFaq_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateFaqRequest)
+func _GalaSejahteraService_CreateReport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateReportRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).CreateFaq(ctx, in)
+		return srv.(GalaSejahteraServiceServer).CreateReport(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/CreateFaq",
+		FullMethod: "/pb.GalaSejahteraService/CreateReport",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).CreateFaq(ctx, req.(*CreateFaqRequest))
+		return srv.(GalaSejahteraServiceServer).CreateReport(ctx, req.(*CreateReportRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GalaSejahteraService_GetFaqs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetFaqsRequest)
+func _GalaSejahteraService_GetReports_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetReportsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).GetFaqs(ctx, in)
+		return srv.(GalaSejahteraServiceServer).GetReports(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/GetFaqs",
+		FullMethod: "/pb.GalaSejahteraService/GetReports",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).GetFaqs(ctx, req.(*GetFaqsRequest))
+		return srv.(GalaSejahteraServiceServer).GetReports(ctx, req.(*GetReportsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GalaSejahteraService_GetFaq_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetFaqRequest)
+func _GalaSejahteraService_GetReport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetReportRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).GetFaq(ctx, in)
+		return srv.(GalaSejahteraServiceServer).GetReport(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/GetFaq",
+		FullMethod: "/pb.GalaSejahteraService/GetReport",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).GetFaq(ctx, req.(*GetFaqRequest))
+		return srv.(GalaSejahteraServiceServer).GetReport(ctx, req.(*GetReportRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GalaSejahteraService_UpdateFaq_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateFaqRequest)
+func _GalaSejahteraService_UpdateReport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateReportRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).UpdateFaq(ctx, in)
+		return srv.(GalaSejahteraServiceServer).UpdateReport(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/UpdateFaq",
+		FullMethod: "/pb.GalaSejahteraService/UpdateReport",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).UpdateFaq(ctx, req.(*UpdateFaqRequest))
+		return srv.(GalaSejahteraServiceServer).UpdateReport(ctx, req.(*UpdateReportRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GalaSejahteraService_UpdateFaqs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateFaqsRequest)
+func _GalaSejahteraService_UpdateReports_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateReportsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).UpdateFaqs(ctx, in)
+		return srv.(GalaSejahteraServiceServer).UpdateReports(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/UpdateFaqs",
+		FullMethod: "/pb.GalaSejahteraService/UpdateReports",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).UpdateFaqs(ctx, req.(*UpdateFaqsRequest))
+		return srv.(GalaSejahteraServiceServer).UpdateReports(ctx, req.(*UpdateReportsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GalaSejahteraService_DeleteFaq_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteFaqRequest)
+func _GalaSejahteraService_DeleteReport_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteReportRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).DeleteFaq(ctx, in)
+		return srv.(GalaSejahteraServiceServer).DeleteReport(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/DeleteFaq",
+		FullMethod: "/pb.GalaSejahteraService/DeleteReport",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).DeleteFaq(ctx, req.(*DeleteFaqRequest))
+		return srv.(GalaSejahteraServiceServer).DeleteReport(ctx, req.(*DeleteReportRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _GalaSejahteraService_DeleteFaqs_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteFaqsRequest)
+func _GalaSejahteraService_DeleteReports_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteReportsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(GalaSejahteraServiceServer).DeleteFaqs(ctx, in)
+		return srv.(GalaSejahteraServiceServer).DeleteReports(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/pb.GalaSejahteraService/DeleteFaqs",
+		FullMethod: "/pb.GalaSejahteraService/DeleteReports",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(GalaSejahteraServiceServer).DeleteFaqs(ctx, req.(*DeleteFaqsRequest))
+		return srv.(GalaSejahteraServiceServer).DeleteReports(ctx, req.(*DeleteReportsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -2880,32 +2887,32 @@ var _GalaSejahteraService_serviceDesc = grpc.ServiceDesc{
 			Handler:    _GalaSejahteraService_GetKases_Handler,
 		},
 		{
-			MethodName: "CreateFaq",
-			Handler:    _GalaSejahteraService_CreateFaq_Handler,
+			MethodName: "CreateReport",
+			Handler:    _GalaSejahteraService_CreateReport_Handler,
 		},
 		{
-			MethodName: "GetFaqs",
-			Handler:    _GalaSejahteraService_GetFaqs_Handler,
+			MethodName: "GetReports",
+			Handler:    _GalaSejahteraService_GetReports_Handler,
 		},
 		{
-			MethodName: "GetFaq",
-			Handler:    _GalaSejahteraService_GetFaq_Handler,
+			MethodName: "GetReport",
+			Handler:    _GalaSejahteraService_GetReport_Handler,
 		},
 		{
-			MethodName: "UpdateFaq",
-			Handler:    _GalaSejahteraService_UpdateFaq_Handler,
+			MethodName: "UpdateReport",
+			Handler:    _GalaSejahteraService_UpdateReport_Handler,
 		},
 		{
-			MethodName: "UpdateFaqs",
-			Handler:    _GalaSejahteraService_UpdateFaqs_Handler,
+			MethodName: "UpdateReports",
+			Handler:    _GalaSejahteraService_UpdateReports_Handler,
 		},
 		{
-			MethodName: "DeleteFaq",
-			Handler:    _GalaSejahteraService_DeleteFaq_Handler,
+			MethodName: "DeleteReport",
+			Handler:    _GalaSejahteraService_DeleteReport_Handler,
 		},
 		{
-			MethodName: "DeleteFaqs",
-			Handler:    _GalaSejahteraService_DeleteFaqs_Handler,
+			MethodName: "DeleteReports",
+			Handler:    _GalaSejahteraService_DeleteReports_Handler,
 		},
 		{
 			MethodName: "CreateUser",

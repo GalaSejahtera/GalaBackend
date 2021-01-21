@@ -48,22 +48,22 @@ type IModel interface {
 	DisableInactiveUsers(ctx context.Context) error
 	/////////////
 
-	///////////// Faq models
-	// CreateFaq creates new faq
-	CreateFaq(ctx context.Context, Faq *dto.Faq) (*dto.Faq, error)
-	// GetFaq gets activity by ID
-	GetFaq(ctx context.Context, id string) (*dto.Faq, error)
-	// BatchGetFaqs get faqs by slice of IDs
-	BatchGetFaqs(ctx context.Context, ids []string) ([]*dto.Faq, error)
-	// QueryFaqs queries faqs by sort, range, filter
-	QueryFaqs(ctx context.Context, sort *dto.SortData, itemsRange *dto.RangeData, filter *dto.FilterData) (int64, []*dto.Faq, error)
-	// DeleteFaq deletes faq by ID
-	DeleteFaq(ctx context.Context, id string) (*dto.Faq, error)
-	// DeleteFaqs delete faqs by IDs
-	DeleteFaqs(ctx context.Context, ids []string) ([]string, error)
+	///////////// Report models
+	// CreateReport creates new report
+	CreateReport(ctx context.Context, Report *dto.Report) (*dto.Report, error)
+	// GetReport gets activity by ID
+	GetReport(ctx context.Context, id string) (*dto.Report, error)
+	// BatchGetReports get reports by slice of IDs
+	BatchGetReports(ctx context.Context, ids []string) ([]*dto.Report, error)
+	// QueryReports queries reports by sort, range, filter
+	QueryReports(ctx context.Context, sort *dto.SortData, itemsRange *dto.RangeData, filter *dto.FilterData) (int64, []*dto.Report, error)
+	// DeleteReport deletes report by ID
+	DeleteReport(ctx context.Context, id string) (*dto.Report, error)
+	// DeleteReports delete reports by IDs
+	DeleteReports(ctx context.Context, ids []string) ([]string, error)
 	// UpdateZone updates zone
-	UpdateFaq(ctx context.Context, faq *dto.Faq) (*dto.Faq, error)
-	// UpdateZones update faqs
-	UpdateFaqs(ctx context.Context, faq *dto.Faq, ids []string) ([]string, error)
+	UpdateReport(ctx context.Context, report *dto.Report) (*dto.Report, error)
+	// UpdateZones update reports
+	UpdateReports(ctx context.Context, report *dto.Report, ids []string) ([]string, error)
 	/////////////
 }

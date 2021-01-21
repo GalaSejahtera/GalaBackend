@@ -1,8 +1,9 @@
 package dto
 
-// Faq ...
-type Faq struct {
-	ID    string `json:"id" bson:"id"`
-	Title string `json:"title" bson:"title"`
-	Desc  string `json:"desc" bson:"desc"`
+// Report ...
+type Report struct {
+	ID         string `json:"id" bson:"id"`
+	UserID     string `json:"userId" bson:"userId"`
+	CreatedAt  int64  `json:"createdAt" bson:"createdAt"`
+	HasSymptom bool   `json:"hasSymptom" bson:"hasSymptom"`
 }

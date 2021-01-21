@@ -8,16 +8,16 @@ import (
 
 // Model ...
 type Model struct {
-	userDAO dao.IUserDAO
-	authDAO dao.IAuthDAO
-	faqDAO  dao.IFaqDAO
+	userDAO   dao.IUserDAO
+	authDAO   dao.IAuthDAO
+	reportDAO dao.IReportDAO
 }
 
 // InitModel ...
 func InitModel(client *mongo.Client) IModel {
 	return &Model{
-		userDAO: dao.InitUserDAO(client),
-		authDAO: dao.InitAuthDAO(client),
-		faqDAO:  dao.InitFaqDAO(client),
+		userDAO:   dao.InitUserDAO(client),
+		authDAO:   dao.InitAuthDAO(client),
+		reportDAO: dao.InitReportDAO(client),
 	}
 }

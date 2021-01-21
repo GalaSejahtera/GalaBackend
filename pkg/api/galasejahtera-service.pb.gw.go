@@ -84,8 +84,8 @@ func local_request_GalaSejahteraService_GetKases_0(ctx context.Context, marshale
 
 }
 
-func request_GalaSejahteraService_CreateFaq_0(ctx context.Context, marshaler runtime.Marshaler, client GalaSejahteraServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateFaqRequest
+func request_GalaSejahteraService_CreateReport_0(ctx context.Context, marshaler runtime.Marshaler, client GalaSejahteraServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq CreateReportRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -114,13 +114,13 @@ func request_GalaSejahteraService_CreateFaq_0(ctx context.Context, marshaler run
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
 
-	msg, err := client.CreateFaq(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.CreateReport(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_GalaSejahteraService_CreateFaq_0(ctx context.Context, marshaler runtime.Marshaler, server GalaSejahteraServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq CreateFaqRequest
+func local_request_GalaSejahteraService_CreateReport_0(ctx context.Context, marshaler runtime.Marshaler, server GalaSejahteraServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq CreateReportRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -149,46 +149,46 @@ func local_request_GalaSejahteraService_CreateFaq_0(ctx context.Context, marshal
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
 
-	msg, err := server.CreateFaq(ctx, &protoReq)
+	msg, err := server.CreateReport(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
 var (
-	filter_GalaSejahteraService_GetFaqs_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_GalaSejahteraService_GetReports_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_GalaSejahteraService_GetFaqs_0(ctx context.Context, marshaler runtime.Marshaler, client GalaSejahteraServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetFaqsRequest
+func request_GalaSejahteraService_GetReports_0(ctx context.Context, marshaler runtime.Marshaler, client GalaSejahteraServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetReportsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_GalaSejahteraService_GetFaqs_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_GalaSejahteraService_GetReports_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GetFaqs(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetReports(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_GalaSejahteraService_GetFaqs_0(ctx context.Context, marshaler runtime.Marshaler, server GalaSejahteraServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetFaqsRequest
+func local_request_GalaSejahteraService_GetReports_0(ctx context.Context, marshaler runtime.Marshaler, server GalaSejahteraServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetReportsRequest
 	var metadata runtime.ServerMetadata
 
-	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_GalaSejahteraService_GetFaqs_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_GalaSejahteraService_GetReports_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.GetFaqs(ctx, &protoReq)
+	msg, err := server.GetReports(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_GalaSejahteraService_GetFaq_0(ctx context.Context, marshaler runtime.Marshaler, client GalaSejahteraServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetFaqRequest
+func request_GalaSejahteraService_GetReport_0(ctx context.Context, marshaler runtime.Marshaler, client GalaSejahteraServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetReportRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -209,13 +209,13 @@ func request_GalaSejahteraService_GetFaq_0(ctx context.Context, marshaler runtim
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
 
-	msg, err := client.GetFaq(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetReport(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_GalaSejahteraService_GetFaq_0(ctx context.Context, marshaler runtime.Marshaler, server GalaSejahteraServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetFaqRequest
+func local_request_GalaSejahteraService_GetReport_0(ctx context.Context, marshaler runtime.Marshaler, server GalaSejahteraServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetReportRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -236,13 +236,13 @@ func local_request_GalaSejahteraService_GetFaq_0(ctx context.Context, marshaler 
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
 
-	msg, err := server.GetFaq(ctx, &protoReq)
+	msg, err := server.GetReport(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_GalaSejahteraService_UpdateFaq_0(ctx context.Context, marshaler runtime.Marshaler, client GalaSejahteraServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateFaqRequest
+func request_GalaSejahteraService_UpdateReport_0(ctx context.Context, marshaler runtime.Marshaler, client GalaSejahteraServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdateReportRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -271,13 +271,13 @@ func request_GalaSejahteraService_UpdateFaq_0(ctx context.Context, marshaler run
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
 
-	msg, err := client.UpdateFaq(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.UpdateReport(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_GalaSejahteraService_UpdateFaq_0(ctx context.Context, marshaler runtime.Marshaler, server GalaSejahteraServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateFaqRequest
+func local_request_GalaSejahteraService_UpdateReport_0(ctx context.Context, marshaler runtime.Marshaler, server GalaSejahteraServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdateReportRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -306,13 +306,13 @@ func local_request_GalaSejahteraService_UpdateFaq_0(ctx context.Context, marshal
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
 
-	msg, err := server.UpdateFaq(ctx, &protoReq)
+	msg, err := server.UpdateReport(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_GalaSejahteraService_UpdateFaqs_0(ctx context.Context, marshaler runtime.Marshaler, client GalaSejahteraServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateFaqsRequest
+func request_GalaSejahteraService_UpdateReports_0(ctx context.Context, marshaler runtime.Marshaler, client GalaSejahteraServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdateReportsRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -323,13 +323,13 @@ func request_GalaSejahteraService_UpdateFaqs_0(ctx context.Context, marshaler ru
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.UpdateFaqs(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.UpdateReports(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_GalaSejahteraService_UpdateFaqs_0(ctx context.Context, marshaler runtime.Marshaler, server GalaSejahteraServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateFaqsRequest
+func local_request_GalaSejahteraService_UpdateReports_0(ctx context.Context, marshaler runtime.Marshaler, server GalaSejahteraServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdateReportsRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -340,13 +340,13 @@ func local_request_GalaSejahteraService_UpdateFaqs_0(ctx context.Context, marsha
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.UpdateFaqs(ctx, &protoReq)
+	msg, err := server.UpdateReports(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
-func request_GalaSejahteraService_DeleteFaq_0(ctx context.Context, marshaler runtime.Marshaler, client GalaSejahteraServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteFaqRequest
+func request_GalaSejahteraService_DeleteReport_0(ctx context.Context, marshaler runtime.Marshaler, client GalaSejahteraServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeleteReportRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -367,13 +367,13 @@ func request_GalaSejahteraService_DeleteFaq_0(ctx context.Context, marshaler run
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
 
-	msg, err := client.DeleteFaq(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.DeleteReport(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_GalaSejahteraService_DeleteFaq_0(ctx context.Context, marshaler runtime.Marshaler, server GalaSejahteraServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteFaqRequest
+func local_request_GalaSejahteraService_DeleteReport_0(ctx context.Context, marshaler runtime.Marshaler, server GalaSejahteraServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeleteReportRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -394,40 +394,40 @@ func local_request_GalaSejahteraService_DeleteFaq_0(ctx context.Context, marshal
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "id", err)
 	}
 
-	msg, err := server.DeleteFaq(ctx, &protoReq)
+	msg, err := server.DeleteReport(ctx, &protoReq)
 	return msg, metadata, err
 
 }
 
 var (
-	filter_GalaSejahteraService_DeleteFaqs_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
+	filter_GalaSejahteraService_DeleteReports_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
 )
 
-func request_GalaSejahteraService_DeleteFaqs_0(ctx context.Context, marshaler runtime.Marshaler, client GalaSejahteraServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteFaqsRequest
+func request_GalaSejahteraService_DeleteReports_0(ctx context.Context, marshaler runtime.Marshaler, client GalaSejahteraServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeleteReportsRequest
 	var metadata runtime.ServerMetadata
 
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_GalaSejahteraService_DeleteFaqs_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_GalaSejahteraService_DeleteReports_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.DeleteFaqs(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.DeleteReports(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_GalaSejahteraService_DeleteFaqs_0(ctx context.Context, marshaler runtime.Marshaler, server GalaSejahteraServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq DeleteFaqsRequest
+func local_request_GalaSejahteraService_DeleteReports_0(ctx context.Context, marshaler runtime.Marshaler, server GalaSejahteraServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq DeleteReportsRequest
 	var metadata runtime.ServerMetadata
 
-	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_GalaSejahteraService_DeleteFaqs_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.URL.Query(), filter_GalaSejahteraService_DeleteReports_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.DeleteFaqs(ctx, &protoReq)
+	msg, err := server.DeleteReports(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -1050,7 +1050,7 @@ func RegisterGalaSejahteraServiceHandlerServer(ctx context.Context, mux *runtime
 
 	})
 
-	mux.Handle("POST", pattern_GalaSejahteraService_CreateFaq_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_GalaSejahteraService_CreateReport_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -1059,18 +1059,18 @@ func RegisterGalaSejahteraServiceHandlerServer(ctx context.Context, mux *runtime
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_GalaSejahteraService_CreateFaq_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_GalaSejahteraService_CreateReport_0(rctx, inboundMarshaler, server, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_GalaSejahteraService_CreateFaq_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_GalaSejahteraService_CreateReport_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_GalaSejahteraService_GetFaqs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_GalaSejahteraService_GetReports_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -1079,18 +1079,18 @@ func RegisterGalaSejahteraServiceHandlerServer(ctx context.Context, mux *runtime
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_GalaSejahteraService_GetFaqs_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_GalaSejahteraService_GetReports_0(rctx, inboundMarshaler, server, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_GalaSejahteraService_GetFaqs_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_GalaSejahteraService_GetReports_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_GalaSejahteraService_GetFaq_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_GalaSejahteraService_GetReport_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -1099,18 +1099,18 @@ func RegisterGalaSejahteraServiceHandlerServer(ctx context.Context, mux *runtime
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_GalaSejahteraService_GetFaq_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_GalaSejahteraService_GetReport_0(rctx, inboundMarshaler, server, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_GalaSejahteraService_GetFaq_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_GalaSejahteraService_GetReport_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("PUT", pattern_GalaSejahteraService_UpdateFaq_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_GalaSejahteraService_UpdateReport_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -1119,18 +1119,18 @@ func RegisterGalaSejahteraServiceHandlerServer(ctx context.Context, mux *runtime
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_GalaSejahteraService_UpdateFaq_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_GalaSejahteraService_UpdateReport_0(rctx, inboundMarshaler, server, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_GalaSejahteraService_UpdateFaq_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_GalaSejahteraService_UpdateReport_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("PUT", pattern_GalaSejahteraService_UpdateFaqs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_GalaSejahteraService_UpdateReports_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -1139,18 +1139,18 @@ func RegisterGalaSejahteraServiceHandlerServer(ctx context.Context, mux *runtime
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_GalaSejahteraService_UpdateFaqs_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_GalaSejahteraService_UpdateReports_0(rctx, inboundMarshaler, server, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_GalaSejahteraService_UpdateFaqs_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_GalaSejahteraService_UpdateReports_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_GalaSejahteraService_DeleteFaq_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_GalaSejahteraService_DeleteReport_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -1159,18 +1159,18 @@ func RegisterGalaSejahteraServiceHandlerServer(ctx context.Context, mux *runtime
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_GalaSejahteraService_DeleteFaq_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_GalaSejahteraService_DeleteReport_0(rctx, inboundMarshaler, server, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_GalaSejahteraService_DeleteFaq_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_GalaSejahteraService_DeleteReport_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_GalaSejahteraService_DeleteFaqs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_GalaSejahteraService_DeleteReports_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -1179,14 +1179,14 @@ func RegisterGalaSejahteraServiceHandlerServer(ctx context.Context, mux *runtime
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_GalaSejahteraService_DeleteFaqs_0(rctx, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_GalaSejahteraService_DeleteReports_0(rctx, inboundMarshaler, server, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_GalaSejahteraService_DeleteFaqs_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_GalaSejahteraService_DeleteReports_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1511,7 +1511,7 @@ func RegisterGalaSejahteraServiceHandlerClient(ctx context.Context, mux *runtime
 
 	})
 
-	mux.Handle("POST", pattern_GalaSejahteraService_CreateFaq_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_GalaSejahteraService_CreateReport_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -1520,18 +1520,18 @@ func RegisterGalaSejahteraServiceHandlerClient(ctx context.Context, mux *runtime
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_GalaSejahteraService_CreateFaq_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_GalaSejahteraService_CreateReport_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_GalaSejahteraService_CreateFaq_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_GalaSejahteraService_CreateReport_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_GalaSejahteraService_GetFaqs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_GalaSejahteraService_GetReports_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -1540,18 +1540,18 @@ func RegisterGalaSejahteraServiceHandlerClient(ctx context.Context, mux *runtime
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_GalaSejahteraService_GetFaqs_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_GalaSejahteraService_GetReports_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_GalaSejahteraService_GetFaqs_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_GalaSejahteraService_GetReports_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("GET", pattern_GalaSejahteraService_GetFaq_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_GalaSejahteraService_GetReport_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -1560,18 +1560,18 @@ func RegisterGalaSejahteraServiceHandlerClient(ctx context.Context, mux *runtime
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_GalaSejahteraService_GetFaq_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_GalaSejahteraService_GetReport_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_GalaSejahteraService_GetFaq_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_GalaSejahteraService_GetReport_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("PUT", pattern_GalaSejahteraService_UpdateFaq_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_GalaSejahteraService_UpdateReport_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -1580,18 +1580,18 @@ func RegisterGalaSejahteraServiceHandlerClient(ctx context.Context, mux *runtime
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_GalaSejahteraService_UpdateFaq_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_GalaSejahteraService_UpdateReport_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_GalaSejahteraService_UpdateFaq_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_GalaSejahteraService_UpdateReport_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("PUT", pattern_GalaSejahteraService_UpdateFaqs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_GalaSejahteraService_UpdateReports_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -1600,18 +1600,18 @@ func RegisterGalaSejahteraServiceHandlerClient(ctx context.Context, mux *runtime
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_GalaSejahteraService_UpdateFaqs_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_GalaSejahteraService_UpdateReports_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_GalaSejahteraService_UpdateFaqs_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_GalaSejahteraService_UpdateReports_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_GalaSejahteraService_DeleteFaq_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_GalaSejahteraService_DeleteReport_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -1620,18 +1620,18 @@ func RegisterGalaSejahteraServiceHandlerClient(ctx context.Context, mux *runtime
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_GalaSejahteraService_DeleteFaq_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_GalaSejahteraService_DeleteReport_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_GalaSejahteraService_DeleteFaq_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_GalaSejahteraService_DeleteReport_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
-	mux.Handle("DELETE", pattern_GalaSejahteraService_DeleteFaqs_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("DELETE", pattern_GalaSejahteraService_DeleteReports_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
@@ -1640,14 +1640,14 @@ func RegisterGalaSejahteraServiceHandlerClient(ctx context.Context, mux *runtime
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_GalaSejahteraService_DeleteFaqs_0(rctx, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_GalaSejahteraService_DeleteReports_0(rctx, inboundMarshaler, client, req, pathParams)
 		ctx = runtime.NewServerMetadataContext(ctx, md)
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_GalaSejahteraService_DeleteFaqs_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_GalaSejahteraService_DeleteReports_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -1899,19 +1899,19 @@ var (
 
 	pattern_GalaSejahteraService_GetKases_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "kases"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_GalaSejahteraService_CreateFaq_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "faqs", "id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_GalaSejahteraService_CreateReport_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "reports", "id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_GalaSejahteraService_GetFaqs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "faqs"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_GalaSejahteraService_GetReports_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "reports"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_GalaSejahteraService_GetFaq_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "faqs", "id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_GalaSejahteraService_GetReport_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "reports", "id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_GalaSejahteraService_UpdateFaq_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "faqs", "id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_GalaSejahteraService_UpdateReport_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "reports", "id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_GalaSejahteraService_UpdateFaqs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "faqs"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_GalaSejahteraService_UpdateReports_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "reports"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_GalaSejahteraService_DeleteFaq_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "faqs", "id"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_GalaSejahteraService_DeleteReport_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "reports", "id"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_GalaSejahteraService_DeleteFaqs_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "faqs"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_GalaSejahteraService_DeleteReports_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "reports"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_GalaSejahteraService_CreateUser_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "users", "id"}, "", runtime.AssumeColonVerbOpt(true)))
 
@@ -1943,19 +1943,19 @@ var (
 
 	forward_GalaSejahteraService_GetKases_0 = runtime.ForwardResponseMessage
 
-	forward_GalaSejahteraService_CreateFaq_0 = runtime.ForwardResponseMessage
+	forward_GalaSejahteraService_CreateReport_0 = runtime.ForwardResponseMessage
 
-	forward_GalaSejahteraService_GetFaqs_0 = runtime.ForwardResponseMessage
+	forward_GalaSejahteraService_GetReports_0 = runtime.ForwardResponseMessage
 
-	forward_GalaSejahteraService_GetFaq_0 = runtime.ForwardResponseMessage
+	forward_GalaSejahteraService_GetReport_0 = runtime.ForwardResponseMessage
 
-	forward_GalaSejahteraService_UpdateFaq_0 = runtime.ForwardResponseMessage
+	forward_GalaSejahteraService_UpdateReport_0 = runtime.ForwardResponseMessage
 
-	forward_GalaSejahteraService_UpdateFaqs_0 = runtime.ForwardResponseMessage
+	forward_GalaSejahteraService_UpdateReports_0 = runtime.ForwardResponseMessage
 
-	forward_GalaSejahteraService_DeleteFaq_0 = runtime.ForwardResponseMessage
+	forward_GalaSejahteraService_DeleteReport_0 = runtime.ForwardResponseMessage
 
-	forward_GalaSejahteraService_DeleteFaqs_0 = runtime.ForwardResponseMessage
+	forward_GalaSejahteraService_DeleteReports_0 = runtime.ForwardResponseMessage
 
 	forward_GalaSejahteraService_CreateUser_0 = runtime.ForwardResponseMessage
 
