@@ -41,6 +41,7 @@ func (s *GetReportHandler) reportToResponse(report *dto.Report) (*pb.GetReportRe
 			CreatedAt:  report.CreatedAt,
 			HasSymptom: report.HasSymptom,
 			UserId:     report.UserID,
+			Results:    report.Results,
 		},
 	}
 

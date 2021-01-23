@@ -84,6 +84,7 @@ func (s *GetReportsHandler) reportsToResponses(reports []*dto.Report) (*pb.GetRe
 			CreatedAt:  report.CreatedAt,
 			HasSymptom: report.HasSymptom,
 			UserId:     report.UserID,
+			Results:    report.Results,
 		}
 
 		resps = append(resps, resp)

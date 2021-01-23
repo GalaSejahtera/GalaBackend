@@ -1359,6 +1359,13 @@
         "hasSymptom": {
           "type": "boolean",
           "format": "boolean"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "boolean",
+            "format": "boolean"
+          }
         }
       },
       "title": "report payload"

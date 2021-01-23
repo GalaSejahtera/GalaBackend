@@ -46,6 +46,7 @@ func (s *UpdateReportHandler) reportToResp(report *dto.Report) *pb.UpdateReportR
 			CreatedAt:  report.CreatedAt,
 			HasSymptom: report.HasSymptom,
 			UserId:     report.UserID,
+			Results:    report.Results,
 		},
 	}
 	return resp

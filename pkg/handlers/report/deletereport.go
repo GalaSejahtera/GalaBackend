@@ -35,6 +35,7 @@ func (s *DeleteReportHandler) reportToResp(report *dto.Report) *pb.DeleteReportR
 			CreatedAt:  report.CreatedAt,
 			HasSymptom: report.HasSymptom,
 			UserId:     report.UserID,
+			Results:    report.Results,
 		},
 	}
 	return resp

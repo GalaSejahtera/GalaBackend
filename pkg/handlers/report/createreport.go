@@ -26,6 +26,7 @@ func (s *CreateReportHandler) CreateReport(ctx context.Context, req *pb.CreateRe
 		CreatedAt:  utility.TimeToMilli(utility.MalaysiaTime(time.Now())),
 		HasSymptom: req.Data.HasSymptom,
 		UserID:     req.Data.UserId,
+		Results:    req.Data.Results,
 	}
 
 	rslt, err := s.Model.CreateReport(ctx, report)
@@ -46,6 +47,7 @@ func (s *CreateReportHandler) reportToResp(report *dto.Report) *pb.CreateReportR
 			CreatedAt:  report.CreatedAt,
 			HasSymptom: report.HasSymptom,
 			UserId:     report.UserID,
+			Results:    report.Results,
 		},
 	}
 }

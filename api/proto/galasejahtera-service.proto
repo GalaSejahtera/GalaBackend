@@ -226,6 +226,7 @@ message Report {
     string userId = 2;
     int64 createdAt = 3;
     bool hasSymptom = 4;
+    repeated bool results = 5;
 }
 
 // user payload
