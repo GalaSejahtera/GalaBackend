@@ -311,7 +311,7 @@ func CrawlCasesByDate(startDate string, endDate string) []*dto.Kase {
 	}
 	// sort by date reversed order
 	sort.Slice(stats, func(i, j int) bool {
-		return stats[i].LastUpdated > stats[j].LastUpdated
+		return stats[i].LastUpdated < stats[j].LastUpdated
 	})
 	return stats
 }
