@@ -248,3 +248,32 @@ func CrawlStories(page int64) []*dto.Covid {
 
 	return stories.Stories
 }
+
+func CrawlGeneral() *dto.General {
+	// Request the HTML page.
+	res, err := http.Get("https://api.coronatracker.com/v3/stats/worldometer/country?countryCode=MY")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer res.Body.Close()
+	if res.StatusCode != 200 {
+		log.Fatalf("status code error: %d %s", res.StatusCode, res.Status)
+	}
+
+	// Load the HTML document
+	doc, err := goquery.NewDocumentFromReader(res.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// get json string
+	jsonContent := doc.Text()
+	textBytes := []byte(jsonContent)
+	var stats []*dto.General
+	err = json.Unmarshal(textBytes, &stats)
+	if err != nil || len(stats) == 0 {
+		return &dto.General{}
+	}
+
+	return stats[0]
+}

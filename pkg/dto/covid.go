@@ -35,3 +35,9 @@ type Daily struct {
 	States      []*State `json:"states" bson:"states"`
 	LastUpdated int64    `json:"last_updated" bson:"last_updated"`
 }
+
+// General ...
+type General struct {
+	TotalConfirmed int64 `json:"totalConfirmed" bson:"totalConfirmed"`
+	ActiveCases    int64 `json:"activeCases" bson:"activeCases"`
+}

@@ -3,7 +3,9 @@ package kase
 import (
 	"context"
 	pb "galasejahtera/pkg/api"
+	"galasejahtera/pkg/dto"
 	"galasejahtera/pkg/model"
+	"galasejahtera/pkg/utility"
 	"github.com/golang/protobuf/ptypes/empty"
 )
 
@@ -12,7 +14,8 @@ type GetKasesHandler struct {
 }
 
 func (s *GetKasesHandler) GetKases(ctx context.Context, req *empty.Empty) (*pb.GetKasesResponse, error) {
-	resp, err := s.kasesToResponses()
+	general := utility.CrawlGeneral()
+	resp, err := s.kasesToResponses(general)
 	if err != nil {
 		return nil, err
 	}
@@ -20,12 +23,11 @@ func (s *GetKasesHandler) GetKases(ctx context.Context, req *empty.Empty) (*pb.G
 	return resp, nil
 }
 
-func (s *GetKasesHandler) kasesToResponses() (*pb.GetKasesResponse, error) {
-	rslt := map[string]int64{
-		"ok": 1,
-	}
-
+func (s *GetKasesHandler) kasesToResponses(general *dto.General) (*pb.GetKasesResponse, error) {
 	return &pb.GetKasesResponse{
-		Data: rslt,
+		Data: &pb.General{
+			TotalConfirmed: general.TotalConfirmed,
+			ActiveCases:    general.ActiveCases,
+		},
 	}, nil
 }

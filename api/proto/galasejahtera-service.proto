@@ -384,9 +384,14 @@ message GetNearbyUsersResponse {
     int64 userNum = 2;
 }
 
+message General {
+    int64 totalConfirmed = 1;
+    int64 activeCases = 2;
+}
+
 // get kases response payload
 message GetKasesResponse {
-    map<string, int64> data = 1;
+    General data = 1;
 }
 
 // ---------------- Covid -----------------

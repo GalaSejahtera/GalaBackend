@@ -1092,6 +1092,19 @@
       },
       "title": "district payload"
     },
+    "pbGeneral": {
+      "type": "object",
+      "properties": {
+        "totalConfirmed": {
+          "type": "string",
+          "format": "int64"
+        },
+        "activeCases": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
+    },
     "pbGetCovidResponse": {
       "type": "object",
       "properties": {
@@ -1134,11 +1147,7 @@
       "type": "object",
       "properties": {
         "data": {
-          "type": "object",
-          "additionalProperties": {
-            "type": "string",
-            "format": "int64"
-          }
+          "$ref": "#/definitions/pbGeneral"
         }
       },
       "title": "get kases response payload"
