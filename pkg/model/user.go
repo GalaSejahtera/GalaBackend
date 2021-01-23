@@ -537,9 +537,26 @@ func (m *Model) deleteAuth(givenUuid string) error {
 
 // GetNearbyUsers get nearby users count given user
 func (m *Model) GetNearbyUsers(ctx context.Context, user *dto.User) (int64, []*dto.User, error) {
-	total, users, err := m.userDAO.GetNearbyUsers(ctx, user)
+	_, users, err := m.userDAO.GetNearbyUsers(ctx, user)
 	if err != nil {
 		return 0, nil, err
 	}
-	return total, users, nil
+
+	// check if nearby users have reported symptoms
+	var symptomaticUsers []*dto.User
+	for _, u := range users {
+		_, reports, err := m.reportDAO.Query(ctx, &dto.SortData{
+			Item:  constants.CreatedAt,
+			Order: constants.DESC,
+		}, nil, &dto.FilterData{
+			Item:  constants.UserId,
+			Value: u.ID,
+		})
+		if err != nil || len(reports) == 0 || !reports[0].HasSymptom {
+			continue
+		}
+		symptomaticUsers = append(symptomaticUsers, u)
+	}
+
+	return int64(len(symptomaticUsers)), symptomaticUsers, nil
 }

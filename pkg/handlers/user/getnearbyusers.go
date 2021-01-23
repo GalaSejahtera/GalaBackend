@@ -20,16 +20,19 @@ func (s *GetNearbyUsersHandler) GetNearbyUsers(ctx context.Context, req *pb.GetN
 		return nil, constants.InvalidArgumentError
 	}
 
-	u := &dto.User{
-		ID:          req.User.Id,
-		IsActive:    true,
-		LastUpdated: utility.TimeToMilli(utility.MalaysiaTime(time.Now())),
-		Lat:         req.User.Lat,
-		Long:        req.User.Long,
-		Location: &dto.Location{
-			Type:        "Point",
-			Coordinates: []float64{req.User.Long, req.User.Lat},
-		},
+	u, err := s.Model.GetUser(ctx, req.User.Id)
+	if err != nil {
+		return nil, err
+	}
+
+	// patch user
+	u.IsActive = true
+	u.LastUpdated = utility.TimeToMilli(utility.MalaysiaTime(time.Now()))
+	u.Lat = req.User.Lat
+	u.Long = req.User.Long
+	u.Location = &dto.Location{
+		Type:        "Point",
+		Coordinates: []float64{req.User.Long, req.User.Lat},
 	}
 
 	// get users

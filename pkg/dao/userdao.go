@@ -6,8 +6,6 @@ import (
 	"galasejahtera/pkg/constants"
 	"galasejahtera/pkg/dto"
 	"galasejahtera/pkg/utility"
-	"time"
-
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -306,137 +304,11 @@ func (v *UserDAO) GetNearbyUsers(ctx context.Context, user *dto.User) (int64, []
 		users = append(users, u)
 	}
 
-	// get nearby users (within 50 meter)
-	query = bson.D{{
-		"$and",
-		bson.A{
-			bson.D{{
-				constants.IsActive,
-				bson.D{{
-					"$eq",
-					true,
-				}},
-			}},
-			bson.D{{
-				constants.Role,
-				bson.D{{
-					"$eq",
-					constants.User,
-				}},
-			}},
-			bson.D{{
-				constants.ID,
-				bson.D{{
-					"$ne",
-					user.ID,
-				}},
-			}},
-			bson.M{
-				// radius set to 100 meter only
-				constants.Location: bson.M{
-					"$geoWithin": bson.M{
-						"$centerSphere": bson.A{
-							bson.A{
-								user.Location.Coordinates[0], user.Location.Coordinates[1],
-							}, 0.05 / 6378.1,
-						},
-					},
-				},
-			},
-		},
-	}}
-
-	cursor, err = collection.Find(ctx, query)
+	// update current user's lat, long and active
+	_, err = v.Update(ctx, user)
 	if err != nil {
 		return 0, nil, err
 	}
 
-	var nearbyUsers []*dto.User
-	defer cursor.Close(ctx)
-	for cursor.Next(ctx) {
-		u := &dto.User{}
-		if err = cursor.Decode(&u); err != nil {
-			return 0, nil, err
-		}
-
-		if u.Location != nil && len(u.Location.Coordinates) == 2 {
-			u.Long = u.Location.Coordinates[0]
-			u.Lat = u.Location.Coordinates[1]
-		}
-
-		nearbyUsers = append(nearbyUsers, u)
-	}
-
-	// update nearby users list
-	err = v.updateUsersList(ctx, user, nearbyUsers)
-	if err != nil {
-		return 0, nil, err
-	}
-
-	return int64(len(nearbyUsers)), users, nil
-}
-
-// updateUsersList update nearby users list for contact tracing
-func (v *UserDAO) updateUsersList(ctx context.Context, user *dto.User, targetUsers []*dto.User) error {
-
-	// call get user to get user list first
-	userWithList, err := v.Get(ctx, user.ID)
-	if err != nil {
-		return err
-	}
-
-	collection := v.client.Database(constants.GalaSejahtera).Collection(constants.Users)
-
-	for _, targetUser := range targetUsers {
-
-		// clone target user into tmp
-		tmp := &dto.User{
-			ID:    targetUser.ID,
-			Role:  targetUser.Role,
-			Email: targetUser.Email,
-			Lat:   targetUser.Lat,
-			Long:  targetUser.Long,
-			Time:  utility.TimeToMilli(utility.MalaysiaTime(time.Now())),
-		}
-
-		// if target user is in user.Users, pull the result out
-		if utility.UserInUsers(userWithList.Users, tmp) {
-			query := bson.M{
-				constants.ID: user.ID,
-			}
-
-			update := bson.M{
-				"$pull": bson.M{
-					constants.Users: bson.M{
-						constants.ID: tmp.ID,
-					},
-				},
-			}
-
-			// update user
-			_, err := collection.UpdateOne(ctx, query, update)
-			if err != nil {
-				return err
-			}
-		}
-
-		// push user into users list
-		query := bson.M{
-			constants.ID: user.ID,
-		}
-
-		update := bson.M{
-			"$push": bson.M{
-				constants.Users: tmp,
-			},
-		}
-
-		// update user
-		_, err := collection.UpdateOne(ctx, query, update)
-		if err != nil {
-			return err
-		}
-	}
-
-	return nil
+	return int64(len(users)), users, nil
 }

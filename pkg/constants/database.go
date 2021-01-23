@@ -59,6 +59,9 @@ const (
 
 	// Daily
 	LastUpdated = "last_updated"
+
+	// Report
+	CreatedAt = "createdAt"
 )
 
 // Keywords
