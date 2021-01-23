@@ -11,6 +11,7 @@ import (
 	"log"
 	"net/http"
 	"regexp"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -77,6 +78,11 @@ func DateStringToTime(date string) (time.Time, error) {
 // TimeToDateString timestamp to date string (yyyyMMdd)
 func TimeToDateString(t time.Time) string {
 	return MalaysiaTime(t).Format("20060102")
+}
+
+// TimeToDateStringWithDash timestamp to date string (yyyy-MM-dd)
+func TimeToDateStringWithDash(t time.Time) string {
+	return MalaysiaTime(t).Format("2006-01-02")
 }
 
 // RemoveZeroWidth removes zero width characters from string
@@ -276,4 +282,36 @@ func CrawlGeneral() *dto.General {
 	}
 
 	return stats[0]
+}
+
+func CrawlCasesByDate(startDate string, endDate string) []*dto.Kase {
+	// Request the HTML page.
+	res, err := http.Get(fmt.Sprintf("https://api.coronatracker.com/v5/analytics/newcases/country?countryCode=MY&startDate=%s&endDate=%s", startDate, endDate))
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer res.Body.Close()
+	if res.StatusCode != 200 {
+		log.Fatalf("status code error: %d %s", res.StatusCode, res.Status)
+	}
+
+	// Load the HTML document
+	doc, err := goquery.NewDocumentFromReader(res.Body)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	// get json string
+	jsonContent := doc.Text()
+	textBytes := []byte(jsonContent)
+	var stats []*dto.Kase
+	err = json.Unmarshal(textBytes, &stats)
+	if err != nil || len(stats) == 0 {
+		return []*dto.Kase{}
+	}
+	// sort by date reversed order
+	sort.Slice(stats, func(i, j int) bool {
+		return stats[i].LastUpdated > stats[j].LastUpdated
+	})
+	return stats
 }

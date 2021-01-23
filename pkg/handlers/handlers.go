@@ -41,6 +41,16 @@ func (s *Handlers) GetKases(ctx context.Context, req *empty.Empty) (*pb.GetKases
 	return resp, nil
 }
 
+func (s *Handlers) GetRecentKases(ctx context.Context, req *empty.Empty) (*pb.GetRecentKasesResponse, error) {
+	handler := &kase.GetRecentKasesHandler{Model: s.Model}
+	resp, err := handler.GetRecentKases(ctx, req)
+	if err != nil {
+		logger.Log.Error("GetRecentKasesHandler: " + err.Error())
+		return nil, err
+	}
+	return resp, nil
+}
+
 func (s *Handlers) GetNearbyUsers(ctx context.Context, req *pb.GetNearbyUsersRequest) (*pb.GetNearbyUsersResponse, error) {
 	handler := &user.GetNearbyUsersHandler{Model: s.Model}
 	resp, err := handler.GetNearbyUsers(ctx, req)

@@ -274,6 +274,29 @@
         ]
       }
     },
+    "/v1/recentkases": {
+      "get": {
+        "summary": "Get Recent Covid Kases",
+        "operationId": "GetRecentKases",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbGetRecentKasesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "tags": [
+          "GalaSejahteraService"
+        ]
+      }
+    },
     "/v1/refresh": {
       "post": {
         "summary": "Refresh",
@@ -1190,6 +1213,18 @@
       },
       "title": "get password reset response payload"
     },
+    "pbGetRecentKasesResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/pbKase"
+          }
+        }
+      },
+      "title": "get recent kases response payload"
+    },
     "pbGetReportResponse": {
       "type": "object",
       "properties": {
@@ -1245,6 +1280,26 @@
         }
       },
       "title": "get users response payload"
+    },
+    "pbKase": {
+      "type": "object",
+      "properties": {
+        "last_updated": {
+          "type": "string"
+        },
+        "new_deaths": {
+          "type": "string",
+          "format": "int64"
+        },
+        "new_infections": {
+          "type": "string",
+          "format": "int64"
+        },
+        "new_recovered": {
+          "type": "string",
+          "format": "int64"
+        }
+      }
     },
     "pbLoginRequest": {
       "type": "object",

@@ -225,6 +225,24 @@ func local_request_GalaSejahteraService_GetKases_0(ctx context.Context, marshale
 
 }
 
+func request_GalaSejahteraService_GetRecentKases_0(ctx context.Context, marshaler runtime.Marshaler, client GalaSejahteraServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq empty.Empty
+	var metadata runtime.ServerMetadata
+
+	msg, err := client.GetRecentKases(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_GalaSejahteraService_GetRecentKases_0(ctx context.Context, marshaler runtime.Marshaler, server GalaSejahteraServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq empty.Empty
+	var metadata runtime.ServerMetadata
+
+	msg, err := server.GetRecentKases(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
 func request_GalaSejahteraService_CreateReport_0(ctx context.Context, marshaler runtime.Marshaler, client GalaSejahteraServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq CreateReportRequest
 	var metadata runtime.ServerMetadata
@@ -1251,6 +1269,26 @@ func RegisterGalaSejahteraServiceHandlerServer(ctx context.Context, mux *runtime
 
 	})
 
+	mux.Handle("GET", pattern_GalaSejahteraService_GetRecentKases_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateIncomingContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_GalaSejahteraService_GetRecentKases_0(rctx, inboundMarshaler, server, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_GalaSejahteraService_GetRecentKases_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	mux.Handle("POST", pattern_GalaSejahteraService_CreateReport_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -1772,6 +1810,26 @@ func RegisterGalaSejahteraServiceHandlerClient(ctx context.Context, mux *runtime
 
 	})
 
+	mux.Handle("GET", pattern_GalaSejahteraService_GetRecentKases_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		rctx, err := runtime.AnnotateContext(ctx, mux, req)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_GalaSejahteraService_GetRecentKases_0(rctx, inboundMarshaler, client, req, pathParams)
+		ctx = runtime.NewServerMetadataContext(ctx, md)
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_GalaSejahteraService_GetRecentKases_0(ctx, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
 	mux.Handle("POST", pattern_GalaSejahteraService_CreateReport_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
@@ -2166,6 +2224,8 @@ var (
 
 	pattern_GalaSejahteraService_GetKases_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "kases"}, "", runtime.AssumeColonVerbOpt(true)))
 
+	pattern_GalaSejahteraService_GetRecentKases_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "recentkases"}, "", runtime.AssumeColonVerbOpt(true)))
+
 	pattern_GalaSejahteraService_CreateReport_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2}, []string{"v1", "reports", "id"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_GalaSejahteraService_GetReports_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "reports"}, "", runtime.AssumeColonVerbOpt(true)))
@@ -2215,6 +2275,8 @@ var (
 	forward_GalaSejahteraService_GetNearbyUsers_0 = runtime.ForwardResponseMessage
 
 	forward_GalaSejahteraService_GetKases_0 = runtime.ForwardResponseMessage
+
+	forward_GalaSejahteraService_GetRecentKases_0 = runtime.ForwardResponseMessage
 
 	forward_GalaSejahteraService_CreateReport_0 = runtime.ForwardResponseMessage
 

@@ -45,4 +45,5 @@ type IHandlers interface {
 	// -------------- Daily ----------------
 
 	GetKases(ctx context.Context, req *empty.Empty) (*pb.GetKasesResponse, error)
+	GetRecentKases(ctx context.Context, req *empty.Empty) (*pb.GetRecentKasesResponse, error)
 }

@@ -53,6 +53,12 @@ service GalaSejahteraService {
             get: "/v1/kases"
         };
     }
+    // Get Recent Covid Kases
+    rpc GetRecentKases(google.protobuf.Empty) returns (GetRecentKasesResponse){
+        option (google.api.http) = {
+            get: "/v1/recentkases"
+        };
+    }
     // Create Report
     rpc CreateReport(CreateReportRequest) returns (CreateReportResponse){
         option (google.api.http) = {
@@ -394,6 +400,11 @@ message GetKasesResponse {
     General data = 1;
 }
 
+// get recent kases response payload
+message GetRecentKasesResponse {
+    repeated Kase data = 1;
+}
+
 // ---------------- Covid -----------------
 
 // get district request payload
@@ -405,6 +416,13 @@ message GetDistrictRequest {
 message GetDistrictResponse {
     // district payload
     District data = 1;
+}
+
+message Kase {
+    string last_updated = 1;
+    int64 new_deaths = 2;
+    int64 new_infections = 3;
+    int64 new_recovered = 4;
 }
 
 // ---------------- Covid -----------------

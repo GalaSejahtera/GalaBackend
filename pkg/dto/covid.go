@@ -41,3 +41,11 @@ type General struct {
 	TotalConfirmed int64 `json:"totalConfirmed" bson:"totalConfirmed"`
 	ActiveCases    int64 `json:"activeCases" bson:"activeCases"`
 }
+
+// Kase ...
+type Kase struct {
+	LastUpdated   string `json:"last_updated" bson:"last_updated"`
+	NewDeaths     int64  `json:"new_deaths" bson:"new_deaths"`
+	NewInfections int64  `json:"new_infections" bson:"new_infections"`
+	NewRecovered  int64  `json:"new_recovered" bson:"new_recovered"`
+}

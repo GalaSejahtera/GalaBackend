@@ -72,5 +72,7 @@ func RunServer() error {
 		_ = rest.RunServer(ctx, cfg.GRPCPort, cfg.HTTPPort)
 	}()
 
+	fmt.Printf("%+v", utility.CrawlCasesByDate("2021-01-01", "2021-01-20")[0])
+
 	return grpc.RunServer(ctx, handler, cfg.GRPCPort)
 }
