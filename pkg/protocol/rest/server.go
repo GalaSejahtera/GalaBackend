@@ -2,12 +2,12 @@ package rest
 
 import (
 	"context"
-	"net/http"
-	"os"
-	"os/signal"
 	pb "galasejahtera/pkg/api"
 	"galasejahtera/pkg/logger"
 	"galasejahtera/pkg/protocol/rest/middleware"
+	"net/http"
+	"os"
+	"os/signal"
 	"time"
 
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"

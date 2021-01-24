@@ -4,7 +4,6 @@ import (
 	"context"
 	pb "galasejahtera/pkg/api"
 	"galasejahtera/pkg/constants"
-	"galasejahtera/pkg/dto"
 	"galasejahtera/pkg/logger"
 	"galasejahtera/pkg/model"
 
@@ -16,28 +15,16 @@ type UpdatePasswordHandler struct {
 }
 
 func (s *UpdatePasswordHandler) UpdatePassword(ctx context.Context, req *pb.UpdatePasswordRequest) (*empty.Empty, error) {
-	// get user id by token
-	id, err := s.Model.GetUserIDByToken(ctx, req.Token)
+	// get user
+	user, err := s.Model.GetUser(ctx, req.UserId)
 	if err != nil {
 		logger.Log.Error("UpdatePassword: " + err.Error())
 		return nil, constants.UserNotFoundError
 	}
-
-	// prepare user payload
-	user := &dto.User{
-		ID:       id,
-		Password: req.Password,
-	}
+	user.Password = req.Password
 
 	// update user password
 	_, err = s.Model.UpdateUserPassword(ctx, user)
-	if err != nil {
-		logger.Log.Error("UpdatePassword: " + err.Error())
-		return nil, constants.InternalError
-	}
-
-	// revoke all user tokens
-	err = s.Model.RevokeTokensByUserID(ctx, id)
 	if err != nil {
 		logger.Log.Error("UpdatePassword: " + err.Error())
 		return nil, constants.InternalError

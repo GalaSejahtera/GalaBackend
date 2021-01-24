@@ -9,15 +9,15 @@ import (
 	"strings"
 )
 
-func SendPasswordResetEmail(to, name, resetLink string) error {
+func SendPasswordResetEmail(to, name, newPassword string) error {
 	data := struct {
-		Name      string
-		Email     string
-		ResetLink string
+		Name        string
+		Email       string
+		NewPassword string
 	}{
-		Name:      name,
-		Email:     to,
-		ResetLink: resetLink,
+		Name:        name,
+		Email:       to,
+		NewPassword: newPassword,
 	}
 
 	file := filepath.Join(os.Getenv("TEMPLATES_PATH"), "password_reset_email.html")
@@ -29,7 +29,7 @@ func SendPasswordResetEmail(to, name, resetLink string) error {
 
 	email := email{
 		To:      []string{to},
-		Subject: "Reset Your Safe Workout Password",
+		Subject: "Reset Your GalaSejahtera Password",
 		Body:    body,
 	}
 

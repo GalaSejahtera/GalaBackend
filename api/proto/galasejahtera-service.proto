@@ -158,7 +158,7 @@ service GalaSejahteraService {
     // Update Password
     rpc UpdatePassword(UpdatePasswordRequest) returns (google.protobuf.Empty){
         option (google.api.http) = {
-            put: "/v1/users/passwordreset/{token}"
+            put: "/v1/users/passwordreset/{userId}"
             body: "*"
         };
     }
@@ -261,8 +261,8 @@ message GetPasswordResetRequest {
 
 // get password reset request payload
 message UpdatePasswordRequest {
-    // token
-    string token = 1;
+    // user ID
+    string userId = 1;
     // password
     string password = 2;
 }

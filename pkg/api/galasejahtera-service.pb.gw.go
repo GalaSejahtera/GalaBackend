@@ -1027,15 +1027,15 @@ func request_GalaSejahteraService_UpdatePassword_0(ctx context.Context, marshale
 		_   = err
 	)
 
-	val, ok = pathParams["token"]
+	val, ok = pathParams["userId"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "token")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "userId")
 	}
 
-	protoReq.Token, err = runtime.String(val)
+	protoReq.UserId, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "token", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "userId", err)
 	}
 
 	msg, err := client.UpdatePassword(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
@@ -1062,15 +1062,15 @@ func local_request_GalaSejahteraService_UpdatePassword_0(ctx context.Context, ma
 		_   = err
 	)
 
-	val, ok = pathParams["token"]
+	val, ok = pathParams["userId"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "token")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "userId")
 	}
 
-	protoReq.Token, err = runtime.String(val)
+	protoReq.UserId, err = runtime.String(val)
 
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "token", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "userId", err)
 	}
 
 	msg, err := server.UpdatePassword(ctx, &protoReq)
@@ -2256,7 +2256,7 @@ var (
 
 	pattern_GalaSejahteraService_GetPasswordReset_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 1, 0, 4, 1, 5, 2, 2, 3}, []string{"v1", "users", "id", "passwordreset"}, "", runtime.AssumeColonVerbOpt(true)))
 
-	pattern_GalaSejahteraService_UpdatePassword_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "users", "passwordreset", "token"}, "", runtime.AssumeColonVerbOpt(true)))
+	pattern_GalaSejahteraService_UpdatePassword_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 1, 0, 4, 1, 5, 3}, []string{"v1", "users", "passwordreset", "userId"}, "", runtime.AssumeColonVerbOpt(true)))
 
 	pattern_GalaSejahteraService_Login_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "login"}, "", runtime.AssumeColonVerbOpt(true)))
 

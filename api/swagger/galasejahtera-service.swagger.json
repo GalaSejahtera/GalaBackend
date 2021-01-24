@@ -758,7 +758,7 @@
         ]
       }
     },
-    "/v1/users/passwordreset/{token}": {
+    "/v1/users/passwordreset/{userId}": {
       "put": {
         "summary": "Update Password",
         "operationId": "UpdatePassword",
@@ -778,8 +778,8 @@
         },
         "parameters": [
           {
-            "name": "token",
-            "description": "token",
+            "name": "userId",
+            "description": "user ID",
             "in": "path",
             "required": true,
             "type": "string"
@@ -1373,9 +1373,9 @@
     "pbUpdatePasswordRequest": {
       "type": "object",
       "properties": {
-        "token": {
+        "userId": {
           "type": "string",
-          "title": "token"
+          "title": "user ID"
         },
         "password": {
           "type": "string",

@@ -2,13 +2,13 @@ package grpc
 
 import (
 	"context"
-	"net"
-	"os"
-	"os/signal"
 	pb "galasejahtera/pkg/api"
 	"galasejahtera/pkg/handlers"
 	"galasejahtera/pkg/logger"
 	"galasejahtera/pkg/protocol/grpc/middleware"
+	"net"
+	"os"
+	"os/signal"
 
 	"google.golang.org/grpc"
 )
