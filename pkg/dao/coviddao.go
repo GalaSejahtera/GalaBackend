@@ -105,7 +105,7 @@ func (v *CovidDAO) Query(ctx context.Context, sort *dto.SortData, itemsRange *dt
 		// else: do query filter
 		if filter.Item == "q" {
 			query := bson.M{
-				constants.UserId: bson.M{
+				constants.Title: bson.M{
 					"$regex":   fmt.Sprintf("%s.*", filter.Value),
 					"$options": "i",
 				},

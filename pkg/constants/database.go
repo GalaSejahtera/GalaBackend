@@ -62,6 +62,9 @@ const (
 
 	// Report
 	CreatedAt = "createdAt"
+
+	// Covid
+	Title = "title"
 )
 
 // Keywords
