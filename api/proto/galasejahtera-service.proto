@@ -152,13 +152,13 @@ service GalaSejahteraService {
     // Get Password Reset
     rpc GetPasswordReset(GetPasswordResetRequest) returns (GetPasswordResetResponse){
         option (google.api.http) = {
-            get: "/v1/users/{id}/passwordreset"
+            get: "/v1/passwordreset"
         };
     }
     // Update Password
     rpc UpdatePassword(UpdatePasswordRequest) returns (google.protobuf.Empty){
         option (google.api.http) = {
-            put: "/v1/users/passwordreset/{userId}"
+            put: "/v1/passwordreset/{userId}"
             body: "*"
         };
     }

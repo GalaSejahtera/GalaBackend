@@ -243,6 +243,85 @@
         ]
       }
     },
+    "/v1/passwordreset": {
+      "get": {
+        "summary": "Get Password Reset",
+        "operationId": "GetPasswordReset",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbGetPasswordResetResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "description": "user id.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "description": "email.",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "GalaSejahteraService"
+        ]
+      }
+    },
+    "/v1/passwordreset/{userId}": {
+      "put": {
+        "summary": "Update Password",
+        "operationId": "UpdatePassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response",
+            "schema": {
+              "$ref": "#/definitions/runtimeError"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "description": "user ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbUpdatePasswordRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GalaSejahteraService"
+        ]
+      }
+    },
     "/v1/places/{id}": {
       "get": {
         "summary": "Get District",
@@ -758,46 +837,6 @@
         ]
       }
     },
-    "/v1/users/passwordreset/{userId}": {
-      "put": {
-        "summary": "Update Password",
-        "operationId": "UpdatePassword",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "properties": {}
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "userId",
-            "description": "user ID",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/pbUpdatePasswordRequest"
-            }
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      }
-    },
     "/v1/users/{id}": {
       "get": {
         "summary": "Get User",
@@ -929,45 +968,6 @@
             "schema": {
               "$ref": "#/definitions/pbUpdateUserRequest"
             }
-          }
-        ],
-        "tags": [
-          "GalaSejahteraService"
-        ]
-      }
-    },
-    "/v1/users/{id}/passwordreset": {
-      "get": {
-        "summary": "Get Password Reset",
-        "operationId": "GetPasswordReset",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbGetPasswordResetResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response",
-            "schema": {
-              "$ref": "#/definitions/runtimeError"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "id",
-            "description": "user id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "email",
-            "description": "email.",
-            "in": "query",
-            "required": false,
-            "type": "string"
           }
         ],
         "tags": [
