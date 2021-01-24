@@ -31,7 +31,7 @@ func (s *GetPasswordResetHandler) GetPasswordReset(ctx context.Context, req *pb.
 	user := us[0]
 
 	// generate random password
-	user.Password = uuid.NewV4().String()
+	user.Password = utility.NormalizeContent(uuid.NewV4().String())
 
 	// update user password
 	_, err = s.Model.UpdateUserPassword(ctx, user)
